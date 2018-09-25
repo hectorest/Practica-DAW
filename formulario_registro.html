@@ -25,27 +25,43 @@
 			<h3>Reg&iacute;strate</h3>
 			<div>
 				<label for="usuario">Usuario:</label>
-				<input type="text" name="usuario" id="usuario"/>
+				<input type="text" required name="usuario" id="usuario"/>
 			</div>
 			<div>
 				<label for="passw1">Contrase&ntilde;a:</label>
-				<input type="password" name="passw1" id="passw1"/>
+				<input type="password" required name="passw1" id="passw1"/>
 			</div>
 			<div>
 				<label for="passw2">Repetir contrase&ntilde;a:</label>
-				<input type="password" name="passw2" id="passw2"/>
+				<input type="password" required name="passw2" id="passw2"/>
 			</div>
 			<div>
 				<label for="email">Email:</label>
-				<input type="email" name="email" id="email"/>
+				<input type="email" required name="email" id="email"/>
+			</div>
+			<div>
+				<label for="sexo">Sexo:</label>
+				<select id="sexo" required size="3">
+					<option>Hombre</option>
+					<option>Mujer</option>
+					<option>Otro</option>
+				</select>
 			</div>
 			<div>
 				<label for="fnac">Fecha de nacimiento:</label>
-				<input type="date" name="fnac" id="fnac"/>
+				<input type="date" required name="fnac" id="fnac"/>
 			</div>
 			<div>
-				<label for="pnac">Pa&iacute;s:</label>
-				<input type="text" name="pnac" id="pnac"/>
+				<label for="cnac">Ciudad de residencia:</label>
+				<input type="text" required name="cnac" id="cnac"/>
+			</div>
+			<div>
+				<label for="pnac">Pa&iacute;s de residencia:</label>
+				<input type="text" required name="pnac" id="pnac"/>
+			</div>
+			<div>
+				<label for="fper">Foto de perfil:</label>
+				<input type="file" name="fper" id="fper"/>
 			</div>
 			<button type="submit">Enviar</button>
 			<a href=""><span class="icon-user">¿Ya tienes una cuenta? Inicia sesi&oacute;n</span></a>
