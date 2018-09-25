@@ -4,34 +4,107 @@
 <head> 
 	<meta charset="utf-8" /> 
 	<meta name="generator" content="Bloc de notas" /> 
-	<meta name="author" content="Hector Esteve Yague y Fco. Javier Garcia Fernandez" /> 
+	<meta name="author" content="Hector Esteve Yag&uuml;e & Fco. Javier Garc&iacute;a Fern&aacute;ndez" /> 
 	<meta name="keywords" content="HTML5, web" /> 
 	<meta name="description" content="Pagina principal de PI" /> 
-	<title>INICIO</title> 
+	<title>Pictures & Images</title>
+	<link rel="shortcut icon" type="image/x-icon" href="./logotipo-e-icono/icono-pi-daw.ico">
+	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="./logotipo-e-icono/icono-pi-daw.ico">
+	<link rel="stylesheet" type="text/css" href="fontello/css/fontello.css"> 
 </head> 
 <!-- El cuerpo --> 
-	<body> 
-		<p> 
-
-			<div id="cabecera">
-				
-				<img src="C:\Users\Usuario\Documents\Materials Universitat\Tercer Curs\DAW\Practica Git\Practica-DAW\img\logotipo-pi-daw.jpg">
-				<p>
-					<a> P&I las mejores fotos a tu alcance </a>
-				</p>
-				
-			</div>
-
+	<body>
+		<header id="piCabec">
+			<a href="index.html" title="Ir a la p&aacute;gina de inicio"><img src="./logotipo-e-icono/logotipo-pi-daw.png" alt="logotipo de pictures & images"></a>
 			<div>
-				
-				<form>
-					
-					<a> Nombre de Usuario </a>
-
-				</form>
-
+				<h1>Pictures & Images</h1>
+				<h2>Tu aplicaci&oacute;n web para fotos</h2>
 			</div>
-					 
-		</p> 
+		</header>
+		<div>
+			<div id="formRegIS">
+				<a href="formulario_acceso.html"><span class="icon-user"></span></a>
+				<a href="formulario_registro.html"><span class="icon-user-plus"></span></a>
+			</div>
+			<form id="buscTexto">
+				<input type="search" name="buscRap" id="buscRap" placeholder="Buscar...">
+				<a href="formulario_busqueda.html"><span id="butBuscRap" class="icon-search"></span></a>
+			</form>
+			<form id="miniFilBusc">
+				<label for="autorRap">Autor:</label>
+				<input type="text" name="autorRap" id="autorRap">
+				<label for="albumRap">Album:</label>
+				<input type="text" name="albumRap" id="albumRap">
+				<label for="tituloRap">T&iacute;tulo:</label>
+				<input type="text" name="tituloRap" id="tituloRap">
+				<a href="formulario_busqueda.html"><span id="butFiltBuscRap" class="icon-search"></span></a>
+			</form>
+		</div> 
+		<section id="contFotosIndex"> 
+			<h2>&Uacute;ltimas 5 im&aacute;genes subidas</h2>
+			<div>
+				<article>
+					<h3><a href="detalle_foto.html" title="Ver detalles de la foto">Titulo foto Ejemplo 1</a></h3>
+					<figure>
+						<a href="detalle_foto.html" title="Ver detalles de la foto"><img src="./imagen-muestra/imagen-muestra.jpg" alt="Titulo foto Ejemplo 1"></a>
+						<figcaption>Titulo foto Ejemplo 1</figcaption>
+					</figure>
+					<div>
+						<p><time datetime="2018-09-15">Fecha de foto ejemplo 1, por ejemplo: 15 de septiembre de 2018</time></p>
+						<p>Pais foto ejemplo 1</p>
+					</div>
+				</article>
+				<article>
+					<h3><a href="detalle_foto.html" title="Ver detalles de la foto">Titulo foto Ejemplo 2</a></h3>
+					<figure>
+						<a href="detalle_foto.html" title="Ver detalles de la foto"><img src="./imagen-muestra/imagen-muestra.jpg" alt="Titulo foto Ejemplo 2"></a>
+						<figcaption>Titulo foto Ejemplo 2</figcaption>
+					</figure>
+					<div>
+						<p><time datetime="2018-09-15">Fecha de foto ejemplo 2, por ejemplo: 15 de septiembre de 2018</time></p>
+						<p>Pais foto ejemplo 2</p>
+					</div>
+				</article>
+				<article>
+					<h3><a href="detalle_foto.html" title="Ver detalles de la foto">Titulo foto Ejemplo 3</a></h3>
+					<figure>
+						<a href="detalle_foto.html" title="Ver detalles de la foto"><img src="./imagen-muestra/imagen-muestra.jpg" alt="Titulo foto Ejemplo 3"></a>
+						<figcaption>Titulo foto Ejemplo 3</figcaption>
+					</figure>
+					<div>
+						<p><time datetime="2018-09-15">Fecha de foto ejemplo 3, por ejemplo: 15 de septiembre de 2018</time></p>
+						<p>Pais foto ejemplo 3</p>
+					</div>
+				</article>
+				<article>
+					<h3><a href="detalle_foto.html" title="Ver detalles de la foto">Titulo foto Ejemplo 4</a></h3>
+					<figure>
+						<a href="detalle_foto.html" title="Ver detalles de la foto"><img src="./imagen-muestra/imagen-muestra.jpg" alt="Titulo foto Ejemplo 4"></a>
+						<figcaption>Titulo foto Ejemplo 4</figcaption>
+					</figure>
+					<div>
+						<p><time datetime="2018-09-15">Fecha de foto ejemplo 4, por ejemplo: 15 de septiembre de 2018</time></p>
+						<p>Pais foto ejemplo 4</p>
+					</div>
+				</article>
+				<article>
+					<h3><a href="detalle_foto.html" title="Ver detalles de la foto">Titulo foto Ejemplo 5</a></h3>
+					<figure>
+						<a href="detalle_foto.html" title="Ver detalles de la foto"><img src="./imagen-muestra/imagen-muestra.jpg" alt="Titulo foto Ejemplo 5"></a>
+						<figcaption>Titulo foto Ejemplo 5</figcaption>
+					</figure>
+					<div>
+						<p><time datetime="2018-09-15">Fecha de foto ejemplo 5, por ejemplo: 15 de septiembre de 2018</time></p>
+						<p>Pais foto ejemplo 5</p>
+					</div>
+				</article>
+				<div id="scroll">
+					<span class="icon-angle-double-down" title="Ver las siguientes 5 fotos"></span>
+				</div>
+			</div> 
+		</section> 
+		<footer>
+			<p><strong><a href="acerca.html" title="Informaci&oacute;n de contacto">&copy;Hector Esteve Yag&uuml;e & Fco. Javier Garc&iacute;a Fern&aacute;ndez</a></strong><time datetime="2018-09">Septiembre de 2018</time><a href="#piCabec"><span class="icon-angle-circled-up" title="Subir al encabezado"></span></a></p>
+		</footer>
 	</body> 
 </html>

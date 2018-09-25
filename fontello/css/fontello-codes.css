@@ -1,0 +1,6 @@
+
+.icon-user:before { content: '\e800'; } /* '' */
+.icon-search:before { content: '\e801'; } /* '' */
+.icon-angle-double-down:before { content: '\f103'; } /* '' */
+.icon-angle-circled-up:before { content: '\f139'; } /* '' */
+.icon-user-plus:before { content: '\f234'; } /* '' */
