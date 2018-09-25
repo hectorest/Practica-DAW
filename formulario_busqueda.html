@@ -4,14 +4,13 @@
 <head> 
 	<meta charset="utf-8" /> 
 	<meta name="generator" content="Bloc de notas" /> 
-	<meta name="author" content="Hector Esteve Yague y Fco. Javier Garcia Fernandez" /> 
-	<meta name="keywords" content="HTML5, web" /> 
-	<meta name="description" content="Pagina formulario de busqueda de PI" /> 
-	<title>Pictures & Images/busqueda</title> 
+	<meta name="author" content="Hector Esteve Yag&uuml;e & Fco. Javier Garc&iacute;a Fern&aacute;ndez" /> 
+	<meta name="keywords" content="HTML5, web, Pictures & Images, PI, fotos, imagenes"/> 
+	<meta name="description" content="Pagina principal de PI" /> 
+	<title>Pictures & Images/busqueda</title>
 	<link rel="shortcut icon" type="image/x-icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
 	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
 	<link rel="stylesheet" type="text/css" href="fontello/css/fontello.css"/> 
-</head> 
 </head> 
 <!-- El cuerpo --> 
 	<body> 
@@ -22,27 +21,34 @@
 				<h2>Tu aplicaci&oacute;n web para fotos</h2>
 			</div>
 		</header>
-	
-	<form  id="regNvUsu">
-			<h3>B&uacute;squeda:</h3>
+		<form>
+			<h3>B&uacute;squeda avanzada</h3>
 			<div>
-				<label for="T&iacute;tulo">T&iacute;tulo:</label>
+				<label for="titulo">T&iacute;tulo:</label>
 				<input type="text" name="titulo" id="titulo"/>
 			</div>
 			<div>
-				<label for="fecha">Fecha:</label>
-				<input type="date" name="fecha" id="fecha"/>
+				<label for="date1">Fecha entre:</label>
+				<input type="date" name="date1" id="date1"/>
+				<label for="date2">y</label>
+				<input type="date" name="date2" id="date2"/>
 			</div>
 			<div>
 				<label for="pais">Pa&iacute;s:</label>
-				<input type="text" name="pnac" id="pais"/>
+				<input type="text" name="pais" id="pais"/>
 			</div>
-			<button type="submit">Buscar</button>
-			<a href=""><span class="icon-user">¿Ya tienes una cuenta? Inicia sesi&oacute;n</span></a>
-		</form> 
+			<div>
+				<label for="autor">Autor:</label>
+				<input type="text" name="autor" id="autor"/>
+			</div>
+			<div>
+				<label for="album">&Aacute;lbum:</label>
+				<input type="text" name="album" id="album">
+			</div>
+			<a href="resultado_busqueda.html"><span class="icon-search">Enviar</span></a> <!--ANOTACION: En realidad seria un boton tipo boton para darle funcionalidad despues, pero a un boton no le puedes poner un enlace tipo la etiqueta <a></a> para irte a otra pagina por lo que se emula el boton con la etiqueta <a></a> ya que quiere los resultados de la busqueda segun pone en el enunciado en otra pagina distinta. De todas maneras le he preguntado por tutoria. Segun haciamos en PCW, esto era un boton tipo boton que mediante javascript le poniamos una funcion y realizaba su funcion. No era de tipo submit porque el tipo submit suponia una recarga de pagina y eso como lo planteabamos no estaba bien ya que tenia que mostrarlo directamente nada mas buscar algo en el buscador avanzado-->
+		</form>
 		<footer>
 			<p><strong><a href="acerca.html" title="Informaci&oacute;n de contacto">&copy;Hector Esteve Yag&uuml;e & Fco. Javier Garc&iacute;a Fern&aacute;ndez</a></strong><time datetime="2018-09">Septiembre de 2018</time><a href="#piCabec"><span class="icon-angle-circled-up" title="Subir al encabezado"></span></a></p>
 		</footer>
-
 	</body> 
 </html>
