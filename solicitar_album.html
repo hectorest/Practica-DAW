@@ -126,6 +126,7 @@
 				<label for="localidad">Localidad:</label>
 				<select required name="localidad" id="localidad">
 					
+					<option value="">Escoge</option>
 					<option>San Vicente</option>
 					<option>Elche/Elx</option>
 					<option>Elda</option>
@@ -141,6 +142,7 @@
 				<label for="provincia">Provincia:</label>
 				<select required name="provincia" id="provincia">
 					
+					<option value="">Escoge</option>
 					<option>Comunidad Valenciana</option>
 					<option>Madrid</option>
 					<option>Murcia</option>
@@ -161,7 +163,7 @@
 			</div>
 
 			<div>
-				<label for="number">N&uacute;mero de copias:</label>
+				<label for="num_copias">N&uacute;mero de copias:</label>
 				<input type="number" name="num_copias" id="num_copias" value="1" min="1" />
 			</div>
 
@@ -169,8 +171,8 @@
 
 				<label for="resolucion">Resoluci&oacute;n de impresi&oacute;n:</label>
 
-				<select name="resolucion" id="resolucion">
-						
+				<select name="resolucion" id="resolucion" size="6">
+
 					<option>150 DPI</option>
 					<option>300 DPI</option>
 					<option>450 DPI</option>
@@ -186,8 +188,9 @@
 
 				<label for="album">&Aacute;lbum de PI*:</label>
 
-				<select required name="resolucion" id="album" title="Escoge un &aacute;lbum entre los que tienes creados en tu cuenta">
-						
+				<select required name="album" id="album" title="Escoge un &aacute;lbum entre los que tienes creados en tu cuenta">
+					
+					<option value="">Escoge</option>
 					<option>&Aacute;lbum 1</option>
 					<option>&Aacute;lbum 2</option>
 					<option>&Aacute;lbum 3</option>
@@ -197,15 +200,14 @@
 			</div>
 
 			<div>
-				<label for="frecep">Fecha recepci&oacute;n:</label>
-				<input type="date" required name="frecep" id="frecep"/>
-				<a>Fecha aproximada de recepci&oacute;n</a>
+				<label for="frecep">Fecha aprox. recepci&oacute;n:</label>
+				<input type="date" required name="frecep" id="frecep" title="Fecha aproximada de recepci&oacute;n"/>
 			</div>
 
 			<div>
 				<label for="color">¿Impresi&oacute;n a color?</label>
-				<input type="checkbox" name="color" value="Bike"> Color</>
-				<input type="checkbox" name="bn" value="Bike" checked="bn"> Blanco y negro</>
+				<input type="checkbox" name="color" id="color"><p>Color</p>
+				<input type="checkbox" name="bn" checked><p>Blanco y negro</p>
 			</div>
 
 			<button type="submit">Enviar</button> <!--En realidad, el boton submit, una vez pulsado, redirigira, si todos los datos son correctos, a la pagina de respuesta de la solicitud de album-->
