@@ -1,0 +1,201 @@
+<!DOCTYPE html> 
+<html lang="es"> 
+<!-- La cabecera --> 
+<head> 
+	<meta charset="utf-8" /> 
+	<meta name="generator" content="Bloc de notas" /> 
+	<meta name="author" content="Hector Esteve Yag&uuml;e & Fco. Javier Garc&iacute;a Fern&aacute;ndez" /> 
+	<meta name="keywords" content="HTML5, web, Pictures & Images, PI, fotos, imagenes"/> 
+	<meta name="description" content="Pagina principal de PI" /> 
+	<title>Pictures & Images/perfil</title>
+	<link rel="shortcut icon" type="image/x-icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
+	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
+	<link rel="stylesheet" type="text/css" href="fontello/css/fontello.css"/> 
+</head> 
+<!-- El cuerpo --> 
+	<body>
+		<header id="piCabec">
+			<a href="index.html" title="Ir a la p&aacute;gina de inicio"><img src="./logotipo-e-icono/logotipo-pi-daw.png" alt="logotipo de pictures & images"/></a>
+			<div>
+				<h1>Pictures & Images</h1>
+				<h2>Tu aplicaci&oacute;n web para fotos</h2>
+			</div>
+		</header>
+
+		<section>
+			
+			<div>
+				<h3>Solicitar &aacute;lbum</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</div>
+
+			<h4>Tarifas:</h4>
+
+			<table>
+
+				<tr>
+					
+					<th>Concepto</th>
+					<th>Tarifa</th>
+
+				</tr>
+
+				<tr>
+					
+					<td> &lt; 5 p&aacute;ginas</td>
+					<td>0.10 € por p&aacute;g.</td>
+
+				</tr>
+
+				<tr>
+						
+					<td>entre 5 y 10 p&aacute;ginas</td>
+					<td>0.08 € por p&aacute;g.</td>
+
+				</tr>
+
+				<tr>
+
+					<td>&gt; 11 p&aacute;ginas</td>
+					<td>0.07 € por p&aacute;g.</td>
+
+				</tr>
+
+				<tr>
+						
+					<td>Blanco y negro</td>
+					<td>0 €</td>
+
+				</tr>
+
+				<tr>
+
+					<td>Color</td>
+					<td>0.05 € por foto.</td>
+
+				</tr>
+
+				<tr>
+
+					<td>Resoluci&oacute;n &gt; 300dpi</td>
+					<td>0.02 € por foto</td>
+
+				</tr>
+
+			</table>
+		</section>
+
+		<form>
+				
+			<h3>Formulario de solicitud</h3>
+			<div>
+				<label for="nombre">Nombre:</label>
+				<input type="text" required name="nombre" id="nombre"/>
+			</div>
+			<div>
+				<label for="titulo">T&iacute;tulo del &aacute;lbum:</label>
+				<input type="text" required name="titulo" id="titulo"/>
+			</div>
+			<div>
+				<label for="texto_adicional">Texto adicional:</label>
+				<input type="text" name="texto_adicional" id="texto_adicional"/>
+			</div>
+			<div>
+				<label for="email">Email:</label>
+				<input type="email" required name="email" id="email"/>
+			</div>
+			<div>
+				<label for="calle">Direcci&oacute;n:</label>
+				<input type="text" required name="album" id="calle">
+				<input type="number" required name="numero" id="numero">
+				<input type="number" required name="CP" id="CP">
+				<select required name="localidad">
+					
+					<option>San Vicente</option>
+					<option>Alicante</option>
+
+				</select>
+
+				<select required name="provincia">
+					
+					<option>Alicante</option>
+					<option>Castell&oacute;n</option>
+					<option>Valencia</option>
+
+					
+				</select>
+
+			</div>
+			
+			<div>
+				<label for="telefono">Tel&eacute;fono:</label>
+				<input type="telefono" required name="telefono" id="telefono"/>
+			</div>
+
+			<div>
+				<label for="color_portada">Color de la portada:</label>
+				<input type="color" name="color_portada" id="color_portada"/>
+			</div>
+
+			<div>
+				<label for="number">N&uacute;mero de copias:</label>
+				<input type="number" name="num_copias" id="num_copias"/>
+			</div>
+
+			<div>
+
+				<label for="resolucion">Resoluci&oacute;n de impresi&oacute;n:</label>
+
+				<select name="resolucion">
+						
+					<option>150dpi</option>
+					<option>300dpi</option>
+					<option>450dpi</option>
+
+				</select>
+
+			</div>
+
+			<div>
+
+				<label for="album">&Aacute;lbum de PI</label>
+
+				<select required name="resolucion">
+						
+					<option>&Aacute;lbum 1</option>
+					<option>&Aacute;lbum 2</option>
+					<option>&Aacute;lbum 3</option>
+
+				</select>
+
+			</div>
+
+			<div>
+				<label for="frecep">Fecha recepci&oacute;n</label>
+				<input type="date" required name="frecep" id="frecep"/>
+				<a>Fecha aproximada de recepci&oacute;n</a>
+			</div>
+
+			<div>
+				<label for="color">Impresi&oacute;n a color?</label>
+				<input type="checkbox" name="color" value="Bike"> Color</>
+				<input type="checkbox" name="bn" value="Bike"> Blanco y negro</>
+
+			</div>
+
+			<button type="submit">Enviar</button>
+
+			</a>
+
+		</form>
+
+		<footer>
+			<p><strong><a href="acerca.html" title="Informaci&oacute;n de contacto">&copy;Hector Esteve Yag&uuml;e & Fco. Javier Garc&iacute;a Fern&aacute;ndez</a></strong><time datetime="2018-09">Septiembre de 2018</time><a href="#piCabec"><span class="icon-angle-circled-up" title="Subir al encabezado"></span></a></p>
+		</footer>
+	</body> 
+</html>
