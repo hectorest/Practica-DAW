@@ -99,48 +99,60 @@
 		<form>
 				
 			<h3>Formulario de solicitud</h3>
+			<p>Rellena el siguiente formulario aportando todos los detalles para confeccionar tu &aacute;lbum. Los campos con (*) son obligatorios.</p>
 			<div>
-				<label for="nombre">Nombre:</label>
-				<input type="text" required name="nombre" id="nombre"/>
+				<label for="nombre">Nombre*:</label>
+				<input type="text" required name="nombre" id="nombre" placeholder="Tu nombre y apellidos" maxlength="200" title="Tu nombre junto con tus apellidos no podr&aacute;n superar los 200 caracteres o letras"/>
 			</div>
 			<div>
-				<label for="titulo">T&iacute;tulo del &aacute;lbum:</label>
-				<input type="text" required name="titulo" id="titulo"/>
+				<label for="titulo">T&iacute;tulo del &aacute;lbum*:</label>
+				<input type="text" required name="titulo" id="titulo" placeholder="Que describa al album" maxlength="200" title="El titulo no podr&aacute; superar los 200 caracteres o letras" />
 			</div>
 			<div>
 				<label for="texto_adicional">Texto adicional:</label>
-				<input type="text" name="texto_adicional" id="texto_adicional"/>
+				<textarea id="texto_adicional" placeholder="Descripci&oacute;n del &aacute;lbum o dedicatoria" rows="10" cols="50" maxlength="4000" title="Tope de caracteres o letras: 4000"></textarea>
 			</div>
 			<div>
-				<label for="email">Email:</label>
-				<input type="email" required name="email" id="email"/>
+				<label for="email">Email*:</label>
+				<input type="email" required name="email" id="email" maxlength="200" title="Tope de caracteres o letras para su correo electr&oacute;nico o email: 200" />
 			</div>
 			<div>
-				<label for="calle">Direcci&oacute;n:</label>
-				<input type="text" required name="album" id="calle">
-				<input type="number" required name="numero" id="numero">
-				<input type="number" required name="CP" id="CP">
-				<select required name="localidad">
+				<label for="calle">Direcci&oacute;n*:</label>
+				<input type="text" required name="album" id="calle" placeholder="Calle">
+				<input type="number" required name="numero" id="numero" placeholder="N&uacute;mero" min="0">
+				<input type="number" required name="planta" id="piso" placeholder="Piso" min="0">
+				<input type="number" required name="puerta" id="puerta" placeholder="Puerta" min="1">
+				<input type="number" required name="CP" id="CP" placeholder="CP" min="0">
+				<label for="localidad">Localidad:</label>
+				<select required name="localidad" id="localidad">
 					
 					<option>San Vicente</option>
-					<option>Alicante</option>
-
-				</select>
-
-				<select required name="provincia">
-					
+					<option>Elche/Elx</option>
+					<option>Elda</option>
 					<option>Alicante</option>
 					<option>Castell&oacute;n</option>
 					<option>Valencia</option>
+					<option>Sevilla</option>
+					<option>Murcia</option>
+					<option>Madrid</option>
 
-					
 				</select>
+				
+				<label for="provincia">Provincia:</label>
+				<select required name="provincia" id="provincia">
+					
+					<option>Comunidad Valenciana</option>
+					<option>Madrid</option>
+					<option>Murcia</option>
+					<option>Andalucia</option>
 
+				</select>
+			
 			</div>
 			
 			<div>
 				<label for="telefono">Tel&eacute;fono:</label>
-				<input type="telefono" required name="telefono" id="telefono"/>
+				<input type="tel" required name="telefono" id="telefono"/>
 			</div>
 
 			<div>
@@ -150,18 +162,21 @@
 
 			<div>
 				<label for="number">N&uacute;mero de copias:</label>
-				<input type="number" name="num_copias" id="num_copias"/>
+				<input type="number" name="num_copias" id="num_copias" value="1" min="1" />
 			</div>
 
 			<div>
 
 				<label for="resolucion">Resoluci&oacute;n de impresi&oacute;n:</label>
 
-				<select name="resolucion">
+				<select name="resolucion" id="resolucion">
 						
-					<option>150dpi</option>
-					<option>300dpi</option>
-					<option>450dpi</option>
+					<option>150 DPI</option>
+					<option>300 DPI</option>
+					<option>450 DPI</option>
+					<option>600 DPI</option>
+					<option>750 DPI</option>
+					<option>900 DPI</option>
 
 				</select>
 
@@ -169,9 +184,9 @@
 
 			<div>
 
-				<label for="album">&Aacute;lbum de PI</label>
+				<label for="album">&Aacute;lbum de PI*:</label>
 
-				<select required name="resolucion">
+				<select required name="resolucion" id="album" title="Escoge un &aacute;lbum entre los que tienes creados en tu cuenta">
 						
 					<option>&Aacute;lbum 1</option>
 					<option>&Aacute;lbum 2</option>
@@ -182,23 +197,22 @@
 			</div>
 
 			<div>
-				<label for="frecep">Fecha recepci&oacute;n</label>
+				<label for="frecep">Fecha recepci&oacute;n:</label>
 				<input type="date" required name="frecep" id="frecep"/>
 				<a>Fecha aproximada de recepci&oacute;n</a>
 			</div>
 
 			<div>
-				<label for="color">Impresi&oacute;n a color?</label>
+				<label for="color">¿Impresi&oacute;n a color?</label>
 				<input type="checkbox" name="color" value="Bike"> Color</>
-				<input type="checkbox" name="bn" value="Bike"> Blanco y negro</>
-
+				<input type="checkbox" name="bn" value="Bike" checked="bn"> Blanco y negro</>
 			</div>
 
-			<button type="submit">Enviar</button>
-
-			</a>
+			<button type="submit">Enviar</button> <!--En realidad, el boton submit, una vez pulsado, redirigira, si todos los datos son correctos, a la pagina de respuesta de la solicitud de album-->
 
 		</form>
+
+		<a href="respuesta_sol_album.html">Respuesta de la solicitud de &aacute;lbum</a>
 
 		<footer>
 			<p><strong><a href="acerca.html" title="Informaci&oacute;n de contacto">&copy;Hector Esteve Yag&uuml;e & Fco. Javier Garc&iacute;a Fern&aacute;ndez</a></strong><time datetime="2018-09">Septiembre de 2018</time><a href="#piCabec"><span class="icon-angle-circled-up" title="Subir al encabezado"></span></a></p>
