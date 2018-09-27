@@ -32,12 +32,7 @@
 			
 			<div>
 				<h3>Solicitar &aacute;lbum</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p>En esta p&aacute;gina podr&aacute;s realizar el pedido de la impresi&oacute;n de un &aacute;lbum que hayas creado en tu cuenta. Las tarifas por p&aacute;ginas y resoluciones se especifican a continuaci&oacute;n.</p>
 			</div>
 
 			<h4>Tarifas:</h4>
@@ -123,8 +118,35 @@
 				<input type="number" required name="planta" id="piso" placeholder="Piso" min="0">
 				<input type="number" required name="puerta" id="puerta" placeholder="Puerta" min="1">
 				<input type="number" required name="CP" id="CP" placeholder="CP" min="0">
-				<label for="localidad">Localidad:</label>
-				<select required name="localidad" id="localidad">
+				<label for="pais">Pa&iacute;s:</label>
+				<select required name="pais" id="pais">
+					<option value="">Escoge</option>
+					<optgroup label="Europa">
+						<option>Alemania</option>
+						<option>Espa&ntilde;a</option>
+						<option>Francia</option>
+						<option>Inglaterra</option>
+						<option>Rusia</option>
+						<option>Suiza</option>
+					</optgroup>
+					<optgroup label="Asia">
+						<option>China</option>
+						<option>Jap&oacute;n</option>
+					</optgroup>
+					<optgroup label="Norteam&eacute;rica">
+						<option>Estados Unidos</option>
+						<option>Canad&aacute;</option>
+					</optgroup>
+					<optgroup label="Centroam&eacute;rica">
+						<option>M&eacute;xico</option>
+					</optgroup>
+					<optgroup label="Sudam&eacute;rica">
+						<option>Argentina</option>
+						<option>Brasil</option>
+					</optgroup>
+				</select>
+				<label for="local">Localidad:</label>
+				<select required name="local" id="local">
 					
 					<option value="">Escoge</option>
 					<option>San Vicente</option>
@@ -136,11 +158,13 @@
 					<option>Sevilla</option>
 					<option>Murcia</option>
 					<option>Madrid</option>
+					<option>Pek&iacute;n</option>
+					<option>Tokio</option>
 
 				</select>
 				
-				<label for="provincia">Provincia:</label>
-				<select required name="provincia" id="provincia">
+				<label for="prov">Provincia:</label>
+				<select required name="prov" id="prov">
 					
 					<option value="">Escoge</option>
 					<option>Comunidad Valenciana</option>
@@ -206,8 +230,8 @@
 
 			<div>
 				<label for="color">¿Impresi&oacute;n a color?</label>
-				<input type="checkbox" name="color" id="color"><p>Color</p>
-				<input type="checkbox" name="bn" checked><p>Blanco y negro</p>
+				<input type="checkbox" name="color" id="color"><span>Color</span>
+				<input type="checkbox" name="bn" checked><span>Blanco y negro</span>
 			</div>
 
 			<button type="submit">Enviar</button> <!--En realidad, el boton submit, una vez pulsado, redirigira, si todos los datos son correctos, a la pagina de respuesta de la solicitud de album-->

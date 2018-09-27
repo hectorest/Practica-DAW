@@ -25,15 +25,15 @@
 			<h3>Reg&iacute;strate</h3>
 			<div>
 				<label for="usuario">Usuario*:</label>
-				<input type="text" required name="usuario" id="usuario"/>
+				<input type="text" pattern="[A-Za-z0-9]{6,14}" minlength="6" maxlength="14" title="El nombre de usuario tendr&aacute; como m&iacute;nimo 6 caracteres que pueden ser tanto letras may&uacute;sculas como min&uacute;sculas y como n&uacute;meros. El m&aacute;ximo n&uacute;mero de caracteres permitido es 14" required name="usuario" id="usuario"/>
 			</div>
 			<div>
 				<label for="passw1">Contrase&ntilde;a*:</label>
-				<input type="password" required name="passw1" id="passw1"/>
+				<input type="password" pattern="[A-Za-z0-9¿?¡!-_@#$%&=]{8,16}" minlength="8" maxlength="16" required name="passw1" id="passw1" title="La contrase&ntilde;a tendr&aacute; un m&iacute;nimo de 8 caracteres y un m&aacute;ximo de 16. Podr&aacute;s escribir tanto letras may&uacute;sculas como min&uacute;sculas adem&aacute;s de n&uacute;meros y los siguientes s&iacute;mbolos: ¿?¡!-_@#$%&=" />
 			</div>
 			<div>
 				<label for="passw2">Repetir contrase&ntilde;a*:</label>
-				<input type="password" required name="passw2" id="passw2"/>
+				<input type="password" pattern="[A-Za-z0-9¿?¡!-_@#$%&=]{8,16}" minlength="8" maxlength="16" required name="passw2" id="passw2" title="La contrase&ntilde;a debe de coincidir con la escrita en la casilla anterior" />
 			</div>
 			<div>
 				<label for="email">Email*:</label>
@@ -53,16 +53,54 @@
 				<input type="date" required name="fnac" id="fnac"/>
 			</div>
 			<div>
-				<label for="cnac">Ciudad de residencia*:</label>
-				<input type="text" required name="cnac" id="cnac"/>
+				<label for="cres">Ciudad de residencia*:</label>
+				<select required name="cres" id="cres">
+					<option value="">Escoge</option>
+					<option>San Vicente</option>
+					<option>Elche/Elx</option>
+					<option>Elda</option>
+					<option>Alicante</option>
+					<option>Castell&oacute;n</option>
+					<option>Valencia</option>
+					<option>Sevilla</option>
+					<option>Murcia</option>
+					<option>Madrid</option>
+					<option>Pek&iacute;n</option>
+					<option>Tokio</option>
+				</select>
 			</div>
 			<div>
-				<label for="pnac">Pa&iacute;s de residencia*:</label>
-				<input type="text" required name="pnac" id="pnac"/>
+				<label for="pres">Pa&iacute;s de residencia*:</label>
+				<select required name="pres" id="pres">
+					<option value="">Escoge</option>
+					<optgroup label="Europa">
+						<option>Alemania</option>
+						<option>Espa&ntilde;a</option>
+						<option>Francia</option>
+						<option>Inglaterra</option>
+						<option>Rusia</option>
+						<option>Suiza</option>
+					</optgroup>
+					<optgroup label="Asia">
+						<option>China</option>
+						<option>Jap&oacute;n</option>
+					</optgroup>
+					<optgroup label="Norteam&eacute;rica">
+						<option>Estados Unidos</option>
+						<option>Canad&aacute;</option>
+					</optgroup>
+					<optgroup label="Centroam&eacute;rica">
+						<option>M&eacute;xico</option>
+					</optgroup>
+					<optgroup label="Sudam&eacute;rica">
+						<option>Argentina</option>
+						<option>Brasil</option>
+					</optgroup>
+				</select>
 			</div>
 			<div>
 				<label for="fper">Foto de perfil*:</label>
-				<input type="file" required name="fper" id="fper"/>
+				<input type="file" accept="image/*" required name="fper" id="fper"/>
 			</div>
 			<button type="submit">Enviar</button>
 			<a href="formulario_acceso.html"><span class="icon-user">¿Ya tienes una cuenta? Inicia sesi&oacute;n</span></a>
