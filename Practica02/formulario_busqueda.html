@@ -1,0 +1,96 @@
+<!DOCTYPE html> 
+<html lang="es"> 
+<!-- La cabecera --> 
+<head> 
+	<meta charset="utf-8" /> 
+	<meta name="generator" content="Bloc de notas" /> 
+	<meta name="author" content="Hector Esteve Yagüe & Fco. Javier García Fernández" /> 
+	<meta name="keywords" content="HTML5, web, Pictures & Images, PI, fotos, imagenes"/> 
+	<meta name="description" content="Pagina principal de PI" /> 
+	<title>Pictures & Images/busqueda</title>
+	<link rel="shortcut icon" type="image/x-icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
+	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
+	<link rel="stylesheet" type="text/css" href="fontello/css/fontello.css"/> 
+</head> 
+<!-- El cuerpo --> 
+	<body> 
+		<header id="piCabec">
+			<a href="index.html" title="Ir a la página de inicio"><img src="./logotipo-e-icono/logotipo-pi-daw.png" alt="logotipo de pictures & images"/></a>
+			<div>
+				<h1>Pictures & Images</h1>
+				<h2>Tu aplicación web para fotos</h2>
+			</div>
+		</header>
+		<div id="formRegIS">
+			<a href="perfil.html"><span class="icon-user-circle"></span></a>
+			<a href="formulario_acceso.html"><span class="icon-user"></span></a>
+			<a href="formulario_registro.html"><span class="icon-user-plus"></span></a>
+		</div>
+
+		<form action="resultado_busqueda.html" method="get">
+
+			<fieldset>
+
+			<legend>
+				Búsqueda avanzada
+			</legend>
+
+				<div>
+					<label for="titulo">Título:</label>
+					<input type="text" name="titulo" id="titulo"/>
+				</div>
+				<div>
+					<label for="date1">Fecha entre:</label>
+					<input type="date" name="date1" id="date1"/>
+					<label for="date2">y</label>
+					<input type="date" name="date2" id="date2"/>
+				</div>
+				<div>
+					<label for="pais">País:</label>
+					<select name="pais" id="pais">
+						<option value="">Escoge</option>
+						<optgroup label="Europa">
+							<option>Alemania</option>
+							<option>España</option>
+							<option>Francia</option>
+							<option>Inglaterra</option>
+							<option>Rusia</option>
+							<option>Suiza</option>
+						</optgroup>
+						<optgroup label="Asia">
+							<option>China</option>
+							<option>Japón</option>
+						</optgroup>
+						<optgroup label="Norteamérica">
+							<option>Estados Unidos</option>
+							<option>Canadá</option>
+						</optgroup>
+						<optgroup label="Centroamérica">
+							<option>México</option>
+						</optgroup>
+						<optgroup label="Sudamérica">
+							<option>Argentina</option>
+							<option>Brasil</option>
+						</optgroup>
+					</select>
+				</div>
+				<div>
+					<label for="album">Álbum:</label>
+					<input type="text" name="album" id="album"/>
+				</div>
+				<div>
+					<label for="autor">Autor:</label>
+					<input type="text" name="autor" id="autor"/>
+				</div>
+				<button type="submit"><span class="icon-search">Enviar</span></button>
+
+			</fieldset>
+
+		</form>
+
+
+		<footer>
+			<p><strong><a href="acerca.html" title="Información de contacto">&copy;Hector Esteve Yagüe & Fco. Javier García Fernández</a></strong><time datetime="2018-09">Septiembre de 2018</time><a href="#piCabec"><span class="icon-angle-circled-up" title="Subir al encabezado"></span></a></p>
+		</footer>
+	</body> 
+</html>

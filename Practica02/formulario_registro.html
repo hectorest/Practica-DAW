@@ -1,0 +1,118 @@
+<!DOCTYPE html> 
+<html lang="es"> 
+<!-- La cabecera --> 
+<head> 
+	<meta charset="utf-8" /> 
+	<meta name="generator" content="Bloc de notas" /> 
+	<meta name="author" content="Hector Esteve Yagüe & Fco. Javier García Fernández" /> 
+	<meta name="keywords" content="HTML5, web, Pictures & Images, PI, fotos, imagenes"/> 
+	<meta name="description" content="Pagina principal de PI" /> 
+	<title>Pictures & Images/registro</title>
+	<link rel="shortcut icon" type="image/x-icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
+	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
+	<link rel="stylesheet" type="text/css" href="fontello/css/fontello.css"/> 
+</head> 
+<!-- El cuerpo --> 
+	<body>
+		<header id="piCabec">
+			<a href="index.html" title="Ir a la página de inicio"><img src="./logotipo-e-icono/logotipo-pi-daw.png" alt="logotipo de pictures & images"/></a>
+			<div>
+				<h1>Pictures & Images</h1>
+				<h2>Tu aplicación web para fotos</h2>
+			</div>
+		</header>
+		<form  id="regNvUsu" action="index.html" method="get">
+			
+			<fieldset>
+
+					<legend>
+						Regístrate
+					</legend>
+				<div>
+					<label for="usuario">Usuario*:</label>
+					<input type="text" pattern="[A-Za-z0-9]{6,14}" minlength="6" maxlength="14" title="El nombre de usuario tendrá como mínimo 6 caracteres que pueden ser tanto letras mayúsculas como minúsculas y como números. El máximo número de caracteres permitido es 14" required name="usuario" id="usuario"/>
+				</div>
+				<div>
+					<label for="passw1">Contraseña*:</label>
+					<input type="password" pattern="[A-Za-z0-9¿?¡!-_@#$%&=]{8,16}" minlength="8" maxlength="16" required name="passw1" id="passw1" title="La contraseña tendrá un mínimo de 8 caracteres y un máximo de 16. Podrás escribir tanto letras mayúsculas como minúsculas además de números y los siguientes símbolos: ¿?¡!-_@#$%&=" />
+				</div>
+				<div>
+					<label for="passw2">Repetir contraseña*:</label>
+					<input type="password" pattern="[A-Za-z0-9¿?¡!-_@#$%&=]{8,16}" minlength="8" maxlength="16" required name="passw2" id="passw2" title="La contraseñ;a debe de coincidir con la escrita en la casilla anterior" />
+				</div>
+				<div>
+					<label for="email">Email*:</label>
+					<input type="email" required name="email" id="email"/>
+				</div>
+				<div>
+					<label for="sexo">Sexo*:</label>
+					<select id="sexo" required>
+						<option value="">Escoge</option>
+						<option>Hombre</option>
+						<option>Mujer</option>
+						<option>Otro</option>
+					</select>
+				</div>
+				<div>
+					<label for="fnac">Fecha de nacimiento*:</label>
+					<input type="date" required name="fnac" id="fnac"/>
+				</div>
+				<div>
+					<label for="cres">Ciudad de residencia*:</label>
+					<select required name="cres" id="cres">
+						<option value="">Escoge</option>
+						<option>San Vicente</option>
+						<option>Elche/Elx</option>
+						<option>Elda</option>
+						<option>Alicante</option>
+						<option>Castellón</option>
+						<option>Valencia</option>
+						<option>Sevilla</option>
+						<option>Murcia</option>
+						<option>Madrid</option>
+						<option>Pekín</option>
+						<option>Tokio</option>
+					</select>
+				</div>
+				<div>
+					<label for="pres">País de residencia*:</label>
+					<select required name="pres" id="pres">
+						<option value="">Escoge</option>
+						<optgroup label="Europa">
+							<option>Alemania</option>
+							<option>España</option>
+							<option>Francia</option>
+							<option>Inglaterra</option>
+							<option>Rusia</option>
+							<option>Suiza</option>
+						</optgroup>
+						<optgroup label="Asia">
+							<option>China</option>
+							<option>Japón</option>
+						</optgroup>
+						<optgroup label="Norteamérica">
+							<option>Estados Unidos</option>
+							<option>Canadá</option>
+						</optgroup>
+						<optgroup label="Centroamérica">
+							<option>México</option>
+						</optgroup>
+						<optgroup label="Sudamérica">
+							<option>Argentina</option>
+							<option>Brasil</option>
+						</optgroup>
+					</select>
+				</div>
+				<div>
+					<label for="fper">Foto de perfil*:</label>
+					<input type="file" accept="image/*" required name="fper" id="fper"/>
+				</div>
+				<button type="submit">Enviar</button>
+				<a href="formulario_acceso.html"><span class="icon-user">¿Ya tienes una cuenta? Inicia sesión</span></a>
+			</fieldset>
+		</form> 
+		<footer>
+			<p><strong><a href="acerca.html" title="Información de contacto">&copy;Hector Esteve Yagüe;e & Fco. Javier García Fernández</a></strong><time datetime="2018-09">Septiembre de 2018</time><a href="#piCabec"><span class="icon-angle-circled-up" title="Subir al encabezado"></span></a></p>
+		</footer>
+	</body> 
+</html>
