@@ -91,169 +91,170 @@
 			</table>
 		</section>
 
-		<form>
+		<form action="respuesta_sol_album.html" method="get">
 				
-			<h3>Formulario de solicitud</h3>
-			<p>Rellena el siguiente formulario aportando todos los detalles para confeccionar tu álbum. Los campos con (*) son obligatorios.</p>
-			<div>
-				<label for="nombre">Nombre*:</label>
-				<input type="text" required name="nombre" id="nombre" placeholder="Tu nombre y apellidos" maxlength="200" title="Tu nombre junto con tus apellidos no podrán superar los 200 caracteres o letras"/>
-			</div>
-			<div>
-				<label for="titulo">Título del álbum*:</label>
-				<input type="text" required name="titulo" id="titulo" placeholder="Que describa al album" maxlength="200" title="El titulo no podrá superar los 200 caracteres o letras" />
-			</div>
-			<div>
-				<label for="texto_adicional">Texto adicional:</label>
-				<textarea id="texto_adicional" placeholder="Descripción del álbum o dedicatoria" rows="10" cols="50" maxlength="4000" title="Tope de caracteres o letras: 4000"></textarea>
-			</div>
-			<div>
-				<label for="email">Email*:</label>
-				<input type="email" required name="email" id="email" maxlength="200" title="Tope de caracteres o letras para su correo electrónico o email: 200" />
-			</div>
-			<div>
-				<label for="calle">Dirección*:</label>
-				<input type="text" required name="album" id="calle" placeholder="Calle">
-				<input type="number" required name="numero" id="numero" placeholder="Número" min="0">
-				<input type="number" required name="planta" id="piso" placeholder="Piso" min="0">
-				<input type="number" required name="puerta" id="puerta" placeholder="Puerta" min="1">
-				<input type="number" required name="CP" id="CP" placeholder="CP" min="0">
-				<label for="pais">País*:</label>
-				<select required name="pais" id="pais">
-					<option value="">Escoge</option>
-					<optgroup label="Europa">
-						<option>Alemania</option>
-						<option>España</option>
-						<option>Francia</option>
-						<option>Inglaterra</option>
-						<option>Rusia</option>
-						<option>Suiza</option>
-					</optgroup>
-					<optgroup label="Asia">
-						<option>China</option>
-						<option>Japón</option>
-					</optgroup>
-					<optgroup label="Norteamérica">
-						<option>Estados Unidos</option>
-						<option>Canadá</option>
-					</optgroup>
-					<optgroup label="Centroamérica">
-						<option>México</option>
-					</optgroup>
-					<optgroup label="Sudamérica">
-						<option>Argentina</option>
-						<option>Brasil</option>
-					</optgroup>
-				</select>
-				<label for="local">Localidad*:</label>
-				<select required name="local" id="local">
-					
-					<option value="">Escoge</option>
-					<option>San Vicente</option>
-					<option>Elche/Elx</option>
-					<option>Elda</option>
-					<option>Alicante</option>
-					<option>Castellón</option>
-					<option>Valencia</option>
-					<option>Sevilla</option>
-					<option>Murcia</option>
-					<option>Madrid</option>
-					<option>Pekín</option>
-					<option>Tokio</option>
+			<fieldset>
 
-				</select>
+					<legend>
+						Formulario de solicitud
+					</legend>
+				<p>Rellena el siguiente formulario aportando todos los detalles para confeccionar tu álbum. Los campos con (*) son obligatorios.</p>
 				
-				<label for="prov">Provincia*:</label>
-				<select required name="prov" id="prov">
+				<div>
+					<label for="nombre">Nombre*:</label>
+					<input type="text" required name="nombre" id="nombre" placeholder="Tu nombre y apellidos" maxlength="200" title="Tu nombre junto con tus apellidos no podrán superar los 200 caracteres o letras"/>
+				</div>
+				<div>
+					<label for="titulo">Título del álbum*:</label>
+					<input type="text" required name="titulo" id="titulo" placeholder="Que describa al album" maxlength="200" title="El titulo no podrá superar los 200 caracteres o letras" />
+				</div>
+				<div>
+					<label for="texto_adicional">Texto adicional:</label>
+					<textarea id="texto_adicional" placeholder="Descripción del álbum o dedicatoria" rows="10" cols="50" maxlength="4000" title="Tope de caracteres o letras: 4000"></textarea>
+				</div>
+				<div>
+					<label for="email">Email*:</label>
+					<input type="email" required name="email" id="email" maxlength="200" title="Tope de caracteres o letras para su correo electrónico o email: 200" />
+				</div>
+				<div>
+					<label for="calle">Dirección*:</label>
+					<input type="text" required name="album" id="calle" placeholder="Calle">
+					<input type="number" required name="numero" id="numero" placeholder="Número" min="0">
+					<input type="number" required name="CP" id="CP" placeholder="CP" min="0">
+					<label for="pais">País*:</label>
+					<select required name="pais" id="pais">
+						<option value="">Escoge</option>
+						<optgroup label="Europa">
+							<option>Alemania</option>
+							<option>España</option>
+							<option>Francia</option>
+							<option>Inglaterra</option>
+							<option>Rusia</option>
+							<option>Suiza</option>
+						</optgroup>
+						<optgroup label="Asia">
+							<option>China</option>
+							<option>Japón</option>
+						</optgroup>
+						<optgroup label="Norteamérica">
+							<option>Estados Unidos</option>
+							<option>Canadá</option>
+						</optgroup>
+						<optgroup label="Centroamérica">
+							<option>México</option>
+						</optgroup>
+						<optgroup label="Sudamérica">
+							<option>Argentina</option>
+							<option>Brasil</option>
+						</optgroup>
+					</select>
+					<label for="local">Localidad*:</label>
+					<select required name="local" id="local">
+						
+						<option value="">Escoge</option>
+						<option>San Vicente</option>
+						<option>Elche/Elx</option>
+						<option>Elda</option>
+						<option>Alicante</option>
+						<option>Castellón</option>
+						<option>Valencia</option>
+						<option>Sevilla</option>
+						<option>Murcia</option>
+						<option>Madrid</option>
+						<option>Pekín</option>
+						<option>Tokio</option>
+
+					</select>
 					
-					<option value="">Escoge</option>
-					<option>Comunidad Valenciana</option>
-					<option>Madrid</option>
-					<option>Murcia</option>
-					<option>Andalucia</option>
+					<label for="prov">Provincia*:</label>
+					<select required name="prov" id="prov">
+						
+						<option value="">Escoge</option>
+						<option>Comunidad Valenciana</option>
+						<option>Madrid</option>
+						<option>Murcia</option>
+						<option>Andalucia</option>
 
-				</select>
-			
-			</div>
-			
-			<div>
-				<label for="telefono">Teléfono:</label>
-				<input type="tel" required name="telefono" id="telefono"/>
-			</div>
+					</select>
+				
+				</div>
+				
+				<div>
+					<label for="telefono">Teléfono:</label>
+					<input type="tel" placeholder="000000000" name="telefono" id="telefono" pattern="[0-9]{9}" minlength="9" maxlength="9" />
+				</div>
 
-			<div>
-				<label for="color_portada">Color de la portada:</label>
-				<input type="color" name="color_portada" id="color_portada"/>
-			</div>
+				<div>
+					<label for="color_portada">Color de la portada:</label>
+					<input type="color" name="color_portada" id="color_portada"/>
+				</div>
 
-			<div>
-				<label for="num_copias">Número de copias:</label>
-				<input type="number" name="num_copias" id="num_copias" value="1" min="1" />
-			</div>
+				<div>
+					<label for="num_copias">Número de copias:</label>
+					<input type="number" name="num_copias" id="num_copias" value="1" min="1" />
+				</div>
 
-			<!--
+				<!--
 
-			<div>
+				<div>
 
-				<label for="resolucion">Resoluci&oacute;n de impresi&oacute;n:</label>
+					<label for="resolucion">Resoluci&oacute;n de impresión:</label>
 
-				<select name="resolucion" id="resolucion">
+					<select name="resolucion" id="resolucion">
 
-					<option>150 DPI</option>
-					<option>300 DPI</option>
-					<option>450 DPI</option>
-					<option>600 DPI</option>
-					<option>750 DPI</option>
-					<option>900 DPI</option>
+						<option>150 DPI</option>
+						<option>300 DPI</option>
+						<option>450 DPI</option>
+						<option>600 DPI</option>
+						<option>750 DPI</option>
+						<option>900 DPI</option>
 
-				</select>
+					</select>
 
-			</div>
+				</div>
 
-			
-			-->
+				
+				-->
 
-			<div>
+				<div>
 
-				<label for="resolucion">Resolución de impresión:</label>
-				<input type="range" name="resolucion" id="resolucion" min="150" max="900" step="150" value="150" onchange="document.getElementById('outresolucion').textContent=this.value">
-				<output id="outresolucion">150</output> <span>DPI</span> 
+					<label for="resolucion">Resolución de impresión:</label>
+					<input type="range" name="resolucion" id="resolucion" min="150" max="900" step="150" value="150" onchange="document.getElementById('outresolucion').textContent=this.value">
+					<output id="outresolucion">150</output> <span>DPI</span> 
 
-			</div>			
+				</div>			
 
-			
+				
 
-			<div>
+				<div>
 
-				<label for="album">Álbum de PI*:</label>
+					<label for="album">Álbum de PI*:</label>
 
-				<select required name="album" id="album" title="Escoge un álbum entre los que tienes creados en tu cuenta">
-					
-					<option value="">Escoge</option>
-					<option>Álbum 1</option>
-					<option>Álbum 2</option>
-					<option>Álbum 3</option>
+					<select required name="album" id="album" title="Escoge un álbum entre los que tienes creados en tu cuenta">
+						
+						<option value="">Escoge</option>
+						<option>Álbum 1</option>
+						<option>Álbum 2</option>
+						<option>Álbum 3</option>
 
-				</select>
+					</select>
 
-			</div>
+				</div>
 
-			<div>
-				<label for="frecep">Fecha aprox. recepción:</label>
-				<input type="date" required name="frecep" id="frecep" title="Fecha aproximada de recepción"/>
-			</div>
+				<div>
+					<label for="frecep">Fecha aprox. recepción:</label>
+					<input type="date" name="frecep" id="frecep" title="Fecha aproximada de recepción"/>
+				</div>
 
-			<div>
-				<label for="color">¿Impresión a color?</label>
-				<input type="radio" name="colorobn" id="color" value="color"><span>Color</span>
-				<input type="radio" name="colorobn" checked="checked" id="bn" value="bn"><span>Blanco y negro</span>
-			</div>
+				<div>
+					<label for="color">¿Impresión a color?</label>
+					<input type="radio" name="colorobn" id="color" value="color"><span>Color</span>
+					<input type="radio" name="colorobn" checked="checked" id="bn" value="bn"><span>Blanco y negro</span>
+				</div>
 
-			<button type="submit">Enviar</button> <!--En realidad, el boton submit, una vez pulsado, redirigira, si todos los datos son correctos, a la pagina de respuesta de la solicitud de album-->
-
+				<button type="submit">Enviar</button> <!--En realidad, el boton submit, una vez pulsado, redirigira, si todos los datos son correctos, a la pagina de respuesta de la solicitud de album-->
+			</fieldset>
 		</form>
-
-		<a href="respuesta_sol_album.html">Respuesta de la solicitud de álbum</a>
 
 		<footer>
 			<p><strong><a href="acerca.html" title="Información de contacto">&copy;Hector Esteve Yagüe & Fco. Javier García Fernández</a></strong><time datetime="2018-09">Septiembre de 2018</time><a href="#piCabec"><span class="icon-angle-circled-up" title="Subir al encabezado"></span></a></p>

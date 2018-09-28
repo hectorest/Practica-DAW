@@ -26,32 +26,69 @@
 			<a href="formulario_acceso.html"><span class="icon-user"></span></a>
 			<a href="formulario_registro.html"><span class="icon-user-plus"></span></a>
 		</div>
-		<form>
-			<h3>Bú;squeda avanzada</h3>
-			<div>
-				<label for="titulo">Título:</label>
-				<input type="text" name="titulo" id="titulo"/>
-			</div>
-			<div>
-				<label for="date1">Fecha entre:</label>
-				<input type="date" name="date1" id="date1"/>
-				<label for="date2">y</label>
-				<input type="date" name="date2" id="date2"/>
-			</div>
-			<div>
-				<label for="pais">País:</label>
-				<input type="text" name="pais" id="pais"/>
-			</div>
-			<div>
-				<label for="album">Álbum:</label>
-				<input type="text" name="album" id="album"/>
-			</div>
-			<div>
-				<label for="autor">Autor:</label>
-				<input type="text" name="autor" id="autor"/>
-			</div>
-			<a href="resultado_busqueda.html"><span class="icon-search">Enviar</span></a> <!--ANOTACION: En realidad seria un boton tipo boton para darle funcionalidad despues, pero a un boton no le puedes poner un enlace tipo la etiqueta <a></a> para irte a otra pagina por lo que se emula el boton con la etiqueta <a></a> ya que quiere los resultados de la busqueda segun pone en el enunciado en otra pagina distinta. De todas maneras le he preguntado por tutoria. Segun haciamos en PCW, esto era un boton tipo boton que mediante javascript le poniamos una funcion y realizaba su funcion. No era de tipo submit porque el tipo submit suponia una recarga de pagina y eso como lo planteabamos no estaba bien ya que tenia que mostrarlo directamente nada mas buscar algo en el buscador avanzado-->
+
+		<form action="resultado_busqueda.html" method="get">
+
+			<fieldset>
+
+			<legend>
+				Búsqueda avanzada
+			</legend>
+
+				<div>
+					<label for="titulo">Título:</label>
+					<input type="text" name="titulo" id="titulo"/>
+				</div>
+				<div>
+					<label for="date1">Fecha entre:</label>
+					<input type="date" name="date1" id="date1"/>
+					<label for="date2">y</label>
+					<input type="date" name="date2" id="date2"/>
+				</div>
+				<div>
+					<label for="pais">País:</label>
+					<select name="pais" id="pais">
+						<option value="">Escoge</option>
+						<optgroup label="Europa">
+							<option>Alemania</option>
+							<option>España</option>
+							<option>Francia</option>
+							<option>Inglaterra</option>
+							<option>Rusia</option>
+							<option>Suiza</option>
+						</optgroup>
+						<optgroup label="Asia">
+							<option>China</option>
+							<option>Japón</option>
+						</optgroup>
+						<optgroup label="Norteamérica">
+							<option>Estados Unidos</option>
+							<option>Canadá</option>
+						</optgroup>
+						<optgroup label="Centroamérica">
+							<option>México</option>
+						</optgroup>
+						<optgroup label="Sudamérica">
+							<option>Argentina</option>
+							<option>Brasil</option>
+						</optgroup>
+					</select>
+				</div>
+				<div>
+					<label for="album">Álbum:</label>
+					<input type="text" name="album" id="album"/>
+				</div>
+				<div>
+					<label for="autor">Autor:</label>
+					<input type="text" name="autor" id="autor"/>
+				</div>
+				<button type="submit"><span class="icon-search">Enviar</span></button>
+
+			</fieldset>
+
 		</form>
+
+
 		<footer>
 			<p><strong><a href="acerca.html" title="Información de contacto">&copy;Hector Esteve Yagüe & Fco. Javier García Fernández</a></strong><time datetime="2018-09">Septiembre de 2018</time><a href="#piCabec"><span class="icon-angle-circled-up" title="Subir al encabezado"></span></a></p>
 		</footer>

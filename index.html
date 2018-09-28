@@ -27,18 +27,41 @@
 				<a href="formulario_acceso.html"><span class="icon-user"></span></a>
 				<a href="formulario_registro.html"><span class="icon-user-plus"></span></a>
 			</div>
-			<form id="buscTexto">
+			<form id="buscTexto" action="resultado_busqueda.html" method="get">
 				<input type="search" name="buscRap" id="buscRap" placeholder="Buscar...">
-				<a href="formulario_busqueda.html"><span id="butBuscRap" class="icon-search"></span></a>
+				<button type="submit"><span id="butBuscRap" class="icon-search"></span></button>
 			</form>
-			<form id="miniFilBusc">
-				<label for="autorRap">Autor:</label>
-				<input type="text" name="autorRap" id="autorRap">
-				<label for="albumRap">Album:</label>
-				<input type="text" name="albumRap" id="albumRap">
-				<label for="tituloRap">Título:</label>
-				<input type="text" name="tituloRap" id="tituloRap">
-				<a href="formulario_busqueda.html"><span id="butFiltBuscRap" class="icon-search"></span></a>
+
+
+
+
+			<form id="miniFilBusc" action="resultado_busqueda.html" method="get">
+				<fieldset>
+
+					<legend>
+						Búsqueda Avanzada
+					</legend>
+
+							<div>
+								<label for="autorRap">Autor:</label>
+								<input type="text" name="autorRap" id="autorRap">
+							</div>
+
+							<div>
+								<label for="albumRap">Album:</label>
+								<input type="text" name="albumRap" id="albumRap">
+							</div>
+
+							<div>
+								<label for="tituloRap">Título:</label>
+								<input type="text" name="tituloRap" id="tituloRap">
+							<div>
+
+						<button type="submit"><span id="butFiltBuscRap" class="icon-search"></span></button>
+						<a href="formulario_busqueda.html">Más opciones...</a>
+						
+				</fieldset>			
+
 			</form>
 		</div> 
 		<section id="contFotosIndex"> 
@@ -99,8 +122,14 @@
 						<p>Pais foto ejemplo 5</p>
 					</div>
 				</article>
-				<div id="scroll">
-					<span class="icon-angle-double-down" title="Ver las siguientes 5 fotos"></span>
+
+
+				<div id="paginacion">
+					<span class="icon-to-start" title="Primeras 5 imágenes"></span>
+					<span class="icon-left-open" title="Anteriores 5 imágenes"></span>
+					<p>Página <output>1</output> / 5</p>
+					<span class="icon-right-open" title="Siguientes 5 imágenes"></span>
+					<span class="icon-to-end" title="Últimas 5 imágenes"></span>
 				</div>
 			</div> 
 		</section> 
