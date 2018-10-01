@@ -1,0 +1,130 @@
+<style type="text/css">
+
+body{
+
+background-color: #F8E9E9; 
+
+}
+
+/*HEADER*/
+
+	body>header{
+
+		background-color: #394648;
+		padding: 1em;
+		border-radius: 15px;
+		display: flex;
+
+	}
+
+	body>header>a>img{
+
+		margin-right: 1em; 
+
+	}
+
+	body>header>div>h1,h2{
+
+		color: #F8E9E9;
+		font-family: sans-serif;
+		font-style: bold;
+
+	}
+
+/*LATERAL DERECHO*/
+
+	body>div{
+
+		/*position: fixed;*/
+		margin-top: 1em;
+		float: right;
+		border-style: solid;
+		border-color: #394648;
+    	border-width: 5px;
+    	border-radius: 15px;
+    	padding: 0.5em;
+    	text-align: center;
+
+
+	}
+
+/*FORMULARIO DE REGISTRO*/
+
+	body>div>#formRegIS{
+
+		margin: 0.5em;
+
+	}
+
+		body>div>#formRegIS>a{
+
+			display: inline-block;
+			visibility: hidden;
+
+		}
+
+			body>div>#formRegIS>a>span{
+
+				display: inline-block;
+				visibility: visible;
+				color: #394648;
+
+			}
+
+/*BARRA BUSQUEDA TEXTO*/
+
+	body>div>form{
+
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+		display: block;
+
+	}
+
+/*FORMULARIO BUSQUEDA*/
+
+	body>div>form>fieldset>legend{
+
+		color: #394648;
+		font-family: sans-serif;
+
+	}
+
+	body>div>form>fieldset>div>label{
+
+		color: #394648;
+		font-family: sans-serif;
+
+	}
+
+
+	body>div>form>fieldset>a{
+
+		color: #394648;
+		font-family: sans-serif;
+
+	}
+
+/*PARTE CENTRAL*/
+
+	body>section{
+
+		margin-top: 1em;
+		float: left;
+		border-style: solid;
+		border-color: #394648;
+    	border-width: 5px;
+    	border-radius: 15px;
+    	padding: 0.5em;
+    	text-align: center;
+
+	}
+
+/*FOOTER*/
+
+	body>footer{
+
+		display: block;
+		text-align: center;
+
+	}
