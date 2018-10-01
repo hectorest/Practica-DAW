@@ -1,9 +1,10 @@
-<style type="text/css">
+
+@import url('https://fonts.googleapis.com/css?family=Kalam');
 
 body{
 
-background-color: #F8E9E9; 
-
+	background-color: #F8E9E9; 
+	font-family: 'Kalam', cursive;
 }
 
 /*HEADER*/
@@ -26,7 +27,6 @@ background-color: #F8E9E9;
 	body>header>div>h1,h2{
 
 		color: #F8E9E9;
-		font-family: sans-serif;
 		font-style: bold;
 
 	}
@@ -86,14 +86,12 @@ background-color: #F8E9E9;
 	body>div>form>fieldset>legend{
 
 		color: #394648;
-		font-family: sans-serif;
 
 	}
 
 	body>div>form>fieldset>div>label{
 
 		color: #394648;
-		font-family: sans-serif;
 
 	}
 
@@ -101,7 +99,6 @@ background-color: #F8E9E9;
 	body>div>form>fieldset>a{
 
 		color: #394648;
-		font-family: sans-serif;
 
 	}
 
@@ -118,7 +115,6 @@ background-color: #F8E9E9;
     	border-radius: 15px;
     	padding: 0.5em;
     	text-align: center;
-    	font-family: sans-serif;
 
 	}
 
@@ -166,28 +162,25 @@ background-color: #F8E9E9;
 
 		body>footer>p{
 
-			font-family: sans-serif;
 			color: #F8E9E9;
 
 		}
 
 		body>footer>p>strong>a{
 
-			font-family: sans-serif;
 			color: #F8E9E9;
 
 		}
 
 		body>footer>p>time{
 			
-			font-family: sans-serif;
 			color: #F8E9E9;
 
 		}
 
 		body>footer>p>a{
 
-			font-family: sans-serif;
+			
 			color: #F8E9E9;
 
 		}
