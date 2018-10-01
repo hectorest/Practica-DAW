@@ -4,7 +4,7 @@
 body{
 	box-sizing: border-box;
 	margin: 0 auto;
-	background-color: #DFBF9F; 
+	background-color: #EDDBCE; 
 	font-family: 'Kalam', cursive;
 }
 
@@ -17,6 +17,7 @@ body{
 		border: 0.3em solid #D67731;
 		border-radius: 15px;
 		display: flex;
+		justify-content: center;
 
 	}
 
