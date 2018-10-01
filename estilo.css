@@ -2,8 +2,9 @@
 @import url('https://fonts.googleapis.com/css?family=Kalam');
 
 body{
-
-	background-color: #F8E9E9; 
+	box-sizing: border-box;
+	margin: 0 auto;
+	background-color: #DBBC8A; 
 	font-family: 'Kalam', cursive;
 }
 
@@ -11,8 +12,9 @@ body{
 
 	body>header{
 
-		background-color: #394648;
+		background-color: #E28F4E;
 		padding: 1em;
+		border: 0.3em solid #D67731;
 		border-radius: 15px;
 		display: flex;
 
@@ -154,8 +156,9 @@ body{
 
 		clear: both;
 		text-align: center;
-		background-color: #394648;
+		background-color: #E28F4E;
 		padding: 1em;
+		border: 0.3em solid #D67731;
 		border-radius: 15px;
 
 	}
