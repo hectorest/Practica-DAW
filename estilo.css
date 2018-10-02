@@ -41,8 +41,7 @@ body{
 		/*position: fixed;*/
 		margin-top: 1em;
 		float: right;
-		border-style: solid;
-		border-color: #394648;
+		border: 0.3em solid #D67731;
     	border-width: 5px;
     	border-radius: 15px;
     	padding: 0.5em;
@@ -56,12 +55,13 @@ body{
 	body>#formRegIS{
 
 		margin: 0.5em;
+		display: block;
 
 	}
 
 		body>#formRegIS>a{
 
-			display: inline-block;
+			display: block;
 
 		}
 
@@ -112,10 +112,9 @@ body{
 		margin-bottom: 1em;
 		margin-left: 1em;
 		float: left;
-		border-style: solid;
-		border-color: #394648;
+		/*border: 0.3em solid #D67731;;
     	border-width: 5px;
-    	border-radius: 15px;
+    	border-radius: 15px;*/
     	padding: 0.5em;
     	text-align: center;
 
@@ -123,10 +122,27 @@ body{
 
 		body>section>h3{
 
-			background-color: #394648;
+			/*background-color: #E28F4E;*/
 			padding: 0.2em;
+			border: 0.3em solid #D67731;
+			border-width: 5px;
 			border-radius: 15px;
-			color: #F8E9E9;
+			display: flex;
+			justify-content: center;
+			color: #394648;
+
+		}
+
+		body>section>div>article{
+
+			/*background-color: #E28F4E;*/
+			padding: 0.2em;
+			border: 0.3em solid #D67731;
+			border-width: 5px;
+			border-radius: 15px;
+			justify-content: center;
+			color: #394648;
+			margin-top: 0.3em;
 
 		}
 
@@ -137,19 +153,29 @@ body{
 
 		}
 
-		body>section>div>article>div{
+		/*body>section>div>article>div{
 
 			background-color: #394648;
 			padding: 0.2em;
 			border-radius: 15px;
 
-		}
+		}*/
 
 			body>section>div>article>div>p{
 
-				color: #F8E9E9;
+				color: #394648;
 
 		}
+
+/*PAGINACION*/
+
+		body>section>div>div>span,p{
+
+			justify-content: center;
+			display: inline-block;
+
+		}
+
 
 /*FOOTER*/
 
