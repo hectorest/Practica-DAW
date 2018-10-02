@@ -6,6 +6,7 @@ body{
 	margin: 0 auto;
 	background-color: #F1D7C7; 
 	font-family: 'Kalam', cursive;
+	position: relative;
 }
 
 /*HEADER*/
@@ -14,12 +15,21 @@ body{
 
 		background-color: #E28F4E;
 		padding: 1em;
-		border: 0.3em solid #D67731;
-		border-radius: 15px;
+		border-top: 0.3em solid #D67731;
 		display: flex;
 		justify-content: center;
 
 	}
+
+		body>header>a{
+			overflow: hidden;
+			transition: all .35s ease-in-out;
+		}
+
+		body>header>a:hover{
+			filter: brightness(115%);
+			cursor: pointer;
+		}
 
 	body>header>a>img{
 
@@ -36,42 +46,64 @@ body{
 
 /*LATERAL DERECHO*/
 
-	body>div{
-
-		/*position: fixed;*/
-		margin-top: 1em;
+	body>#formBusc{
 		float: right;
+		margin-top: 1em;
 		border: 0.3em solid #D67731;
     	border-width: 5px;
     	border-radius: 15px;
     	padding: 0.5em;
     	text-align: center;
-
-
 	}
 
-/*FORMULARIO DE REGISTRO*/
+/*BARRA DE NAVEGACION*/
 
-	body>#formRegIS{
-
-		margin: 0.5em;
+	body>nav{
 		display: block;
-
+		text-align: center;
+		background-color: #FF7A1E;
+		border-top: 0.3em solid #D67731;
+		border-bottom: 0.3em solid #D67731;
 	}
-
-		body>#formRegIS>a{
-
-			display: block;
-
+		body>nav>ul{
+			display: inline-block;
+			margin: 0;
 		}
-
-			body>#formRegIS>a>span{
-
+			body>nav>ul>li{
+				list-style: none;
 				display: inline-block;
-				visibility: visible;
-				color: #394648;
-
+				
 			}
+				body>nav>ul>li>a{
+					display: block;
+					color: #ffffff;
+					padding: 0.7em;
+					text-decoration: none;
+				}
+
+				body>nav>ul>li>a:hover{
+					background-color: #ffffff;
+					color: #000000;
+					cursor: pointer;
+					border-radius: 10px;
+				}
+
+				body>nav>ul>li>input{
+					display: none;
+				}
+
+				body>nav>ul>li>span{
+					display: block;
+					color: #ffffff;
+					padding: 0.7em;
+					text-decoration: none;
+				}
+				body>nav>ul>li>span:hover{
+					background-color: #ffffff;
+					color: #000000;
+					cursor: pointer;
+					border-radius: 10px;
+				}
 
 /*BARRA BUSQUEDA TEXTO*/
 
@@ -112,9 +144,9 @@ body{
 		margin-bottom: 1em;
 		margin-left: 1em;
 		float: left;
-		/*border: 0.3em solid #D67731;;
+		border: 0.3em solid #D67731;;
     	border-width: 5px;
-    	border-radius: 15px;*/
+    	border-radius: 15px;
     	padding: 0.5em;
     	text-align: center;
 
@@ -135,31 +167,70 @@ body{
 
 		body>section>div>article{
 
-			/*background-color: #E28F4E;*/
-			padding: 0.2em;
+			background-color: #E5BDA1;
 			border: 0.3em solid #D67731;
 			border-width: 5px;
 			border-radius: 15px;
 			justify-content: center;
 			color: #394648;
-			margin-top: 0.3em;
+			margin-top: 2em;
 
+		}
+
+		body>section>div>article>figure{
+			border: 0.2em solid #D67731;
+			display: flex;
+			flex-direction: column;
+		}
+
+			body>section>div>article>figure>a{
+				margin: 0;
+				overflow: hidden;
+			}
+			body>section>div>article>figure>a>img{
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				transition: all .35s ease-in-out;
+			}
+
+			body>section>div>article>figure>a>img:hover{
+				filter: brightness(115%);
+				cursor: pointer;
+			}
+
+			body>section>div>article>figure>figcaption{
+				border-top: 0.2em solid #D67731;
+			}
+
+		body>section>div>article>h4{
+			margin: 0;
+			border-bottom: 0.3em solid #D67731;
+			padding: 0.5em;
 		}
 
 		body>section>div>article>h4>a{
 
 			color: #394648;
 			text-decoration: none;
+			color: #000000;
+			cursor: pointer;
 
 		}
 
-		/*body>section>div>article>div{
+		body>section>div>article>h4>a:hover{
+			color: #ffffff;
+			cursor: pointer;
+		}
 
-			background-color: #394648;
+		body>section>div>article>div{
+
 			padding: 0.2em;
 			border-radius: 15px;
+			display: flex;
+			flex-direction: column;
 
-		}*/
+		}
 
 			body>section>div>article>div>p{
 
@@ -176,6 +247,19 @@ body{
 
 		}
 
+		body>section>div>div>span:hover{
+			color: #ffffff;
+			cursor: pointer;
+		}
+
+		body>section>div>div>p{
+			border: 0.2em solid #D67731;
+			border-radius: 10px;
+			background-color: #ffffff;
+		}
+
+
+
 
 /*FOOTER*/
 
@@ -185,38 +269,40 @@ body{
 		text-align: center;
 		background-color: #E28F4E;
 		padding: 1em;
-		border: 0.3em solid #D67731;
-		border-radius: 15px;
-
+		border-top: 0.3em solid #D67731;
+		border-bottom: 0.3em solid #D67731;
 	}
 
 		body>footer>p{
 
-			color: #F8E9E9;
-
-		}
-
-		body>footer>p>strong>a{
-
-			color: #F8E9E9;
-
-		}
-
-		body>footer>p>time{
-			
-			color: #F8E9E9;
+			color: #ffffff;
+			margin: 0;
 
 		}
 
 		body>footer>p>a{
-
-			
-			color: #F8E9E9;
-
+			text-decoration: none;
+			color: #ffffff;
+			margin-left: 8em;
+			overflow: hidden;
 		}
 
-		body>footer>p>a>span{
-
-			float: right;
-
+		body>footer>p>a:hover{
+			color: #000000;
+			cursor: pointer;
 		}
+	
+
+			body>footer>p>strong>a{
+
+				color: #ffffff;
+				text-decoration: none;
+				margin-right: 0.6em;
+			}
+
+			body>footer>p>strong>a:hover{
+				color: #000000;
+				cursor: pointer;
+			}
+
+
