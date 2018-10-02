@@ -92,13 +92,13 @@ body{
 					display: none;
 				}
 
-				body>nav>ul>li>span{
+				body>nav>ul>li>label{
 					display: block;
 					color: #ffffff;
 					padding: 0.7em;
 					text-decoration: none;
 				}
-				body>nav>ul>li>span:hover{
+				body>nav>ul>li>label:hover{
 					background-color: #ffffff;
 					color: #000000;
 					cursor: pointer;
