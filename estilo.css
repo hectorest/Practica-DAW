@@ -115,8 +115,28 @@ body{
 
 	}
 
-/*FORMULARIO BUSQUEDA*/
+		body>div>form>input{
+			border-radius: 1em;
+		}
 
+		body>div>form>input:hover{
+			background-color: #E5C9B5;
+		}
+
+		body>div>form>button{
+			background-color: #E7C49F;
+			border: 0.2em solid #D67731;
+			border-radius: 1em;
+		}
+
+		body>div>form>button:hover{
+			color: #ffffff;
+			background-color: #000000;
+			cursor: pointer;
+		}
+
+/*FORMULARIO BUSQUEDA*/
+	
 	body>div>form>fieldset>legend{
 
 		color: #394648;
@@ -126,14 +146,41 @@ body{
 	body>div>form>fieldset>div>label{
 
 		color: #394648;
+		text-align: right;
+		margin-right: 0.5em;
 
 	}
 
+	body>div>form>fieldset>div>input{
+		border-radius: 1em;
+	}
+
+	body>div>form>fieldset>div>input:hover{
+		background-color: #E5C9B5;
+	}
 
 	body>div>form>fieldset>a{
 
 		color: #394648;
+		text-decoration: none;
 
+	}
+
+	body>div>form>fieldset>a:hover{
+		color: #D67731;
+		cursor: pointer;
+	}
+
+	body>div>form>fieldset>button{
+		background-color: #E7C49F;
+		border: 0.2em solid #D67731;
+		border-radius: 1em;
+	}
+
+	body>div>form>fieldset>button:hover{
+		color: #ffffff;
+		background-color: #000000;
+		cursor: pointer;
 	}
 
 /*PARTE CENTRAL*/
@@ -144,7 +191,7 @@ body{
 		margin-bottom: 1em;
 		margin-left: 1em;
 		float: left;
-		border: 0.3em solid #D67731;;
+		border: 0.3em solid #D67731;
     	border-width: 5px;
     	border-radius: 15px;
     	padding: 0.5em;
@@ -154,7 +201,7 @@ body{
 
 		body>section>h3{
 
-			/*background-color: #E28F4E;*/
+			background-color: #F3A269;
 			padding: 0.2em;
 			border: 0.3em solid #D67731;
 			border-width: 5px;
@@ -178,30 +225,32 @@ body{
 		}
 
 		body>section>div>article>figure{
-			border: 0.2em solid #D67731;
+			margin: 0;
+			padding-top: 1em;
+			padding-left: 1em;
+			padding-right: 1em;
 			display: flex;
 			flex-direction: column;
+			justify-content: center;
 		}
-
 			body>section>div>article>figure>a{
 				margin: 0;
-				overflow: hidden;
-			}
-			body>section>div>article>figure>a>img{
 				width: 100%;
 				height: 100%;
-				overflow: hidden;
-				transition: all .35s ease-in-out;
 			}
 
-			body>section>div>article>figure>a>img:hover{
-				filter: brightness(115%);
-				cursor: pointer;
-			}
+				body>section>div>article>figure>a>img{
+					width: 100%;
+					height: 100%;
+					border: 0.2em solid #D67731;
+					overflow: hidden;
+					transition: all .35s ease-in-out;
+				}
 
-			body>section>div>article>figure>figcaption{
-				border-top: 0.2em solid #D67731;
-			}
+				body>section>div>article>figure>a>img:hover{
+					filter: brightness(115%);
+					cursor: pointer;
+				}
 
 		body>section>div>article>h4{
 			margin: 0;
@@ -235,6 +284,8 @@ body{
 			body>section>div>article>div>p{
 
 				color: #394648;
+				margin: 0;
+				margin-bottom: 0.2em;
 
 		}
 
@@ -255,7 +306,7 @@ body{
 		body>section>div>div>p{
 			border: 0.2em solid #D67731;
 			border-radius: 10px;
-			background-color: #ffffff;
+			background-color: #FFBA89;
 		}
 
 
