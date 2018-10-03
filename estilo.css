@@ -125,8 +125,9 @@ body{
 
 		margin-top: 0.5em;
 		margin-bottom: 0.5em;
-		display: block;
-
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
 	}
 
 		body>div>form>#buscRap{
@@ -195,11 +196,11 @@ body{
 		margin: 0.5em;
 	}
 
-	body>form>fieldset>div:nth-of-type(6)>input{
+	body>.formulario>fieldset>div:nth-of-type(6)>input{
 		margin: 0.5em;
 	}
 
-	body>form>fieldset>div>textarea{
+	body>.formulario>fieldset>div>textarea{
 		border-radius: 1em;
 		border: 0.1em solid #D67731;
 	}
@@ -212,6 +213,7 @@ body{
 
 		color: #394648;
 		text-decoration: none;
+		white-space: nowrap;
 
 	}
 
