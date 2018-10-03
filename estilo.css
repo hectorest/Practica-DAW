@@ -192,23 +192,6 @@ body{
 		background-color: #E5C9B5;
 	}
 
-	body>form>fieldset>div:nth-of-type(5)>input{
-		margin: 0.5em;
-	}
-
-	body>.formulario>fieldset>div:nth-of-type(6)>input{
-		margin: 0.5em;
-	}
-
-	body>.formulario>fieldset>div>textarea{
-		border-radius: 1em;
-		border: 0.1em solid #D67731;
-	}
-
-	body>form>fieldset>div>textarea:hover{
-		background-color: #E5C9B5;
-	}
-
 	body>div>form>fieldset>a{
 
 		color: #394648;
@@ -429,6 +412,23 @@ body>.formulario{
 
 				border: 0.15em solid #F74040;
 
+			}
+
+			body>.formulario>fieldset>div:nth-of-type(5)>input{
+				margin: 0.5em;
+			}
+
+			body>.formulario>fieldset>div:nth-of-type(6)>input{
+				margin: 0.5em;
+			}
+
+			body>.formulario>fieldset>div>textarea{
+				border-radius: 1em;
+				border: 0.1em solid #D67731;
+			}
+
+			body>.formulario>fieldset>div>textarea:hover{
+				background-color: #E5C9B5;
 			}
 
 		body>.formulario>fieldset>button{
