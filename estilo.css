@@ -498,6 +498,31 @@ body>.formulario{
 			padding-right: 25%;
 		}
 
+/*TABLAS*/
+
+
+	body>section>.tabla{
+
+		margin: 1em;
+		border: 0.3em solid #D67731;
+	    border-width: 5px;
+	    border-radius: 15px;
+	    padding: 0.5em;
+	    text-align: center;
+		display: flex;
+		justify-content: center;
+		align-self: center;
+
+		}
+
+		body>section>.tabla>tbody>tr:nth-child(even){
+
+			background-color: #E5BDA1;
+			border-left: 10em solid #E5BDA1;
+
+		}
+
+
 
 /*FOOTER*/
 
