@@ -12,6 +12,7 @@
 	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
 	<link rel="stylesheet" type="text/css" href="fontello/css/fontello.css"/>
 	<link rel="stylesheet" type="text/css" href="estilo.css" /> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"/> 
 </head> 
 <!-- El cuerpo --> 
 	<body> 
@@ -22,18 +23,20 @@
 				<h2>Tu aplicación web para fotos</h2>
 			</div>
 		</header>
+
 		<nav id="barraNavPrinc">
 			<ul>
 				<li><label for="mnHamb"><span class="icon-menu" title="Menú"></span></label><input type="checkbox" name="mnHamb" id="mnHamb"></li>
-				<li><a href="index.html"><span class="icon-home" title="Inicio">Inicio</span></a></li>
-				<li><a href="perfil.html"><span class="icon-user-circle" title="Mi Perfil">Mi Perfil</span></a></li>
-				<li><a href="perfil2.html"><span class="icon-user-circle" title="Perfil sin iniciar sesión">Perfil sin iniciar sesión</span></a></li>
-				<li><a href="formulario_acceso.html"><span class="icon-user" title="Iniciar Sesión">Iniciar Sesión</span></a></li>
-				<li><a href="formulario_registro.html"><span class="icon-user-plus" title="Regístrate">Regístrate</span></a></li>
+				<li><a href="index.html"><span class="icon-home" title="Inicio"></span><span>Inicio</span></a></li>
+				<li><a href="perfil.html"><span class="icon-user-circle" title="Mi Perfil"></span><span>Mi Perfil</span></a></li>
+				<li><a href="perfil2.html"><span class="icon-user-circle" title="Perfil sin iniciar sesión"></span><span>Perfil sin iniciar sesión</span></a></li>
+				<li><a href="formulario_busqueda.html"><span class="icon-search" title="Búsqueda avanzada"></span><span>Buscar</span></a></li>
+				<li><a href="formulario_acceso.html"><span class="icon-user" title="Iniciar Sesión"></span><span>Iniciar Sesión</span></a></li>
+				<li><a href="formulario_registro.html"><span class="icon-user-plus" title="Regístrate"></span><span>Regístrate</span></a></li>
 			</ul>	
 		</nav>
 
-		<form action="resultado_busqueda.html" method="get">
+		<form action="resultado_busqueda.html" method="get"  class="formulario">
 
 			<fieldset>
 
@@ -88,7 +91,7 @@
 					<label for="autor">Autor:</label>
 					<input type="text" name="autor" id="autor"/>
 				</div>
-				<button type="submit"><span class="icon-search">Enviar</span></button>
+				<button type="submit"><span class="icon-search">Buscar</span></button>
 
 			</fieldset>
 

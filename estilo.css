@@ -85,6 +85,10 @@ body{
 					display: none;
 				}
 
+				body>nav>ul>li>label:first-of-type{
+					display: none;
+				}
+
 				body>nav>ul>li>label{
 					display: block;
 					color: #ffffff;
@@ -103,7 +107,7 @@ body{
 /*LATERAL DERECHO*/
 
 	body>#formBusc{
-		float: right;
+		
 		margin-top: 1em;
 		border: 0.3em solid #D67731;
     	border-width: 5px;
@@ -118,9 +122,15 @@ body{
 
 		margin-top: 0.5em;
 		margin-bottom: 0.5em;
-		display: block;
+		display: inline-block;
 
 	}
+
+		body>div>form>#buscRap{
+
+			width: 25em;
+
+		}
 
 		body>div>form>input{
 			border-radius: 1em;
@@ -144,10 +154,16 @@ body{
 		}
 
 /*FORMULARIO BUSQUEDA*/
-	
+
 	body>div>form>fieldset>legend{
 
 		color: #394648;
+
+	}
+
+	body>div>form>fieldset>div{
+
+		display: inline-block;
 
 	}
 
@@ -203,7 +219,6 @@ body{
 		margin-top: 1em;
 		margin-bottom: 1em;
 		margin-left: 1em;
-		float: left;
 		border: 0.3em solid #D67731;
     	border-width: 5px;
     	border-radius: 15px;
@@ -225,6 +240,12 @@ body{
 
 		}
 
+		body>section>div{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+		}
+
 		body>section>div>article{
 
 			background-color: #E5BDA1;
@@ -234,6 +255,8 @@ body{
 			justify-content: center;
 			color: #394648;
 			margin-top: 2em;
+			width: 45%;
+			height: 45%;
 
 		}
 
@@ -298,33 +321,39 @@ body{
 
 				color: #394648;
 				margin: 0;
-				margin-bottom: 0.2em;
+				margin-bottom: 1em;
 
 		}
 
 /*PAGINACION*/
+	
 
-		body>section>div>div>span,p{
+	body>section>#paginacion{
+		align-self: center;
+		display: flex;
+		justify-content: center;
+	}
+		body>section>#paginacion>div>span,p{
 
 			justify-content: center;
 			display: inline-block;
 
 		}
 
-		body>section>div>div>span:hover{
+		body>section>#paginacion>div>span:hover{
 			color: #D67731;
 			cursor: pointer;
 		}
 
-		body>section>div>div>p{
+		body>section>#paginacion>div>p{
 			border: 0.2em solid #D67731;
 			border-radius: 10px;
 			background-color: #FFBA89;
 		}
 
-/***INICIAR SESION***/
+/***FORMULARIOS***/
 
-body>.formRegInicSes{
+body>.formulario{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -332,8 +361,7 @@ body>.formRegInicSes{
 	height: 100%;
 }
 
-	body>.formRegInicSes>fieldset{
-		margin: 0;
+	body>.formulario>fieldset{
 		width: 50%;
 		margin: 5em;
 		align-self: center;
@@ -341,78 +369,106 @@ body>.formRegInicSes{
 		flex-direction: column;
 		justify-content: center;
 		text-align: center;
+		overflow: hidden;
 	}
 
-		body>.formRegInicSes>fieldset>div{
+		body>.formulario>fieldset>div{
+
+			margin-top: 3em;
 			display: flex;
 			justify-content: space-between;
-			padding-left: 25%;
-			padding-right: 25%;
+			/*padding-left: 25%;
+			padding-right: 25%;*/
 		}
 
-			body>.formRegInicSes>fieldset>div>label{
-				margin-top: 3em;
+			body>.formulario>fieldset>div>label{
+				
 				align-self: center;
 			}
 
-			body>.formRegInicSes>fieldset>div>label:hover{
+			body>.formulario>fieldset>div>label:hover{
 				cursor: pointer;
 			}
 
-			body>.formRegInicSes>fieldset>div>input{
+			body>.formulario>fieldset>div>input{
 				border-radius: 1em;
 				border: 0.1em solid #D67731;
-				margin-top: 3em;
+				/*margin: auto;*/
 				align-self: center;
 			}
 
-			body>.formRegInicSes>fieldset>div>input:hover{
+			body>.formulario>fieldset>div>input:hover{
 				background-color: #E5C9B5;
 			}
 
-		body>.formRegInicSes>fieldset>button{
+			body>.formulario>fieldset>div>input:invalid{
+
+				border: 0.15em solid #F74040;
+
+			}
+
+		body>.formulario>fieldset>button{
 			margin-left: 43.5%;
 			margin-top: 2em;
 			margin-bottom: 2em;
-			width: 5em;
+			width: 6em;
 			height: 2.5em;
 			background-color: #E7C49F;
 			border: 0.2em solid #D67731;
 			border-radius: 1em;
 		}
 
-		body>.formRegInicSes>fieldset>button:hover{
+		body>.formulario>fieldset>button:hover{
 			background-color: #ffffff;
 			color: #000000;
 			cursor: pointer;
 		}
 
-		body>.formRegInicSes>fieldset>a{
+		body>.formulario>fieldset>a{
 			text-decoration: none;
 			color: #000000;
 		}
 
-		body>.formRegInicSes>fieldset>a:hover{
+		body>.formulario>fieldset>a:hover{
 			cursor: pointer;
 			color: #D67731;
 		}
 
-			body>.formRegInicSes>fieldset>div>select{
-				margin-top: 3em;
+			body>.formulario>fieldset>div>select{
+				
 				background-color: #E7B47F;
 				border-radius: 1em;
 				border: 0.1em solid #D67731;
 			}
 
-			body>.formRegInicSes>fieldset>div>select:hover{
+			body>.formulario>fieldset>div>select:hover{
 				background-color: #ffffff;
 			}
 
-			body>.formRegInicSes>fieldset>div>#fper{
+			body>.formulario>fieldset>div>#fper{
 				align-self: center;
 				border-radius: 0;
 			}
 
+			body>.formulario>fieldset>div>p{
+				
+				margin: 0;
+				align-self: center;
+			}
+
+			body>.formulario>fieldset>div>span{
+
+				align-self: center;
+
+			}
+
+/***INICIO SESION**/
+
+		body>.formulario>fieldset>.inicSesion{
+
+			padding-left: 25%;
+			padding-right: 25%;
+		}
 
 
 /*FOOTER*/
