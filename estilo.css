@@ -3,6 +3,8 @@
 
 body{
 	box-sizing: border-box;
+	min-width: 320px;
+    max-width: 1500px;
 	margin: 0 auto;
 	background-color: #F1D7C7; 
 	font-family: 'Kalam', cursive;
@@ -108,7 +110,7 @@ body{
 
 	body>#formBusc{
 		
-		margin-top: 1em;
+		margin: 1em;
 		border: 0.3em solid #D67731;
     	border-width: 5px;
     	border-radius: 15px;
@@ -122,7 +124,7 @@ body{
 
 		margin-top: 0.5em;
 		margin-bottom: 0.5em;
-		display: inline-block;
+		display: block;
 
 	}
 
@@ -215,16 +217,12 @@ body{
 /*PARTE CENTRAL*/
 
 	body>section{
-
-		margin-top: 1em;
-		margin-bottom: 1em;
-		margin-left: 1em;
+		margin: 1em;
 		border: 0.3em solid #D67731;
     	border-width: 5px;
     	border-radius: 15px;
     	padding: 0.5em;
     	text-align: center;
-
 	}
 
 		body>section>h3{
@@ -242,35 +240,38 @@ body{
 
 		body>section>div{
 			display: flex;
+			flex-direction: row;
 			flex-wrap: wrap;
 			justify-content: space-around;
 		}
 
 		body>section>div>article{
-
+			display: flex;
+			flex-direction: column;
 			background-color: #E5BDA1;
 			border: 0.3em solid #D67731;
 			border-width: 5px;
 			border-radius: 15px;
-			justify-content: center;
+			justify-content: space-between;
 			color: #394648;
-			margin-top: 2em;
-			width: 45%;
-			height: 45%;
-
+			overflow: hidden;
+			height: 22em;
+			width: 18em;
+			margin: 0.5em;
 		}
 
 		body>section>div>article>figure{
 			margin: 0;
-			padding-top: 1em;
-			padding-left: 1em;
-			padding-right: 1em;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
+			margin-top: 1em;
+			border: 0.2em solid #D67731;
+			width: 15.5em;
+			height: 10em;
+			align-self: center;
 		}
 			body>section>div>article>figure>a{
 				margin: 0;
+				display: flex;
+				flex-direction: column;
 				width: 100%;
 				height: 100%;
 			}
@@ -278,9 +279,8 @@ body{
 				body>section>div>article>figure>a>img{
 					width: 100%;
 					height: 100%;
-					border: 0.2em solid #D67731;
-					overflow: hidden;
 					transition: all .35s ease-in-out;
+					align-self: center;
 				}
 
 				body>section>div>article>figure>a>img:hover{
@@ -292,6 +292,11 @@ body{
 			margin: 0;
 			border-bottom: 0.3em solid #D67731;
 			padding: 0.5em;
+			text-overflow: ellipsis;
+			width: 100%;
+			white-space: nowrap;
+			overflow: hidden;
+			align-self: center;
 		}
 
 		body>section>div>article>h4>a{
@@ -308,44 +313,46 @@ body{
 			cursor: pointer;
 		}
 
-		body>section>div>article>div{
+		body>section>div>article>footer{
 
-			padding: 0.2em;
-			border-radius: 15px;
 			display: flex;
 			flex-direction: column;
+			padding: 0.2em;
+			border-radius: 15px;
+			margin-bottom: 1em;
 
 		}
 
-			body>section>div>article>div>p{
-
+			body>section>div>article>footer>p{
 				color: #394648;
 				margin: 0;
-				margin-bottom: 1em;
+			}
 
-		}
+			body>section>div>article>footer>p:first-of-type{
+				margin-bottom: 1em;
+			}
 
 /*PAGINACION*/
 	
 
-	body>section>#paginacion{
+	body>#paginacion{
 		align-self: center;
 		display: flex;
 		justify-content: center;
 	}
-		body>section>#paginacion>div>span,p{
+		body>#paginacion>div>span,p{
 
 			justify-content: center;
 			display: inline-block;
 
 		}
 
-		body>section>#paginacion>div>span:hover{
+		body>#paginacion>div>span:hover{
 			color: #D67731;
 			cursor: pointer;
 		}
 
-		body>section>#paginacion>div>p{
+		body>#paginacion>div>p{
 			border: 0.2em solid #D67731;
 			border-radius: 10px;
 			background-color: #FFBA89;
@@ -377,8 +384,6 @@ body>.formulario{
 			margin-top: 3em;
 			display: flex;
 			justify-content: space-between;
-			/*padding-left: 25%;
-			padding-right: 25%;*/
 		}
 
 			body>.formulario>fieldset>div>label{
@@ -443,6 +448,10 @@ body>.formulario{
 
 			body>.formulario>fieldset>div>select:hover{
 				background-color: #ffffff;
+			}
+
+			body>.formulario>fieldset>div>select:invalid{
+				border: 0.15em solid #F74040;
 			}
 
 			body>.formulario>fieldset>div>#fper{
