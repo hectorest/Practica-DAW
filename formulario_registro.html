@@ -22,7 +22,17 @@
 				<h2>Tu aplicación web para fotos</h2>
 			</div>
 		</header>
-		<form  id="regNvUsu" action="index.html" method="get">
+		<nav id="barraNavPrinc">
+			<ul>
+				<li><label for="mnHamb"><span class="icon-menu" title="Menú"></span></label><input type="checkbox" name="mnHamb" id="mnHamb"></li>
+				<li><a href="index.html"><span class="icon-home" title="Inicio"></span><span>Inicio</span></a></li>
+				<li><a href="perfil.html"><span class="icon-user-circle" title="Mi Perfil"></span><span>Mi Perfil</span></a></li>
+				<li><a href="perfil2.html"><span class="icon-user-circle" title="Perfil sin iniciar sesión"></span><span>Perfil sin iniciar sesión</span></a></li>
+				<li><a href="formulario_acceso.html"><span class="icon-user" title="Iniciar Sesión"></span><span>Iniciar Sesión</span></a></li>
+				<li><a href="formulario_registro.html"><span class="icon-user-plus" title="Regístrate"></span><span>Regístrate</span></a></li>
+			</ul>	
+		</nav>
+		<form  id="regNvUsu" action="index.html" method="get" class="formRegInicSes">
 			
 			<fieldset>
 
@@ -105,7 +115,7 @@
 					</select>
 				</div>
 				<div>
-					<label for="fper">Foto de perfil*:</label>
+					<label for="fper" id="labfper">Foto de perfil*:</label>
 					<input type="file" accept="image/*" required name="fper" id="fper"/>
 				</div>
 				<button type="submit">Enviar</button>
