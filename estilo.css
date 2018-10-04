@@ -241,14 +241,22 @@ body{
 
 		}
 
-		body>section>div{
+		body>section>a{
+
+			display: block;
+			align-self: center;
+			color: #394648;
+
+		}
+
+		body>section>.imagenes{
 			display: flex;
 			flex-direction: row;
 			flex-wrap: wrap;
 			justify-content: space-around;
 		}
 
-		body>section>div>article{
+		body>section>.imagenes>article{
 			display: flex;
 			flex-direction: column;
 			background-color: #E5BDA1;
@@ -263,7 +271,7 @@ body{
 			margin: 0.5em;
 		}
 
-		body>section>div>article>figure{
+		body>section>.imagenes>article>figure{
 			margin: 0;
 			margin-top: 1em;
 			border: 0.2em solid #D67731;
@@ -271,7 +279,7 @@ body{
 			height: 10em;
 			align-self: center;
 		}
-			body>section>div>article>figure>a{
+			body>section>.imagenes>article>figure>a{
 				margin: 0;
 				display: flex;
 				flex-direction: column;
@@ -279,19 +287,19 @@ body{
 				height: 100%;
 			}
 
-				body>section>div>article>figure>a>img{
+				body>section>.imagenes>article>figure>a>img{
 					width: 100%;
 					height: 100%;
 					transition: all .35s ease-in-out;
 					align-self: center;
 				}
 
-				body>section>div>article>figure>a>img:hover{
+				body>section>.imagenes>article>figure>a>img:hover{
 					filter: brightness(115%);
 					cursor: pointer;
 				}
 
-		body>section>div>article>h4{
+		body>section>.imagenes>article>h4{
 			margin: 0;
 			border-bottom: 0.3em solid #D67731;
 			padding: 0.5em;
@@ -302,7 +310,7 @@ body{
 			align-self: center;
 		}
 
-		body>section>div>article>h4>a{
+		body>section>.imagenes>article>h4>a{
 
 			color: #394648;
 			text-decoration: none;
@@ -311,12 +319,12 @@ body{
 
 		}
 
-		body>section>div>article>h4>a:hover{
+		body>section>.imagenes>article>h4>a:hover{
 			color: #ffffff;
 			cursor: pointer;
 		}
 
-		body>section>div>article>footer{
+		body>section>.imagenes>article>footer{
 
 			display: flex;
 			flex-direction: column;
@@ -326,12 +334,12 @@ body{
 
 		}
 
-			body>section>div>article>footer>p{
+			body>section>.imagenes>article>footer>p{
 				color: #394648;
 				margin: 0;
 			}
 
-			body>section>div>article>footer>p:first-of-type{
+			body>section>.imagenes>article>footer>p:first-of-type{
 				margin-bottom: 1em;
 			}
 
@@ -509,10 +517,13 @@ body>.formulario{
 	    border-width: 5px;
 	    border-radius: 15px;
 	    padding: 0.5em;
-	    text-align: center;
-		justify-content: center;
-		display: block;
-		align-self: center;
+	    display: block;
+
+		}
+
+		body>section>.tabla>tbody>tr>td{
+
+			justify-content: center;
 
 		}
 
@@ -564,11 +575,11 @@ body>.formulario{
 
 		}
 
-		/*body>#detFoto>img{
+		body>#detFoto>figure>img{
 
+			border: 0.3em solid #D67731;
 
-
-		}*/
+		}
 
 		body>#detFoto>div>#desc{
 
