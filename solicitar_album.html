@@ -131,8 +131,8 @@
 					<input type="text" required name="album" id="calle" placeholder="Calle">
 					<input type="number" required name="numero" id="numero" placeholder="Número" min="0">
 					<input type="number" required name="CP" id="CP" placeholder="CP" min="0">
-				</div>
-				<div>
+				
+
 					<label for="pais">País*:</label>
 					<select required name="pais" id="pais">
 						<option value="">Escoge</option>
@@ -177,7 +177,6 @@
 						<option>Tokio</option>
 
 					</select>
-					
 					<label for="prov">Provincia*:</label>
 					<select required name="prov" id="prov">
 						
@@ -188,9 +187,7 @@
 						<option>Andalucia</option>
 
 					</select>
-				
 				</div>
-				
 				<div>
 					<label for="telefono">Teléfono:</label>
 					<input type="tel" placeholder="000000000" name="telefono" id="telefono" pattern="[0-9]{9}" minlength="9" maxlength="9" />
@@ -205,28 +202,6 @@
 					<label for="num_copias">Número de copias:</label>
 					<input type="number" name="num_copias" id="num_copias" value="1" min="1" />
 				</div>
-
-				<!--
-
-				<div>
-
-					<label for="resolucion">Resoluci&oacute;n de impresión:</label>
-
-					<select name="resolucion" id="resolucion">
-
-						<option>150 DPI</option>
-						<option>300 DPI</option>
-						<option>450 DPI</option>
-						<option>600 DPI</option>
-						<option>750 DPI</option>
-						<option>900 DPI</option>
-
-					</select>
-
-				</div>
-
-				
-				-->
 
 				<div>
 
@@ -260,11 +235,14 @@
 
 				<div>
 					<label for="color">¿Impresión a color?</label>
-					<input type="radio" name="colorobn" id="color" value="color"><span>Color</span>
-					<input type="radio" name="colorobn" checked="checked" id="bn" value="bn"><span>Blanco y negro</span>
+					<div>
+						<input type="radio" name="colorobn" id="color" value="color"><span>Color</span>
+						<input type="radio" name="colorobn" checked="checked" id="bn" value="bn"><span>Blanco y negro</span>
+					</div>
 				</div>
-
-				<button type="submit">Enviar</button> <!--En realidad, el boton submit, una vez pulsado, redirigira, si todos los datos son correctos, a la pagina de respuesta de la solicitud de album-->
+				<div>
+					<button type="submit">Enviar</button> <!--En realidad, el boton submit, una vez pulsado, redirigira, si todos los datos son correctos, a la pagina de respuesta de la solicitud de album-->
+				</div>
 			</fieldset>
 		</form>
 
