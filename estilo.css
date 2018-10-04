@@ -502,7 +502,7 @@ body>.formulario{
 /*TABLAS*/
 
 
-	body>section>.tabla{
+	body>section>.tabla>tbody{
 
 		margin: 1em;
 		border: 0.3em solid #D67731;
@@ -510,8 +510,8 @@ body>.formulario{
 	    border-radius: 15px;
 	    padding: 0.5em;
 	    text-align: center;
-		display: flex;
 		justify-content: center;
+		display: block;
 		align-self: center;
 
 		}
@@ -523,7 +523,75 @@ body>.formulario{
 
 		}
 
+/*ENLACES*/
 
+	body>section>div>a{
+
+		border: 0.2em solid #D67731;
+		border-radius: 10px;
+		background-color: #FFBA89;
+		padding: 0.2em;
+		color: #394648;
+		text-decoration: none;
+
+	}
+
+/*PAGINA DETALLE IMAGEN*/
+
+	body>#detFoto{
+
+		margin: 1em;
+		border: 0.3em solid #D67731;
+	    border-width: 5px;
+	    border-radius: 15px;
+	    padding: 0.5em;
+	    text-align: center;
+		justify-content: center;
+		align-self: center;
+
+	}
+
+		body>#detFoto>h3{
+
+			background-color: #F3A269;
+			padding: 0.2em;
+			border: 0.3em solid #D67731;
+			border-width: 5px;
+			border-radius: 15px;
+			display: flex;
+			justify-content: center;
+			color: #394648;
+
+		}
+
+		/*body>#detFoto>img{
+
+
+
+		}*/
+
+		body>#detFoto>div>#desc{
+
+			text-align: left;
+			display: block;
+			align-self: center;
+
+		}
+
+		body>#detFoto>div>p{
+
+			display: block;
+			align-self: center;
+
+		}
+
+		body>#detFoto>div>a{
+
+			display: block;
+			align-self: center;
+			color: #394648;
+
+		}
 
 /*FOOTER*/
 
