@@ -148,6 +148,10 @@ body{
 			background-color: #E5C9B5;
 		}
 
+		body>div>form>input:focus{
+			background-color: #E5C9B5;
+		}
+
 		body>div>form>button{
 			background-color: #E7C49F;
 			border: 0.2em solid #D67731;
@@ -193,6 +197,10 @@ body{
 	}
 
 	body>div>form>fieldset>div>input:hover{
+		background-color: #E5C9B5;
+	}
+
+	body>div>form>fieldset>div>input:focus{
 		background-color: #E5C9B5;
 	}
 
@@ -418,7 +426,7 @@ body>.formulario{
 				border-radius: 1em;
 				border: 0.1em solid #D67731;
 				align-self: center;
-				width: 9em;
+				width: 10em;
 			}
 
 			body>.formulario>fieldset>div>input:hover{
