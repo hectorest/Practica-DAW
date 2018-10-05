@@ -8,6 +8,7 @@ body{
 	margin: 0 auto;
 	background-color: #F1D7C7; 
 	font-family: 'Kalam', cursive;
+	font-size: 20px;
 	position: relative;
 }
 
@@ -43,7 +44,7 @@ body{
 	body>header>div>h1,h2{
 
 		color: #F8E9E9;
-		font-style: bold;
+		font-weight: bold;
 
 	}
 
@@ -430,6 +431,10 @@ body>.formulario{
 				margin: 0.5em;
 			}
 
+			body>.formulario>fieldset>div>#fper{
+				width: 20em;
+			}
+
 			body>.formulario>fieldset>div>textarea{
 				border-radius: 1em;
 				border: 0.1em solid #D67731;
@@ -515,33 +520,40 @@ body>.formulario{
 
 /*TABLAS*/
 
-	body>section>.tabla{
+	body>section>div>.tabla{
 		margin: auto;
 		border: 0.3em solid #D67731;
 		border-width: 5px;
-	}
 		
-		body>section>.tabla>caption{
+	}
+			
+		body>section>div>.tabla>caption{
 			background-color: #F3A269;
 			border-top: 0.3em solid #D67731;
 			border-left: 0.3em solid #D67731;
 			border-right: 0.3em solid #D67731;
 		}
 
-		body>section>.tabla>tbody>tr:nth-child(even){
+		body>section>div>.tabla>tbody>tr:nth-child(even){
 			background-color: #E5BDA1;
 		}
 
-			body>section>.tabla>tbody>tr>td>a{
-				text-decoration: none;
-				color: #D67731;
-				font-weight: bold;
+			body>section>div>.tabla>tbody>tr>td{
+
+				padding: 0.6em;
+
 			}
 
-			body>section>.tabla>tbody>tr>td>a:hover{
-				cursor: pointer;
-				color: #000000;
-			}
+				body>section>div>.tabla>tbody>tr>td>a{
+					text-decoration: none;
+					color: #D67731;
+					font-weight: bold;
+				}
+
+				body>section>div>.tabla>tbody>tr>td>a:hover{
+					cursor: pointer;
+					color: #000000;
+				}
 
 /*ENLACES*/
 	
@@ -611,9 +623,8 @@ body>.formulario{
 
 			}
 
-		body>#detFoto>div>#desc{
+		body>#detFoto>div>.p-left{
 
-			text-align: left;
 			display: block;
 			align-self: center;
 
@@ -643,6 +654,20 @@ body>.formulario{
 		body>#detFoto>div>a:hover{
 			cursor: pointer;
 			color: #D67731;
+		}
+
+		.p-left{
+
+			text-align: left;
+
+		}
+
+		body>section>p>span{
+
+			font-weight: bold;
+			font-size: 35px;
+			color: #D67731;
+
 		}
 
 
