@@ -4,10 +4,10 @@
 <head> 
 	<meta charset="utf-8" /> 
 	<meta name="generator" content="Bloc de notas" /> 
-	<meta name="author" content="Hector Esteve Yagüe & Fco. Javier García Fernández" /> 
+	<meta name="author" content="Hector Esteve Yagüe & Fco. Javier García Fernündez" /> 
 	<meta name="keywords" content="HTML5, web, Pictures & Images, PI, fotos, imagenes"/> 
 	<meta name="description" content="Pagina principal de PI" /> 
-	<title>Pictures & Images/acerca</title>
+	<title>Pictures & Images</title>
 	<link rel="shortcut icon" type="image/x-icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
 	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
 	<link rel="stylesheet" type="text/css" href="fontello/css/fontello.css"/>
@@ -23,7 +23,6 @@
 				<h2>Tu aplicación web para fotos</h2>
 			</div>
 		</header>
-
 		<nav id="barraNavPrinc">
 			<ul>
 				<li><label for="mnHamb" title="Menú"><span class="icon-menu" ></span></label><input type="checkbox" name="mnHamb" id="mnHamb"></li>
@@ -35,42 +34,32 @@
 				<li><a href="formulario_registro.html" title="Regístrate"><span class="icon-user-plus"></span><span>Regístrate</span></a></li>
 			</ul>	
 		</nav>
-		
-		<section>
-			<div style="overflow-x:auto">
-				<table class="tabla">
-					<caption>Datos de los creadores:</caption>
-					<tr>
-						<td>Autores:</td>
-						<td>Hector Esteve Yagüe & Fco. Javier García Fernández</td>
-					</tr>
-					<tr>
-						<td>Asignatura:</td>
-						<td>Desarrollo de Aplicaciones Web</td>
-					</tr>
-					<tr>
-						<td>Grado:</td>
-						<td>Ingenieria Multimedia</td>
-					</tr>
-					<tr>
-						<td>Lugar de estudios:</td>
-						<td>Universidad de Alicante</td>
-					</tr>
-					<tr>
-						<td>Correo de contacto:</td>
-						<td><a href="mailto:pidaw@gmail.es">pidaw@gmail.es</a></td>
-					</tr>
-					<tr>
-						<td>Teléfono:</td>
-						<td>645274186</td>
-					</tr>
-				</table>
+
+
+		<form action="index.html" method="get" class="formulario">
+
+		<fieldset>
+
+			<legend>
+				Iniciar Sesión
+			</legend>
+
+			<div class= "inicSesion">
+				<label for="usuario">Usuario:</label>
+				<input type="text" minlength="6" maxlength="14" required name="usuario" id="usuario"/>
+			</div>
+			<div class= "inicSesion">
+				<label for="passw">Contraseña:</label>
+				<input type="password" minlength="8" maxlength="16" required name="passw" id="passw"/>
 			</div>
 			<div>
-				<h3>Descripción de Pictures & Images (PI)</h3>
-				<p class="p-left">Esta aplicación web correspondiente a la creación de una plataforma online en la que se podrán subir fotos y comprar álbumes de las propias fotos que has subido tú a tu perfil, se corresponde con la práctica de la asignatura Desarrollo de Aplicaciones Web la cual se cursa en el Grado en Ingenieria Multimedia impartido en la Universidad de Alicante.</p>
+				<button type="submit">Entrar</button> <!--En realidad, el boton submit, una vez pulsado, redirigira, si todos los datos son correctos, a la pagina de respuesta de la solicitud de album-->
 			</div>
-		</section>
+			<a href="formulario_registro.html"><span class="icon-user-plus">¿Aún no tienes una cuenta? Regístrate</span></a>
+
+		</fieldset> 
+
+		</form>
 		<footer>
 			<p><strong><a href="acerca.html" title="Información de contacto">&copy;Hector Esteve Yagüe & Fco. Javier García Fernández</a></strong><time datetime="2018-09">Septiembre de 2018</time><a href="#piCabec"><span class="icon-angle-circled-up" title="Subir al encabezado"></span></a></p>
 		</footer>

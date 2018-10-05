@@ -1,0 +1,144 @@
+<!DOCTYPE html> 
+<html lang="es"> 
+<!-- La cabecera --> 
+<head> 
+	<meta charset="utf-8" /> 
+	<meta name="generator" content="Bloc de notas" /> 
+	<meta name="author" content="Hector Esteve Yagüe & Fco. Javier García Fernández" /> 
+	<meta name="keywords" content="HTML5, web, Pictures & Images, PI, fotos, imagenes"/> 
+	<meta name="description" content="Pagina principal de PI" /> 
+	<title>Pictures & Images</title>
+	<link rel="shortcut icon" type="image/x-icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
+	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
+	<link rel="stylesheet" type="text/css" href="fontello/css/fontello.css"/>
+	<link rel="stylesheet" type="text/css" href="estilo.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1"/> 
+</head> 
+<!-- El cuerpo --> 
+	<body>
+		<header id="piCabec">
+			<a href="index.html" title="Ir a la página de inicio"><img src="./logotipo-e-icono/logotipo-pi-daw.png" alt="logotipo de pictures & images"/></a>
+			<div>
+				<h1>Pictures & Images</h1>
+				<h2>Tu aplicación web para fotos</h2>
+			</div>
+		</header>
+		
+		<nav id="barraNavPrinc">
+			<ul>
+				<li><label for="mnHamb" title="Menú"><span class="icon-menu" ></span></label><input type="checkbox" name="mnHamb" id="mnHamb"></li>
+				<li><a href="index.html" title="Inicio"><span class="icon-home" ></span><span>Inicio</span></a></li>
+				<li><a href="perfil.html" title="Mi Perfil"><span class="icon-user-circle" ></span><span>Mi Perfil</span></a></li>
+				<li><a href="perfil2.html" title="Perfil sin iniciar sesión"><span class="icon-user-circle"></span><span>Perfil sin iniciar sesión</span></a></li>
+				<li><a href="formulario_busqueda.html" title="Búsqueda avanzada"><span class="icon-search"></span><span>Buscar</span></a></li>
+				<li><a href="formulario_acceso.html" title="Iniciar Sesión"><span class="icon-user"></span><span>Iniciar Sesión</span></a></li>
+				<li><a href="formulario_registro.html" title="Regístrate"><span class="icon-user-plus"></span><span>Regístrate</span></a></li>
+			</ul>	
+		</nav>
+
+		<div id="formBusc">	
+			
+			<form id="buscTexto" action="resultado_busqueda.html" method="get" class="formulario">
+				<input type="search" name="buscRap" id="buscRap" placeholder="Buscar...">
+				<button type="submit"><span id="butBuscRap" class="icon-search"></span></button>
+			</form>
+
+			<form id="miniFilBusc" action="resultado_busqueda.html" method="get" class="formulario">
+				<fieldset>
+
+					<legend>
+						Búsqueda Avanzada
+					</legend>
+
+							<div>
+								<label for="autorRap">Autor:</label>
+								<input type="text" name="autorRap" id="autorRap">
+							</div>
+
+							<div>
+								<label for="albumRap">Álbum:</label>
+								<input type="text" name="albumRap" id="albumRap">
+							</div>
+
+							<div>
+								<label for="tituloRap">Título:</label>
+								<input type="text" name="tituloRap" id="tituloRap">
+							</div>
+
+						<button type="submit"><span id="butFiltBuscRap" class="icon-search"></span></button>
+						<a href="formulario_busqueda.html">Más opciones...</a>
+						
+				</fieldset>			
+
+			</form>
+		</div>
+
+		<section id="contFotosIndex"> 
+			<h3>Últimas 5 imágenes subidas</h3>
+			<div class="imagenes">
+				<article>
+					<h4><a href="detalle_foto.html" title="Ver detalles de la foto">Titulo foto Ejemplo 1</a></h4>
+					<figure>
+						<a href="detalle_foto.html" title="Ver detalles de la foto"><img src="./imagen-muestra/imagen-muestra.jpg" alt="Titulo foto Ejemplo 1"/></a>
+					</figure>
+					<footer>
+						<p><time datetime="2018-09-15">Fecha de foto ejemplo 1, por ejemplo: 15 de septiembre de 2018</time></p>
+						<p>Pais foto ejemplo 1</p>
+					</footer>
+				</article>
+				<article>
+					<h4><a href="detalle_foto.html" title="Ver detalles de la foto">Titulo foto Ejemplo 2</a></h4>
+					<figure>
+						<a href="detalle_foto.html" title="Ver detalles de la foto"><img src="./imagen-muestra/descarga.jpg" alt="Titulo foto Ejemplo 2"/></a>
+					</figure>
+					<footer>
+						<p><time datetime="2018-09-15">Fecha de foto ejemplo 2, por ejemplo: 15 de septiembre de 2018</time></p>
+						<p>Pais foto ejemplo 2</p>
+					</footer>
+				</article>
+				<article>
+					<h4><a href="detalle_foto.html" title="Ver detalles de la foto">Titulo foto Ejemplo 3</a></h4>
+					<figure>
+						<a href="detalle_foto.html" title="Ver detalles de la foto"><img src="./imagen-muestra/images.jpg" alt="Titulo foto Ejemplo 3"/></a>
+					</figure>
+					<footer>
+						<p><time datetime="2018-09-15">Fecha de foto ejemplo 3, por ejemplo: 15 de septiembre de 2018</time></p>
+						<p>Pais foto ejemplo 3</p>
+					</footer>
+				</article>
+				<article>
+					<h4><a href="detalle_foto.html" title="Ver detalles de la foto">Titulo foto Ejemplo 4</a></h4>
+					<figure>
+						<a href="detalle_foto.html" title="Ver detalles de la foto"><img src="./imagen-muestra/images2.jpg" alt="Titulo foto Ejemplo 4"/></a>
+					</figure>
+					<footer>
+						<p><time datetime="2018-09-15">Fecha de foto ejemplo 4, por ejemplo: 15 de septiembre de 2018</time></p>
+						<p>Pais foto ejemplo 4</p>
+					</footer>
+				</article>
+				<article>
+					<h4><a href="detalle_foto.html" title="Ver detalles de la foto">Titulo foto Ejemplo 5</a></h4>
+					<figure>
+						<a href="detalle_foto.html" title="Ver detalles de la foto"><img src="./imagen-muestra/paisaje.jpg" alt="Titulo foto Ejemplo 5"/></a>
+					</figure>
+					<footer>
+						<p><time datetime="2018-09-15">Fecha de foto ejemplo 5, por ejemplo: 15 de septiembre de 2018</time></p>
+						<p>Pais foto ejemplo 5</p>
+					</footer>
+				</article>
+			</div> 
+		</section>
+		<div id="paginacion">
+			<div>
+				<span class="icon-to-start" title="Primeras 5 imágenes"></span>
+				<span class="icon-left-open" title="Anteriores 5 imágenes"></span>
+				<p>Página <output>1</output> / 5</p>
+				<span class="icon-right-open" title="Siguientes 5 imágenes"></span>
+				<span class="icon-to-end" title="Últimas 5 imágenes"></span>
+			</div>
+		</div>  
+		<footer>
+			<p><strong><a href="acerca.html" title="Información de contacto">&copy;Hector Esteve Yagüe & Fco. Javier García Fernández</a></strong><time datetime="2018-09">Septiembre de 2018</time><a href="#piCabec"><span class="icon-angle-circled-up" title="Subir al encabezado"></span></a></p>
+		</footer>
+	</body> 
+</html>
