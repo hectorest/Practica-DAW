@@ -396,14 +396,18 @@ body>.formulario{
 	}
 
 		body>.formulario>fieldset>div{
+			width: 50%;
+			margin: auto;
 			margin-top: 3em;
 			display: flex;
+			align-self: center;
 			justify-content: space-between;
 			flex-wrap: wrap;
 		}
 
 			body>.formulario>fieldset>div>label{
 				align-self: center;
+				width: 5em;
 			}
 
 			body>.formulario>fieldset>div>label:hover{
@@ -414,7 +418,7 @@ body>.formulario{
 				border-radius: 1em;
 				border: 0.1em solid #D67731;
 				align-self: center;
-				width: 12em;
+				width: 9em;
 			}
 
 			body>.formulario>fieldset>div>input:hover{
@@ -440,7 +444,7 @@ body>.formulario{
 			}
 
 			body>.formulario>fieldset>div>#fper{
-				width: 20em;
+				width: 10em;
 			}
 
 			body>.formulario>fieldset>div>textarea{
