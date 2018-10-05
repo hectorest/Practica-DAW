@@ -507,45 +507,67 @@ body>.formulario{
 				display: flex;
 			}
 
+/*FOTO PERFIL*/
+
+	body>section>img{
+		border: 0.3em solid #D67731;
+	}
+
 /*TABLAS*/
 
-
-	body>section>.tabla>tbody{
-
-		margin: 1em;
+	body>section>.tabla{
+		margin: auto;
 		border: 0.3em solid #D67731;
-	    border-width: 5px;
-	    border-radius: 15px;
-	    padding: 0.5em;
-	    display: block;
-
-		}
-
-		body>section>.tabla>tbody>tr>td{
-
-			justify-content: center;
-
+		border-width: 5px;
+	}
+		
+		body>section>.tabla>caption{
+			background-color: #F3A269;
+			border-top: 0.3em solid #D67731;
+			border-left: 0.3em solid #D67731;
+			border-right: 0.3em solid #D67731;
 		}
 
 		body>section>.tabla>tbody>tr:nth-child(even){
-
 			background-color: #E5BDA1;
-			border-left: 10em solid #E5BDA1;
+		}
+
+			body>section>.tabla>tbody>tr>td>a{
+				text-decoration: none;
+				color: #D67731;
+				font-weight: bold;
+			}
+
+			body>section>.tabla>tbody>tr>td>a:hover{
+				cursor: pointer;
+				color: #000000;
+			}
+
+/*ENLACES*/
+	
+	body>section>.enlPerf{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		margin-top: 0.5em;
+	}
+		body>section>.enlPerf>a{
+
+			border: 0.2em solid #D67731;
+			border-radius: 10px;
+			background-color: #FFBA89;
+			padding: 0.2em;
+			color: #394648;
+			text-decoration: none;
+			margin: 0.2em;
 
 		}
 
-/*ENLACES*/
-
-	body>section>div>a{
-
-		border: 0.2em solid #D67731;
-		border-radius: 10px;
-		background-color: #FFBA89;
-		padding: 0.2em;
-		color: #394648;
-		text-decoration: none;
-
-	}
+		body>section>.enlPerf>a:hover{
+			background-color: #ffffff;
+			color: #000000;
+			cursor: pointer;
+		}
 
 /*PAGINA DETALLE IMAGEN*/
 
@@ -556,6 +578,8 @@ body>.formulario{
 	    border-width: 5px;
 	    border-radius: 15px;
 	    padding: 0.5em;
+	    display: flex;
+	    flex-direction: column;
 	    text-align: center;
 		justify-content: center;
 		align-self: center;
@@ -575,11 +599,17 @@ body>.formulario{
 
 		}
 
-		body>#detFoto>figure>img{
-
-			border: 0.3em solid #D67731;
-
+		body>#detFoto>figure{
+			margin: 0;
+			align-self: center;
+			width: 90%;
 		}
+
+			body>#detFoto>figure>img{
+				width: 100%;
+				border: 0.3em solid #D67731;
+
+			}
 
 		body>#detFoto>div>#desc{
 
@@ -596,13 +626,25 @@ body>.formulario{
 
 		}
 
+		body>#detFoto>div>p:nth-of-type(2),body>#detFoto>div>p:last-of-type{
+			font-weight: bold;
+		}
+
 		body>#detFoto>div>a{
 
 			display: block;
 			align-self: center;
 			color: #394648;
+			text-decoration: none;
+			font-weight: bold;
 
 		}
+
+		body>#detFoto>div>a:hover{
+			cursor: pointer;
+			color: #D67731;
+		}
+
 
 /*FOOTER*/
 
