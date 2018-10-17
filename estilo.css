@@ -256,7 +256,6 @@ body{
 		}
 
 		body>section>a{
-
 			border: 0.2em solid #D67731;
 			border-radius: 10px;
 			background-color: #FFBA89;
@@ -264,8 +263,6 @@ body{
 			color: #394648;
 			text-decoration: none;
 			margin: 1em;
-			
-
 		}
 
 		body>section>.imagenes{
@@ -273,6 +270,7 @@ body{
 			flex-direction: row;
 			flex-wrap: wrap;
 			justify-content: space-around;
+			margin-top: 0.7em;
 		}
 
 		body>section>.imagenes>article{
@@ -768,7 +766,7 @@ body>.formulario{
 			body>.formulario>fieldset>#solAlbumDirec>input:last-of-type{
 				margin-bottom: 1em;
 			}
-			
+
 			body>.formulario>fieldset>p>span{
 				flex-direction: column;
 			}
