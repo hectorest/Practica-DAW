@@ -265,6 +265,11 @@ body{
 			margin: 1em;
 		}
 
+		body>section>a:hover{
+			background-color: #ffffff;
+			color: #000000;
+		}
+
 		body>section>.imagenes{
 			display: flex;
 			flex-direction: row;
