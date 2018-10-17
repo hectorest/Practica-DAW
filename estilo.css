@@ -4,7 +4,7 @@
 body{
 	box-sizing: border-box;
 	min-width: 320px;
-    max-width: 1500px;
+    max-width: 1980px;
 	margin: 0 auto;
 	background-color: #F1D7C7; 
 	font-family: 'Kalam', cursive;
@@ -58,16 +58,17 @@ body{
 		border-top: 0.3em solid #D67731;
 		border-bottom: 0.3em solid #D67731;
 		position: sticky;
+		text-align: center;
 		top: 0px;
 	}
 		body>nav>ul{
 			display: inline-block;
 			margin: 0;
+			padding: 0;
 		}
 			body>nav>ul>li{
 				list-style: none;
 				display: inline-block;
-				
 			}
 				body>nav>ul>li>a{
 					display: block;
@@ -87,33 +88,33 @@ body{
 						margin-right: 0.2em;
 					}
 
-				body>nav>ul>li>input{
+				body>nav>input{
 					display: none;
 				}
 
-				body>nav>ul>li>label:first-of-type{
+				body>nav>label{
 					display: none;
-				}
-
-				body>nav>ul>li>label{
-					display: block;
+					position: relative;
 					color: #ffffff;
 					padding: 0.7em;
 					text-decoration: none;
 				}
-				body>nav>ul>li>label:hover{
+				body>nav>label:hover{
 					background-color: #ffffff;
 					color: #000000;
 					cursor: pointer;
 					border-radius: 10px;
 				}
 
+					body>nav>label>span{
+						display: inline-block; /*pongo que el elemento div correspondiente a la imagen obtenga la disposici&oacute;n inline-block para que, a la hora de realizar la rotaci&oacute;n, la realice en el eje vertical que es el que queremos y no en el horizontal (lo que provocar&iacute;a la ocultaci&oacute;n del susodicho div) para as&iacute; realizar la animaci&oacute;n de rotar tal y como se desea*/
+					}
+
 /***PAGINA PRINCIPAL***/
 
-/*LATERAL DERECHO*/
+/*BUSCADORES INDEX*/
 
 	body>#formBusc{
-		
 		margin: 1em;
 		border: 0.3em solid #D67731;
     	border-width: 5px;
@@ -125,7 +126,6 @@ body{
 /*BARRA BUSQUEDA TEXTO*/
 
 	body>div>form{
-
 		margin-top: 0.5em;
 		margin-bottom: 0.5em;
 		display: flex;
@@ -135,7 +135,7 @@ body{
 
 		body>div>form>#buscRap{
 
-			width: 25em;
+			width: 75%;
 
 		}
 
@@ -584,6 +584,10 @@ body>.formulario{
 					color: #000000;
 				}
 
+	body>section>.contTabla{
+		overflow-x:auto;
+	}
+
 /*ENLACES*/
 	
 	body>section>.enlPerf{
@@ -745,3 +749,134 @@ body>.formulario{
 			}
 
 
+/*MEDIA QUERIES*/
+
+@media all and (max-width: 480px){
+
+	/*Cabecera*/
+
+	body>header{
+		flex-direction: column;
+	}
+
+		body>header>a{
+			display: flex;
+			justify-content: center;
+		}
+
+			body>header>a>img{
+				margin: 0;
+			}
+
+		body>header>div{
+			text-align: center;
+		}
+
+	/*Barra de navegacion*/
+
+	body>nav>label{
+		display: flex;
+		justify-content: flex-start;
+	}
+
+	body>nav>input:checked ~ #mnPrinc{ /*cuando el check est&eacute; activado, busca la identidad marcada despu&eacute;s de este s&iacute;mbolo: "~", entre las identidades que se encuentran debajo de la que se encuentra a la izquierda del susodicho s&iacute;mbolo*/
+		margin: 0;
+	}
+		
+		body>nav>label>span{
+			transition: transform .5s ease-in-out; /*para aplicarlo tanto cuanto est&aacute; activado el checked como cuando se desactiva*/
+		}
+
+		body>nav>input:checked ~ #iconoMnHamb>span{
+			transform: rotate(-90deg);
+		}
+	
+	body>nav>ul{
+		display: block;
+		margin: 0;
+		padding: 0;	
+		z-index: 20;
+		position: absolute;
+		background-color: #FF7A1E;
+    	border-top: 0.3em solid #D67731;
+		width: 50%; /*Pongo un tama&ntilde;o del 50% en ancho con respecto al padre nav*/
+		text-align: center;
+		margin-left: -50%; /*Para que el men&uacute;, al moverlo a la izquierda un 50% con respecto al padre (el tama&ntilde;o width que tiene asignado), el cual se corresponde con la etiqueta nav, desaparezca hasta que se active el checkbox*/
+		transition: margin-left .5s ease-in-out;
+	}
+	
+		body>nav>ul>li{
+			display: block;
+			border-bottom: 0.3em solid #D67731; /*Para ponerles un borde debajo a cada elemento li cuando la pantalla est&aacute; en tama&ntilde;o m&oacute;vil, es decir, cuando est&aacute; en uso el men&uacute; de hamburguesa*/
+		}
+
+		body>nav>ul>li:hover{
+			background-color: #ffffff;
+			border-radius: 15px;
+		}
+
+
+	/*Buscador Index*/
+
+	body>div>form{
+		flex-direction: column;
+	}
+
+		body>div>form>input{
+			align-self: center;
+		}
+
+		body>div>form>button{
+			margin-top: 0.5em;
+			align-self: center;
+		}
+
+	body>div>form>fieldset>div{
+		display: block;
+	}
+
+}
+
+@media all and (max-width: 650px){
+
+	/*Cabecera*/
+
+	body>header{
+		flex-direction: column;
+	}
+
+		body>header>a{
+			display: flex;
+			justify-content: center;
+		}
+
+			body>header>a>img{
+				margin: 0;
+			}
+
+		body>header>div{
+			text-align: center;
+		}	
+
+}
+
+@media all and (min-width: 780px) and (max-width: 1000px){
+
+	body>nav>ul>li>a>span:last-of-type{
+		display: none;
+	}
+
+	body>div>form>fieldset>div{
+		display: block;
+	}
+
+}
+
+
+@media all and (min-width: 1000px) and (max-width: 1048px){
+	
+	body>div>form>fieldset>div{
+		display: block;
+	}
+
+}
