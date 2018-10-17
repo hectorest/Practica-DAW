@@ -60,6 +60,7 @@ body{
 		position: sticky;
 		text-align: center;
 		top: 0px;
+		z-index: 20;
 	}
 		body>nav>ul{
 			display: inline-block;
@@ -255,9 +256,14 @@ body{
 
 		body>section>a{
 
-			display: block;
-			align-self: center;
+			border: 0.2em solid #D67731;
+			border-radius: 10px;
+			background-color: #FFBA89;
+			padding: 0.2em;
 			color: #394648;
+			text-decoration: none;
+			margin: 1em;
+			
 
 		}
 
@@ -308,7 +314,7 @@ body{
 
 				body>section>.imagenes>article>figure>a>img:hover{
 					filter: brightness(115%);
-					cursor: pointer;
+					
 				}
 
 		body>section>.imagenes>article>h4{
@@ -358,24 +364,24 @@ body{
 /*PAGINACION*/
 	
 
-	body>#paginacion{
+	body>.paginacion{
 		align-self: center;
 		display: flex;
 		justify-content: center;
 	}
-		body>#paginacion>div>span,p{
+		body>.paginacion>div>span,p{
 
 			justify-content: center;
 			display: inline-block;
 
 		}
 
-		body>#paginacion>div>span:hover{
+		body>.paginacion>div>span:hover{
 			color: #D67731;
 			cursor: pointer;
 		}
 
-		body>#paginacion>div>p{
+		body>.paginacion>div>p{
 			border: 0.2em solid #D67731;
 			border-radius: 10px;
 			background-color: #FFBA89;
@@ -751,6 +757,193 @@ body>.formulario{
 
 /*MEDIA QUERIES*/
 
+@media all and (min-width: 1048px) and (max-width: 1235px){
+
+	body>.formulario>fieldset{
+		flex-direction: column;
+	}
+
+		body>.formulario>fieldset>div{
+			flex-direction: column;
+		}
+
+			body>.formulario>fieldset>div>div{
+				flex-direction: column;
+			}
+
+					body>.formulario>fieldset>div>div>input{
+						align-self: center;
+					}
+
+			body>.formulario>fieldset>div>button{
+				align-self: center;
+			}
+
+			body>.formulario>fieldset>div>select{
+				align-self: center;
+			}
+
+			body>.formulario>fieldset>div>input{
+				align-self: center;
+			}
+
+			body>.formulario>fieldset>div>textarea{
+				align-self: center;
+			}
+}
+
+@media all and (min-width: 1000px) and (max-width: 1048px){
+	
+	body>div>form>fieldset>div{
+		display: block;
+	}
+
+
+	body>.formulario>fieldset{
+		flex-direction: column;
+	}
+
+		body>.formulario>fieldset>div{
+			flex-direction: column;
+		}
+
+			body>.formulario>fieldset>div>div{
+				flex-direction: column;
+			}
+
+					body>.formulario>fieldset>div>div>input{
+						align-self: center;
+					}
+
+			body>.formulario>fieldset>div>button{
+				align-self: center;
+			}
+
+			body>.formulario>fieldset>div>select{
+				align-self: center;
+			}
+
+			body>.formulario>fieldset>div>input{
+				align-self: center;
+			}
+
+			body>.formulario>fieldset>div>textarea{
+				align-self: center;
+			}
+
+}
+
+@media all and (min-width: 780px) and (max-width: 1000px){
+
+	body>nav>ul>li>a>span:last-of-type{
+		display: none;
+	}
+
+	body>div>form>fieldset>div{
+		display: block;
+	}
+
+	/*Formularios*/
+
+	body>.formulario>fieldset{
+		flex-direction: column;
+	}
+
+		body>.formulario>fieldset>div{
+			flex-direction: column;
+		}
+
+			body>.formulario>fieldset>div>div{
+				flex-direction: column;
+			}
+
+					body>.formulario>fieldset>div>div>input{
+						align-self: center;
+					}
+
+			body>.formulario>fieldset>div>button{
+				align-self: center;
+			}
+
+			body>.formulario>fieldset>div>select{
+				align-self: center;
+			}
+
+			body>.formulario>fieldset>div>input{
+				align-self: center;
+			}
+
+			body>.formulario>fieldset>div>textarea{
+				align-self: center;
+			}
+
+}
+
+@media all and (min-width: 480px) and (max-width: 780px){
+
+	body>nav>ul>li>a>span:last-of-type{
+		display: none;
+	}
+
+	/*Cabecera*/
+
+	body>header{
+		flex-direction: column;
+	}
+
+		body>header>a{
+			display: flex;
+			justify-content: center;
+		}
+
+			body>header>a>img{
+				margin: 0;
+			}
+
+		body>header>div{
+			text-align: center;
+		}
+
+		body>div>form>fieldset>div{
+			display: block;
+		}	
+
+		/*Formularios*/
+
+	body>.formulario>fieldset{
+		flex-direction: column;
+	}
+
+		body>.formulario>fieldset>div{
+			flex-direction: column;
+		}
+
+			body>.formulario>fieldset>div>div{
+				flex-direction: column;
+			}
+
+					body>.formulario>fieldset>div>div>input{
+						align-self: center;
+					}
+
+			body>.formulario>fieldset>div>button{
+				align-self: center;
+			}
+
+			body>.formulario>fieldset>div>select{
+				align-self: center;
+			}
+
+			body>.formulario>fieldset>div>input{
+				align-self: center;
+			}
+
+			body>.formulario>fieldset>div>textarea{
+				align-self: center;
+			}
+
+}
+
 @media all and (max-width: 480px){
 
 	/*Cabecera*/
@@ -835,48 +1028,37 @@ body>.formulario{
 		display: block;
 	}
 
-}
+	/*Formularios*/
 
-@media all and (max-width: 650px){
-
-	/*Cabecera*/
-
-	body>header{
+	body>.formulario>fieldset{
 		flex-direction: column;
 	}
 
-		body>header>a{
-			display: flex;
-			justify-content: center;
+		body>.formulario>fieldset>div{
+			flex-direction: column;
 		}
 
-			body>header>a>img{
-				margin: 0;
+			body>.formulario>fieldset>div>div{
+				flex-direction: column;
 			}
 
-		body>header>div{
-			text-align: center;
-		}	
+					body>.formulario>fieldset>div>div>input{
+						align-self: center;
+					}
 
-}
+			body>.formulario>fieldset>div>button{
+				align-self: center;
+			}
 
-@media all and (min-width: 780px) and (max-width: 1000px){
+			body>.formulario>fieldset>div>select{
+				align-self: center;
+			}
 
-	body>nav>ul>li>a>span:last-of-type{
-		display: none;
-	}
+			body>.formulario>fieldset>div>input{
+				align-self: center;
+			}
 
-	body>div>form>fieldset>div{
-		display: block;
-	}
-
-}
-
-
-@media all and (min-width: 1000px) and (max-width: 1048px){
-	
-	body>div>form>fieldset>div{
-		display: block;
-	}
-
+			body>.formulario>fieldset>div>textarea{
+				align-self: center;
+			}
 }
