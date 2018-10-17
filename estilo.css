@@ -765,6 +765,10 @@ body>.formulario{
 				margin-top: 1em;
 			}
 
+			body>.formulario>fieldset>#solAlbumDirec>input:last-of-type{
+				margin-bottom: 1em;
+			}
+			
 			body>.formulario>fieldset>p>span{
 				flex-direction: column;
 			}
@@ -808,7 +812,6 @@ body>.formulario{
 		display: block;
 	}
 
-
 	body>.formulario>fieldset{
 		flex-direction: column;
 	}
@@ -819,6 +822,10 @@ body>.formulario{
 
 			body>.formulario>fieldset>#solAlbumDirec>input{
 				margin-top: 1em;
+			}
+
+			body>.formulario>fieldset>#solAlbumDirec>input:last-of-type{
+				margin-bottom: 1em;
 			}
 
 			body>.formulario>fieldset>p>span{
@@ -876,6 +883,10 @@ body>.formulario{
 
 			body>.formulario>fieldset>#solAlbumDirec>input{
 				margin-top: 1em;
+			}
+
+			body>.formulario>fieldset>#solAlbumDirec>input:last-of-type{
+				margin-bottom: 1em;
 			}
 
 			body>.formulario>fieldset>p>span{
@@ -952,6 +963,10 @@ body>.formulario{
 
 			body>.formulario>fieldset>#solAlbumDirec>input{
 				margin-top: 1em;
+			}
+
+			body>.formulario>fieldset>#solAlbumDirec>input:last-of-type{
+				margin-bottom: 1em;
 			}
 
 			body>.formulario>fieldset>p>span{
@@ -1083,6 +1098,10 @@ body>.formulario{
 
 			body>.formulario>fieldset>#solAlbumDirec>input{
 				margin-top: 1em;
+			}
+
+			body>.formulario>fieldset>#solAlbumDirec>input:last-of-type{
+				margin-bottom: 1em;
 			}
 
 			body>.formulario>fieldset>p>span{
