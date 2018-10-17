@@ -157,7 +157,7 @@ body{
 			background-color: #E7C49F;
 			border: 0.2em solid #D67731;
 			border-radius: 1em;
-			margin-left: 0.5em;
+			margin-left: 1em;
 		}
 
 		body>div>form>button:hover{
@@ -165,6 +165,10 @@ body{
 			background-color: #000000;
 			cursor: pointer;
 		}
+
+			body>div>form>button>span{
+				font-size: 20px;
+			}
 
 /*FORMULARIO BUSQUEDA*/
 
@@ -230,6 +234,10 @@ body{
 		background-color: #000000;
 		cursor: pointer;
 	}
+
+		body>div>form>fieldset>button>span{
+			font-size: 20px;
+		}
 
 /*PARTE CENTRAL*/
 
@@ -1081,12 +1089,13 @@ body>.formulario{
 		}
 
 		body>div>form>button{
-			margin-top: 0.5em;
+			margin-top: 1em;
 			align-self: center;
 		}
 
 	body>div>form>fieldset>p{
 		display: block;
+		margin-bottom: 0.5em;
 	}
 
 	/*Formularios*/
