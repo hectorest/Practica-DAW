@@ -55,50 +55,7 @@ body{
 
 	body>nav{
 		display: none;
-		/*text-align: center;
-		background-color: #FF7A1E;
-		border-top: 0.3em solid #D67731;
-		border-bottom: 0.3em solid #D67731;
-		position: sticky;
-		text-align: center;
-		top: 0px;
-		z-index: 20;*/
 	}
-		/*body>nav>ul{
-			display: inline-block;
-			margin: 0;
-			padding: 0;
-		}
-			body>nav>ul>li{
-				list-style: none;
-				display: inline-block;
-			}
-				body>nav>ul>li>a{
-					display: block;
-					color: #ffffff;
-					padding: 0.7em;
-					text-decoration: none;
-				}
-
-					body>nav>ul>li>a>span:first-of-type{
-						margin-right: 0.2em;
-					}
-
-				body>nav>input{
-					display: none;
-				}
-
-				body>nav>label{
-					display: none;
-					position: relative;
-					color: #ffffff;
-					padding: 0.7em;
-					text-decoration: none;
-				}
-
-					body>nav>label>span{
-						display: inline-block;
-					}*/
 
 /***PAGINA PRINCIPAL***/
 
@@ -106,100 +63,13 @@ body{
 
 	body>#formBusc{
 		display: none;
-		/*margin: 1em;
-		border: 0.1cm solid #D67731;
-    	/*border-width: 5px;*/
-    	/*border-radius: 15px;
-    	padding: 0.5em;
-    	text-align: center;*/
 	}
 
 /*BARRA BUSQUEDA TEXTO*/
 
 	body>div>form{
 		display: none;
-		/*margin-top: 0.5em;
-		margin-bottom: 0.5em;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;*/
 	}
-
-		/*body>div>form>#buscRap{
-
-			width: 75%;
-
-		}
-
-		body>div>form>input{
-			border-radius: 1em;
-			border: 0.1cm solid #D67731;
-		}
-
-		body>div>form>input:focus{
-			background-color: #E5C9B5;
-		}
-
-		body>div>form>button{
-			background-color: #E7C49F;
-			border: 0.2em solid #D67731;
-			border-radius: 1em;
-			margin-left: 1em;
-		}
-
-			body>div>form>button>span{
-				font-size: 20px;
-			}*/
-
-/*FORMULARIO BUSQUEDA*/
-
-	/*body>div>form>fieldset>legend{
-
-		color: #394648;
-
-	}
-
-	body>div>form>fieldset>p{
-
-		display: inline-block;
-		margin: 0;
-
-	}
-
-	body>div>form>fieldset>p>label{
-
-		color: #394648;
-		text-align: right;
-		margin-right: 0.5em;
-
-	}
-
-	body>div>form>fieldset>p>input{
-
-		border-radius: 1em;
-		border: 0.1cm solid #D67731;
-	}
-
-	body>div>form>fieldset>a{
-
-		color: #394648;
-		text-decoration: none;
-		white-space: nowrap;
-
-	}
-
-	body>div>form>fieldset>button{
-
-		background-color: #E7C49F;
-		border: 0.2em solid #D67731;
-		border-radius: 1em;
-	}
-
-
-		body>div>form>fieldset>button>span{
-
-			font-size: 20px;
-		}*/
 
 /*PARTE CENTRAL*/
 
@@ -209,8 +79,6 @@ body{
 		margin-top: 0em;
 		margin-bottom: 0em;
 		border: 0;
-    	border-width: 5px;
-    	border-radius: 15px;*/
     	padding: 0.5em;
     	text-align: center;
 	}
@@ -232,8 +100,6 @@ body{
 
 		body>section>a{
 			border: 0.1cm solid black;
-			/*border-radius: 10px;*/
-			/*background-color: #FFBA89;*/
 			padding: 0.2em;
 			color: #0032ff;
 			text-decoration: underline;
@@ -243,9 +109,6 @@ body{
 
 		body>section>.imagenes{
 			display: block;
-			/*flex-direction: column;
-			flex-wrap: nowrap;
-			justify-content: space-around;*/
 			margin-top: 0cm;
 			align-content: center;
 		}
@@ -365,12 +228,11 @@ body>.formulario{
 	flex-direction: column;
 	justify-content: center;
 	width: 100%;
-	margin-top: 10cm;
+	page-break-before: always;
 }
 
 	body>.formulario>fieldset{
 		width: 50%;
-		margin: 5em;
 		align-self: center;
 		display: flex;
 		flex-direction: column;
@@ -383,11 +245,23 @@ body>.formulario{
 		body>.formulario>fieldset>p{
 			width: 50%;
 			margin: auto;
-			margin-top: 3em;
+			margin-top: 1cm;
 			display: flex;
 			align-self: center;
 			justify-content: space-between;
 			flex-wrap: wrap;
+		}
+
+		body>.formulario>fieldset>p:nth-of-type(4){
+			page-break-after: always;
+		}
+
+		body>.formulario>fieldset>p:nth-of-type(7){
+			margin-top: 0;
+		}
+
+		body>.formulario>fieldset>p:nth-of-type(9){
+			page-break-after: always;
 		}
 
 		body>.formulario>fieldset>p:nth-of-type(12){
@@ -395,16 +269,17 @@ body>.formulario{
 		}
 
 			body>.formulario>fieldset>#solAlbumDirec>input{
-				margin-bottom: 2cm;
+				margin-bottom: 1cm;
 			}
 
 			body>.formulario>fieldset>#solAlbumDirec>select{
-				margin-bottom: 2cm;
+				margin-bottom: 1cm;
 			}
 
 			body>.formulario>fieldset>#solAlbumDirec>label:nth-of-type(2){
-				margin-top: 2cm;
+				margin-top: 1cm;
 			}
+
 
 			body>.formulario>fieldset>p>label{
 				align-self: center;
@@ -446,7 +321,7 @@ body>.formulario{
 				margin-bottom: 1cm;
 			}
 				body>.formulario>fieldset>p>button{
-					/*display: none;*/
+					display: none;
 				}
 
 		body>.formulario>fieldset>a{
@@ -532,6 +407,10 @@ body>.formulario{
 					color: #0032ff;
 					text-decoration: underline;
 				}
+
+			body>section>div>.tabla>tbody>tr>th{
+				border: 0.1cm solid black;
+			}
 
 	body>section>.contTabla{
 		overflow-x:auto;
@@ -662,6 +541,7 @@ body>.formulario{
 
 	body>footer{
 		padding: 0;
+		margin-top: 0.1cm;
 		clear: both;
 		text-align: center;
 		background-color: white;

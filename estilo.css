@@ -605,6 +605,10 @@ body>.formulario{
 					color: #000000;
 				}
 
+			body>section>div>.tabla>tbody>tr>th{
+				border: 0.3em solid #D67731;
+			}
+
 	body>section>.contTabla{
 		overflow-x:auto;
 	}
@@ -728,7 +732,6 @@ body>.formulario{
 /*FOOTER*/
 
 	body>footer{
-
 		clear: both;
 		text-align: center;
 		background-color: #E28F4E;

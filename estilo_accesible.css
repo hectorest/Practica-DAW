@@ -630,6 +630,10 @@ body>.formulario{
 					border-radius: 0.5em;
 				}
 
+			body>section>div>.tabla>tbody>tr>th{
+				border: 0.1cm solid black;
+			}
+
 	body>section>.contTabla{
 		overflow-x:auto;
 	}
