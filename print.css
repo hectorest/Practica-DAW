@@ -16,12 +16,10 @@ body{
 	position: relative;
 }
 
-
-
 /*HEADER*/
 
 	body>header{
-
+		padding: 0;
 		background-color: white;
 		padding: 1cm;
 		border-top: 0;
@@ -81,6 +79,7 @@ body{
 		border: 0;
     	padding: 0.5cm;
     	text-align: center;
+    	padding: 0;
 	}
 
 		body>section>h3{
@@ -106,6 +105,9 @@ body{
 			margin: 1cm;
 		}
 
+		body>section>p{
+			margin: 0;
+		}
 
 		body>section>.imagenes{
 			display: block;
@@ -404,7 +406,6 @@ body>.formulario{
 	body>section>div>.tabla{
 		margin: auto;
 		border: 0.1cm solid black;
-		/*border-width: 5px;*/
 		margin-bottom: 0.5cm;
 		margin-top: 0.5cm;
 		border-collapse: collapse;
@@ -444,18 +445,6 @@ body>.formulario{
 
 	body>section>#inicioResSolAlbum{
 		display: none;
-	}
-
-	body>section>p{
-		margin: 0;
-	}
-
-	body>header{
-		padding: 0;
-	}
-
-	body>section{
-		padding: 0;
 	}
 
 /*ENLACES*/
@@ -601,5 +590,3 @@ body>.formulario{
 				text-decoration: underline;
 				margin-right: 0.6cm;
 			}
-
-/*MEDIA QUERIES*/
