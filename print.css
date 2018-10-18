@@ -23,7 +23,7 @@ body{
 	body>header{
 
 		background-color: white;
-		padding: 1em;
+		padding: 1cm;
 		border-top: 0;
 		display: flex;
 		flex-direction: row;
@@ -74,12 +74,12 @@ body{
 /*PARTE CENTRAL*/
 
 	body>section{
-		margin-right: 1em;
-		margin-left: 1em;
-		margin-top: 0em;
-		margin-bottom: 0em;
+		margin-right: 1cm;
+		margin-left: 1cm;
+		margin-top: 0cm;
+		margin-bottom: 0cm;
 		border: 0;
-    	padding: 0.5em;
+    	padding: 0.5cm;
     	text-align: center;
 	}
 
@@ -103,7 +103,7 @@ body{
 			background-color: #ffffff;
 			color: #0032ff;
 			text-decoration: underline;
-			margin: 1em;
+			margin: 1cm;
 		}
 
 
@@ -117,12 +117,12 @@ body{
 			display: flex;
 			flex-direction: column;
 			background-color: white;
-			border: 0.1em solid black;
+			border: 0.1cm solid black;
 			justify-content: space-between;
 			color: black;
 			overflow: hidden;
-			height: 22em;
-			width: 18em;
+			height: 10cm;
+			width: 8cm;
 			margin: auto;
 			margin-top: 1cm;
 		}
@@ -139,9 +139,9 @@ body{
 
 		body>section>.imagenes>article>figure{
 			margin: 0;
-			border: 0.2em solid blue;
-			width: 15.5em;
-			height: 10em;
+			border: 0.2cm solid blue;
+			width: 7cm;
+			height: 4.5cm;
 			align-self: center;
 		}
 			body>section>.imagenes>article>figure>a{
@@ -166,7 +166,7 @@ body{
 			
 			border: none;
 			margin-top: 0.5cm;
-			padding: 0.2em;
+			padding: 0.2cm;
 			width: 100%;
 			align-self: center;
 		}
@@ -183,9 +183,9 @@ body{
 
 			display: flex;
 			flex-direction: column;
-			padding: 0.2em;
+			padding: 0.2cm;
 			border-radius: 15px;
-			margin-bottom: 1em;
+			margin-bottom: 1cm;
 
 		}
 
@@ -195,7 +195,7 @@ body{
 			}
 
 			body>section>.imagenes>article>footer>p:first-of-type{
-				margin-bottom: 1em;
+				margin-bottom: 1cm;
 			}
 
 /*PAGINACION*/
@@ -218,11 +218,11 @@ body{
 		body>.paginacion>div>p{
 			justify-content: center;
 			display: inline-block;
-			border: 0.2em solid black;
+			border: 0.2cm solid black;
 			border-radius: 10px;
 			background-color: white;
-			padding-left: 0.3em;
-			padding-right: 0.3em;
+			padding-left: 0.3cm;
+			padding-right: 0.3cm;
 		}*/
 
 /***FORMULARIOS***/
@@ -252,8 +252,8 @@ body>.formulario{
 			margin-top: 1cm;
 			display: flex;
 			align-self: center;
-			justify-content: space-between;
-			flex-wrap: wrap;
+			flex-direction: column;
+			justify-content: center;
 		}
 
 		body>.formulario>fieldset>p:nth-of-type(4){
@@ -262,9 +262,6 @@ body>.formulario{
 
 		body>.formulario>fieldset>p:nth-of-type(7){
 			margin-top: 0;
-		}
-
-		body>.formulario>fieldset>p:nth-of-type(9){
 			page-break-after: always;
 		}
 
@@ -274,10 +271,11 @@ body>.formulario{
 
 			body>.formulario>fieldset>#solAlbumDirec>input{
 				margin-bottom: 1cm;
+				margin-top: 1cm;
 			}
 
 			body>.formulario>fieldset>#solAlbumDirec>select{
-				margin-bottom: 1cm;
+				margin-bottom: 2cm;
 			}
 
 			body>.formulario>fieldset>#solAlbumDirec>label:nth-of-type(2){
@@ -287,7 +285,7 @@ body>.formulario{
 
 			body>.formulario>fieldset>p>label{
 				align-self: center;
-				width: 5em;
+				width: 5cm;
 			}
 
 			body>.formulario>fieldset>p>input{
@@ -297,6 +295,30 @@ body>.formulario{
 				width: 18cm;
 				height: 0.7cm;
 			}
+
+	/**************Ocultar placeholder*********************/
+
+			::placeholder{
+				color: transparent;
+			}
+
+			:-ms-input-placeholder { /* IE 10+ */
+				color: transparent; 
+			}
+
+			::-webkit-input-placeholder { /* WebKit */
+				color: transparent; 
+			} 
+
+			:-moz-placeholder{ /* Firefox 18- */
+				color: transparent;
+			}
+
+			::-moz-placeholder { /* Firefox 19+ */
+				color: transparent;
+			} 
+
+	/*******************************************************/
 
 			body>.formulario>fieldset>p>input:focus{
 				background-color: white;
@@ -309,10 +331,11 @@ body>.formulario{
 			}
 
 			body>.formulario>fieldset>p>textarea{
-				border-radius: 1em;
+				border-radius: 0.5cm;
 				border: 0.1cm solid black;
 				width: 18cm;
 				height: 11cm;
+				align-self: center;
 			}
 
 			body>.formulario>fieldset>p>textarea:hover{
@@ -336,7 +359,7 @@ body>.formulario{
 			body>.formulario>fieldset>p>select{
 				
 				background-color: white;
-				border-radius: 1em;
+				border-radius: 1cm;
 				border: 0.1cm solid black;
 				width: 18cm;
 				height: 1cm;
@@ -407,7 +430,6 @@ body>.formulario{
 
 				body>section>div>.tabla>tbody>tr>td>a{
 					content: attr(href);
-					font-weight: bold;
 					color: #0032ff;
 					text-decoration: underline;
 				}
@@ -442,7 +464,8 @@ body>.formulario{
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-around;
-		margin-top: 0.5em;
+		margin-top: 0.5cm;
+		margin-bottom: 1cm;
 	}
 		body>section>.enlPerf>a{
 
@@ -460,11 +483,11 @@ body>.formulario{
 
 	body>#detFoto{
 
-		margin: 1em;
+		margin: 1cm;
 		border: 0.1cm solid black;
 	    /*border-width: 5px;*/
 	    border-radius: 15px;
-	    padding: 0.5em;
+	    padding: 0.5cm;
 	    display: flex;
 	    flex-direction: column;
 	    text-align: center;
@@ -476,7 +499,7 @@ body>.formulario{
 		body>#detFoto>h3{
 
 			background-color: white;
-			padding: 0.2em;
+			padding: 0.2cm;
 			border: 0.1cm solid black;
 			/*border-width: 5px;*/
 			border-radius: 15px;
@@ -563,7 +586,7 @@ body>.formulario{
 		body>footer>p>a{
 			/*text-decoration: underline;
 			color: blue;
-			margin-left: 8em;
+			margin-left: 8cm;
 			overflow: hidden;*/
 		}
 
@@ -576,5 +599,7 @@ body>.formulario{
 
 				color: blue;
 				text-decoration: underline;
-				margin-right: 0.6em;
+				margin-right: 0.6cm;
 			}
+
+/*MEDIA QUERIES*/
