@@ -421,6 +421,8 @@ body>.formulario{
 		justify-content: center;
 		text-align: center;
 		overflow: hidden;
+		border: 0.1em solid #000000;
+		border-radius: 30px;
 	}
 
 		body>.formulario>fieldset>legend{
@@ -573,6 +575,7 @@ body>.formulario{
 		border-width: 5px;
 		margin-bottom: 1em;
 		margin-top: 2em;
+		border-collapse: collapse;
 	}
 			
 		body>section>div>.tabla>caption{
@@ -587,9 +590,8 @@ body>.formulario{
 		}
 
 			body>section>div>.tabla>tbody>tr>td{
-
 				padding: 0.6em;
-
+				border: 0.3em solid #D67731;
 			}
 
 				body>section>div>.tabla>tbody>tr>td>a{
