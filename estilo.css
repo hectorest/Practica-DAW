@@ -38,8 +38,6 @@ body{
 	body>header>a>img{
 
 		margin-right: 1em; 
-		width: 300px;
-		height: 200px;
 
 	}
 
@@ -344,6 +342,7 @@ body{
 
 		body>section>.imagenes>article>h4>a{
 
+			color: #394648;
 			text-decoration: none;
 			color: #000000;
 			cursor: pointer;
