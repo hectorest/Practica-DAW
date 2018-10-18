@@ -99,8 +99,8 @@ body{
 		}
 
 		body>section>a{
-			border: 0.1cm solid black;
-			padding: 0.2em;
+			border: 0;
+			background-color: #ffffff;
 			color: #0032ff;
 			text-decoration: underline;
 			margin: 1em;
@@ -125,6 +125,10 @@ body{
 			width: 18em;
 			margin: auto;
 			margin-top: 1cm;
+		}
+
+		body>section>.imagenes>article:last-of-type{
+			margin-bottom: 1cm;
 		}
 
 		body>section>.imagenes>article:nth-of-type(2n){
