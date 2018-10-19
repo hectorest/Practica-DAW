@@ -147,6 +147,7 @@ body{
 			border-radius: 1em;
 			border: 0.1em solid #000000;
 			color: #ffffff;
+			font-size: 30px
 		}
 
 		body>div>form>input:hover{
@@ -206,6 +207,8 @@ body{
 		border-radius: 1em;
 		border: 0.1em solid #000000;
 		color: #ffffff;
+		font-size: 30px;
+		width: 6em;
 	}
 
 	body>div>form>fieldset>p>input:hover{
@@ -221,6 +224,7 @@ body{
 		color: #394648;
 		text-decoration: none;
 		white-space: nowrap;
+		margin-top: 0.5em;
 
 	}
 
@@ -235,6 +239,7 @@ body{
 		background-color: #ffffff;
 		border: 0.2em solid #000000;
 		border-radius: 1em;
+		margin-top: 0.5em;
 	}
 
 	body>div>form>fieldset>button:hover{
@@ -272,13 +277,9 @@ body{
 		}
 
 		body>section>a{
-			border: 0.2em solid #000000;
-			border-radius: 10px;
 			background-color: #ffffff;
-			padding: 0.2em;
 			color: #394648;
 			text-decoration: none;
-			margin: 1em;
 		}
 
 		body>section>a:hover{
@@ -304,8 +305,8 @@ body{
 			justify-content: space-between;
 			color: #394648;
 			overflow: hidden;
-			height: 22em;
-			width: 18em;
+			height: 26em;
+			width: 20em;
 			margin: 0.5em;
 		}
 
@@ -313,7 +314,7 @@ body{
 			margin: 0;
 			margin-top: 1em;
 			border: 0.2em solid #000000;
-			width: 15.5em;
+			width: 90%;
 			height: 10em;
 			align-self: center;
 		}
@@ -435,6 +436,10 @@ body>.formulario{
 		border-radius: 30px;
 	}
 
+		body>.formulario>fieldset>p>button{
+			align-self: center;
+		}
+
 		body>.formulario>fieldset>legend{
 			margin: auto;
 		}
@@ -444,10 +449,18 @@ body>.formulario{
 			margin: auto;
 			margin-top: 3em;
 			display: flex;
+			flex-direction: column;
 			align-self: center;
-			justify-content: space-between;
-			flex-wrap: wrap;
+			justify-content: center;
 		}
+
+			body>.formulario>fieldset>#solAlbumDirec>input{
+				margin-top: 1em;
+			}
+
+			body>.formulario>fieldset>#solAlbumDirec>input:last-of-type{
+				margin-bottom: 1em;
+			}
 
 			body>.formulario>fieldset>p>label{
 				align-self: center;
@@ -462,7 +475,8 @@ body>.formulario{
 				border-radius: 1em;
 				border: 0.1em solid #000000;
 				align-self: center;
-				width: 13em;
+				width: 50em;
+				font-size: 30px;
 			}
 
 			body>.formulario>fieldset>p>input:hover{
@@ -481,14 +495,21 @@ body>.formulario{
 
 			}
 
+			body>.formulario>fieldset>p:nth-of-type(8)>input{
+				height: 1.5em;
+			}
+
 			body>.formulario>fieldset>p>#fper{
-				width: 13em;
+				width: 50em;
 			}
 
 			body>.formulario>fieldset>p>textarea{
 				border-radius: 1em;
 				border: 0.1em solid #000000;
-				width: 20em;
+				width: 50em;
+				height: 30em;
+				align-self: center;
+				font-size: 30px;
 			}
 
 			body>.formulario>fieldset>p>textarea:hover{
@@ -540,9 +561,10 @@ body>.formulario{
 				border-radius: 1em;
 				border: 0.1em solid #000000;
 				color: #ffffff;
-				width: 10em;
+				width: 50em;
 				height: 2em;
 				align-self: center;
+				font-size: 30px;
 			}
 
 			body>.formulario>fieldset>p>select:hover{
@@ -568,17 +590,12 @@ body>.formulario{
 				
 				margin: 0;
 				align-self: center;
+				flex-direction: column;
 			}
 
-			body>.formulario>fieldset>p>span{
-
-				align-self: center;
-
-			}
-
-			body>.formulario>fieldset>p{
-				display: flex;
-			}
+				body>.formulario>fieldset>p>span>input{
+					align-self: center;
+				}
 
 /*FOTO PERFIL*/
 
@@ -836,21 +853,21 @@ body>.formulario{
 
 			body>.formulario>fieldset>p>select{
 				align-self: center;
-				width: 50em;
+				width: 45em;
 			}
 
 			body>.formulario>fieldset>p>input{
 				align-self: center;
-				width: 50em;
+				width: 45em;
 			}
 
 			body>.formulario>fieldset>p>#fper{
-				width: 50em;
+				width: 45em;
 			}
 
 			body>.formulario>fieldset>p>textarea{
 				align-self: center;
-				width: 50em;
+				width: 45em;
 			}
 
 		body>.formulario>fieldset>.pEspeciales{
@@ -864,6 +881,10 @@ body>.formulario{
 
 	body>nav>ul>li>a>span:last-of-type{
 		display: none;
+	}
+	
+	body>div>form>fieldset>p{
+		display: block;
 	}
 
 	body>.formulario>fieldset>p{
@@ -893,27 +914,22 @@ body>.formulario{
 
 			body>.formulario>fieldset>p>select{
 				align-self: center;
-				width: 50em;
+				width: 30em;
 			}
 
 			body>.formulario>fieldset>p>input{
 				align-self: center;
-				width: 50em;
+				width: 30em;
 			}
 
 			body>.formulario>fieldset>p>#fper{
-				width: 50em;
+				width: 30em;
 			}
 
 			body>.formulario>fieldset>p>textarea{
 				align-self: center;
-				width: 50em;
+				width: 30em;
 			}
-
-		body>.formulario>fieldset>.pEspeciales{
-			flex-direction: column;
-			flex-wrap: wrap;
-		}
 
 }
 
@@ -954,21 +970,21 @@ body>.formulario{
 
 			body>.formulario>fieldset>p>select{
 				align-self: center;
-				width: 40em;
+				width: 28em;
 			}
 
 			body>.formulario>fieldset>p>input{
 				align-self: center;
-				width: 40em;
+				width: 28em;
 			}
 
 			body>.formulario>fieldset>p>#fper{
-				width: 40em;
+				width: 28em;
 			}
 
 			body>.formulario>fieldset>p>textarea{
 				align-self: center;
-				width: 40em;
+				width: 28em;
 			}
 
 }
@@ -1016,21 +1032,21 @@ body>.formulario{
 
 			body>.formulario>fieldset>p>select{
 				align-self: center;
-				width: 30em;
+				width: 23em;
 			}
 
 			body>.formulario>fieldset>p>input{
 				align-self: center;
-				width: 30em;
+				width: 23em;
 			}
 
 			body>.formulario>fieldset>p>#fper{
-				width: 30em;
+				width: 23em;
 			}
 
 			body>.formulario>fieldset>p>textarea{
 				align-self: center;
-				width: 30em;
+				width: 23em;
 			}
 
 		body>footer>p{
@@ -1108,21 +1124,21 @@ body>.formulario{
 
 			body>.formulario>fieldset>p>select{
 				align-self: center;
-				width: 20em;
+				width: 15em;
 			}
 
 			body>.formulario>fieldset>p>input{
 				align-self: center;
-				width: 20em;
+				width: 15em;
 			}
 
 			body>.formulario>fieldset>p>#fper{
-				width: 20em;
+				width: 15em;
 			}
 
 			body>.formulario>fieldset>p>textarea{
 				align-self: center;
-				width: 20em;
+				width: 15em;
 			}
 
 		body>footer>p{
@@ -1216,6 +1232,7 @@ body>.formulario{
 
 		body>div>form>input{
 			align-self: center;
+			width: 75%;
 		}
 
 		body>div>form>button{
@@ -1235,43 +1252,25 @@ body>.formulario{
 		flex-wrap: nowrap;
 	}
 
-		body>.formulario>fieldset>#solAlbumDirec>input{
-			margin-top: 1em;
-		}
-
-		body>.formulario>fieldset>#solAlbumDirec>input:last-of-type{
-			margin-bottom: 1em;
-		}
-
-		body>.formulario>fieldset>p>span{
-			flex-direction: column;
-		}
-
-				body>.formulario>fieldset>p>span>input{
-					align-self: center;
-				}
-
-		body>.formulario>fieldset>p>button{
-			align-self: center;
-		}
+		
 
 		body>.formulario>fieldset>p>select{
 			align-self: center;
-			width: 20em;
+			width: 7em;
 		}
 
 		body>.formulario>fieldset>p>input{
 			align-self: center;
-			width: 20em;
+			width: 7em;
 		}
 
 		body>.formulario>fieldset>p>#fper{
-			width: 20em;
+			width: 7em;
 		}
 
 		body>.formulario>fieldset>p>textarea{
 			align-self: center;
-			width: 20em;
+			width: 7em;
 		}
 
 	body>footer>p{
