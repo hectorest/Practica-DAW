@@ -22,6 +22,7 @@ body{
 		padding: 0;
 		background-color: white;
 		padding: 1cm;
+		padding-bottom: 0cm;
 		border-top: 0;
 		display: flex;
 		flex-direction: row;
@@ -97,11 +98,12 @@ body{
 		}
 
 		body>section>a{
-			border: 0;
+			display: none;
+			/*border: 0;
 			background-color: #ffffff;
 			color: #0032ff;
 			text-decoration: underline;
-			margin: 1cm;
+			margin: 1cm;*/
 		}
 
 		body>section>p{
