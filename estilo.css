@@ -35,6 +35,10 @@ body{
 			cursor: pointer;
 		}
 
+		body>header>a:focus{
+			filter: brightness(115%);
+		}
+
 	body>header>a>img{
 
 		margin-right: 1em; 
@@ -84,6 +88,12 @@ body{
 					background-color: #ffffff;
 					color: #000000;
 					cursor: pointer;
+					border-radius: 10px;
+				}
+
+				body>nav>ul>li>a:focus{
+					background-color: #ffffff;
+					color: #000000;
 					border-radius: 10px;
 				}
 
@@ -168,6 +178,16 @@ body{
 			cursor: pointer;
 		}
 
+		body>div>form>button:focus{
+			color: #ffffff;
+			background-color: #000000;
+		}
+
+		body>div>form>button:focus{
+			color: #ffffff;
+			background-color: #000000;
+		}
+
 			body>div>form>button>span{
 				font-size: 20px;
 			}
@@ -228,6 +248,10 @@ body{
 		cursor: pointer;
 	}
 
+	body>div>form>fieldset>a:focus{
+		color: #D67731;
+	}
+
 	body>div>form>fieldset>button{
 		background-color: #E7C49F;
 		border: 0.2em solid #D67731;
@@ -239,6 +263,11 @@ body{
 		color: #ffffff;
 		background-color: #000000;
 		cursor: pointer;
+	}
+
+	body>div>form>fieldset>button:focus{
+		color: #ffffff;
+		background-color: #000000;
 	}
 
 		body>div>form>fieldset>button>span{
@@ -284,6 +313,11 @@ body{
 			color: #000000;
 		}
 
+		body>section>a:focus{
+			background-color: #ffffff;
+			color: #000000;
+		}
+
 		body>section>.imagenes{
 			display: flex;
 			flex-direction: row;
@@ -319,20 +353,23 @@ body{
 				margin: 0;
 				display: flex;
 				flex-direction: column;
+				transition: all .35s ease-in-out;
 				width: 100%;
 				height: 100%;
+			}
+
+			body>section>.imagenes>article>figure>a:hover{
+				filter: brightness(115%);	
+			}
+
+			body>section>.imagenes>article>figure>a:focus{
+				filter: brightness(115%);
 			}
 
 				body>section>.imagenes>article>figure>a>img{
 					width: 100%;
 					height: 100%;
-					transition: all .35s ease-in-out;
 					align-self: center;
-				}
-
-				body>section>.imagenes>article>figure>a>img:hover{
-					filter: brightness(115%);
-					
 				}
 
 		body>section>.imagenes>article>h4{
@@ -357,6 +394,10 @@ body{
 		body>section>.imagenes>article>h4>a:hover{
 			color: #ffffff;
 			cursor: pointer;
+		}
+
+		body>section>.imagenes>article>h4>a:focus{
+			color: #ffffff;
 		}
 
 		body>section>.imagenes>article>footer{
@@ -509,6 +550,11 @@ body>.formulario{
 					cursor: pointer;
 				}
 
+				body>.formulario>fieldset>p>button:focus{
+					background-color: #ffffff;
+					color: #000000;
+				}
+
 		body>.formulario>fieldset>a{
 			text-decoration: none;
 			color: #000000;
@@ -516,6 +562,10 @@ body>.formulario{
 
 		body>.formulario>fieldset>a:hover{
 			cursor: pointer;
+			color: #D67731;
+		}
+
+		body>.formulario>fieldset>a:focus{
 			color: #D67731;
 		}
 
@@ -608,6 +658,10 @@ body>.formulario{
 					color: #000000;
 				}
 
+				body>section>div>.tabla>tbody>tr>td>a:focus{
+					color: #000000;
+				}
+
 			body>section>div>.tabla>tbody>tr>th{
 				border: 0.3em solid #D67731;
 			}
@@ -640,6 +694,11 @@ body>.formulario{
 			background-color: #ffffff;
 			color: #000000;
 			cursor: pointer;
+		}
+
+		body>section>.enlPerf>a:focus{
+			background-color: #ffffff;
+			color: #000000;
 		}
 
 /*PAGINA DETALLE IMAGEN*/
@@ -717,6 +776,10 @@ body>.formulario{
 			color: #D67731;
 		}
 
+		body>#detFoto>div>a:focus{
+			color: #D67731;
+		}
+
 		.p-left{
 
 			text-align: left;
@@ -761,6 +824,10 @@ body>.formulario{
 			color: #000000;
 			cursor: pointer;
 		}
+
+		body>footer>p>a:focus{
+			color: #000000;
+		}
 	
 
 			body>footer>p>strong>a{
@@ -773,6 +840,10 @@ body>.formulario{
 			body>footer>p>strong>a:hover{
 				color: #000000;
 				cursor: pointer;
+			}
+
+			body>footer>p>strong>a:focus{
+				color: #000000;
 			}
 
 
