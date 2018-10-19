@@ -223,6 +223,7 @@ body{
 	body>div>form>fieldset>p>input{
 		border-radius: 1em;
 		border: 0.1em solid #D67731;
+		width: 10em;
 	}
 
 	body>div>form>fieldset>p>input:hover{
@@ -238,6 +239,7 @@ body{
 		color: #394648;
 		text-decoration: none;
 		white-space: nowrap;
+		margin-top: 0.5em;
 
 	}
 
@@ -254,6 +256,7 @@ body{
 		background-color: #E7C49F;
 		border: 0.2em solid #D67731;
 		border-radius: 1em;
+		margin-top: 0.5em;
 	}
 
 	body>div>form>fieldset>button:hover{
@@ -333,7 +336,7 @@ body{
 			justify-content: space-between;
 			color: #394648;
 			overflow: hidden;
-			height: 22em;
+			height: 23em;
 			width: 18em;
 			margin: 0.5em;
 		}
@@ -342,7 +345,7 @@ body{
 			margin: 0;
 			margin-top: 1em;
 			border: 0.2em solid #D67731;
-			width: 15.5em;
+			width: 90%;
 			height: 10em;
 			align-self: center;
 		}
@@ -1172,12 +1175,6 @@ body>.formulario{
 			display: block;
 			border-bottom: 0.3em solid #D67731; /*Para ponerles un borde debajo a cada elemento li cuando la pantalla est&aacute; en tama&ntilde;o m&oacute;vil, es decir, cuando est&aacute; en uso el men&uacute; de hamburguesa*/
 		}
-
-		body>nav>ul>li:hover{
-			background-color: #ffffff;
-			border-radius: 15px;
-		}
-
 
 	/*Buscador Index*/
 
