@@ -1176,12 +1176,6 @@ body>.formulario{
 			border-bottom: 0.3em solid #D67731; /*Para ponerles un borde debajo a cada elemento li cuando la pantalla est&aacute; en tama&ntilde;o m&oacute;vil, es decir, cuando est&aacute; en uso el men&uacute; de hamburguesa*/
 		}
 
-		body>nav>ul>li:hover{
-			background-color: #ffffff;
-			border-radius: 15px;
-		}
-
-
 	/*Buscador Index*/
 
 	body>div>form{

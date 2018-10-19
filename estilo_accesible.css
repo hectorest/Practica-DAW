@@ -113,6 +113,7 @@ body{
 					padding: 0.7em;
 					text-decoration: none;
 				}
+
 				body>nav>label:hover{
 					background-color: #ffffff;
 					color: #000000;
@@ -309,13 +310,15 @@ body{
 		}
 
 		body>section>a:hover{
-			background-color: #ffffff;
-			color: #000000;
+			background-color: #000000;
+			border-radius: 0.5em;
+			color: #ffffff;
 		}
 
 		body>section>a:focus{
-			background-color: #ffffff;
-			color: #000000;
+			background-color: #000000;
+			border-radius: 0.5em;
+			color: #ffffff;
 		}
 
 		body>section>.imagenes{
@@ -1273,12 +1276,6 @@ body>.formulario{
 			border-bottom: 0.3em solid #000000; /*Para ponerles un borde debajo a cada elemento li cuando la pantalla est&aacute; en tama&ntilde;o m&oacute;vil, es decir, cuando est&aacute; en uso el men&uacute; de hamburguesa*/
 		}
 
-		body>nav>ul>li:hover{
-			background-color: #ffffff;
-			border-radius: 15px;
-		}
-
-
 	/*Buscador Index*/
 
 	body>div>form{
@@ -1329,4 +1326,10 @@ body>.formulario{
 			width: 7em;
 		}
 
+		/*Paginacion*/
+
+		body>.paginacion>div>p{
+			width: 2.3em;
+		}
+		
 }
