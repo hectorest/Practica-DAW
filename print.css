@@ -70,6 +70,10 @@ body{
 	}
 
 /*PARTE CENTRAL*/
+	
+	body>#resultados>div>article:first-of-type{
+		margin-top: 0.2cm;
+	}
 
 	body>section{
 		margin-right: 1cm;
@@ -98,12 +102,11 @@ body{
 		}
 
 		body>section>a{
-			display: none;
-			/*border: 0;
+			border: 0;
 			background-color: #ffffff;
 			color: #0032ff;
 			text-decoration: underline;
-			margin: 1cm;*/
+			margin: 0.3cm;
 		}
 
 		body>section>p{
@@ -208,6 +211,14 @@ body{
 
 /***FORMULARIOS***/
 
+body>#formAcc{
+	page-break-before: avoid;
+}
+
+body>#formReg{
+	page-break-before: avoid;
+}
+
 body>.formulario{
 	display: flex;
 	flex-direction: column;
@@ -226,6 +237,32 @@ body>.formulario{
 		overflow: hidden;
 		border: 0;
 	}
+
+	body>#formReg>fieldset{
+		margin: 0;
+	}
+
+		body>#formReg>fieldset>p{
+			page-break-after: avoid;
+			margin-top: 0.5cm;
+		}
+
+		body>#formReg>fieldset>p:nth-of-type(7){
+			margin-top: 0.5cm;
+		}
+
+		body>#formReg>fieldset>p:last-of-type{
+			margin-bottom: 0;
+		}
+
+			body>#formReg>fieldset>p:nth-of-type(9){
+				page-break-before: always;
+			}
+
+				body>#formReg>fieldset>p:nth-of-type(9)>input{
+					height: 10cm;
+					width: 10cm;
+				}
 
 		body>.formulario>fieldset>p{
 			width: 50%;
@@ -263,7 +300,6 @@ body>.formulario{
 				margin-top: 1cm;
 			}
 
-
 			body>.formulario>fieldset>p>label{
 				align-self: center;
 				width: 5cm;
@@ -275,9 +311,18 @@ body>.formulario{
 				align-self: center;
 				width: 18cm;
 				height: 0.7cm;
+				color: transparent;
+			}
+
+			body>.formulario>fieldset>p>select{
+				color: transparent;
 			}
 
 	/**************Ocultar placeholder*********************/
+
+			::option{
+				color: transparent;
+			}
 
 			::placeholder{
 				color: transparent;
@@ -333,8 +378,8 @@ body>.formulario{
 				}
 
 		body>.formulario>fieldset>a{
-			text-decoration: none;
-			color: black;
+			text-decoration: underline;
+			color: blue;
 		}
 
 			body>.formulario>fieldset>p>select{
