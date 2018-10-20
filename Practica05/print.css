@@ -93,7 +93,7 @@ body{
 			padding: 0cm;
 			margin-top: 0.4cm;
 			margin-bottom: 0.4cm;
-			border-radius: 15px;*/
+			border-radius: 15px;
 			display: flex;
 			justify-content: center;
 			color: black;
@@ -260,6 +260,7 @@ body>.formulario{
 		}
 
 			body>#formReg>fieldset>p:nth-of-type(9){
+				margin-top: 3cm;
 				page-break-before: always;
 			}
 
@@ -443,49 +444,61 @@ body>.formulario{
 	}
 
 /*TABLAS*/
-
-	body>section>div>.tabla{
-		margin: auto;
-		border: 0.1cm solid black;
-		margin-bottom: 0.5cm;
-		margin-top: 0.5cm;
-		border-collapse: collapse;
+	
+	#respSolAlbum>header{ /*#respSolAlbum es el body de la pagina respuesta_sol_album.html*/
+		padding: 0.1cm;
 	}
-			
-		body>section>div>.tabla>caption{
-			background-color: white;
-			border-top: 0.1cm solid black;
-			border-left: 0.1cm solid black;
-			border-right: 0.1cm solid black;
+
+		#respSolAlbum>section>h3{
+			margin: 0.1cm;
 		}
 
-		body>section>div>.tabla>tbody>tr:nth-child(even){
-			background-color: #ffffff;
-		}
-
-			body>section>div>.tabla>tbody>tr>td{
-
-				padding: 0.3cm;
+			body>section>div>.tabla{
+				margin: auto;
 				border: 0.1cm solid black;
-
+				margin-bottom: 0.5cm;
+				margin-top: 0.5cm;
+				border-collapse: collapse;
 			}
-
-				body>section>div>.tabla>tbody>tr>td>a{
-					content: attr(href);
-					color: #0032ff;
-					text-decoration: underline;
+					
+				body>section>div>.tabla>caption{
+					background-color: white;
+					border-top: 0.1cm solid black;
+					border-left: 0.1cm solid black;
+					border-right: 0.1cm solid black;
 				}
 
-			body>section>div>.tabla>tbody>tr>th{
-				border: 0.1cm solid black;
-			}
+				body>section>div>.tabla>tbody>tr:nth-child(even){
+					background-color: #ffffff;
+				}
 
-	body>section>.contTabla{
-		overflow-x:auto;
-	}
+					body>section>div>.tabla>tbody>tr>td{
 
-	body>section>#inicioResSolAlbum{
-		display: none;
+						padding: 0.3cm;
+						border: 0.1cm solid black;
+
+					}
+
+						body>section>div>.tabla>tbody>tr>td>a{
+							content: attr(href);
+							color: #0032ff;
+							text-decoration: underline;
+						}
+
+					body>section>div>.tabla>tbody>tr>th{
+						border: 0.1cm solid black;
+					}
+
+		body>section>.contTabla{
+			overflow-x:auto;
+		}
+
+		body>section>#inicioResSolAlbum{
+			display: none;
+		}
+
+	#respSolAlbum>footer{
+		margin: 0;
 	}
 
 /*ENLACES*/
@@ -514,7 +527,7 @@ body>.formulario{
 	body>#detFoto{
 
 		margin: 1cm;
-		border: 0.1cm solid black;
+		border: 0;
 	    border-radius: 15px;
 	    padding: 0.5cm;
 	    display: flex;
@@ -529,7 +542,7 @@ body>.formulario{
 
 			background-color: white;
 			padding: 0.2cm;
-			border: 0.1cm solid black;
+			border: 0;
 			border-radius: 15px;
 			display: flex;
 			justify-content: center;
@@ -545,7 +558,7 @@ body>.formulario{
 
 			body>#detFoto>figure>img{
 				width: 100%;
-				border: 0.1cm solid black;
+				border: 0;
 
 			}
 
@@ -571,8 +584,8 @@ body>.formulario{
 
 			display: block;
 			align-self: center;
-			color: black;
-			text-decoration: none;
+			color: #0032ff;
+			text-decoration: underline;
 			font-weight: bold;
 
 		}
