@@ -86,8 +86,11 @@ body{
     	padding: 0;
 	}
 
-		body>section>h3{
+		body>#contFotosIndex>h3{
+			margin: 0.1cm;
+		}
 
+		body>section>h3{
 			background-color: white;
 			border: none;
 			padding: 0cm;
