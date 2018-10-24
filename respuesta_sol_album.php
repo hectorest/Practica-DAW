@@ -3,6 +3,23 @@
 	require_once("header.php");
 ?>
 		
+	<?php
+
+		if(!empty($_POST["nombre"]) && !empty($_POST["titulo"]) && !empty($_POST["email"]) && !empty($_POST["calle"])){
+			if(!empty($_POST["num"]) && !empty($_POST["cp"]) && !empty($_POST["pais"]) && !empty($_POST["local"])){
+				if(!empty($_POST["prov"]) && !empty($_POST["album"])){
+					calcularPrecioAlbum();
+				}
+			}
+
+		}
+
+		function calcularPrecioAlbum(){
+			
+		}
+
+		
+echo <<<tablaRespSolAlbum
 		<section>
 
 
@@ -111,7 +128,9 @@
 				<a href="index.php" title="Volver a inicio">Aceptar</a>
 			</div>
 		</section>
-		
+tablaRespSolAlbum;
+?>
+
 <?php
 	require_once("footer.php");
 ?>

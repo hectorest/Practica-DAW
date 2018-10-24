@@ -87,7 +87,7 @@
 				</p>
 				<p>
 					<label for="texto_adicional">Texto adicional:</label>
-					<textarea id="texto_adicional" placeholder="Descripción del álbum o dedicatoria" rows="10" cols="50" maxlength="4000" title="Tope de caracteres o letras: 4000"></textarea>
+					<textarea id="texto_adicional" name="textAdic" placeholder="Descripción del álbum o dedicatoria" rows="10" cols="50" maxlength="4000" title="Tope de caracteres o letras: 4000"></textarea>
 				</p>
 				<p>
 					<label for="email">Email*:</label>
@@ -95,9 +95,9 @@
 				</p>
 				<p id="solAlbumDirec">
 					<label for="calle">Dirección*:</label>
-					<input type="text" required name="album" id="calle" placeholder="Calle">
-					<input type="number" required name="numero" id="numero" placeholder="Número" min="0">
-					<input type="number" required name="CP" id="CP" placeholder="CP" min="0">
+					<input type="text" required name="calle" id="calle" placeholder="Calle">
+					<input type="number" required name="num" id="numero" placeholder="Número" min="0">
+					<input type="number" required name="cp" id="CP" placeholder="CP" min="0">
 				
 
 					<label for="pais">País*:</label>
