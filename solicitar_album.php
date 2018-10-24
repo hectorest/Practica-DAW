@@ -24,7 +24,7 @@
 
 					<tr>
 						
-						<td> &lt; 5 páginas</td>
+						<td> < 5 páginas</td>
 						<td>0.10 € por pág.</td>
 
 					</tr>
@@ -38,7 +38,7 @@
 
 					<tr>
 
-						<td>&gt; 11 páginas</td>
+						<td>> 11 páginas</td>
 						<td>0.07 € por pág.</td>
 
 					</tr>
@@ -59,7 +59,7 @@
 
 					<tr>
 
-						<td>Resolución &gt; 300dpi</td>
+						<td>Resolución > 300dpi</td>
 						<td>0.02 € por foto</td>
 
 					</tr>
@@ -68,7 +68,7 @@
 			</div>
 		</section>
 
-		<form action="respuesta_sol_album.php" method="get" class="formulario">
+		<form action="respuesta_sol_album.php" method="post" class="formulario">
 				
 			<fieldset>
 
@@ -162,12 +162,12 @@
 
 				<p>
 					<label for="color_portada">Color de la portada:</label>
-					<input type="color" name="color_portada" id="color_portada"/>
+					<input type="color" name="colorPortada" value="#000000" id="color_portada"/>
 				</p>
 
 				<p>
 					<label for="num_copias">Número de copias:</label>
-					<input type="number" name="num_copias" id="num_copias" value="1" min="1" />
+					<input type="number" name="numCopias" id="num_copias" value="1" min="1" />
 				</p>
 
 				<p>

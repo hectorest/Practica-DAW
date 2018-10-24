@@ -6,25 +6,62 @@
 	<?php
 
 		if(!empty($_POST["nombre"]) && !empty($_POST["titulo"]) && !empty($_POST["email"]) && !empty($_POST["calle"])){
+			
 			if(!empty($_POST["num"]) && !empty($_POST["cp"]) && !empty($_POST["pais"]) && !empty($_POST["local"])){
 				if(!empty($_POST["prov"]) && !empty($_POST["album"])){
-					calcularPrecioAlbum();
+					
+					/*Valores ficticios de las paginas y las fotos por paginas*/
+					$numPag = 15;
+					$totalFotosAlbum = 30;
+
+					$precioAlbum = calcularPrecioAlbum($numPag, $totalFotosAlbum, $_POST["numCopias"], $_POST["resolucion"], $_POST["colorobn"]);
+					mostrarTablaResSolAlbum($precioAlbum, $_POST["nombre"], $_POST["titulo"], $_POST["textAdic"], $_POST["email"], $_POST["calle"], $_POST["num"], $_POST["cp"],
+						$_POST["pais"], $_POST["local"], $_POST["prov"], $_POST["telefono"], $_POST["colorPortada"], $_POST["numCopias"], $_POST["resolucion"], $_POST["album"], $_POST["frecep"],
+						$_POST["colorobn"]);
 				}
 			}
 
 		}
 
-		function calcularPrecioAlbum(){
+		function calcularPrecioAlbum($numpag, $totalFotosAlbum, $numCopias, $resolucion, $colorobn){
+			
+			$precioTotalPags = 0.0;
+			
+			if($numpag < 5){
+				$precioTotalPags += $numPag * 0.10;
+			}
+			else if($numpag >= 5 && $numpag <= 10){
+				$precioTotalPags += $numpag * 0.08;
+			}
+			else{
+				$precioTotalPags += $numpag * 0.07;
+			}
+
+			$precioTotalFotos = 0.0;
+
+			if($colorobn == "color"){
+				$precioTotalFotos += $totalFotosAlbum * 0.05;
+			}
+
+			if($resolucion > 300){
+				$precioTotalFotos += $totalFotosAlbum * 0.02;
+			}
+
+			$precioTotal = ($precioTotalPags + $precioTotalFotos) * $numCopias;
+
+			return $precioTotal;
 			
 		}
 
-		
+function mostrarTablaResSolAlbum(&$precio, &$nombre, &$titulo, &$textAdic, &$email, &$calle, &$num, &$cp, &$pais, &$local, &$prov,
+								 &$telefono, &$colorPortada, &$numCopias, &$resolucion, &$album, &$frecep, &$colorobn){
+	
 echo <<<tablaRespSolAlbum
 		<section>
 
 
 				<h3>Solicitud de álbum realizada</h3>
-				<p>Has realizado el pedido del álbum correctamente. Recibirás tu álbum en la fecha indicada. El precio total del álbum es de: <br><span>30.25€</span></p>
+				<p>Has realizado el pedido del álbum correctamente. Recibirás tu álbum en la fecha indicada. El precio total del álbum es de: <br><span>$precio €</span></p>
 			
 			<div class="contTabla">
 
@@ -35,89 +72,84 @@ echo <<<tablaRespSolAlbum
 					<tr>
 						
 						<td>Nombre:</td>
-						<td>Pepe Garcia Perez</td>
+						<td>$nombre</td>
 
 					</tr>
 
 					<tr>
 						
 						<td>Título:</td>
-						<td>Álbum ejemplo</td>
+						<td>$titulo</td>
 
 					</tr>
 
 					<tr>
 						
 						<td>Texto adicional:</td>
-						<td class="p-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
+						<td class="p-left">$textAdic</td>
 
 					</tr>
 
 					<tr>
 						
 						<td>Email:</td>
-						<td>pepegp@gmail.com</td>
+						<td>$email</td>
 
 					</tr>
 
 					<tr>
 						
 						<td>Dirección:</td>
-						<td><span>Calle </span><span>Número </span><span>Piso </span><span>Puerta </span><span>CP </span><span>Localidad </span><span>Provincia</span></td>
+						<td><span>Calle: $calle;</span><span>Número: $num;</span><span>CP: $cp;</span><span>País: $pais;</span><span>Localidad: $local;</span><span>Provincia: $prov;</span></td>
 
 					</tr>
 
 					<tr>
 						
 						<td>Teléfono:</td>
-						<td>135489741</td>
+						<td>$telefono</td>
 
 					</tr>
 
 					<tr>
 						
 						<td>Color de la portada:</td>
-						<td>Negro</td>
+						<td>$colorPortada</td>
 
 					</tr>
 
 					<tr>
 						
 						<td>Número de Copias:</td>
-						<td>1</td>
+						<td>$numCopias</td>
 
 					</tr>
 
 					<tr>
 						
 						<td>Resol. Impresión:</td>
-						<td>150 DPI</td>
+						<td>$resolucion DPI</td>
 
 					</tr>
 
 					<tr>
 						
 						<td>Álbum de PI:</td>
-						<td>Álbum 1</td>
+						<td>$album</td>
 
 					</tr>
 
 					<tr>
 						
 						<td>Fecha Recepción:</td>
-						<td>10/10/2018</td>
+						<td>$frecep</td>
 
 					</tr>
 
 					<tr>
 						
 						<td>Impresión:</td>
-						<td>Blanco y negro</td>
+						<td>$colorobn</td>
 
 					</tr>
 
@@ -129,6 +161,8 @@ echo <<<tablaRespSolAlbum
 			</div>
 		</section>
 tablaRespSolAlbum;
+}
+
 ?>
 
 <?php
