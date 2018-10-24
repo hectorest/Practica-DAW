@@ -2,8 +2,8 @@
 	require_once("head.php");
 	require_once("header.php");
 ?>
-
-		<form action="index.php" method="get" class="formulario" id="formReg">
+	
+		<form action="controlRegistro.php" method="post" class="formulario" id="formReg">
 			
 			<fieldset>
 
@@ -12,15 +12,22 @@
 					</legend>
 				<p>
 					<label for="usuario">Usuario*:</label>
-					<input type="text" pattern="[A-Za-z0-9]{6,14}" minlength="6" maxlength="14" title="El nombre de usuario tendrá como mínimo 6 caracteres que pueden ser tanto letras mayúsculas como minúsculas y como números. El máximo número de caracteres permitido es 14" required name="usuario" id="usuario"/>
+					<input type="text" pattern="[A-Za-z0-9]{6,14}" minlength="6" maxlength="14" title="El nombre de usuario tendrá como mínimo 6 caracteres que pueden ser tanto letras mayúsculas como minúsculas y como números. El máximo número de caracteres permitido es 14. Los espacios en blanco no están permitidos" required name="usuario" id="usuario"/>
 				</p>
 				<p>
 					<label for="passw1">Contraseña*:</label>
-					<input type="password" pattern="[A-Za-z0-9¿?¡!-_@#$%&=]{8,16}" minlength="8" maxlength="16" required name="passw1" id="passw1" title="La contraseña tendrá un mínimo de 8 caracteres y un máximo de 16. Podrás escribir tanto letras mayúsculas como minúsculas además de números y los siguientes símbolos: ¿?¡!-_@#$%&=" />
+					<input type="password" pattern="[A-Za-z0-9¿?¡!-_@#$%&=]{8,16}" minlength="8" maxlength="16" required name="passw1" id="passw1" title="La contraseña tendrá un mínimo de 8 caracteres y un máximo de 16. Podrás escribir tanto letras mayúsculas como minúsculas además de números y los siguientes símbolos: ¿?¡!-_@#$%&=. Los espacios en blanco no están permitidos" />
 				</p>
 				<p>
 					<label for="passw2">Repetir contraseña*:</label>
 					<input type="password" pattern="[A-Za-z0-9¿?¡!-_@#$%&=]{8,16}" minlength="8" maxlength="16" required name="passw2" id="passw2" title="La contraseñ;a debe de coincidir con la escrita en la casilla anterior" />
+					<?php
+
+						if(!empty($_GET["er"])){
+							echo "<span>Las contraseñas no coinciden</span>";
+						}
+
+					?>
 				</p>
 				<p>
 					<label for="email">Email*:</label>
@@ -28,7 +35,7 @@
 				</p>
 				<p>
 					<label for="sexo">Sexo*:</label>
-					<select id="sexo" required>
+					<select id="sexo" name="sexo" required>
 						<option value="">Escoge</option>
 						<option>Hombre</option>
 						<option>Mujer</option>
