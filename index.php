@@ -7,7 +7,7 @@
 		<div id="formBusc">	
 			
 			<form id="buscTexto" action="resultado_busqueda.php" method="get" class="formulario">
-				<input type="search" name="buscRap" id="buscRap" placeholder="Buscar...">
+				<input type="search" name="palClave" id="buscRap" placeholder="Buscar...">
 				<button type="submit"><span id="butBuscRap" class="icon-search"></span></button>
 			</form>
 
@@ -19,18 +19,18 @@
 					</legend>
 
 							<p>
-								<label for="autorRap">Autor:</label>
-								<input type="text" name="autorRap" id="autorRap">
+								<label for="autor">Autor:</label>
+								<input type="text" name="autor" id="autorRap">
 							</p>
 
 							<p>
-								<label for="albumRap">Álbum:</label>
-								<input type="text" name="albumRap" id="albumRap">
+								<label for="album">Álbum:</label>
+								<input type="text" name="album" id="albumRap">
 							</p>
 
 							<p>
-								<label for="tituloRap">Título:</label>
-								<input type="text" name="tituloRap" id="tituloRap">
+								<label for="titulo">Título:</label>
+								<input type="text" name="titulo" id="tituloRap">
 							</p>
 
 						<button type="submit"><span id="butFiltBuscRap" class="icon-search"></span></button>

@@ -6,7 +6,7 @@
 		<section id="resultados"> 
 			<?php
 
-				if(!empty($_GET["titulo"]) || !empty($_GET["date1"]) || !empty($_GET["date2"]) || !empty($_GET["pais"]) || !empty($_GET["album"]) || !empty($_GET["autor"])){
+				if(!empty($_GET["palClave"]) || !empty($_GET["titulo"]) || !empty($_GET["date1"]) || !empty($_GET["date2"]) || !empty($_GET["pais"]) || !empty($_GET["album"]) || !empty($_GET["autor"])){
 
 					echo<<<filtros
 
@@ -15,6 +15,13 @@
 					<div id="filtrosAplicados" class="mostrarDatos">
 				
 filtros;
+
+						if (!empty($_GET["palClave"])) {
+
+							$palClave = $_GET["palClave"];
+
+							echo "<p>Palabra clave: $palClave</p>\n";
+						}
 
 						if (!empty($_GET["titulo"])) {
 
