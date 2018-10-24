@@ -6,7 +6,7 @@
 	<?php
 		if(!empty($_GET["titulo"]) || !empty($_GET["desc"])){
 					
-			$arrayCrearAlb = "Información Álbum -> ";
+			/*$arrayCrearAlb = "Información Álbum -> ";
 
 			if (!empty($_GET["titulo"])) {
 						$arrayCrearAlb = $arrayCrearAlb . "Título: ". $_GET["titulo"] . "; ";
@@ -18,7 +18,32 @@
 			$arrayCrearAlb = rtrim($arrayCrearAlb);
 			$arrayCrearAlb[strlen($arrayCrearAlb) - 1] = ".";
 
-			if(!empty($arrayCrearAlb)){ echo "<p>$arrayCrearAlb</p>"; }		
+			if(!empty($arrayCrearAlb)){ echo "<p>$arrayCrearAlb</p>"; }	*/
+
+			echo<<<datosCrearAlbum
+
+				<section>
+					<h3>Información del álbum</h3> 
+
+					<div class="mostrarDatos">
+				
+datosCrearAlbum;
+
+						if (!empty($_GET["titulo"])) {
+
+							$titulo = $_GET["titulo"];
+
+							echo "<p>Titulo: $titulo</p>";
+						}
+						if (!empty($_GET["desc"])) {
+
+							$desc = $_GET["desc"];
+
+							echo "<p>Descripción: $desc</p>";
+						}
+
+					echo "</div> </section>";
+
 		}else{
 
 			echo <<<formularioCrearAlbum
