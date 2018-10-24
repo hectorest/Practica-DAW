@@ -7,7 +7,7 @@
 			<?php
 				if(!empty($_GET["titulo"]) || !empty($_GET["date1"]) || !empty($_GET["date2"]) || !empty($_GET["pais"]) || !empty($_GET["album"]) || !empty($_GET["autor"])){
 					
-					$arrayBusc = "Búsqueda por -> ";
+					/*$arrayBusc = "Búsqueda por -> ";
 
 					if (!empty($_GET["titulo"])) {
 						$arrayBusc = $arrayBusc . "Título: ". $_GET["titulo"] . "; ";
@@ -31,7 +31,56 @@
 					$arrayBusc = rtrim($arrayBusc);
 					$arrayBusc[strlen($arrayBusc) - 1] = ".";
 
-					if(!empty($arrayBusc)) echo "<p>$arrayBusc</p>";		
+					if(!empty($arrayBusc)) echo "<p>$arrayBusc</p>";*/
+
+
+					echo<<<filtros
+
+					<h3>Filtros de la búsqueda:</h3> 
+
+					<div id="filtrosAplicados">
+				
+filtros;
+
+						if (!empty($_GET["titulo"])) {
+
+							$titulo = $_GET["titulo"];
+
+							echo "<p>Titulo: $titulo</p>";
+						}
+						if (!empty($_GET["date1"])) {
+
+							$fecha1 = $_GET["date1"];
+
+							echo "<p>Desde: $fecha1</p>";
+						}
+						if (!empty($_GET["date2"])) {
+
+							$fecha2 = $_GET["date2"];
+
+							echo "<p>Hasta: $fecha2</p>";
+						}
+						if (!empty($_GET["pais"])) {
+
+							$pais = $_GET["pais"];
+
+							echo "<p>País: $pais</p>";
+						}
+						if (!empty($_GET["album"])) {
+
+							$album = $_GET["album"];
+
+							echo "<p>Álbum: $album</p>";
+						}
+						if (!empty($_GET["autor"])) {
+
+							$autor = $_GET["autor"];
+
+							echo "<p>Autor: $autor</p>";
+						}
+
+					echo "</div>";
+
 				}
 			?>
 			<h3>Resultados de la búsqueda:</h3>

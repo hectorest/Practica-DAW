@@ -419,6 +419,13 @@ body{
 				margin-bottom: 1em;
 			}
 
+
+		body>section>#filtrosAplicados>p{
+
+			margin-right: 2em;
+
+		}
+
 /*PAGINACION*/
 	
 
