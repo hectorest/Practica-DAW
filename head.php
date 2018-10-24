@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 echo <<<cabecera
 <!DOCTYPE html> 
 <html lang="es"> 

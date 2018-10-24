@@ -1,18 +1,17 @@
-﻿<?php
+<?php
 	require_once("head.php");
 	require_once("header.php");
-	require_once("barraNav.php");
 ?>
 
 <!-- El cuerpo -->		
 		<div id="formBusc">	
 			
-			<form id="buscTexto" action="resultado_busqueda.html" method="get" class="formulario">
+			<form id="buscTexto" action="resultado_busqueda.php" method="get" class="formulario">
 				<input type="search" name="buscRap" id="buscRap" placeholder="Buscar...">
 				<button type="submit"><span id="butBuscRap" class="icon-search"></span></button>
 			</form>
 
-			<form id="miniFilBusc" action="resultado_busqueda.html" method="get" class="formulario">
+			<form id="miniFilBusc" action="resultado_busqueda.php" method="get" class="formulario">
 				<fieldset>
 
 					<legend>
@@ -35,7 +34,7 @@
 							</p>
 
 						<button type="submit"><span id="butFiltBuscRap" class="icon-search"></span></button>
-						<a href="formulario_busqueda.html" title="Hacer búsqueda avanzada">Más opciones...</a>
+						<a href="formulario_busqueda.php" title="Hacer búsqueda avanzada">Más opciones...</a>
 						
 				</fieldset>			
 
@@ -46,9 +45,9 @@
 			<h3>Últimas 5 imágenes subidas</h3>
 			<div class="imagenes">
 				<article>
-					<h4><a href="detalle_foto.html" title="Ver detalles de la foto">Titulo foto Ejemplo 1</a></h4>
+					<h4><a href="detalle_foto.php?id=1" title="Ver detalles de la foto">Titulo foto Ejemplo 1</a></h4>
 					<figure>
-						<a href="detalle_foto.html" title="Ver detalles de la foto"><img src="./imagen-muestra/imagen-muestra.jpg" alt="Titulo foto Ejemplo 1"/></a>
+						<a href="detalle_foto.php?id=1" title="Ver detalles de la foto"><img src="./imagen-muestra/imagen-muestra.jpg" alt="Titulo foto Ejemplo 1"/></a>
 					</figure>
 					<footer>
 						<p><time datetime="2018-09-15">Fecha de foto ejemplo 1, por ejemplo: 15 de septiembre de 2018</time></p>
@@ -56,9 +55,9 @@
 					</footer>
 				</article>
 				<article>
-					<h4><a href="detalle_foto.html" title="Ver detalles de la foto">Titulo foto Ejemplo 2</a></h4>
+					<h4><a href="detalle_foto.php?id=2" title="Ver detalles de la foto">Titulo foto Ejemplo 2</a></h4>
 					<figure>
-						<a href="detalle_foto.html" title="Ver detalles de la foto"><img src="./imagen-muestra/descarga.jpg" alt="Titulo foto Ejemplo 2"/></a>
+						<a href="detalle_foto.php?id=2" title="Ver detalles de la foto"><img src="./imagen-muestra/descarga.jpg" alt="Titulo foto Ejemplo 2"/></a>
 					</figure>
 					<footer>
 						<p><time datetime="2018-09-15">Fecha de foto ejemplo 2, por ejemplo: 15 de septiembre de 2018</time></p>
@@ -66,9 +65,9 @@
 					</footer>
 				</article>
 				<article>
-					<h4><a href="detalle_foto.html" title="Ver detalles de la foto">Titulo foto Ejemplo 3</a></h4>
+					<h4><a href="detalle_foto.php?id=3" title="Ver detalles de la foto">Titulo foto Ejemplo 3</a></h4>
 					<figure>
-						<a href="detalle_foto.html" title="Ver detalles de la foto"><img src="./imagen-muestra/images.jpg" alt="Titulo foto Ejemplo 3"/></a>
+						<a href="detalle_foto.php?id=3" title="Ver detalles de la foto"><img src="./imagen-muestra/images.jpg" alt="Titulo foto Ejemplo 3"/></a>
 					</figure>
 					<footer>
 						<p><time datetime="2018-09-15">Fecha de foto ejemplo 3, por ejemplo: 15 de septiembre de 2018</time></p>
@@ -76,9 +75,9 @@
 					</footer>
 				</article>
 				<article>
-					<h4><a href="detalle_foto.html" title="Ver detalles de la foto">Titulo foto Ejemplo 4</a></h4>
+					<h4><a href="detalle_foto.php?id=4" title="Ver detalles de la foto">Titulo foto Ejemplo 4</a></h4>
 					<figure>
-						<a href="detalle_foto.html" title="Ver detalles de la foto"><img src="./imagen-muestra/images2.jpg" alt="Titulo foto Ejemplo 4"/></a>
+						<a href="detalle_foto.php?id=4" title="Ver detalles de la foto"><img src="./imagen-muestra/images2.jpg" alt="Titulo foto Ejemplo 4"/></a>
 					</figure>
 					<footer>
 						<p><time datetime="2018-09-15">Fecha de foto ejemplo 4, por ejemplo: 15 de septiembre de 2018</time></p>
@@ -86,9 +85,9 @@
 					</footer>
 				</article>
 				<article>
-					<h4><a href="detalle_foto.html" title="Ver detalles de la foto">Titulo foto Ejemplo 5</a></h4>
+					<h4><a href="detalle_foto.php?id=5" title="Ver detalles de la foto">Titulo foto Ejemplo 5</a></h4>
 					<figure>
-						<a href="detalle_foto.html" title="Ver detalles de la foto"><img src="./imagen-muestra/paisaje.jpg" alt="Titulo foto Ejemplo 5"/></a>
+						<a href="detalle_foto.php?id=5" title="Ver detalles de la foto"><img src="./imagen-muestra/paisaje.jpg" alt="Titulo foto Ejemplo 5"/></a>
 					</figure>
 					<footer>
 						<p><time datetime="2018-09-15">Fecha de foto ejemplo 5, por ejemplo: 15 de septiembre de 2018</time></p>

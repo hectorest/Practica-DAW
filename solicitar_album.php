@@ -1,42 +1,7 @@
-<!DOCTYPE html> 
-<html lang="es"> 
-<!-- La cabecera --> 
-<head> 
-	<meta charset="utf-8" /> 
-	<meta name="generator" content="Bloc de notas" /> 
-	<meta name="author" content="Hector Esteve Yagüee & Fco. Javier García Fernández" /> 
-	<meta name="keywords" content="HTML5, web, Pictures & Images, PI, fotos, imagenes"/> 
-	<meta name="description" content="Pagina principal de PI" /> 
-	<title>Pictures & Images/solicitar-album</title>
-	<link rel="shortcut icon" type="image/x-icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
-	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
-	<link rel="stylesheet" type="text/css" href="fontello/css/fontello.css"/> 
-	<link rel="stylesheet" title="Normal" type="text/css" href="estilo.css" />
-	<link rel="alternate stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />
-	<link rel="stylesheet" type="text/css" media="print" href="print.css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1"/> 
-</head> 
-<!-- El cuerpo --> 
-	<body>
-		<header id="piCabec">
-			<a href="index.html" title="Ir a la página de inicio"><img src="./logotipo-e-icono/logotipo-pi-daw.png" alt="logotipo de pictures & images"/></a>
-			<div>
-				<h1>Pictures & Images</h1>
-				<h2>Tu aplicación web para fotos</h2>
-			</div>
-		</header>
-
-		<nav id="barraNavPrinc">
-			<input type="checkbox" name="mnHamb" id="mnHamb"/><label for="mnHamb" title="Menú" id="iconoMnHamb"><span class="icon-menu"></span></label>
-			<ul id="mnPrinc">
-				<li><a href="index.html" title="Inicio"><span class="icon-home" ></span><span>Inicio</span></a></li>
-				<li><a href="perfil.html" title="Mi Perfil"><span class="icon-user-circle" ></span><span>Mi Perfil</span></a></li>
-				<li><a href="perfil2.html" title="Perfil sin iniciar sesión"><span class="icon-user-circle"></span><span>Perfil sin iniciar sesión</span></a></li>
-				<li><a href="formulario_busqueda.html" title="Búsqueda avanzada"><span class="icon-search"></span><span>Buscar</span></a></li>
-				<li><a href="formulario_acceso.html" title="Iniciar Sesión"><span class="icon-user"></span><span>Iniciar Sesión</span></a></li>
-				<li><a href="formulario_registro.html" title="Regístrate"><span class="icon-user-plus"></span><span>Regístrate</span></a></li>
-			</ul>	
-		</nav>
+<?php
+	require_once("head.php");
+	require_once("header.php");
+?>
 
 
 		<section>
@@ -103,7 +68,7 @@
 			</div>
 		</section>
 
-		<form action="respuesta_sol_album.html" method="get" class="formulario">
+		<form action="respuesta_sol_album.php" method="get" class="formulario">
 				
 			<fieldset>
 
@@ -246,8 +211,6 @@
 			</fieldset>
 		</form>
 
-		<footer>
-			<p><strong><a href="acerca.html" title="Información de contacto">&copy;Hector Esteve Yagüe & Fco. Javier García Fernández</a></strong><time datetime="2018-09">Septiembre de 2018</time><a href="#piCabec"><span class="icon-angle-circled-up" title="Subir al encabezado"></span></a></p>
-		</footer>
-	</body> 
-</html>
+<?php
+	require_once("footer.php");
+?>
