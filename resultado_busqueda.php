@@ -5,40 +5,14 @@
 
 		<section id="resultados"> 
 			<?php
+
 				if(!empty($_GET["titulo"]) || !empty($_GET["date1"]) || !empty($_GET["date2"]) || !empty($_GET["pais"]) || !empty($_GET["album"]) || !empty($_GET["autor"])){
-					
-					/*$arrayBusc = "Búsqueda por -> ";
-
-					if (!empty($_GET["titulo"])) {
-						$arrayBusc = $arrayBusc . "Título: ". $_GET["titulo"] . "; ";
-					}
-					if (!empty($_GET["date1"])) {
-						$arrayBusc = $arrayBusc . "Desde: " . $_GET["date1"] . "; ";
-					}
-					if (!empty($_GET["date2"])) {
-						$arrayBusc = $arrayBusc . "Hasta: " . $_GET["date2"] . "; ";
-					}
-					if (!empty($_GET["pais"])) {
-						$arrayBusc = $arrayBusc . "País: " . $_GET["pais"] . "; ";
-					}
-					if (!empty($_GET["album"])) {
-						$arrayBusc = $arrayBusc . "Álbum: " . $_GET["album"] . "; ";
-					}
-					if (!empty($_GET["autor"])) {
-						$arrayBusc = $arrayBusc . "Autor: " . $_GET["autor"] . "; ";
-					}
-
-					$arrayBusc = rtrim($arrayBusc);
-					$arrayBusc[strlen($arrayBusc) - 1] = ".";
-
-					if(!empty($arrayBusc)) echo "<p>$arrayBusc</p>";*/
-
 
 					echo<<<filtros
 
 					<h3>Filtros de la búsqueda:</h3> 
 
-					<div id="filtrosAplicados">
+					<div id="filtrosAplicados" class="mostrarDatos">
 				
 filtros;
 
@@ -46,43 +20,44 @@ filtros;
 
 							$titulo = $_GET["titulo"];
 
-							echo "<p>Titulo: $titulo</p>";
+							echo "<p>Titulo: $titulo</p>\n";
 						}
 						if (!empty($_GET["date1"])) {
 
 							$fecha1 = $_GET["date1"];
 
-							echo "<p>Desde: $fecha1</p>";
+							echo "<p>Desde: $fecha1</p>\n";
 						}
 						if (!empty($_GET["date2"])) {
 
 							$fecha2 = $_GET["date2"];
 
-							echo "<p>Hasta: $fecha2</p>";
+							echo "<p>Hasta: $fecha2</p>\n";
 						}
 						if (!empty($_GET["pais"])) {
 
 							$pais = $_GET["pais"];
 
-							echo "<p>País: $pais</p>";
+							echo "<p>País: $pais</p>\n";
 						}
 						if (!empty($_GET["album"])) {
 
 							$album = $_GET["album"];
 
-							echo "<p>Álbum: $album</p>";
+							echo "<p>Álbum: $album</p>\n";
 						}
 						if (!empty($_GET["autor"])) {
 
 							$autor = $_GET["autor"];
 
-							echo "<p>Autor: $autor</p>";
+							echo "<p>Autor: $autor</p>\n";
 						}
 
 					echo "</div>";
 
 				}
 			?>
+
 			<h3>Resultados de la búsqueda:</h3>
 			<a href="formulario_busqueda.php" title="Realizar otra búsqueda"><span class="icon-search">Buscar de nuevo</span></a>
 
