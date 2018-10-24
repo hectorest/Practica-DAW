@@ -3,7 +3,7 @@
 	require_once("header.php");
 ?>
 
-	<?php
+<?php
 		if(!empty($_GET["titulo"]) || !empty($_GET["desc"])){
 					
 			/*$arrayCrearAlb = "Información Álbum -> ";
@@ -20,29 +20,8 @@
 
 			if(!empty($arrayCrearAlb)){ echo "<p>$arrayCrearAlb</p>"; }	*/
 
-			echo<<<datosCrearAlbum
-
-				<section>
-					<h3>Información del álbum</h3> 
-
-					<div class="mostrarDatos">
+			mostrarTablaCrearAlbum($_GET["titulo"], $_GET["desc"]);
 				
-datosCrearAlbum;
-
-						if (!empty($_GET["titulo"])) {
-
-							$titulo = $_GET["titulo"];
-
-							echo "<p>Titulo: $titulo</p>";
-						}
-						if (!empty($_GET["desc"])) {
-
-							$desc = $_GET["desc"];
-
-							echo "<p>Descripción: $desc</p>";
-						}
-
-					echo "</div> </section>";
 
 		}else{
 
@@ -75,7 +54,47 @@ datosCrearAlbum;
 formularioCrearAlbum;
 
 		}
-	?>
+
+function mostrarTablaCrearAlbum(&$titulo, &$desc){
+echo <<<tablaCrearAlbum
+		<section>
+
+
+				<h3>Álbum creado</h3>
+				<p>Has creado el álbum correctamente.</p>
+			
+			<div class="contTabla">
+
+				<table class="tabla">
+
+					<caption>Información del álbum:</caption>
+
+					<tr>
+						
+						<td>Título:</td>
+						<td>$titulo</td>
+
+					</tr>
+
+					<tr>
+						
+						<td>Descripcion:</td>
+						<td class="p-left">$desc</td>
+
+					</tr>
+
+				</table>
+			</div>
+
+			<div class="enlPerf" id="inicioResSolAlbum">
+				<a href="index.php" title="Volver a inicio">Aceptar</a>
+			</div>
+		</section>
+tablaCrearAlbum;
+}
+
+?>
+
 <?php
 	require_once("footer.php");
 ?>
