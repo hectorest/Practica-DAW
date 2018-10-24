@@ -1,7 +1,7 @@
 ﻿<?php
-	require("./head.php");
-	require("./header.php");
-	require("./barraNav.php");
+	require_once("head.php");
+	require_once("header.php");
+	require_once("barraNav.php");
 ?>
 
 <!-- El cuerpo -->		
@@ -108,5 +108,5 @@
 		</div> 
 
 <?php
-	require("./footer.php");
+	require_once("footer.php");
 ?>

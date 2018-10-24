@@ -1,5 +1,5 @@
-<?php
-<<<barraNav
+﻿<?php
+echo <<<barraNav
 <nav id="barraNavPrinc">
 	<input type="checkbox" name="mnHamb" id="mnHamb"/><label for="mnHamb" title="Menú" id="iconoMnHamb"><span class="icon-menu"></span></label>
 		<ul id="mnPrinc">
