@@ -5,7 +5,18 @@
 
 	<?php
 		if(isset($_GET["er"])){
-			echo "<p>Usuario o contraseña incorrectos</p>";
+			echo<<<modalAcceso
+
+			<input type="checkbox" id="cerrar">
+			<label for="cerrar" id="btn-cerrar">X</label>
+			<div class="modal">
+				<div class="contenido">
+					<img src="./img/error.png" alt="error-login">
+					<p>El usuario o la contraseña no existen</p>
+				</div>
+			</div>
+
+modalAcceso;
 		}
 	?>
 		<form action="controlLogin.php" method="post" class="formulario" id="formAcc">
