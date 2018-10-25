@@ -5,14 +5,17 @@
 
 	<?php
 		if(isset($_GET["er"])){
+			$error = $_GET["er"];
 			echo<<<modalRegistro
 
 			<input type="checkbox" id="cerrar">
-			<label for="cerrar" id="btn-cerrar">X</label>
+			<label for="cerrar" id="btn-cerrarReg">X</label>
 			<div class="modal">
 				<div class="contenido">
 					<img src="./img/error.png" alt="error-login">
+					<h2>Error $error</h2>
 					<p>Las contraseñas no coinciden</p>
+					<label for="cerrar" id="btn-cerrarReg2">Cerrar</label>
 				</div>
 			</div>
 

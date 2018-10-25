@@ -438,7 +438,7 @@ body{
 	height: 100vh;
 	background: rgba(0,0,0,0.8);
 
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 
@@ -464,6 +464,13 @@ body{
 
 }
 
+.contenido>h2{
+
+	margin: 0.1em;
+	color: black;
+
+}
+
 .contenido>img{
 
 	display: block;
@@ -478,6 +485,15 @@ body{
 .contenido>p{
 
 	margin-top: 2em;
+	font-weight: bold;
+
+}
+
+.contenido>label{
+
+	display: block;
+	text-decoration: underline;
+	cursor: pointer;
 
 }
 
@@ -489,7 +505,7 @@ body{
 
 #cerrar + label{
 
-	position: absolute;
+	position: fixed;
 	color: #fff;
 	font-size: 25px;
 	z-index: 50;
