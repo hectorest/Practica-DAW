@@ -6,15 +6,15 @@
 	<?php
 
 		if(!empty($_POST["nombre"]) && !empty($_POST["titulo"]) && !empty($_POST["email"]) && !empty($_POST["calle"])){
-			
 			if(!empty($_POST["num"]) && !empty($_POST["cp"]) && !empty($_POST["pais"]) && !empty($_POST["local"])){
 				if(!empty($_POST["prov"]) && !empty($_POST["album"])){
 					
-					/*Valores ficticios de las paginas y las fotos por paginas*/
+					/*Valores ficticios de las paginas y las fotos totales del album elegido por el usuario*/
 					$numPag = 15;
 					$totalFotosAlbum = 30;
 
 					$precioAlbum = calcularPrecioAlbum($numPag, $totalFotosAlbum, $_POST["numCopias"], $_POST["resolucion"], $_POST["colorobn"]);
+					
 					mostrarTablaResSolAlbum($precioAlbum, $_POST["nombre"], $_POST["titulo"], $_POST["textAdic"], $_POST["email"], $_POST["calle"], $_POST["num"], $_POST["cp"],
 						$_POST["pais"], $_POST["local"], $_POST["prov"], $_POST["telefono"], $_POST["colorPortada"], $_POST["numCopias"], $_POST["resolucion"], $_POST["album"], $_POST["frecep"],
 						$_POST["colorobn"]);
@@ -55,7 +55,7 @@
 
 function mostrarTablaResSolAlbum(&$precio, &$nombre, &$titulo, &$textAdic, &$email, &$calle, &$num, &$cp, &$pais, &$local, &$prov,
 								 &$telefono, &$colorPortada, &$numCopias, &$resolucion, &$album, &$frecep, &$colorobn){
-	
+
 echo <<<tablaRespSolAlbum
 		<section>
 
