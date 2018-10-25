@@ -4,7 +4,7 @@
 ?>
 		<section>
 			<div class="contTabla">
-				<table class="tabla">
+				<table class="tabla" title="Puedes hacer scroll lateral en la tabla si no cabe en tu pantalla para poder ver todos los datos que contiene">
 					<caption>Datos de los creadores:</caption>
 					<tr>
 						<td>Autores:</td>

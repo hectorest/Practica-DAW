@@ -9,7 +9,7 @@
 			<img src="./img/foto_perfil.png" alt="foto_perfil">
 
 			<div class="contTabla">
-				<table class="tabla">
+				<table class="tabla" title="Puedes hacer scroll lateral en la tabla si no cabe en tu pantalla para poder ver todos los datos que contiene">
 					
 					<tr>
 						

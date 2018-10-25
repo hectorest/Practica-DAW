@@ -14,7 +14,7 @@
 					$totalFotosAlbum = 30;
 
 					$precioAlbum = calcularPrecioAlbum($numPag, $totalFotosAlbum, $_POST["numCopias"], $_POST["resolucion"], $_POST["colorobn"]);
-					
+
 					mostrarTablaResSolAlbum($precioAlbum, $_POST["nombre"], $_POST["titulo"], $_POST["textAdic"], $_POST["email"], $_POST["calle"], $_POST["num"], $_POST["cp"],
 						$_POST["pais"], $_POST["local"], $_POST["prov"], $_POST["telefono"], $_POST["colorPortada"], $_POST["numCopias"], $_POST["resolucion"], $_POST["album"], $_POST["frecep"],
 						$_POST["colorobn"]);
@@ -65,7 +65,7 @@ echo <<<tablaRespSolAlbum
 			
 			<div class="contTabla">
 
-				<table class="tabla">
+				<table class="tabla" title="Puedes hacer scroll lateral en la tabla si no cabe en tu pantalla para poder ver todos los datos que contiene">
 
 					<caption>Datos del álbum:</caption>
 
@@ -100,7 +100,7 @@ echo <<<tablaRespSolAlbum
 					<tr>
 						
 						<td>Dirección:</td>
-						<td><span>Calle: $calle;</span><span>Número: $num;</span><span>CP: $cp;</span><span>País: $pais;</span><span>Localidad: $local;</span><span>Provincia: $prov;</span></td>
+						<td><span>Calle: $calle;</span><span> Número: $num;</span><span> CP: $cp;</span><span> País: $pais;</span><span> Localidad: $local;</span><span> Provincia: $prov</span></td>
 
 					</tr>
 
