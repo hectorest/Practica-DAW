@@ -4,15 +4,15 @@
 ?>
 
 <?php
-		if(!empty($_GET["titulo"]) || !empty($_GET["desc"])){
+		if(!empty($_POST["titulo"]) || !empty($_GET["desc"])){
 					
 			/*$arrayCrearAlb = "Información Álbum -> ";
 
-			if (!empty($_GET["titulo"])) {
-						$arrayCrearAlb = $arrayCrearAlb . "Título: ". $_GET["titulo"] . "; ";
+			if (!empty($_POST["titulo"])) {
+						$arrayCrearAlb = $arrayCrearAlb . "Título: ". $_POST["titulo"] . "; ";
 			}
-			if (!empty($_GET["desc"])) {
-						$arrayCrearAlb = $arrayCrearAlb . "Descripción: " . $_GET["desc"] . "; ";
+			if (!empty($_POST["desc"])) {
+						$arrayCrearAlb = $arrayCrearAlb . "Descripción: " . $_POST["desc"] . "; ";
 			}
 
 			$arrayCrearAlb = rtrim($arrayCrearAlb);
@@ -20,14 +20,14 @@
 
 			if(!empty($arrayCrearAlb)){ echo "<p>$arrayCrearAlb</p>"; }	*/
 
-			mostrarTablaCrearAlbum($_GET["titulo"], $_GET["desc"]);
+			mostrarTablaCrearAlbum($_POST["titulo"], $_POST["desc"]);
 				
 
 		}else{
 
 			echo <<<formularioCrearAlbum
 
-			<form action="crearAlbum.php" method="get" class="formulario" id="formCrearAmb">
+			<form action="crearAlbum.php" method="post" class="formulario" id="formCrearAmb">
 
 				<fieldset>
 

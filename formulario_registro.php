@@ -2,23 +2,6 @@
 	require_once("head.php");
 	require_once("header.php");
 ?>
-
-	<?php
-		if(isset($_GET["er"])){
-			echo<<<modalRegistro
-
-			<input type="checkbox" id="cerrar">
-			<label for="cerrar" id="btn-cerrar">X</label>
-			<div class="modal">
-				<div class="contenido">
-					<img src="./img/error.png" alt="error-login">
-					<p>Las contraseñas no coinciden</p>
-				</div>
-			</div>
-
-modalRegistro;
-		}
-	?>
 	
 		<form action="controlRegistro.php" method="post" class="formulario" id="formReg">
 			

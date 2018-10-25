@@ -15,7 +15,7 @@
 
 	function hacerRegistro(&$usu, &$p1, &$p2, &$email, &$sexo, &$fnac, &$cres, &$pres, &$fper){
 		if($p1 != $p2){
-			header("refresh: 0; formulario_registro.php?er=300");
+			header("Location: formulario_registro.php?er=300");
 		}
 		else{
 			mostrarDatosUsuReg($usu, $p1, $email, $sexo, $fnac, $cres, $pres, $fper);

@@ -18,10 +18,10 @@
 			}
 		}
 		if($existe == true){
-			header("refresh: 0; perfil.php");
+			header("Location: perfil.php");
 		}
 		else{
-			header("refresh: 0; formulario_acceso.php?er=404");
+			header("Location: formulario_acceso.php?er=404");
 		}
 	}
 
