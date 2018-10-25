@@ -100,7 +100,7 @@ echo <<<tablaRespSolAlbum
 					<tr>
 						
 						<td>Dirección:</td>
-						<td><span>Calle: $calle;</span><span> Número: $num;</span><span> CP: $cp;</span><span> País: $pais;</span><span> Localidad: $local;</span><span> Provincia: $prov</span></td>
+						<td><span>Calle: $calle.</span><span> Número: $num.</span><span> CP: $cp.</span><span> País: $pais.</span><span> Localidad: $local.</span><span> Provincia: $prov</span></td>
 
 					</tr>
 
