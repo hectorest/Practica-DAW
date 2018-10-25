@@ -8,14 +8,15 @@
 			$error = $_GET["er"];
 			echo<<<modalAcceso
 
-			<input type="checkbox" id="cerrar">
-			<label for="cerrar" id="btn-cerrarLog">X</label>
+			<button type="button" onclick="cerrarMensajeModal();">X</button>
 			<div class="modal">
 				<div class="contenido">
+				<span>
 					<img src="./img/error.png" alt="error-login">
 					<h2>Error $error</h2>
-					<p>El usuario o la contraseña no existen</p>
-					<label for="cerrar" id="btn-cerrarLog2">Cerrar</label>
+				</span>
+					<p>¡El usuario o la contraseña no existen!</p>
+					<button type="button" onclick="cerrarMensajeModal();">Cerrar</button>
 				</div>
 			</div>
 

@@ -17,6 +17,7 @@ echo <<<cabecera
 	<link rel="alternate stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />
 	<link rel="stylesheet" type="text/css" media="print" href="print.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1"/> 
+	<script type="text/javascript" src="script.js"></script>
 </head> 
 cabecera;
 ?>

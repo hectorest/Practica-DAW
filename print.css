@@ -206,6 +206,25 @@ body{
 				margin-bottom: 1cm;
 			}
 
+/*MENSAJES MODALES*/
+
+.modal{
+	display: none;
+	background: transparent;
+}
+
+.contenido{
+	display: none;
+}
+
+body>nav + button{
+	display: none;
+}
+
+body>nav + button + div{
+	display: none;
+}
+
 /*PAGINACION*/
 
 	body>.paginacion{

@@ -432,11 +432,19 @@ body{
 
 		}
 
+/*MENSAJES MODALES*/
+
+		body>section>.mostrarDatos>p{
+
+			margin-right: 2em;
+
+		}
+
 .modal{
 
 	width: 100%;
-	height: 100vh;
-	background: rgba(0,0,0,0.8);
+	height: 100%;
+	background: rgba(255, 255, 255, 0.8);
 
 	position: fixed;
 	top: 0;
@@ -452,66 +460,83 @@ body{
 }
 
 .contenido{
-
-	margin: auto; 
-	width: 40%;
-	height: 40%;
-	background: white;
-	border-radius: 10px;
-	z-index: 49;
-	padding: 1em;
-	text-align: center;
-
-}
-
-.contenido>h2{
-
-	margin: 0.1em;
-	color: black;
-
-}
-
-.contenido>img{
-
-	display: block;
-	width: 20%;
-	height: 40%;
 	margin: auto;
-	filter: grayscale(100%);
-
-
+	width: 50%;
+	height: 20em;
+	background-color: #ffffff;
+	border-radius: 10px;
+	border: 0.3em solid #000000;
+	z-index: 50;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
+
+.contenido>span{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 1em 0 1em 0;
+	border-bottom: 0.2em solid #000000;
+}
+
+	.contenido>span>h2{
+		margin: 0;
+		color: #000000;
+		align-self: center;
+	}
+
+	.contenido>span>img{
+		
+		align-self: center;
+		display: block;
+		width: 40px;
+		height: 40px;
+		margin-right: 1em;
+		filter: grayscale(100%);
+
+	}
 
 .contenido>p{
 
-	margin-top: 2em;
 	font-weight: bold;
+	color: #000000;
+	margin: auto;
 
 }
 
-.contenido>label{
-
+.contenido>button{
 	display: block;
-	text-decoration: underline;
 	cursor: pointer;
-
+	font-size: 30px;
+	width: 4em;
+	background-color: #ffffff;
+	border: 0.2em solid #000000;
+	border-radius: 1em;
+	margin: auto;
 }
 
-#cerrar{
-
-	 display: none;
-
+.contenido>button:hover{
+	background-color: #000000;
+	color: #ffffff;
+	cursor: pointer;
 }
 
-#cerrar + label{
+.contenido>button:focus{
+	background-color: #000000;
+	color: #ffffff;
+}
 
+body>nav + button{
 	position: fixed;
-	color: #fff;
+	color: #000000;
 	font-size: 25px;
 	z-index: 50;
   	font-weight: bold;
   	cursor: pointer;
-  	background: black;
+  	background: #ffffff;
+  	border: 0.1em solid #000000;
   	border-radius: 50%;
   	top:10px;
   	right: 10px;
@@ -523,10 +548,15 @@ body{
 	text-align: center;
 }
 
-#cerrar:checked +label, #cerrar:checked ~ .modal{
+body>nav + button:hover{
+	background-color: #000000;
+	color: #ffffff;
+	cursor: pointer;
+}
 
-	display: none;
-
+body>nav + button:focus{
+	background-color: #000000;
+	color: #ffffff;
 }
 
 @keyframes modal{

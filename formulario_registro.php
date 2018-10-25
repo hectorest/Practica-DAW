@@ -4,18 +4,19 @@
 ?>
 
 	<?php
-		if(isset($_GET["er"])){
+		if(!empty($_GET["er"])){
 			$error = $_GET["er"];
 			echo<<<modalRegistro
 
-			<input type="checkbox" id="cerrar">
-			<label for="cerrar" id="btn-cerrarReg">X</label>
+			<button type="button" onclick="cerrarMensajeModal();">X</button>
 			<div class="modal">
 				<div class="contenido">
-					<img src="./img/error.png" alt="error-login">
+				<span>
+					<img src="./img/error.png" alt="error-registro">
 					<h2>Error $error</h2>
-					<p>Las contraseñas no coinciden</p>
-					<label for="cerrar" id="btn-cerrarReg2">Cerrar</label>
+				</span>
+					<p>¡Las contraseñas no coinciden!</p>
+					<button type="button" onclick="cerrarMensajeModal();">Cerrar</button>
 				</div>
 			</div>
 
@@ -41,13 +42,6 @@ modalRegistro;
 				<p>
 					<label for="passw2">Repetir contraseña*:</label>
 					<input type="password" pattern="[A-Za-z0-9¿?¡!-_@#$%&=]{8,16}" minlength="8" maxlength="16" required name="passw2" id="passw2" title="La contraseñ;a debe de coincidir con la escrita en la casilla anterior" />
-					<?php
-
-						if(!empty($_GET["er"])){
-							echo "<span>Las contraseñas no coinciden</span>";
-						}
-
-					?>
 				</p>
 				<p>
 					<label for="email">Email*:</label>
