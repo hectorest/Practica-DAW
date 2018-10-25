@@ -201,8 +201,8 @@
 				<p>
 					<label for="color">¿Impresión a color?</label>
 					<span>
-						<input type="radio" name="colorobn" id="color" value="color"><span>Color</span>
-						<input type="radio" name="colorobn" checked="checked" id="bn" value="bn"><span>Blanco y negro</span>
+						<input type="radio" name="colorobn" id="color" value="A Color"><span>Color</span>
+						<input type="radio" name="colorobn" checked="checked" id="bn" value="En Blanco y Negro"><span>Blanco y negro</span>
 					</span>
 				</p>
 				<p>
