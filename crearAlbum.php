@@ -13,11 +13,11 @@
 
 					<p>
 						<label for="titulo">Titulo:</label>
-						<input type="text" required name="titulo" id="titulo"/>
+						<input type="text" required name="t#itulo" id="titulo"/>
 					</p>
 					<p>
 						<label for="desc">Descripción:</label>
-						<textarea name="desc" id="desc" placeholder="Descripción del álbum o dedicatoria" rows="10" cols="50" maxlength="4000" title="Tope de caracteres o letras: 4000"></textarea>
+						<textarea name="descripci#on" id="desc" placeholder="Descripción del álbum o dedicatoria" rows="10" cols="50" maxlength="4000" title="Tope de caracteres o letras: 4000"></textarea>
 					</p>
 					<p>
 						<button type="submit">Crear</button>

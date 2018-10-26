@@ -4,31 +4,19 @@
 ?>
 
 <?php
-		if(!empty($_POST["titulo"]) || !empty($_POST["desc"])){
-					
-			/*$arrayCrearAlb = "Información Álbum -> ";
-
-			if (!empty($_POST["titulo"])) {
-						$arrayCrearAlb = $arrayCrearAlb . "Título: ". $_POST["titulo"] . "; ";
-			}
-			if (!empty($_POST["desc"])) {
-						$arrayCrearAlb = $arrayCrearAlb . "Descripción: " . $_POST["desc"] . "; ";
-			}
-
-			$arrayCrearAlb = rtrim($arrayCrearAlb);
-			$arrayCrearAlb[strlen($arrayCrearAlb) - 1] = ".";
-
-			if(!empty($arrayCrearAlb)){ echo "<p>$arrayCrearAlb</p>"; }	*/
-
-			mostrarTablaCrearAlbum($_POST["titulo"], $_POST["desc"]);
-				
-
+$completo = True;
+	
+	foreach ($_POST as $value){
+		if(!isset($value)){
+			$completo=false;
 		}
+	}
 
-function mostrarTablaCrearAlbum(&$titulo, &$desc){
-echo <<<tablaCrearAlbum
-		<section>
+	if($completo==true){
 
+		echo<<<arribaTabla
+
+			<section>
 
 				<h3>Álbum creado</h3>
 				<p>Has creado el álbum correctamente.</p>
@@ -39,28 +27,60 @@ echo <<<tablaCrearAlbum
 
 					<caption>Información del álbum:</caption>
 
-					<tr>
-						
-						<td>Título:</td>
-						<td>$titulo</td>
+arribaTabla;
 
-					</tr>
+			foreach ($_POST as $key => $value) {
+				if($value == ""){
+					echo"<tr><td>$clave:</td><td><i>No hay datos</i></td></tr>";
+				}
+				else{
+					$clave = $key;
+					cambiarAcentos($clave);
+					$clave = ucfirst($clave);
+					$clave = str_replace("_", " ", $clave);
+					$clave = str_replace("ny", "ñ", $clave);
+					echo"<tr><td>$clave:</td><td>$value</td></tr>";
+				}
+			}
 
-					<tr>
-						
-						<td>Descripcion:</td>
-						<td class="p-left">$desc</td>
-
-					</tr>
-
+			echo<<<bajoTabla
 				</table>
 			</div>
 
 			<div class="enlPerf" id="inicioResSolAlbum">
 				<a href="index.php" title="Volver a inicio">Aceptar</a>
 			</div>
+
 		</section>
-tablaCrearAlbum;
+bajoTabla;
+
+	}
+
+function cambiarAcentos(&$clave){
+
+	$pos = strpos($clave, "#");
+	if($pos!=false){
+		$vocal = substr($clave, $pos, 2);
+		switch ($vocal) {
+			case '#a':
+				$clave = str_replace("#a", "á", $clave);
+				break;
+			case '#e':
+				$clave = str_replace("#e", "é", $clave);
+				break;
+			case '#i':
+				$clave = str_replace("#i", "í", $clave);
+				break;
+			case '#o':
+				$clave = str_replace("#o", "ó", $clave);
+				break;
+			case '#u':
+				$clave = str_replace("#u", "ú", $clave);
+				break;			
+			default:
+				break;
+		}
+	}
 }
 
 ?>

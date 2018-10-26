@@ -17,11 +17,15 @@
 				break;
 			}
 		}
+		$host = $_SERVER['HTTP_HOST']; 
+		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
 		if($existe == true){
-			header("Location: perfil.php");
+			$extra = 'index.php';
+			header("Location: http://$host$uri/$extra"); 
 		}
 		else{
-			header("Location: formulario_acceso.php?er=404");
+			$extra = 'formulario_acceso.php';
+			header("Location: http://$host$uri/$extra?er=404");
 		}
 	}
 
