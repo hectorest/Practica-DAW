@@ -12,7 +12,7 @@
 	function hacerLogin(&$usu, &$pass){
 		$existe = false;
 		foreach ($GLOBALS["usuariosReg"] as $key => $value) {
-			if($key == "$usu" && $value =="$pass"){
+			if($key == $usu && $value == $pass){
 				$existe = true;
 				break;
 			}
@@ -28,7 +28,7 @@
 			header("Location: http://$host$uri/$extra?er=404");
 		}
 	}
-	
+
 	if(isset($_POST["login"], $_POST["pass"])){
 		hacerLogin($_POST["login"], $_POST["pass"]);
 	}

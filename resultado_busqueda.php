@@ -6,7 +6,15 @@
 		<section id="resultados"> 
 			<?php
 
-				if(!empty($_GET["palClave"]) || !empty($_GET["titulo"]) || !empty($_GET["date1"]) || !empty($_GET["date2"]) || !empty($_GET["pais"]) || !empty($_GET["album"]) || !empty($_GET["autor"])){
+				$completo = True;
+	
+				foreach ($_GET as $value){
+					if(!isset($value)){
+						$completo=false;
+					}
+				}
+
+				if($completo==true){
 
 					echo<<<filtros
 
@@ -16,7 +24,20 @@
 				
 filtros;
 
-						if (!empty($_GET["palClave"])) {
+			foreach ($_GET as $key => $value) {
+				$clave = $key;
+				cambiarAcentos($clave);
+				$clave = ucfirst($clave);
+				$clave = str_replace("_", " ", $clave);
+				$clave = str_replace("ny", "ñ", $clave);
+				if($value == ""){
+					echo"<p>$key:<i>--</i></p>";
+				}
+				else{
+					echo"<p>$clave: $value</p>";
+				}
+			}
+						/*if (!empty($_GET["palClave"])) {
 
 							$palClave = $_GET["palClave"];
 
@@ -58,11 +79,38 @@ filtros;
 							$autor = $_GET["autor"];
 
 							echo "<p>Autor: $autor</p>\n";
-						}
+						}*/
 
 					echo "</div>";
 
 				}
+
+				function cambiarAcentos(&$clave){
+	$pos = strpos($clave, "#");
+	if($pos!=false || $pos >= 0){
+		$vocal = substr($clave, $pos, 2);
+		echo "$vocal";
+		switch ($vocal) {
+			case '#a':
+				$clave = str_replace("#a", "á", $clave);
+				break;
+			case '#e':
+				$clave = str_replace("#e", "é", $clave);
+				break;
+			case '#i':
+				$clave = str_replace("#i", "í", $clave);
+				break;
+			case '#o':
+				$clave = str_replace("#o", "ó", $clave);
+				break;
+			case '#u':
+				$clave = str_replace("#u", "ú", $clave);
+				break;			
+			default:
+				break;
+		}
+	/*}*/
+}
 			?>
 
 			<h3>Resultados de la búsqueda:</h3>

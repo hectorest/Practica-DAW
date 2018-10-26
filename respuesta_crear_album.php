@@ -30,15 +30,11 @@ $completo = True;
 arribaTabla;
 
 			foreach ($_POST as $key => $value) {
+				$clave = cambiarClave($key);
 				if($value == ""){
-					echo"<tr><td>$clave:</td><td><i>No hay datos</i></td></tr>";
+					echo"<tr><td>$key:</td><td><i>No hay datos</i></td></tr>";
 				}
 				else{
-					$clave = $key;
-					cambiarAcentos($clave);
-					$clave = ucfirst($clave);
-					$clave = str_replace("_", " ", $clave);
-					$clave = str_replace("ny", "ñ", $clave);
 					echo"<tr><td>$clave:</td><td>$value</td></tr>";
 				}
 			}
@@ -56,31 +52,25 @@ bajoTabla;
 
 	}
 
-function cambiarAcentos(&$clave){
+function cambiarClave(&$clave){
+	var $clav = array(
+		"album" => "Álbum",
+		"autor" => "Autor",
+		"date1" => "Desde",
+		"date2" => "Hasta",
+		"titulo" => "Título",
+		"desc" => "Descripción",
+		"palClave" => "Palabra Clave",
+		"passw1" => "Contraseña",
+		"pass" => "Contraseña",
+		"sexo" => "Sexo",
+		"fNac" => "Fecha de Nacimiento",
+		"cRes" => "Ciudad de Residencia",
+		"pais" => "País",
+		"local" => "Localidad",
+		
+		);
 
-	$pos = strpos($clave, "#");
-	if($pos!=false){
-		$vocal = substr($clave, $pos, 2);
-		switch ($vocal) {
-			case '#a':
-				$clave = str_replace("#a", "á", $clave);
-				break;
-			case '#e':
-				$clave = str_replace("#e", "é", $clave);
-				break;
-			case '#i':
-				$clave = str_replace("#i", "í", $clave);
-				break;
-			case '#o':
-				$clave = str_replace("#o", "ó", $clave);
-				break;
-			case '#u':
-				$clave = str_replace("#u", "ú", $clave);
-				break;			
-			default:
-				break;
-		}
-	}
 }
 
 ?>
