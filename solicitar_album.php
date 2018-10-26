@@ -1,3 +1,5 @@
+<title>Pictures & Images - Solicitar Álbum</title>
+
 <?php
 	require_once("head.php");
 	require_once("header.php");
@@ -83,7 +85,7 @@
 				</p>
 				<p>
 					<label for="titulo">Título del álbum*:</label>
-					<input type="text" required name="t#itulo" id="titulo" placeholder="Que describa al album" maxlength="200" title="El titulo no podrá superar los 200 caracteres o letras" />
+					<input type="text" required name="titulo" id="titulo" placeholder="Que describa al album" maxlength="200" title="El titulo no podrá superar los 200 caracteres o letras" />
 				</p>
 				<p>
 					<label for="texto_adicional">Texto adicional:</label>
@@ -96,12 +98,12 @@
 				<p id="solAlbumDirec">
 					<label for="calle">Dirección*:</label>
 					<input type="text" required name="calle" id="calle" placeholder="Calle">
-					<input type="number" required name="n#umero" id="numero" placeholder="Número" min="0">
-					<input type="number" required name="c#odigo_postal" id="CP" placeholder="CP" min="0">
+					<input type="number" required name="numero" id="numero" placeholder="Número" min="0">
+					<input type="number" required name="cp" id="CP" placeholder="CP" min="0">
 				
 
 					<label for="pais">País*:</label>
-					<select required name="pa#is" id="pais">
+					<select required name="pais" id="pais">
 						<option value="">Escoge</option>
 						<optgroup label="Europa">
 							<option>Alemania</option>
@@ -128,7 +130,7 @@
 						</optgroup>
 					</select>
 					<label for="local">Localidad*:</label>
-					<select required name="localidad" id="local">
+					<select required name="local" id="local">
 						
 						<option value="">Escoge</option>
 						<option>San Vicente</option>
@@ -145,7 +147,7 @@
 
 					</select>
 					<label for="prov">Provincia*:</label>
-					<select required name="provincia" id="prov">
+					<select required name="prov" id="prov">
 						
 						<option value="">Escoge</option>
 						<option>Comunidad Valenciana</option>
@@ -157,7 +159,7 @@
 				</p>
 				<p>
 					<label for="telefono">Teléfono:</label>
-					<input type="tel" placeholder="000000000" name="tel#efono" id="telefono" pattern="[0-9]{9}" minlength="9" maxlength="9" />
+					<input type="tel" placeholder="000000000" name="telefono" id="telefono" pattern="[0-9]{9}" minlength="9" maxlength="9" />
 				</p>
 
 				<p>
@@ -167,13 +169,13 @@
 
 				<p>
 					<label for="num_copias">Número de copias:</label>
-					<input type="number" name="n#umero_copias" id="num_copias" value="1" min="1" />
+					<input type="number" name="num_copias" id="num_copias" value="1" min="1" />
 				</p>
 
 				<p>
 
 					<label for="resolucion">Resolución de impresión:</label>
-					<input type="range" name="resoluci#on" id="resolucion" min="150" max="900" step="150" value="150" onchange="document.getElementById('outresolucion').textContent=this.value"/>
+					<input type="range" name="resolucion" id="resolucion" min="150" max="900" step="150" value="150" onchange="document.getElementById('outresolucion').textContent=this.value"/>
 					<span><output id="outresolucion">150 </output> <span>DPI</span></span> 
 
 				</p>			
@@ -182,7 +184,7 @@
 
 					<label for="album">Álbum de PI*:</label>
 
-					<select required name="#album" id="album" title="Escoge un álbum entre los que tienes creados en tu cuenta">
+					<select required name="album" id="album" title="Escoge un álbum entre los que tienes creados en tu cuenta">
 						
 						<option value="">Escoge</option>
 						<option>Álbum 1</option>
@@ -195,14 +197,14 @@
 
 				<p>
 					<label for="frecep">Fecha aprox. recepción:</label>
-					<input type="date" name="fecha_recepci#on" id="frecep" title="Fecha aproximada de recepción"/>
+					<input type="date" name="frecep" id="frecep" title="Fecha aproximada de recepción"/>
 				</p>
 
 				<p>
 					<label for="color">¿Impresión a color?</label>
 					<span>
-						<input type="radio" name="color_o_blanco_y_negro" id="color" value="A Color"><span>Color</span>
-						<input type="radio" name="color_o_blanco_y_negro" checked="checked" id="bn" value="En Blanco y Negro"><span>Blanco y negro</span>
+						<input type="radio" name="colorobn" id="color" value="A Color"><span>Color</span>
+						<input type="radio" name="colorobn" checked="checked" id="bn" value="En Blanco y Negro"><span>Blanco y negro</span>
 					</span>
 				</p>
 				<p>

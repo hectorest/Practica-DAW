@@ -1,10 +1,13 @@
+<title>Pictures & Images - Resultados Búsqueda</title>
+
 <?php
 	require_once("head.php");
 	require_once("header.php");
 ?>
 
 		<section id="resultados"> 
-			<?php
+
+<?php
 
 				$completo = True;
 	
@@ -24,94 +27,63 @@
 				
 filtros;
 
-			foreach ($_GET as $key => $value) {
-				$clave = $key;
-				cambiarAcentos($clave);
-				$clave = ucfirst($clave);
-				$clave = str_replace("_", " ", $clave);
-				$clave = str_replace("ny", "ñ", $clave);
-				if($value == ""){
-					echo"<p>$key:<i>--</i></p>";
+				foreach ($_GET as $key => $value) {
+					$clave = $key;
+					cambiarClave($clave);
+					if($value == ""){
+						echo"<p><b>$clave:</b><i>--</i></p>";
+					}
+					else{
+						echo"<p><b>$clave:</b> $value</p>";
+					}
 				}
-				else{
-					echo"<p>$clave: $value</p>";
-				}
-			}
-						/*if (!empty($_GET["palClave"])) {
-
-							$palClave = $_GET["palClave"];
-
-							echo "<p>Palabra clave: $palClave</p>\n";
-						}
-
-						if (!empty($_GET["titulo"])) {
-
-							$titulo = $_GET["titulo"];
-
-							echo "<p>Titulo: $titulo</p>\n";
-						}
-						if (!empty($_GET["date1"])) {
-
-							$fecha1 = $_GET["date1"];
-
-							echo "<p>Desde: $fecha1</p>\n";
-						}
-						if (!empty($_GET["date2"])) {
-
-							$fecha2 = $_GET["date2"];
-
-							echo "<p>Hasta: $fecha2</p>\n";
-						}
-						if (!empty($_GET["pais"])) {
-
-							$pais = $_GET["pais"];
-
-							echo "<p>País: $pais</p>\n";
-						}
-						if (!empty($_GET["album"])) {
-
-							$album = $_GET["album"];
-
-							echo "<p>Álbum: $album</p>\n";
-						}
-						if (!empty($_GET["autor"])) {
-
-							$autor = $_GET["autor"];
-
-							echo "<p>Autor: $autor</p>\n";
-						}*/
 
 					echo "</div>";
 
 				}
 
-				function cambiarAcentos(&$clave){
-	$pos = strpos($clave, "#");
-	if($pos!=false || $pos >= 0){
-		$vocal = substr($clave, $pos, 2);
-		echo "$vocal";
-		switch ($vocal) {
-			case '#a':
-				$clave = str_replace("#a", "á", $clave);
-				break;
-			case '#e':
-				$clave = str_replace("#e", "é", $clave);
-				break;
-			case '#i':
-				$clave = str_replace("#i", "í", $clave);
-				break;
-			case '#o':
-				$clave = str_replace("#o", "ó", $clave);
-				break;
-			case '#u':
-				$clave = str_replace("#u", "ú", $clave);
-				break;			
-			default:
-				break;
+function cambiarClave(&$clave){
+	$clav = array(
+		"album" => "Álbum",
+		"autor" => "Autor",
+		"date1" => "Desde",
+		"date2" => "Hasta",
+		"titulo" => "Título",
+		"desc" => "Descripción",
+		"palClave" => "Palabra clave",
+		"passw1" => "Contraseña",
+		"pass" => "Contraseña",
+		"sexo" => "Sexo",
+		"fNac" => "Fecha de nacimiento",
+		"cRes" => "Ciudad de residencia",
+		"pais" => "País",
+		"local" => "Localidad",
+		"pRes" => "País de residencia",
+		"usuario" => "Usuario",
+		"email" => "Email",
+		"texto_adicional" => "Texto adicional",
+		"cp" => "Código Postal",
+		"calle" => "Calle",
+		"numero" => "Número",
+		"local" => "Localidad",
+		"prov" => "Provincia",
+		"telefono" => "Teléfono",
+		"color_portada" => "Color portada",
+		"num_copias" => "Número de copias",
+		"resolucion" => "Resolución",
+		"frecep" => "Fecha de recepción",
+		"colorobn" => "Color o Blanco y negro",
+		"nombre" => "Nombre"
+		);
+
+	foreach ($clav as $key => $value) {
+		if($clave==$key){
+			$clave = $value;
 		}
-	/*}*/
+	}
 }
-			?>
+
+?>
 
 			<h3>Resultados de la búsqueda:</h3>
 			<a href="formulario_busqueda.php" title="Realizar otra búsqueda"><span class="icon-search">Buscar de nuevo</span></a>

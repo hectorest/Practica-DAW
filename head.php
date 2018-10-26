@@ -8,8 +8,7 @@ echo <<<cabecera
 	<meta name="generator" content="Bloc de notas" /> 
 	<meta name="author" content="Hector Esteve Yagüe & Fco. Javier García Fernández" /> 
 	<meta name="keywords" content="HTML5, web, Pictures & Images, PI, fotos, imagenes"/> 
-	<meta name="description" content="Pagina principal de PI" /> 
-	<title>Pictures & Images</title>
+	<meta name="description" content="Pagina principal de PI" />
 	<link rel="shortcut icon" type="image/x-icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
 	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
 	<link rel="stylesheet" type="text/css" href="fontello/css/fontello.css"/>

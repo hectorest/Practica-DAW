@@ -1,3 +1,5 @@
+<title>Pictures & Images - Búsqueda</title>
+
 <?php
 	require_once("head.php");
 	require_once("header.php");
@@ -12,19 +14,19 @@
 
 				<p>
 					<label for="titulo">Título:</label>
-					<input type="text" name="t#itulo" id="titulo"/>
+					<input type="text" name="titulo" id="titulo"/>
 				</p>
 				<p>
 					<label for="date1">Fecha entre:</label>
-					<input type="date" name="desde" id="date1"/>
+					<input type="date" name="date1" id="date1"/>
 				</p>
 				<p>
 					<label for="date2">y</label>
-					<input type="date" name="hasta" id="date2"/>
+					<input type="date" name="date2" id="date2"/>
 				</p>
 				<p>
 					<label for="pais">País:</label>
-					<select name="pa#is" id="pais">
+					<select name="pais" id="pais">
 						<option value="">Escoge</option>
 						<optgroup label="Europa">
 							<option>Alemania</option>
@@ -53,7 +55,7 @@
 				</p>
 				<p>
 					<label for="album">Álbum:</label>
-					<input type="text" name="#album" id="album"/>
+					<input type="text" name="album" id="album"/>
 				</p>
 				<p>
 					<label for="autor">Autor:</label>

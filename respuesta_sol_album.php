@@ -1,3 +1,5 @@
+<title>Pictures & Images - Solicitar Álbum</title>
+
 <?php
 	require_once("head.php");
 	require_once("header.php");
@@ -17,11 +19,8 @@
 			$numPag = 15;
 			$totalFotosAlbum = 30;
 
-			$precio = calcularPrecioAlbum($numPag, $totalFotosAlbum, $_POST["n#umero_copias"], $_POST["resoluci#on"], $_POST["color_o_blanco_y_negro"]);
+			$precio = calcularPrecioAlbum($numPag, $totalFotosAlbum, $_POST["num_copias"], $_POST["resolucion"], $_POST["colorobn"]);
 
-			/*mostrarTablaResSolAlbum($precioAlbum, $_POST["nombre"], $_POST["titulo"], $_POST["textAdic"], $_POST["email"], $_POST["calle"], $_POST["num"], $_POST["cp"],
-								$_POST["pais"], $_POST["local"], $_POST["prov"], $_POST["telefono"], $_POST["colorPortada"], $_POST["numCopias"], $_POST["resolucion"], $_POST["album"], $_POST["frecep"],
-								$_POST["colorobn"]);*/
 
 		echo<<<arribaTabla
 
@@ -40,15 +39,12 @@
 arribaTabla;
 
 			foreach ($_POST as $key => $value) {
+				$clave = $key;
+				cambiarClave($clave);
 				if($value == ""){
 					echo"<tr><td>$clave:</td><td><i>No hay datos</i></td></tr>";
 				}
 				else{
-					$clave = $key;
-					cambiarAcentos($clave);
-					$clave = ucfirst($clave);
-					$clave = str_replace("_", " ", $clave);
-					$clave = str_replace("ny", "ñ", $clave);
 					echo"<tr><td>$clave:</td><td>$value</td></tr>";
 				}
 			}
@@ -67,29 +63,43 @@ bajoTabla;
 
 		}
 
-function cambiarAcentos(&$clave){
+function cambiarClave(&$clave){
+	$clav = array(
+		"album" => "Álbum",
+		"autor" => "Autor",
+		"date1" => "Desde",
+		"date2" => "Hasta",
+		"titulo" => "Título",
+		"desc" => "Descripción",
+		"palClave" => "Palabra clave",
+		"passw1" => "Contraseña",
+		"pass" => "Contraseña",
+		"sexo" => "Sexo",
+		"fNac" => "Fecha de nacimiento",
+		"cRes" => "Ciudad de residencia",
+		"pais" => "País",
+		"local" => "Localidad",
+		"pRes" => "País de residencia",
+		"usuario" => "Usuario",
+		"email" => "Email",
+		"texto_adicional" => "Texto adicional",
+		"cp" => "Código Postal",
+		"calle" => "Calle",
+		"numero" => "Número",
+		"local" => "Localidad",
+		"prov" => "Provincia",
+		"telefono" => "Teléfono",
+		"color_portada" => "Color portada",
+		"num_copias" => "Número de copias",
+		"resolucion" => "Resolución",
+		"frecep" => "Fecha de recepción",
+		"colorobn" => "Color o Blanco y negro",
+		"nombre" => "Nombre"
+		);
 
-	$pos = strpos($clave, "#");
-	if($pos!=false){
-		$vocal = substr($clave, $pos, 2);
-		switch ($vocal) {
-			case '#a':
-				$clave = str_replace("#a", "á", $clave);
-				break;
-			case '#e':
-				$clave = str_replace("#e", "é", $clave);
-				break;
-			case '#i':
-				$clave = str_replace("#i", "í", $clave);
-				break;
-			case '#o':
-				$clave = str_replace("#o", "ó", $clave);
-				break;
-			case '#u':
-				$clave = str_replace("#u", "ú", $clave);
-				break;			
-			default:
-				break;
+	foreach ($clav as $key => $value) {
+		if($clave==$key){
+			$clave = $value;
 		}
 	}
 }

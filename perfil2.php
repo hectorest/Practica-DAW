@@ -1,3 +1,5 @@
+<title>Pictures & Images - Perfil</title>
+
 <?php
 	require_once("head.php");
 	require_once("header.php");

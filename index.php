@@ -1,3 +1,5 @@
+<title>Pictures & Images - Inicio</title>
+
 <?php
 	require_once("head.php");
 	require_once("header.php");
@@ -7,7 +9,7 @@
 		<div id="formBusc">	
 			
 			<form id="buscTexto" action="resultado_busqueda.php" method="get" class="formulario">
-				<input type="search" name="palabra_clave" id="buscRap" placeholder="Buscar...">
+				<input type="search" name="palClav" id="buscRap" placeholder="Buscar...">
 				<button type="submit"><span id="butBuscRap" class="icon-search"></span></button>
 			</form>
 
@@ -25,12 +27,12 @@
 
 							<p>
 								<label for="album">Álbum:</label>
-								<input type="text" name="#album" id="albumRap">
+								<input type="text" name="album" id="albumRap">
 							</p>
 
 							<p>
 								<label for="titulo">Título:</label>
-								<input type="text" name="t#itulo" id="tituloRap">
+								<input type="text" name="titulo" id="tituloRap">
 							</p>
 
 						<button type="submit"><span id="butFiltBuscRap" class="icon-search"></span></button>

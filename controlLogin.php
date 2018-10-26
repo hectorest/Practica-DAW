@@ -1,3 +1,5 @@
+<title>Pictures & Images - Control Acceso</title>
+
 <?php
 	
 	/*Array de usuarios registrados provisionales*/

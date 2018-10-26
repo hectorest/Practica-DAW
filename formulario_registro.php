@@ -1,3 +1,5 @@
+<title>Pictures & Images - Formulario Registro</title>
+
 <?php
 	require_once("head.php");
 	require_once("header.php");
@@ -37,11 +39,11 @@ modalRegistro;
 				</p>
 				<p>
 					<label for="passw1">Contraseña*:</label>
-					<input type="password" pattern="[A-Za-z0-9¿?¡!-_@#$%&=]{8,16}" minlength="8" maxlength="16" required name="contrasenya" id="passw1" title="La contraseña tendrá un mínimo de 8 caracteres y un máximo de 16. Podrás escribir tanto letras mayúsculas como minúsculas además de números y los siguientes símbolos: ¿?¡!-_@#$%&=. Los espacios en blanco no están permitidos" />
+					<input type="password" pattern="[A-Za-z0-9¿?¡!-_@#$%&=]{8,16}" minlength="8" maxlength="16" required name="passw1" id="passw1" title="La contraseña tendrá un mínimo de 8 caracteres y un máximo de 16. Podrás escribir tanto letras mayúsculas como minúsculas además de números y los siguientes símbolos: ¿?¡!-_@#$%&=. Los espacios en blanco no están permitidos" />
 				</p>
 				<p>
 					<label for="passw2">Repetir contraseña*:</label>
-					<input type="password" pattern="[A-Za-z0-9¿?¡!-_@#$%&=]{8,16}" minlength="8" maxlength="16" required name="contrasenya2" id="passw2" title="La contraseña debe de coincidir con la escrita en la casilla anterior" />
+					<input type="password" pattern="[A-Za-z0-9¿?¡!-_@#$%&=]{8,16}" minlength="8" maxlength="16" required name="passw2" id="passw2" title="La contraseña debe de coincidir con la escrita en la casilla anterior" />
 				</p>
 				<p>
 					<label for="email">Email*:</label>
@@ -58,11 +60,11 @@ modalRegistro;
 				</p>
 				<p>
 					<label for="fnac">Fecha de nacimiento*:</label>
-					<input type="date" required name="fecha_de_nacimiento" id="fnac"/>
+					<input type="date" required name="fNac" id="fnac"/>
 				</p>
 				<p>
 					<label for="cres">Ciudad de residencia*:</label>
-					<select required name="ciudad_de_residencia" id="cres">
+					<select required name="cRes" id="cres">
 						<option value="">Escoge</option>
 						<option>San Vicente</option>
 						<option>Elche/Elx</option>
@@ -79,7 +81,7 @@ modalRegistro;
 				</p>
 				<p>
 					<label for="pres">País de residencia*:</label>
-					<select required name="pa#is_de_residencia" id="pres">
+					<select required name="pRes" id="pres">
 						<option value="">Escoge</option>
 						<optgroup label="Europa">
 							<option>Alemania</option>
@@ -108,7 +110,7 @@ modalRegistro;
 				</p>
 				<p>
 					<label for="fper" id="labfper">Foto de perfil*:</label>
-					<input type="file" accept="image/*" required name="foto_de_perfil" id="fper"/>
+					<input type="file" accept="image/*" required name="fPer" id="fper"/>
 				</p>
 				<p>
 					<button type="submit">Enviar</button> <!--En realidad, el boton submit, una vez pulsado, redirigira, si todos los datos son correctos, a la pagina de respuesta de la solicitud de album-->

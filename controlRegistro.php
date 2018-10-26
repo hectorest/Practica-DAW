@@ -1,17 +1,8 @@
+<title>Pictures & Images - Control Registro</title>
+
 <?php
 	require_once("head.php");
 	require_once("header.php");
-?>
-
-<?php
-
-	/*if(!empty($_POST["usuario"]) && !empty($_POST["passw1"]) && !empty($_POST["passw2"])){
-		if(!empty($_POST["email"]) && !empty($_POST["sexo"]) && !empty($_POST["fnac"])){
-			if(!empty($_POST["cres"]) && !empty($_POST["pres"]) && !empty($_POST["fper"])){
-				hacerRegistro($_POST["usuario"],$_POST["passw1"],$_POST["passw2"],$_POST["email"],$_POST["sexo"],$_POST["fnac"],$_POST["cres"],$_POST["pres"],$_POST["fper"]);
-			}
-		}
-	}*/
 ?>
 
 <?php
@@ -25,7 +16,7 @@ $completo = True;
 
 	if($completo==true){
 
-		if($_POST["contrasenya"] != $_POST["contrasenya2"]){
+		if($_POST["passw1"] != $_POST["passw2"]){
 			$host = $_SERVER['HTTP_HOST']; 
 			$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
 			$extra = 'formulario_registro.php';
@@ -44,16 +35,13 @@ $completo = True;
 arribaTabla;
 
 			foreach ($_POST as $key => $value) {
-				if($key!="contrasenya2" && $key!="foto_de_perfil"){
+				if($key!="passw2" && $key!="fPer"){
+					$clave = $key;
+					cambiarClave($clave);
 					if($value == ""){
 						echo"<tr><td>$clave:</td><td><i>No hay datos</i></td></tr>";
 					}
 					else{
-						$clave = $key;
-						cambiarAcentos($clave);
-						$clave = ucfirst($clave);
-						$clave = str_replace("_", " ", $clave);
-						$clave = str_replace("ny", "ñ", $clave);
 						echo"<tr><td>$clave:</td><td>$value</td></tr>";
 					}
 				}
@@ -78,29 +66,43 @@ bajotabla;
 
 	}
 
-function cambiarAcentos(&$clave){
+function cambiarClave(&$clave){
+	$clav = array(
+		"album" => "Álbum",
+		"autor" => "Autor",
+		"date1" => "Desde",
+		"date2" => "Hasta",
+		"titulo" => "Título",
+		"desc" => "Descripción",
+		"palClave" => "Palabra clave",
+		"passw1" => "Contraseña",
+		"pass" => "Contraseña",
+		"sexo" => "Sexo",
+		"fNac" => "Fecha de nacimiento",
+		"cRes" => "Ciudad de residencia",
+		"pais" => "País",
+		"local" => "Localidad",
+		"pRes" => "País de residencia",
+		"usuario" => "Usuario",
+		"email" => "Email",
+		"texto_adicional" => "Texto adicional",
+		"cp" => "Código Postal",
+		"calle" => "Calle",
+		"numero" => "Número",
+		"local" => "Localidad",
+		"prov" => "Provincia",
+		"telefono" => "Teléfono",
+		"color_portada" => "Color portada",
+		"num_copias" => "Número de copias",
+		"resolucion" => "Resolución",
+		"frecep" => "Fecha de recepción",
+		"colorobn" => "Color o Blanco y negro",
+		"nombre" => "Nombre"
+		);
 
-	$pos = strpos($clave, "#");
-	if($pos!=false){
-		$vocal = substr($clave, $pos, 2);
-		switch ($vocal) {
-			case '#a':
-				$clave = str_replace("#a", "á", $clave);
-				break;
-			case '#e':
-				$clave = str_replace("#e", "é", $clave);
-				break;
-			case '#i':
-				$clave = str_replace("#i", "í", $clave);
-				break;
-			case '#o':
-				$clave = str_replace("#o", "ó", $clave);
-				break;
-			case '#u':
-				$clave = str_replace("#u", "ú", $clave);
-				break;			
-			default:
-				break;
+	foreach ($clav as $key => $value) {
+		if($clave==$key){
+			$clave = $value;
 		}
 	}
 }

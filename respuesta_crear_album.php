@@ -1,3 +1,5 @@
+<title>Pictures & Images - Crear Álbum</title>
+
 <?php
 	require_once("head.php");
 	require_once("header.php");
@@ -30,7 +32,8 @@ $completo = True;
 arribaTabla;
 
 			foreach ($_POST as $key => $value) {
-				$clave = cambiarClave($key);
+				$clave = $key;
+				cambiarClave($clave);
 				if($value == ""){
 					echo"<tr><td>$key:</td><td><i>No hay datos</i></td></tr>";
 				}
@@ -53,24 +56,44 @@ bajoTabla;
 	}
 
 function cambiarClave(&$clave){
-	var $clav = array(
+	$clav = array(
 		"album" => "Álbum",
 		"autor" => "Autor",
 		"date1" => "Desde",
 		"date2" => "Hasta",
 		"titulo" => "Título",
 		"desc" => "Descripción",
-		"palClave" => "Palabra Clave",
+		"palClave" => "Palabra clave",
 		"passw1" => "Contraseña",
 		"pass" => "Contraseña",
 		"sexo" => "Sexo",
-		"fNac" => "Fecha de Nacimiento",
-		"cRes" => "Ciudad de Residencia",
+		"fNac" => "Fecha de nacimiento",
+		"cRes" => "Ciudad de residencia",
 		"pais" => "País",
 		"local" => "Localidad",
-		
+		"pRes" => "País de residencia",
+		"usuario" => "Usuario",
+		"email" => "Email",
+		"texto_adicional" => "Texto adicional",
+		"cp" => "Código Postal",
+		"calle" => "Calle",
+		"numero" => "Número",
+		"local" => "Localidad",
+		"prov" => "Provincia",
+		"telefono" => "Teléfono",
+		"color_portada" => "Color portada",
+		"num_copias" => "Número de copias",
+		"resolucion" => "Resolución",
+		"frecep" => "Fecha de recepción",
+		"colorobn" => "Color o Blanco y negro",
+		"nombre" => "Nombre"
 		);
 
+	foreach ($clav as $key => $value) {
+		if($clave==$key){
+			$clave = $value;
+		}
+	}
 }
 
 ?>

@@ -1,12 +1,33 @@
+<title>Pictures & Images - Detalle de foto</title>
 <?php
 	require_once("head.php");
 	require_once("header.php");
 ?>
 <?php
 
-if(!empty($_GET["id"])){
-	$imagenAColocar = EsParOImpar($_GET["id"]);
-	mostrarDetalleFoto($_GET["id"], $imagenAColocar);
+if(isset($_GET["id"])){
+	if(!is_numeric($_GET["id"])){
+
+			echo<<<modalDetalle
+
+			<button type="button" onclick="cerrarMensajeModal();">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-registro">
+					<h2>Error 404</h2>
+				</span>
+					<p>Esta página de foto no existe</p>
+					<button type="button" onclick="cerrarMensajeModal();">Cerrar</button>
+				</div>
+			</div>
+
+modalDetalle;
+
+	}else{
+		$imagenAColocar = EsParOImpar($_GET["id"]);
+		mostrarDetalleFoto($_GET["id"], $imagenAColocar);
+	}
 }
 
 function EsParOImpar($id){

@@ -1,3 +1,5 @@
+<title>Pictures & Images - Crear Álbum</title>
+
 <?php
 	require_once("head.php");
 	require_once("header.php");
@@ -13,11 +15,11 @@
 
 					<p>
 						<label for="titulo">Titulo:</label>
-						<input type="text" required name="t#itulo" id="titulo"/>
+						<input type="text" required name="titulo" id="titulo"/>
 					</p>
 					<p>
 						<label for="desc">Descripción:</label>
-						<textarea name="descripci#on" id="desc" placeholder="Descripción del álbum o dedicatoria" rows="10" cols="50" maxlength="4000" title="Tope de caracteres o letras: 4000"></textarea>
+						<textarea name="desc" id="desc" placeholder="Descripción del álbum o dedicatoria" rows="10" cols="50" maxlength="4000" title="Tope de caracteres o letras: 4000"></textarea>
 					</p>
 					<p>
 						<button type="submit">Crear</button>
