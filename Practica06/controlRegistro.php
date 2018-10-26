@@ -1,4 +1,3 @@
-<title>Pictures & Images - Control Registro</title>
 
 <?php
 	require_once("head.php");
@@ -6,21 +5,23 @@
 ?>
 
 <?php
-$completo = True;
+
+	$hayPost = false;
 	
 	foreach ($_POST as $value){
-		if(!isset($value)){
-			$completo=false;
+		if(isset($value)){
+			$hayPost=true;
 		}
 	}
 
-	if($completo==true){
+	if($hayPost==true){	
 
 		if($_POST["passw1"] != $_POST["passw2"]){
 			$host = $_SERVER['HTTP_HOST']; 
 			$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
 			$extra = 'formulario_registro.php';
 			header("Location: http://$host$uri/$extra?er=300");
+
 		}else{
 
 			echo<<<arribaTabla
@@ -65,9 +66,26 @@ bajotabla;
 		}
 
 	}
+	else{
+		echo<<<modalControlRegistro
+
+			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-control-registro">
+					<h2>Error</h2>
+				</span>
+					<p>No has enviado los datos para registrarte</p>
+					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
+				</div>
+			</div>
+
+modalControlRegistro;
+	}
 
 function cambiarClave(&$clave){
-	$clav = array(
+	$clavesNombre = array(
 		"album" => "Álbum",
 		"autor" => "Autor",
 		"date1" => "Desde",
@@ -100,7 +118,7 @@ function cambiarClave(&$clave){
 		"nombre" => "Nombre"
 		);
 
-	foreach ($clav as $key => $value) {
+	foreach ($clavesNombre as $key => $value) {
 		if($clave==$key){
 			$clave = $value;
 		}

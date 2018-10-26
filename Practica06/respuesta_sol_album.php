@@ -1,4 +1,3 @@
-<title>Pictures & Images - Solicitar Álbum</title>
 
 <?php
 	require_once("head.php");
@@ -7,15 +6,17 @@
 		
 	<?php
 
-	$completo = True;
+	$hayPost = false;
 	
 	foreach ($_POST as $value){
-		if(!isset($value)){
-			$completo=false;
+		if(isset($value)){
+			$hayPost=true;
 		}
 	}
-		if($completo==true){			
-					/*Valores ficticios de las paginas y las fotos totales del album elegido por el usuario*/
+		if($hayPost==true){	
+
+			/*Valores ficticios de las paginas y las fotos totales del album elegido por el usuario*/
+
 			$numPag = 15;
 			$totalFotosAlbum = 30;
 
@@ -27,8 +28,8 @@
 		<section>
 
 
-				<h3>Solicitud de álbum realizada</h3>
-				<p>Has realizado el pedido del álbum correctamente. Recibirás tu álbum en la fecha indicada. El precio total del álbum es de: <br><span>$precio €</span></p>
+			<h3>Solicitud de álbum realizada</h3>
+			<p>Has realizado el pedido del álbum correctamente. Recibirás tu álbum en la fecha indicada. El precio total del álbum es de: <br><span>$precio €</span></p>
 			
 			<div class="contTabla">
 
@@ -62,9 +63,26 @@ arribaTabla;
 bajoTabla;
 
 		}
+		else{
+			echo<<<modalRespSolAlbum
+
+			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-respuesta-sol-album">
+					<h2>Error</h2>
+				</span>
+					<p>No has solicitado ningún álbum</p>
+					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
+				</div>
+			</div>
+
+modalRespSolAlbum;
+		}
 
 function cambiarClave(&$clave){
-	$clav = array(
+	$clavesNombre = array(
 		"album" => "Álbum",
 		"autor" => "Autor",
 		"date1" => "Desde",
@@ -97,7 +115,7 @@ function cambiarClave(&$clave){
 		"nombre" => "Nombre"
 		);
 
-	foreach ($clav as $key => $value) {
+	foreach ($clavesNombre as $key => $value) {
 		if($clave==$key){
 			$clave = $value;
 		}

@@ -1,4 +1,3 @@
-<title>Pictures & Images - Inicio</title>
 
 <?php
 	require_once("head.php");
@@ -9,7 +8,7 @@
 		<div id="formBusc">	
 			
 			<form id="buscTexto" action="resultado_busqueda.php" method="get" class="formulario">
-				<input type="search" name="palClav" id="buscRap" placeholder="Buscar...">
+				<input type="search" name="palClave" id="buscRap" placeholder="Buscar...">
 				<button type="submit"><span id="butBuscRap" class="icon-search"></span></button>
 			</form>
 

@@ -1,46 +1,72 @@
-<title>Pictures & Images - Resultados Búsqueda</title>
 
 <?php
 	require_once("head.php");
 	require_once("header.php");
-?>
-
-		<section id="resultados"> 
+?>	
 
 <?php
 
-				$completo = True;
-	
-				foreach ($_GET as $value){
-					if(!isset($value)){
-						$completo=false;
-					}
-				}
+		$hayGet = false;
+		$hayFiltros = false;
 
-				if($completo==true){
+		foreach ($_GET as $value){
+			if(isset($value)){
+				$hayGet=true;
+			}
+			if(!empty($value)){
+				$hayFiltros = true;
+			}
+		}
 
-					echo<<<filtros
+		if($hayGet==true){	
 
-					<h3>Filtros de la búsqueda:</h3> 
+			if($hayFiltros == true){
 
-					<div id="filtrosAplicados" class="mostrarDatos">
+				echo<<<filtros
+
+				<section id="resultados">
+
+				<h3>Filtros de la búsqueda:</h3> 
+
+				<div id="filtrosAplicados" class="mostrarDatos">
 				
 filtros;
 
 				foreach ($_GET as $key => $value) {
 					$clave = $key;
 					cambiarClave($clave);
-					if($value == ""){
-						echo"<p><b>$clave:</b><i>--</i></p>";
-					}
-					else{
+					if($value != ""){
 						echo"<p><b>$clave:</b> $value</p>";
 					}
 				}
 
-					echo "</div>";
+				echo "</div>";
+				mostrarResultBusq();
 
-				}
+		}
+		
+		else{
+
+			echo<<<noHayResultBusq
+
+				<section id="resultados">
+				<p><b>No hay resultados</b></p>
+				</section>
+
+noHayResultBusq;
+
+		}
+	}
+		else{
+
+			echo<<<noHayResultBusq
+
+				<section id="resultados">
+				<p><b>No hay resultados</b></p>
+				</section>
+
+noHayResultBusq;
+			}
 
 function cambiarClave(&$clave){
 	$clav = array(
@@ -77,13 +103,16 @@ function cambiarClave(&$clave){
 		);
 
 	foreach ($clav as $key => $value) {
-		if($clave==$key){
+		if($clave == $key){
 			$clave = $value;
+			break;
 		}
 	}
 }
 
-?>
+function mostrarResultBusq(){
+
+	echo <<<resultadoBusqueda
 
 			<h3>Resultados de la búsqueda:</h3>
 			<a href="formulario_busqueda.php" title="Realizar otra búsqueda"><span class="icon-search">Buscar de nuevo</span></a>
@@ -131,6 +160,13 @@ function cambiarClave(&$clave){
 				<span class="icon-to-end" title="Últimas 5 imágenes"></span>
 			</div>
 		</div>
+}
+
+resultadoBusqueda;
+
+}
+
+?>
 
 <?php
 	require_once("footer.php");

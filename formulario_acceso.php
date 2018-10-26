@@ -1,4 +1,3 @@
-<title>Pictures & Images - Formulario Acceso</title>
 
 <?php
 	require_once("head.php");
@@ -7,7 +6,7 @@
 
 	<?php
 		if(isset($_GET["er"])){
-			$error = $_GET["er"];
+			
 			echo<<<modalAcceso
 
 			<button type="button" onclick="cerrarMensajeModal();">X</button>
@@ -15,10 +14,10 @@
 				<div class="contenido">
 				<span>
 					<img src="./img/error.png" alt="error-login">
-					<h2>Error $error</h2>
+					<h2>Error</h2>
 				</span>
 					<p>¡El usuario o la contraseña no existen!</p>
-					<button type="button" onclick="cerrarMensajeModal();">Cerrar</button>
+					<button type="button" onclick="cerrarMensajeModal(1);">Cerrar</button>
 				</div>
 			</div>
 

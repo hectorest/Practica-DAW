@@ -1,4 +1,4 @@
-<title>Pictures & Images - Detalle de foto</title>
+
 <?php
 	require_once("head.php");
 	require_once("header.php");
@@ -14,8 +14,8 @@ if(isset($_GET["id"])){
 			<div class="modal">
 				<div class="contenido">
 				<span>
-					<img src="./img/error.png" alt="error-registro">
-					<h2>Error 404</h2>
+					<img src="./img/error.png" alt="error-detalle-foto">
+					<h2>Error</h2>
 				</span>
 					<p>Esta página de foto no existe</p>
 					<button type="button" onclick="cerrarMensajeModal();">Cerrar</button>

@@ -1,4 +1,3 @@
-<title>Pictures & Images - Control Acceso</title>
 
 <?php
 	
@@ -20,7 +19,7 @@
 			}
 		}
 		$host = $_SERVER['HTTP_HOST']; 
-		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
+		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\'); 
 		if($existe == true){
 			$extra = 'index.php';
 			header("Location: http://$host$uri/$extra"); 

@@ -1,4 +1,3 @@
-<title>Pictures & Images - Acerca</title>
 
 <?php
 	require_once("head.php");

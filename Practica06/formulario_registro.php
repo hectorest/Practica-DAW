@@ -1,4 +1,3 @@
-<title>Pictures & Images - Formulario Registro</title>
 
 <?php
 	require_once("head.php");
@@ -10,7 +9,7 @@
 			$error = $_GET["er"];
 			echo<<<modalRegistro
 
-			<button type="button" onclick="cerrarMensajeModal();">X</button>
+			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
 			<div class="modal">
 				<div class="contenido">
 				<span>
@@ -18,7 +17,7 @@
 					<h2>Error $error</h2>
 				</span>
 					<p>¡Las contraseñas no coinciden!</p>
-					<button type="button" onclick="cerrarMensajeModal();">Cerrar</button>
+					<button type="button" onclick="cerrarMensajeModal(1);">Cerrar</button>
 				</div>
 			</div>
 

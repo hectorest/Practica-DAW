@@ -1,4 +1,3 @@
-<title>Pictures & Images - Perfil</title>
 
 <?php
 	require_once("head.php");

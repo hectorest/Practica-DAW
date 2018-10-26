@@ -1,4 +1,3 @@
-<title>Pictures & Images - Búsqueda</title>
 
 <?php
 	require_once("head.php");

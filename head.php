@@ -1,9 +1,60 @@
 <?php
+
+extraerUrl();
+
+function extraerUrl(){
+	$urlRel = $_SERVER['REQUEST_URI'];
+	$pagArray = explode("/", $urlRel);
+	$pag = (string) $pagArray[sizeof($pagArray) - 1];
+	$pagSinParams = explode("?", $pag);
+	if(!empty($pagSinParams)){
+		$pag = $pagSinParams[0];
+	}
+	obtenerTitle($pag);
+}
+
+function obtenerTitle(&$pagina){
+	$title;
+	$hayTitle = false;
+	$paginasWeb = array(
+		"index.php" => "Inicio",
+		"acerca.php" => "Acerca",
+		"controlRegistro.php" => "Registrarse",
+		"crearAlbum.php" => "Crear Álbum",
+		"respuesta_crear_album.php" => "Crear Álbum",
+		"solicitar_album.php" => "Solicitar Álbum",
+		"respuesta_sol_album.php" => "Solicitar Álbum",
+		"formulario_busqueda.php" => "Búsqueda",
+		"resultado_busqueda.php" => "Resultados de la Búsqueda",
+		"formulario_registro.php" => "Registrarse",
+		"formulario_acceso.php" => "Iniciar Sesión",
+		"detalle_foto.php" => "Detalle de Foto",
+		"perfil.php" => "Perfil",
+		"perfil2.php" => "Perfil"
+	);
+
+	foreach ($paginasWeb as $key => $value) {
+		if($pagina == $key){
+			$title = "Pictures & Images - $value";
+			$hayTitle = true;
+			break;
+		}
+	}
+
+	if ($hayTitle == false){
+		$title = "Pictures & Images";
+	}
+
+	escribirHead($title);
+}
+
+function escribirHead(&$title){
 echo <<<cabecera
 <!DOCTYPE html> 
 <html lang="es"> 
 <!-- La cabecera --> 
-<head> 
+<head>
+	<title>$title</title>
 	<meta charset="utf-8" /> 
 	<meta name="generator" content="Bloc de notas" /> 
 	<meta name="author" content="Hector Esteve Yagüe & Fco. Javier García Fernández" /> 
@@ -19,4 +70,6 @@ echo <<<cabecera
 	<script type="text/javascript" src="script.js"></script>
 </head> 
 cabecera;
+}
+
 ?>
