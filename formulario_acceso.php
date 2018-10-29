@@ -9,7 +9,7 @@
 			
 			echo<<<modalAcceso
 
-			<button type="button" onclick="cerrarMensajeModal();">X</button>
+			<button type="button" onclick="cerrarMensajeModal(1);">X</button>
 			<div class="modal">
 				<div class="contenido">
 				<span>

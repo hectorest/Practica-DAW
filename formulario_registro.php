@@ -9,7 +9,7 @@
 			$error = $_GET["er"];
 			echo<<<modalRegistro
 
-			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+			<button type="button" onclick="cerrarMensajeModal(1);">X</button>
 			<div class="modal">
 				<div class="contenido">
 				<span>

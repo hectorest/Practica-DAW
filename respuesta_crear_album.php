@@ -1,4 +1,3 @@
-<title>Pictures & Images - Crear Álbum</title>
 
 <?php
 	require_once("head.php");
@@ -6,15 +5,16 @@
 ?>
 
 <?php
-$completo = True;
+
+	$hayPost = false;
 	
 	foreach ($_POST as $value){
-		if(!isset($value)){
-			$completo=false;
+		if(isset($value)){
+			$hayPost=true;
 		}
 	}
 
-	if($completo==true){
+	if($hayPost==true){
 
 		echo<<<arribaTabla
 
@@ -53,6 +53,23 @@ arribaTabla;
 		</section>
 bajoTabla;
 
+	}
+	else{
+		echo<<<modalCrearAlbum
+
+			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-control-registro">
+					<h2>Error</h2>
+				</span>
+					<p>No has enviado los datos para crear un álbum</p>
+					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
+				</div>
+			</div>
+
+modalCrearAlbum;
 	}
 
 function cambiarClave(&$clave){

@@ -11,7 +11,7 @@ function cerrarMensajeModal(param){
 		var arrayUrl = url.split("?");
 		url = arrayUrl[0];
 		url.toString();
-		url = "./" + url + "#";
+		url = url + "#";
 		location.href = url;
 	}
 	else{

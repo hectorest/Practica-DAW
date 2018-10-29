@@ -1,4 +1,3 @@
-<title>Pictures & Images - Crear Álbum</title>
 
 <?php
 	require_once("head.php");

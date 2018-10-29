@@ -50,7 +50,8 @@ filtros;
 			echo<<<noHayResultBusq
 
 				<section id="resultados">
-				<p><b>No hay resultados</b></p>
+					<br><a href="formulario_busqueda.php" title="Realizar otra búsqueda"><span class="icon-search">Buscar de nuevo</span></a><br>
+					<p><b>No hay resultados</b></p>
 				</section>
 
 noHayResultBusq;
@@ -59,13 +60,14 @@ noHayResultBusq;
 	}
 		else{
 
-			echo<<<noHayResultBusq
+			echo<<<noHaBuscado
 
 				<section id="resultados">
-				<p><b>No hay resultados</b></p>
+					<br><a href="formulario_busqueda.php" title="Realizar otra búsqueda"><span class="icon-search">Buscar de nuevo</span></a><br>
+					<p><b>No hay resultados</b></p>
 				</section>
 
-noHayResultBusq;
+noHaBuscado;
 			}
 
 function cambiarClave(&$clave){

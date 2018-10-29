@@ -10,7 +10,7 @@ if(isset($_GET["id"])){
 
 			echo<<<modalDetalle
 
-			<button type="button" onclick="cerrarMensajeModal();">X</button>
+			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
 			<div class="modal">
 				<div class="contenido">
 				<span>
@@ -18,7 +18,7 @@ if(isset($_GET["id"])){
 					<h2>Error</h2>
 				</span>
 					<p>Esta página de foto no existe</p>
-					<button type="button" onclick="cerrarMensajeModal();">Cerrar</button>
+					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
 				</div>
 			</div>
 
