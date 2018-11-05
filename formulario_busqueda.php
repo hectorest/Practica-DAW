@@ -1,7 +1,15 @@
 
 <?php
+
+	session_start();
 	require_once("head.php");
 	require_once("header.php");
+	if(isset($_SESSION["usuarioRec"])){
+		require_once("barraNavSesionIniciada.php");
+	}
+	else{
+		require_once("barraNavSesionNoIniciada.php");
+	}
 ?>
 		<form action="resultado_busqueda.php" method="get"  class="formulario" id="formBuscAvanz">
 

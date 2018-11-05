@@ -20,6 +20,9 @@ function cerrarMensajeModal(param){
 	else if (param == 4){
 		location.href = "./perfil.php";
 	}
+	else if (param == 5){
+		location.href = "./formulario_acceso.php";
+	}
 	else{
 		location.href = "./index.php";
 	}

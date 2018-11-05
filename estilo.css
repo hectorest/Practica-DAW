@@ -494,7 +494,7 @@ body{
 	cursor: pointer;
 	font-size: 20px;
 	height: 2em;
-	width: 4em;
+	/*width: 4em;*/
 	background-color: #E7C49F;
 	border: 0.2em solid #D67731;
 	border-radius: 1em;
