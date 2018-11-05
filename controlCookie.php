@@ -1,14 +1,14 @@
 <?php
 
 	$usuariosReg = array(
-		"pepe1" => "11111111",
+		"pepee1" => "11111111",
 		"manolo2" => "22222222",
 		"sergio3" => "33333333",
-		"juan4" => "44444444",
-		"luis5" => "55555555");
+		"juaan4" => "44444444",
+		"luiis5" => "55555555");
 
-	if(isset($COOKIE["usuarioRec"], $COOKIE["passUsuarioRec"])){
-		comprobarCookie($COOKIE["usuarioRec"], $COOKIE["passUsuarioRec"]);
+	if(isset($_COOKIE["usuarioRec"], $_COOKIE["passUsuarioRec"])){
+		comprobarCookie($_COOKIE["usuarioRec"], $_COOKIE["passUsuarioRec"]);
 	}
 
 	function comprobarCookie(&$usu, &$pass){
@@ -19,10 +19,11 @@
 				break;
 			}
 		}
-		$_SESSION["usuarioRec"] = $_COOKIE["usuarioRec"];
 		$host = $_SERVER['HTTP_HOST']; 
 		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\'); 
 		if($existe == true){
+			$_SESSION["usuarioRec"] = $_COOKIE["usuarioRec"];
+			$_SESSION["permisos"] = true;
 			$extra = 'bienvenido.php?existe=true';
 			header("Location: http://$host$uri/$extra");
 		}

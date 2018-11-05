@@ -2,24 +2,32 @@
 	
 	require_once("head.php");
 
-	//Sin acabar, no se como enviarle la fecha anterior guardada ya que no puedo usar $GLOBALS para recuperarla
-	$ultimaVisita = "Ahora";
 	$nomUsu = $_COOKIE["usuarioRec"];
-	$dateUlt = $GLOBALS["ultimaVisita"];
+	$ultimaVisita;
+
+	
+
+	if(isset($_COOKIE["ultimaVisita"])){
+		$GLOBALS["ultimaVisita"] = $_COOKIE["ultimaVisita"];
+	}
+
 
 	if(!empty($_GET["existe"])){
-		darBienvenida($nomUsu, $dateUlt, $_GET["existe"]);
+		darBienvenida($nomUsu, $ultimaVisita, $_GET["existe"]);
 	}
 
 	function darBienvenida(&$usu, &$date, &$succes){
 		
 		if($succes == true){
 			mostrarMensBienv($usu, $date);
+			setcookie("ultimaVisita", date("c"), time() + 90 * 24 * 60 * 60);
 			$_COOKIE["ultimaVisita"] = date("c");
 		}
 		else{
 			mostrarMensErrorBienv();
 			$_COOKIE["ultimaVisita"] = "";
+			setcookie("visitaAnterior", "", time() + 90 * 24 * 60 * 60);
+			$_COOKIE["visitaAnterior"] = "";
 		}
 	
 

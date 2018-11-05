@@ -3,11 +3,11 @@
 
 	/*Array de usuarios registrados provisionales*/
 	$usuariosReg = array(
-		"pepe1" => "11111111",
+		"pepee1" => "11111111",
 		"manolo2" => "22222222",
 		"sergio3" => "33333333",
-		"juan4" => "44444444",
-		"luis5" => "55555555");
+		"juaan4" => "44444444",
+		"luiis5" => "55555555");
 
 	$hayCookie = false;
 
@@ -53,12 +53,13 @@
 		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\'); 
 		if($existe == true){
 
-			$_SESSION["usuarioRec"] = true;
+			$_SESSION["usuarioRec"] = $_COOKIE["usuarioRec"];
 
 			if($GLOBALS["hayCookie"]){
 				
 				setcookie("usuarioRec", $usu, time() + 90 * 24 * 60 * 60);
 				setcookie("passUsuarioRec", $pass, time() + 90 * 24 * 60 * 60);
+				setcookie("permisos", true, time() + 90 * 24 * 60 * 60);
 				setcookie("ultimaVisita", date("c"), time() + 90 * 24 * 60 * 60);
 
 				$_COOKIE["usuarioRec"] = $usu;
@@ -75,7 +76,7 @@
 
 				*/
 				
-				$extra = "bienvenido.php?existe=true&date={$GLOBALS["ultimaVisita"]}";
+				$extra = "bienvenido.php?existe=true";
 				header("Location: http://$host$uri/$extra");
 				
 			}
