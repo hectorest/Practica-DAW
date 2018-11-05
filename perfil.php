@@ -1,7 +1,14 @@
 
 <?php
+	require_once("controlLogin.php");
 	require_once("head.php");
 	require_once("header.php");
+	if(isset($_SESSION["usuarioRec"])){
+		require_once("barraNavSesionIniciada.php");
+	}
+	else{
+		require_once("barraNavSesionNoIniciada.php");
+	}
 ?>
 
 		<section>

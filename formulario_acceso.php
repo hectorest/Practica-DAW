@@ -1,7 +1,15 @@
 
 <?php
+
+	session_start();
 	require_once("head.php");
 	require_once("header.php");
+	if(isset($_SESSION["usuarioRec"])){
+		require_once("barraNavSesionIniciada.php");
+	}
+	else{
+		require_once("barraNavSesionNoIniciada.php");
+	}
 ?>
 
 	<?php
@@ -23,6 +31,11 @@
 
 modalAcceso;
 		}
+
+		if(isset($_SESSION["usuarioRec"])){
+			echo "<p>Ya has iniciado sesión previamente. Tu nombre es: {$_SESSION['usuarioRec']} </p>";
+		}
+		else {
 	?>
 		<form action="controlLogin.php" method="post" class="formulario" id="formAcc">
 
@@ -41,6 +54,10 @@ modalAcceso;
 				<input type="password" minlength="8" maxlength="16" required name="pass" id="passw"/>
 			</p>
 			<p>
+				<input type="checkbox" name="recordarme" id="recordarme"/>
+				<label for="recordarme">Recordarme</label>
+			</p>
+			<p>
 				<button type="submit">Entrar</button> <!--En realidad, el boton submit, una vez pulsado, redirigira, si todos los datos son correctos, a la pagina de respuesta de la solicitud de album-->
 			</p>
 			<a href="formulario_registro.php"><span class="icon-user-plus">¿Aún no tienes una cuenta? Regístrate</span></a>
@@ -49,6 +66,9 @@ modalAcceso;
 
 		</form>
 
+	<?php  
+		}
+	?>
 <?php
 	require_once("footer.php");
 ?>
