@@ -2,6 +2,7 @@
 
 session_start();
 
+/*Array que contiene los estilos de los usuarios por defecto, de manera provisional*/
 $estilosUsuarios = array(
 		"1" => "normal",
 		"2" => "accesible",
@@ -27,7 +28,7 @@ if(isset($_SESSION["usuarioLog"])){
 		$estiloCss = '<link rel="stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
 		$estiloCssAlt = '<link rel="alternate stylesheet" title="Normal" type="text/css" href="estilo.css" />';
 	}
-	
+
 }
 else{
 	$estiloCss = '<link rel="stylesheet" title="Normal" type="text/css" href="estilo.css" />';
