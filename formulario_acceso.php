@@ -1,7 +1,6 @@
 
 <?php
 
-	session_start();
 	require_once("head.php");
 	require_once("header.php");
 	if(isset($_COOKIE["idUsuario"])){
@@ -77,9 +76,9 @@ modalAcceso;
 				<label for="passw">Contraseña:</label>
 				<input type="password" minlength="8" maxlength="16" required name="pass" id="passw"/>
 			</p>
-			<p>
+			<p id="pCasillaRecordarme">
 				<input type="checkbox" name="recordarme" id="recordarme"/>
-				<label for="recordarme">Recordarme</label>
+				<label for="recordarme">Recordarme en este equipo</label>
 			</p>
 			<p>
 				<button type="submit">Entrar</button> <!--En realidad, el boton submit, una vez pulsado, redirigira, si todos los datos son correctos, a la pagina de respuesta de la solicitud de album-->

@@ -23,7 +23,7 @@
 	}
 
 	function darBienvenida(&$idUsu, &$date, &$succes){
-		echo "$date";
+		
 		if($succes == true){
 
 			$nomUsu;

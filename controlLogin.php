@@ -22,31 +22,23 @@
 	$ultimaVisita = "Ahora";
 	$hayCookie = false;
 	
-	
 	if(isset($_COOKIE["idUsuario"])){
-		echo "HOLA";
 		hacerLoginCookie($_COOKIE["idUsuario"]);
 	}
-
-	if(isset($_POST["recordarme"])){
-
-		$hayCookie = true;
-
-		if(isset($_COOKIE["ultimaVisita"])){
-			$GLOBALS["ultimaVisita"] = $_COOKIE["ultimaVisita"];
-		}
-		else{
-			
+	else{
+		
+		if(isset($_POST["recordarme"])){
+			$hayCookie = true;
 			if(isset($_POST["login"], $_POST["pass"])){
 				hacerLogin($_POST["login"], $_POST["pass"]);
 			}
+		}
+		else{
+			if(isset($_POST["login"], $_POST["pass"])){
+				hacerLogin($_POST["login"], $_POST["pass"]);
+			}
+		}
 
-		}
-	}
-	else{
-		if(isset($_POST["login"], $_POST["pass"])){
-			hacerLogin($_POST["login"], $_POST["pass"]);
-		}
 	}
 	
 	/*Funcion que realiza la comprobacion del login*/
@@ -58,6 +50,10 @@
 				break;
 			}
 		}
+
+		$host = $_SERVER['HTTP_HOST']; 
+		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+		 
 		if($existe == true){
 			$idUsu;
 			foreach ($GLOBALS["identUsuariosReg"] as $key => $value) {
@@ -69,9 +65,6 @@
 
 			$_SESSION["usuarioLog"] = $idUsu;
 
-			$host = $_SERVER['HTTP_HOST']; 
-			$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\'); 
-
 			if($GLOBALS["hayCookie"]){
 				setcookie("idUsuario", $idUsu, time() + 90 * 24 * 60 * 60);
 				setcookie("ultimaVisita", date("c"), time() + 90 * 24 * 60 * 60);
@@ -81,7 +74,6 @@
 
 				$extra = 'index.php';
 				header("Location: http://$host$uri/$extra");
-				
 			}
 			else{
 				$extra = 'index.php';
@@ -90,8 +82,10 @@
 
 		}
 		else{
+
 			$extra = 'formulario_acceso.php';
 			header("Location: http://$host$uri/$extra?er=404");
+
 		}
 	}
 

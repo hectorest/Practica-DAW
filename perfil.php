@@ -1,15 +1,32 @@
 
 <?php
 
-	session_start();
+	function mostrarErrorPerfilSinIniciarSesion(){
+		echo<<<modalPerfil
+
+					<button type="button" onclick="cerrarMensajeModal(5);">X</button>
+					<div class="modal">
+						<div class="contenido">
+						<span>
+							<img src="./img/error.png" alt="error-detalle-foto">
+							<h2>Error</h2>
+						</span>
+							<p>No puedes acceder a tu perfil sin haber iniciado sesión previamente</p>
+							<button type="button" onclick="cerrarMensajeModal(5);">Aceptar</button>
+						</div>
+					</div>
+
+modalPerfil;
+	}
+
 	require_once("head.php");
 	require_once("header.php");
-	if(isset($_SESSION["usuarioLog"])){
-		require_once("barraNavSesionIniciada.php");
+	if(!isset($_SESSION["usuarioLog"])){
+		require_once("barraNavSesionNoIniciada.php");
+		mostrarErrorPerfilSinIniciarSesion();
 	}
 	else{
-		require_once("barraNavSesionNoIniciada.php");
-	}
+		require_once("barraNavSesionIniciada.php");
 ?>
 
 		<section>
@@ -73,6 +90,13 @@
 			</div>
 
 		</section>
+
+	<?php 
+
+		}
+
+	?>
+
 <?php
 	require_once("footer.php");
 ?>

@@ -795,6 +795,18 @@ body>.formulario{
 					align-self: center;
 				}
 
+		body>.formulario>fieldset>#pCasillaRecordarme{
+			justify-content: center;
+		}
+
+			body>.formulario>fieldset>#pCasillaRecordarme>input{
+				width: 3em;
+			}
+
+			body>.formulario>fieldset>#pCasillaRecordarme>label{
+				width: 10em;
+			}
+
 /*FOTO PERFIL*/
 
 	body>section>img{
@@ -859,6 +871,17 @@ body>.formulario{
 		overflow-x:auto;
 	}
 
+		body>section>.contTabla + div>h3{
+			background-color: #3B3733;
+			padding: 0.2em;
+			border: 0.3em solid #000000;
+			border-width: 5px;
+			border-radius: 15px;
+			display: flex;
+			justify-content: center;
+			color: #ffffff;
+		}
+
 /*ENLACES*/
 	
 	body>section>.enlPerf{
@@ -909,14 +932,7 @@ body>.formulario{
 
 		body>#detFoto>h3{
 
-			background-color: #3B3733;
-			padding: 0.2em;
-			border: 0.3em solid #000000;
-			border-width: 5px;
-			border-radius: 15px;
-			display: flex;
-			justify-content: center;
-			color: #ffffff;
+			
 
 		}
 

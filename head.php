@@ -1,5 +1,39 @@
 <?php
 
+session_start();
+
+$estilosUsuarios = array(
+		"1" => "normal",
+		"2" => "accesible",
+		"3" => "normal",
+		"4" => "accesible",
+		"5" => "normal");
+
+if(isset($_SESSION["usuarioLog"])){
+
+	$estiloUsu;
+	foreach ($GLOBALS["estilosUsuarios"] as $key => $value) {
+		if($key == $_SESSION["usuarioLog"]){
+			$estiloUsu = $value;
+			break;
+		}
+	}
+
+	if($estiloUsu == "normal"){
+		$estiloCss = '<link rel="stylesheet" title="Normal" type="text/css" href="estilo.css" />';
+		$estiloCssAlt = '<link rel="alternate stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
+	}
+	else{
+		$estiloCss = '<link rel="stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
+		$estiloCssAlt = '<link rel="alternate stylesheet" title="Normal" type="text/css" href="estilo.css" />';
+	}
+	
+}
+else{
+	$estiloCss = '<link rel="stylesheet" title="Normal" type="text/css" href="estilo.css" />';
+	$estiloCssAlt = '<link rel="alternate stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
+}
+
 extraerUrl();
 
 function extraerUrl(){
@@ -63,8 +97,8 @@ echo <<<cabecera
 	<link rel="shortcut icon" type="image/x-icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
 	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
 	<link rel="stylesheet" type="text/css" href="fontello/css/fontello.css"/>
-	<link rel="stylesheet" title="Normal" type="text/css" href="estilo.css" />
-	<link rel="alternate stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />
+	{$GLOBALS['estiloCss']}
+	{$GLOBALS['estiloCssAlt']}
 	<link rel="stylesheet" type="text/css" media="print" href="print.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1"/> 
 	<script type="text/javascript" src="script.js"></script>

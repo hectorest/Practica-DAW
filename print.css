@@ -453,9 +453,14 @@ body>.formulario{
 
 			}
 
-			body>.formulario>fieldset>p{
-				display: flex;
+			body>.formulario>fieldset>#pCasillaRecordarme>input{
+				width: 0.5cm;
 			}
+
+			body>.formulario>fieldset>#pCasillaRecordarme>label{
+				width: 5cm;
+			}
+
 
 /*FOTO PERFIL*/
 
@@ -514,6 +519,12 @@ body>.formulario{
 		body>section>.contTabla{
 			overflow-x:auto;
 		}
+
+			body>section>.contTabla + div>h3{
+				background-color: transparent;
+				border: 0;
+				color: #000000;
+			}
 
 		body>section>#inicioResSolAlbum{
 			display: none;

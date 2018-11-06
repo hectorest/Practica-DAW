@@ -10,6 +10,10 @@
  		if(isset($_COOKIE["idUsuario"])) { 
    			setcookie("idUsuario", '', time() - 42000);
    			setcookie("ultimaVisita", '', time() - 42000);
+ 		}
+
+ 		if(isset($_COOKIE["estilo"])){
+ 			setcookie("estilo", "", time() - 42000);
  		} 
  
  		// Finalmente, destruye la sesión 

@@ -4,10 +4,26 @@
 	require_once("header.php");
 	if(isset($_SESSION["usuarioLog"])){
 		require_once("barraNavSesionIniciada.php");
+
+		$identUsuariosReg = array(
+				"1" => "pepee1",
+				"2" => "manolo2",
+				"3" => "sergio3",
+				"4" => "juaan4",
+				"5" => "luiis5");
+
+			$nomUsu;
+			foreach ($GLOBALS["identUsuariosReg"] as $key => $value) {
+				if($key == $_SESSION["usuarioLog"]){
+					$nomUsu = $value;
+					break;
+				}
+			}
+
+			echo "<p>Ya has iniciado sesión como $nomUsu. Si quieres crear una nueva cuenta debes cerrar sesión primero.</p>";
 	}
 	else{
 		require_once("barraNavSesionNoIniciada.php");
-	}
 ?>
 
 	<?php
@@ -123,6 +139,13 @@ modalRegistro;
 				<a href="formulario_acceso.php"><span class="icon-user">¿Ya tienes una cuenta? Inicia sesión</span></a>
 			</fieldset>
 		</form> 
+
+	<?php 
+
+		}
+
+	?>
+
 <?php
 	require_once("footer.php");
 ?>

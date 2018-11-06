@@ -554,6 +554,7 @@ body>nav + button:focus{
 	}
 
 }
+
 /*PAGINACION*/
 	
 
@@ -691,6 +692,18 @@ body>.formulario{
 					color: #000000;
 				}
 
+		body>.formulario>fieldset>#pCasillaRecordarme{
+			justify-content: center;
+		}
+
+			body>.formulario>fieldset>#pCasillaRecordarme>input{
+				width: 3em;
+			}
+
+			body>.formulario>fieldset>#pCasillaRecordarme>label{
+				width: 12em;
+			}
+
 		body>.formulario>fieldset>a{
 			text-decoration: none;
 			color: #000000;
@@ -742,10 +755,6 @@ body>.formulario{
 
 				align-self: center;
 
-			}
-
-			body>.formulario>fieldset>p{
-				display: flex;
 			}
 
 /*FOTO PERFIL*/
@@ -805,6 +814,17 @@ body>.formulario{
 	body>section>.contTabla{
 		overflow-x:auto;
 	}
+
+		body>section>.contTabla + div>h3{
+			background-color: #F3A269;
+			padding: 0.2em;
+			border: 0.3em solid #D67731;
+			border-width: 5px;
+			border-radius: 15px;
+			display: flex;
+			justify-content: center;
+			color: #394648;
+		}
 
 /*ENLACES*/
 	
