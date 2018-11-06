@@ -1,5 +1,7 @@
 
 <?php
+	
+	session_start();
 
 	/*Array de usuarios registrados provisionales*/
 	$usuariosReg = array(
@@ -9,32 +11,34 @@
 		"juaan4" => "44444444",
 		"luiis5" => "55555555");
 
-	$hayCookie = false;
+	/*Array de identificadores de los usuarios registrados*/
+	$identUsuariosReg = array(
+		"1" => "pepee1",
+		"2" => "manolo2",
+		"3" => "sergio3",
+		"4" => "juaan4",
+		"5" => "luiis5");
 
 	$ultimaVisita = "Ahora";
+	$hayCookie = false;
 	
 	if(isset($_POST["recordarme"])){
+
+		$hayCookie = true;
 
 		if(isset($_COOKIE["ultimaVisita"])){
 			$GLOBALS["ultimaVisita"] = $_COOKIE["ultimaVisita"];
 		}
 
-		$hayCookie = true;
-
-		session_start();
-		require_once("head.php");
-		if(isset($_COOKIE["ultimaVisita"], $_COOKIE["usuarioRec"], $_COOKIE["passUsuarioRec"])){
-			hacerLogin($_COOKIE["usuarioRec"], $_COOKIE["passUsuarioRec"]);
-		}
-		else{
+		if(!isset($_COOKIE["idUsuario"])){
+		
 			if(isset($_POST["login"], $_POST["pass"])){
 				hacerLogin($_POST["login"], $_POST["pass"]);
 			}
+
 		}
 	}
 	else{
-		session_start();
-		require_once("head.php");
 		if(isset($_POST["login"], $_POST["pass"])){
 			hacerLogin($_POST["login"], $_POST["pass"]);
 		}
@@ -53,36 +57,32 @@
 		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\'); 
 		if($existe == true){
 
-			$_SESSION["usuarioRec"] = $_COOKIE["usuarioRec"];
+			$idUsu;
+			foreach ($GLOBALS["identUsuariosReg"] as $key => $value) {
+				if($value == $usu){
+					$idUsu = $key;
+					break;
+				}
+			}
+
+			$_SESSION["usuarioLog"] = $idUsu;
 
 			if($GLOBALS["hayCookie"]){
-				
-				setcookie("usuarioRec", $usu, time() + 90 * 24 * 60 * 60);
-				setcookie("passUsuarioRec", $pass, time() + 90 * 24 * 60 * 60);
-				setcookie("permisos", true, time() + 90 * 24 * 60 * 60);
+
+				setcookie("idUsuario", $idUsu, time() + 90 * 24 * 60 * 60);
 				setcookie("ultimaVisita", date("c"), time() + 90 * 24 * 60 * 60);
 
-				$_COOKIE["usuarioRec"] = $usu;
-				$_COOKIE["passUsuarioRec"] = $pass;
+				$_COOKIE["idUsuario"] = $idUsu;
 				$_COOKIE["ultimaVisita"] = date("c");
-
-
-				/*
-
-					echo "<p>HAY COOKIE</p>\n";
-					echo "<p>{$_COOKIE["usuarioRec"]}</p>\n";
-					echo "<p>{$_COOKIE["passUsuarioRec"]}</p>\n";
-					echo "<p>{$_COOKIE["ultimaVisita"]}</p>\n";
-
-				*/
 				
 				$extra = "bienvenido.php?existe=true";
-				header("Location: http://$host$uri/$extra");
+				//header("Location: http://$host$uri/$extra");
 				
 			}
 			else{
+				
 				$extra = 'index.php';
-				header("Location: http://$host$uri/$extra");
+				//header("Location: http://$host$uri/$extra");
 			}
 
 		}

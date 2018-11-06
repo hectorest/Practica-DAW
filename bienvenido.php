@@ -2,32 +2,46 @@
 	
 	require_once("head.php");
 
-	$nomUsu = $_COOKIE["usuarioRec"];
+	$idUsu = $_COOKIE["idUsuario"];
 	$ultimaVisita;
+
+	$identUsuariosReg = array(
+		"1" => "pepee1",
+		"2" => "manolo2",
+		"3" => "sergio3",
+		"4" => "juaan4",
+		"5" => "luiis5");
+
+	if(isset($_COOKIE["ultimaVisita"])){
+		echo "{$_COOKIE["visitaAnterior"]}";
+		$GLOBALS["ultimaVisita"] = $_COOKIE["ultimaVisita"];
+		echo "$ultimaVisita";
+	}
 
 	
 
-	if(isset($_COOKIE["ultimaVisita"])){
-		$GLOBALS["ultimaVisita"] = $_COOKIE["ultimaVisita"];
-	}
-
-
 	if(!empty($_GET["existe"])){
-		darBienvenida($nomUsu, $ultimaVisita, $_GET["existe"]);
+		darBienvenida($idUsu, $ultimaVisita, $_GET["existe"]);
 	}
 
-	function darBienvenida(&$usu, &$date, &$succes){
-		
+	function darBienvenida(&$idUsu, &$date, &$succes){
+		echo "$date";
 		if($succes == true){
-			mostrarMensBienv($usu, $date);
+
+			$nomUsu;
+			foreach ($GLOBALS["identUsuariosReg"] as $key => $value) {
+				if($key == $idUsu){
+					$nomUsu = $value;
+					break;
+				}
+			}
+
+			mostrarMensBienv($nomUsu, $date);
 			setcookie("ultimaVisita", date("c"), time() + 90 * 24 * 60 * 60);
 			$_COOKIE["ultimaVisita"] = date("c");
 		}
 		else{
 			mostrarMensErrorBienv();
-			$_COOKIE["ultimaVisita"] = "";
-			setcookie("visitaAnterior", "", time() + 90 * 24 * 60 * 60);
-			$_COOKIE["visitaAnterior"] = "";
 		}
 	
 
@@ -50,13 +64,13 @@ RecuerdoInicSes;
 
 		function mostrarMensErrorBienv(){
 			echo <<<errorCookie
-			<button type="button" onclick="cerrarMensajeModal();">X</button>
+			<button type="button" onclick="cerrarMensajeModal(3);">X</button>
 			<div class="modal">
 				<div class="contenido">
 				<span>
 					<h2>El usuario almacenado no es válido o ha expirado</h2>
 				</span>
-					<button type="button" onclick="cerrarMensajeModal();">Aceptar</button>
+					<button type="button" onclick="cerrarMensajeModal(3);">Aceptar</button>
 				</div>
 			</div>
 errorCookie;

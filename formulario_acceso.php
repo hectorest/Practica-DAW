@@ -4,7 +4,12 @@
 	session_start();
 	require_once("head.php");
 	require_once("header.php");
-	if(isset($_SESSION["usuarioRec"])){
+	if(isset($_COOKIE["idUsuario"])){
+		if(!isset($_SESSION["usuarioLog"])){
+			require_once("controlCookie.php");
+		}
+	}
+	if(isset($_SESSION["usuarioLog"])){
 		require_once("barraNavSesionIniciada.php");
 	}
 	else{
@@ -32,8 +37,24 @@
 modalAcceso;
 		}
 
-		if(isset($_SESSION["usuarioRec"])){
-			echo "<p>Ya has iniciado sesión previamente. Tu nombre es: {$_SESSION['usuarioRec']} </p>";
+		if(isset($_SESSION["usuarioLog"])){
+
+			$identUsuariosReg = array(
+				"1" => "pepee1",
+				"2" => "manolo2",
+				"3" => "sergio3",
+				"4" => "juaan4",
+				"5" => "luiis5");
+
+			$nomUsu;
+			foreach ($GLOBALS["identUsuariosReg"] as $key => $value) {
+				if($key == $_SESSION["usuarioLog"]){
+					$nomUsu = $value;
+					break;
+				}
+			}
+
+			echo "<p>Ya has iniciado sesión previamente. Tu nombre es: $nomUsu</p>";
 		}
 		else {
 	?>

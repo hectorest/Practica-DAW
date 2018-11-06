@@ -2,6 +2,12 @@
 <?php
 	require_once("head.php");
 	require_once("header.php");
+	if(isset($_SESSION["usuarioLog"])){
+		require_once("barraNavSesionIniciada.php");
+	}
+	else{
+		require_once("barraNavSesionNoIniciada.php");
+	}
 ?>
 
 	<?php
