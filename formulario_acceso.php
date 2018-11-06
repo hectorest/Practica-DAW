@@ -6,7 +6,10 @@
 	require_once("header.php");
 	if(isset($_COOKIE["idUsuario"])){
 		if(!isset($_SESSION["usuarioLog"])){
-			require_once("controlCookie.php");
+			$host = $_SERVER['HTTP_HOST']; 
+			$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+			$extra = "controlLogin.php";
+			header("Location: http://$host$uri/$extra");
 		}
 	}
 	if(isset($_SESSION["usuarioLog"])){

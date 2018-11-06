@@ -13,9 +13,7 @@
 		"5" => "luiis5");
 
 	if(isset($_COOKIE["ultimaVisita"])){
-		echo "{$_COOKIE["visitaAnterior"]}";
 		$GLOBALS["ultimaVisita"] = $_COOKIE["ultimaVisita"];
-		echo "$ultimaVisita";
 	}
 
 	

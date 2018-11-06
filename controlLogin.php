@@ -22,6 +22,12 @@
 	$ultimaVisita = "Ahora";
 	$hayCookie = false;
 	
+	
+	if(isset($_COOKIE["idUsuario"])){
+		echo "HOLA";
+		hacerLoginCookie($_COOKIE["idUsuario"]);
+	}
+
 	if(isset($_POST["recordarme"])){
 
 		$hayCookie = true;
@@ -29,9 +35,8 @@
 		if(isset($_COOKIE["ultimaVisita"])){
 			$GLOBALS["ultimaVisita"] = $_COOKIE["ultimaVisita"];
 		}
-
-		if(!isset($_COOKIE["idUsuario"])){
-		
+		else{
+			
 			if(isset($_POST["login"], $_POST["pass"])){
 				hacerLogin($_POST["login"], $_POST["pass"]);
 			}
@@ -53,10 +58,7 @@
 				break;
 			}
 		}
-		$host = $_SERVER['HTTP_HOST']; 
-		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\'); 
 		if($existe == true){
-
 			$idUsu;
 			foreach ($GLOBALS["identUsuariosReg"] as $key => $value) {
 				if($value == $usu){
@@ -67,22 +69,23 @@
 
 			$_SESSION["usuarioLog"] = $idUsu;
 
-			if($GLOBALS["hayCookie"]){
+			$host = $_SERVER['HTTP_HOST']; 
+			$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\'); 
 
+			if($GLOBALS["hayCookie"]){
 				setcookie("idUsuario", $idUsu, time() + 90 * 24 * 60 * 60);
 				setcookie("ultimaVisita", date("c"), time() + 90 * 24 * 60 * 60);
 
 				$_COOKIE["idUsuario"] = $idUsu;
 				$_COOKIE["ultimaVisita"] = date("c");
-				
-				$extra = "bienvenido.php?existe=true";
-				//header("Location: http://$host$uri/$extra");
+
+				$extra = 'index.php';
+				header("Location: http://$host$uri/$extra");
 				
 			}
 			else{
-				
 				$extra = 'index.php';
-				//header("Location: http://$host$uri/$extra");
+				header("Location: http://$host$uri/$extra");
 			}
 
 		}
@@ -92,4 +95,22 @@
 		}
 	}
 
+	function hacerLoginCookie(&$idUsu){
+		$existe = false;
+		foreach ($GLOBALS["identUsuariosReg"] as $key => $value) {
+			if($key == $idUsu){
+				$existe = true;
+				break;
+			}
+		}
+		$host = $_SERVER['HTTP_HOST']; 
+		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\'); 
+		if($existe == true){
+
+			$_SESSION["usuarioLog"] = $_COOKIE["idUsuario"];
+
+			$extra = "bienvenido.php?existe=true";
+			header("Location: http://$host$uri/$extra");
+		}
+	}
 ?>
