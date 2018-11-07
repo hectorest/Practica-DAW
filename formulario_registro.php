@@ -19,8 +19,22 @@
 					break;
 				}
 			}
+			echo<<<modalRegistroPorUrl
 
-			echo "<p>Ya has iniciado sesión como $nomUsu. Si quieres crear una nueva cuenta debes cerrar sesión primero.</p>";
+			<button type="button" onclick="cerrarMensajeModal(0);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<!--<img src="./img/error.png" alt="error-login">-->
+					<h2>¡Atención!</h2>
+				</span>
+					<p>Ya has iniciado sesión como $nomUsu. Si quieres crear una nueva cuenta debes cerrar sesión primero.</p>
+					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar Sesión</button>
+					<button type="button" onclick="cerrarMensajeModal(0);">Volver a Inicio</button>
+				</div>
+			</div>
+
+modalRegistroPorUrl;
 	}
 	else{
 		require_once("barraNavSesionNoIniciada.php");

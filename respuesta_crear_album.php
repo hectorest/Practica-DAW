@@ -2,6 +2,12 @@
 <?php
 	require_once("head.php");
 	require_once("header.php");
+	if(!isset($_SESSION["usuarioLog"])){
+		require_once("barraNavSesionNoIniciada.php");
+	}
+	else{
+		require_once("barraNavSesionIniciada.php");
+	}
 ?>
 
 <?php
@@ -55,9 +61,9 @@ bajoTabla;
 
 	}
 	else{
-		echo<<<modalCrearAlbum
+		echo<<<modalcrear_album
 
-			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+			<button type="button" onclick="cerrarMensajeModal(0);">X</button>
 			<div class="modal">
 				<div class="contenido">
 				<span>
@@ -65,11 +71,11 @@ bajoTabla;
 					<h2>Error</h2>
 				</span>
 					<p>No has enviado los datos para crear un álbum</p>
-					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
+					<button type="button" onclick="cerrarMensajeModal(6);">Crear álbum</button>
 				</div>
 			</div>
 
-modalCrearAlbum;
+modalcrear_album;
 	}
 
 function cambiarClave(&$clave){

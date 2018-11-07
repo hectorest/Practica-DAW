@@ -55,7 +55,7 @@ function obtenerTitle(&$pagina){
 		"index.php" => "Inicio",
 		"acerca.php" => "Acerca",
 		"controlRegistro.php" => "Registrarse",
-		"crearAlbum.php" => "Crear Álbum",
+		"crear_album.php" => "Crear Álbum",
 		"respuesta_crear_album.php" => "Crear Álbum",
 		"solicitar_album.php" => "Solicitar Álbum",
 		"respuesta_sol_album.php" => "Solicitar Álbum",

@@ -13,7 +13,12 @@
 		"5" => "luiis5");
 
 	if(isset($_COOKIE["ultimaVisita"])){
-		$GLOBALS["ultimaVisita"] = $_COOKIE["ultimaVisita"];
+		$ultimaVisita = $_COOKIE["ultimaVisita"];
+		$ultimaVisita= strtotime($ultimaVisita);
+		$ultimaVisitaDia = date('d-m-Y',$ultimaVisita);
+		$ultimaVisitaHora = date('H:i',$ultimaVisita);
+		$ultimaVisita = (string) $ultimaVisitaDia . " a las " . (string) $ultimaVisitaHora;
+		/*$ultimaVisita->format('Y-m-d H:i:s');*/
 	}
 
 	
@@ -50,11 +55,11 @@
 				<div class="modal">
 					<div class="contenido">
 					<span>
-						<h2>¡ Bienvenido $usu !</h2>
+						<h2>¡Bienvenido $usu!</h2>
 					</span>
-						<p>No te has conectado desde: $date</p>
-						<button type="button" onclick="cerrarMensajeModal(4);">Entrar</button>
-						<button type="button" onclick="cerrarMensajeModal(3);">Salir</button>
+						<p>No te has conectado desde el día: $date</p>
+						<button type="button" onclick="cerrarMensajeModal(3);">Entrar</button>
+						<button type="button" onclick="cerrarMensajeModal(2);">Salir</button>
 					</div>
 				</div>
 RecuerdoInicSes;
@@ -62,13 +67,13 @@ RecuerdoInicSes;
 
 		function mostrarMensErrorBienv(){
 			echo <<<errorCookie
-			<button type="button" onclick="cerrarMensajeModal(3);">X</button>
+			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
 			<div class="modal">
 				<div class="contenido">
 				<span>
 					<h2>El usuario almacenado no es válido o ha expirado</h2>
 				</span>
-					<button type="button" onclick="cerrarMensajeModal(3);">Aceptar</button>
+					<button type="button" onclick="cerrarMensajeModal(2);">Aceptar</button>
 				</div>
 			</div>
 errorCookie;

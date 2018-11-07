@@ -56,7 +56,22 @@ modalAcceso;
 				}
 			}
 
-			echo "<p>Ya has iniciado sesión previamente. Tu nombre es: $nomUsu</p>";
+			echo<<<modalAccesoPorUrl
+
+			<button type="button" onclick="cerrarMensajeModal(0);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<!--<img src="./img/error.png" alt="error-login">-->
+					<h2>¡Atención!</h2>
+				</span>
+					<p>Ya has iniciado sesión previamente. Tu nombre es: $nomUsu</p>
+					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar Sesión</button>
+					<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
+				</div>
+			</div>
+
+modalAccesoPorUrl;
 		}
 		else {
 	?>

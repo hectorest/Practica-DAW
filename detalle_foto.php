@@ -9,7 +9,7 @@
 
 					echo<<<modalDetalle
 
-					<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+					<button type="button" onclick="cerrarMensajeModal(0);">X</button>
 					<div class="modal">
 						<div class="contenido">
 						<span>
@@ -17,7 +17,7 @@
 							<h2>Error</h2>
 						</span>
 							<p>Esta página de foto no existe</p>
-							<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
+							<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
 						</div>
 					</div>
 
@@ -33,7 +33,7 @@ modalDetalle;
 		require_once("barraNavSesionNoIniciada.php");
 		echo<<<modalDetalleSesionNoIniciada
 
-			<button type="button" onclick="cerrarMensajeModal(5);">X</button>
+			<button type="button" onclick="cerrarMensajeModal(4);">X</button>
 			<div class="modal">
 				<div class="contenido">
 				<span>
@@ -41,7 +41,7 @@ modalDetalle;
 					<h2>Error</h2>
 				</span>
 					<p>Debes iniciar sesión para poder ver el detalle de la foto</p>
-					<button type="button" onclick="cerrarMensajeModal(5);">Aceptar</button>
+					<button type="button" onclick="cerrarMensajeModal(4);">Aceptar</button>
 				</div>
 			</div>
 

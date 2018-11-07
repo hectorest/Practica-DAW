@@ -4,7 +4,7 @@
 	function mostrarErrorSolAlbumSinIniciarSesion(){
 		echo<<<modalSolAlbumSesionNoIniciada
 
-			<button type="button" onclick="cerrarMensajeModal(5);">X</button>
+			<button type="button" onclick="cerrarMensajeModal(4);">X</button>
 			<div class="modal">
 				<div class="contenido">
 				<span>
@@ -12,7 +12,7 @@
 					<h2>Error</h2>
 				</span>
 					<p>Debes iniciar sesión para poder solicitar un álbum</p>
-					<button type="button" onclick="cerrarMensajeModal(5);">Aceptar</button>
+					<button type="button" onclick="cerrarMensajeModal(4);">Aceptar</button>
 				</div>
 			</div>
 

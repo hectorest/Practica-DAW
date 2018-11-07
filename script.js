@@ -14,14 +14,20 @@ function cerrarMensajeModal(param){
 		url = url + "#";
 		location.href = url;
 	}
-	else if (param == 3){
+	else if (param == 2){
 		location.href = "./eliminar_sesion.php";
 	}
-	else if (param == 4){
+	else if (param == 3){
 		location.href = "./perfil.php";
 	}
-	else if (param == 5){
+	else if (param == 4){
 		location.href = "./formulario_acceso.php";
+	}
+	else if (param == 5){
+		location.href = "./solicitar_album.php";
+	}
+	else if (param == 6){
+		location.href = "./crear_album.php";
 	}
 	else{
 		location.href = "./index.php";

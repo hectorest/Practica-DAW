@@ -72,11 +72,11 @@
 				$_COOKIE["idUsuario"] = $idUsu;
 				$_COOKIE["ultimaVisita"] = date("c");
 
-				$extra = 'index.php';
+				$extra = 'perfil.php';
 				header("Location: http://$host$uri/$extra");
 			}
 			else{
-				$extra = 'index.php';
+				$extra = 'perfil.php';
 				header("Location: http://$host$uri/$extra");
 			}
 

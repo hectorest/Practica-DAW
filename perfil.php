@@ -4,7 +4,7 @@
 	function mostrarErrorPerfilSinIniciarSesion(){
 		echo<<<modalPerfil
 
-					<button type="button" onclick="cerrarMensajeModal(5);">X</button>
+					<button type="button" onclick="cerrarMensajeModal(4);">X</button>
 					<div class="modal">
 						<div class="contenido">
 						<span>
@@ -12,7 +12,7 @@
 							<h2>Error</h2>
 						</span>
 							<p>No puedes acceder a tu perfil sin haber iniciado sesión previamente</p>
-							<button type="button" onclick="cerrarMensajeModal(5);">Aceptar</button>
+							<button type="button" onclick="cerrarMensajeModal(4);">Aceptar</button>
 						</div>
 					</div>
 
@@ -30,6 +30,13 @@ modalPerfil;
 ?>
 
 		<section>
+
+			<?php
+
+				echo "<p id='bienvenidaUsuarioPerfil'>Hola {$GLOBALS['nomUsu']}";
+
+			?>
+
 			<h3>Mis Datos:</h3>
 
 			<img src="./img/foto_perfil.png" alt="foto_perfil">
@@ -84,7 +91,7 @@ modalPerfil;
 				<a href="" title="Modificar mis datos"><span class="icon-pencil"></span><span>Modificar mis datos</span></a>
 				<a href="darse_de_baja.php" title="Borrar cuenta"><span class="icon-user-times"></span><span>Darme de baja</span></a>
 				<a href="mis_albumes.php" title="Acceder a mis álbumes"><span class="icon-album"></span><span>Mis álbumes</span></a>
-				<a href="crearAlbum.php" title="Crea un álbum"><span class="icon-new-album"></span><span>Crear álbum</span></a>
+				<a href="crear_album.php" title="Crea un álbum"><span class="icon-new-album"></span><span>Crear álbum</span></a>
 				<a href="solicitar_album.php" title="Solicita un álbum"><span class="icon-print"></span><span>Solicitar álbum</span></a>
 				<a href=""  title="Cerrar Sesión"><span class="icon-logout"></span><span>Cerrar Sesión</span></a>
 			</div>
