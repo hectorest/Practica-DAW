@@ -33,7 +33,22 @@ modalPerfil;
 
 			<?php
 
-				echo "<p id='bienvenidaUsuarioPerfil'>Hola {$GLOBALS['nomUsu']}";
+			$identUsuariosReg = array(
+				"1" => "pepee1",
+				"2" => "manolo2",
+				"3" => "sergio3",
+				"4" => "juaan4",
+				"5" => "luiis5");
+
+			$nomUsu;
+			foreach ($GLOBALS["identUsuariosReg"] as $key => $value) {
+				if($key == $_SESSION["usuarioLog"]){
+					$nomUsu = $value;
+					break;
+				}
+			}
+
+				echo "<p id='bienvenidaUsuarioPerfil'>Hola $nomUsu</p>";
 
 			?>
 
