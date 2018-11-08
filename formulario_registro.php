@@ -25,8 +25,7 @@
 			<div class="modal">
 				<div class="contenido">
 				<span>
-					<!--<img src="./img/error.png" alt="error-login">-->
-					<h2>¡Atención!</h2>
+					<h2><span class="icon-attention-circled"></span>¡Atención!</h2>
 				</span>
 					<p>Ya has iniciado sesión como $nomUsu. Si quieres crear una nueva cuenta debes cerrar sesión primero.</p>
 					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar Sesión</button>
