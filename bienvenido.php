@@ -1,7 +1,7 @@
 <?php  
 	
 	require_once("head.php");
-
+	
 	$idUsu = $_COOKIE["idUsuario"];
 	$ultimaVisita;
 
@@ -14,11 +14,10 @@
 
 	if(isset($_COOKIE["ultimaVisita"])){
 		$ultimaVisita = $_COOKIE["ultimaVisita"];
-		$ultimaVisita= strtotime($ultimaVisita);
+		$ultimaVisita = strtotime($ultimaVisita);
 		$ultimaVisitaDia = date('d-m-Y',$ultimaVisita);
 		$ultimaVisitaHora = date('H:i',$ultimaVisita);
 		$ultimaVisita = (string) $ultimaVisitaDia . " a las " . (string) $ultimaVisitaHora;
-		/*$ultimaVisita->format('Y-m-d H:i:s');*/
 	}
 
 	
@@ -39,9 +38,10 @@
 				}
 			}
 
-			mostrarMensBienv($nomUsu, $date);
 			setcookie("ultimaVisita", date("c"), time() + 90 * 24 * 60 * 60);
 			$_COOKIE["ultimaVisita"] = date("c");
+			mostrarMensBienv($nomUsu, $date);
+
 		}
 		else{
 			mostrarMensErrorBienv();
