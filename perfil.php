@@ -1,5 +1,12 @@
 
 <?php
+	
+	$identUsuariosReg = array(
+		"1" => "pepee1",
+		"2" => "manolo2",
+		"3" => "sergio3",
+		"4" => "juaan4",
+		"5" => "luiis5");
 
 	function mostrarErrorPerfilSinIniciarSesion(){
 		echo<<<modalPerfil
@@ -27,30 +34,28 @@ modalPerfil;
 	}
 	else{
 		require_once("barraNavSesionIniciada.php");
-?>
+		extraerNombreUsuario($_SESSION["usuarioLog"]);
+	}
 
-		<section>
-
-			<?php
-
-			$identUsuariosReg = array(
-				"1" => "pepee1",
-				"2" => "manolo2",
-				"3" => "sergio3",
-				"4" => "juaan4",
-				"5" => "luiis5");
-
-			$nomUsu;
-			foreach ($GLOBALS["identUsuariosReg"] as $key => $value) {
-				if($key == $_SESSION["usuarioLog"]){
-					$nomUsu = $value;
-					break;
-				}
+	function extraerNombreUsuario(&$idUsuario){
+		$nomUsu;
+		foreach ($GLOBALS["identUsuariosReg"] as $key => $value) {
+			if($key == $idUsuario){
+				$nomUsu = $value;
+				break;
 			}
+		}
+		if(!empty($nomUsu)){
+			mostrarPerfilUsuario($nomUsu);
+		}
+	}
 
-				echo "<p id='bienvenidaUsuarioPerfil'>Hola $nomUsu</p>";
+	function mostrarPerfilUsuario(&$nomUsu){
+		echo <<<perfilUsuario
 
-			?>
+			<section>
+
+			<p id='bienvenidaUsuarioPerfil'>¡Hola $nomUsu!</p>
 
 			<h3>Mis Datos:</h3>
 
@@ -62,7 +67,7 @@ modalPerfil;
 					<tr>
 						
 						<td>Nombre:</td>
-						<td>Usuario Nuevo</td>
+						<td>$nomUsu</td>
 
 					</tr>
 
@@ -113,11 +118,13 @@ modalPerfil;
 
 		</section>
 
-	<?php 
+perfilUsuario;
+	}
 
-		}
+			
+?>
 
-	?>
+		
 
 <?php
 	require_once("footer.php");

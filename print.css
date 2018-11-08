@@ -462,6 +462,14 @@ body>.formulario{
 			}
 
 
+
+#bienvenidaUsuarioPerfil{
+
+	display: none;
+	
+}
+
+
 /*FOTO PERFIL*/
 
 	body>section>img{
