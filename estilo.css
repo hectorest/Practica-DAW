@@ -1067,7 +1067,7 @@ body>.formulario{
 
 }
 
-@media all and (min-width: 1000px) and (max-width: 1048px){
+@media all and (min-width: 720px) and (max-width: 1048px){
 	
 	body>div>form>fieldset>p{
 		display: block;
@@ -1119,7 +1119,7 @@ body>.formulario{
 
 }
 
-@media all and (min-width: 780px) and (max-width: 1000px){
+@media all and (min-width: 605px) and (max-width: 720px){
 
 	body>nav>ul>li>a>span:last-of-type{
 		display: none;
@@ -1190,7 +1190,7 @@ body>.formulario{
 
 }
 
-@media all and (min-width: 480px) and (max-width: 780px){
+@media all and (min-width: 480px) and (max-width: 605px){
 
 	body>nav>ul>li>a>span:last-of-type{
 		display: none;

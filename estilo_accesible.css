@@ -1081,7 +1081,7 @@ body>.formulario{
 
 /*MEDIA QUERIES*/
 
-@media all and (min-width: 1500px) and (max-width: 1820px){
+@media all and (min-width: 1025px) and (max-width: 1820px){
 
 	body>.formulario>fieldset>p{
 		flex-direction: column;
@@ -1110,21 +1110,21 @@ body>.formulario{
 
 			body>.formulario>fieldset>p>select{
 				align-self: center;
-				width: 45em;
+				width: 98%;
 			}
 
 			body>.formulario>fieldset>p>input{
 				align-self: center;
-				width: 45em;
+				width: 98%;
 			}
 
 			body>.formulario>fieldset>p>#fper{
-				width: 45em;
+				width: 98%;
 			}
 
 			body>.formulario>fieldset>p>textarea{
 				align-self: center;
-				width: 45em;
+				width: 98%;
 			}
 
 		body>.formulario>fieldset>.pEspeciales{
@@ -1134,7 +1134,7 @@ body>.formulario{
 
 }
 
-@media all and (min-width: 1048px) and (max-width: 1500px){
+@media all and (min-width: 960px) and (max-width: 1025px){
 
 	body>nav>ul>li>a>span:last-of-type{
 		display: none;
@@ -1171,26 +1171,26 @@ body>.formulario{
 
 			body>.formulario>fieldset>p>select{
 				align-self: center;
-				width: 30em;
+				width: 98%;
 			}
 
 			body>.formulario>fieldset>p>input{
 				align-self: center;
-				width: 30em;
+				width: 98%;
 			}
 
 			body>.formulario>fieldset>p>#fper{
-				width: 30em;
+				width: 98%;
 			}
 
 			body>.formulario>fieldset>p>textarea{
 				align-self: center;
-				width: 30em;
+				width: 98%;
 			}
 
 }
 
-@media all and (min-width: 1000px) and (max-width: 1048px){
+@media all and (min-width: 850px) and (max-width: 960px){
 	
 	body>nav>ul>li>a>span:last-of-type{
 		display: none;
@@ -1227,26 +1227,26 @@ body>.formulario{
 
 			body>.formulario>fieldset>p>select{
 				align-self: center;
-				width: 28em;
+				width: 98%;
 			}
 
 			body>.formulario>fieldset>p>input{
 				align-self: center;
-				width: 28em;
+				width: 98%;
 			}
 
 			body>.formulario>fieldset>p>#fper{
-				width: 28em;
+				width: 98%;
 			}
 
 			body>.formulario>fieldset>p>textarea{
 				align-self: center;
-				width: 28em;
+				width: 98%;
 			}
 
 }
 
-@media all and (min-width: 780px) and (max-width: 1000px){
+@media all and (min-width: 650px) and (max-width: 850px){
 
 	body>nav>ul>li>a>span:last-of-type{
 		display: none;
@@ -1289,26 +1289,26 @@ body>.formulario{
 
 			body>.formulario>fieldset>p>select{
 				align-self: center;
-				width: 23em;
+				width: 98%;
 			}
 
 			body>.formulario>fieldset>p>input{
 				align-self: center;
-				width: 23em;
+				width: 98%;
 			}
 
 			body>.formulario>fieldset>p>#fper{
-				width: 23em;
+				width: 98%;
 			}
 
 			body>.formulario>fieldset>p>textarea{
 				align-self: center;
-				width: 23em;
+				width: 98%;
 			}
 
 }
 
-@media all and (min-width: 605px) and (max-width: 780px){
+@media all and (min-width: 500px) and (max-width: 650px){
 
 	body>nav>ul>li>a>span:last-of-type{
 		display: none;
@@ -1368,26 +1368,26 @@ body>.formulario{
 
 			body>.formulario>fieldset>p>select{
 				align-self: center;
-				width: 15em;
+				width: 98%;
 			}
 
 			body>.formulario>fieldset>p>input{
 				align-self: center;
-				width: 15em;
+				width: 98%;
 			}
 
 			body>.formulario>fieldset>p>#fper{
-				width: 15em;
+				width: 98%;
 			}
 
 			body>.formulario>fieldset>p>textarea{
 				align-self: center;
-				width: 15em;
+				width: 98%;
 			}
 
 }
 
-@media all and (max-width: 605px){
+@media all and (max-width: 500px){
 
 	/*Cabecera*/
 
@@ -1481,21 +1481,21 @@ body>.formulario{
 
 		body>.formulario>fieldset>p>select{
 			align-self: center;
-			width: 7em;
+			width: 98%;
 		}
 
 		body>.formulario>fieldset>p>input{
 			align-self: center;
-			width: 7em;
+			width: 98%;
 		}
 
 		body>.formulario>fieldset>p>#fper{
-			width: 7em;
+			width: 98%;
 		}
 
 		body>.formulario>fieldset>p>textarea{
 			align-self: center;
-			width: 7em;
+			width: 98%;
 		}
 
 		/*Paginacion*/
