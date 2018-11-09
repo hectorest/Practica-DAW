@@ -2,20 +2,26 @@
 
 session_start();
 
-/*Array que contiene los estilos de los usuarios por defecto, de manera provisional*/
-$estilosUsuarios = array(
-		"1" => "normal",
-		"2" => "accesible",
-		"3" => "normal",
-		"4" => "accesible",
-		"5" => "normal");
+$usuarios = array(
+		"1" => ["pepee1", "11111111", "normal"],
+		"2" => ["manolo2","22222222","accesible"],
+		"3" => ["sergio3", "33333333","normal"],
+		"4" => ["juaan4", "44444444", "accesible"],
+		"5" => ["luiis5", "55555555", "normal"]);
 
 if(isset($_SESSION["usuarioLog"])){
 
+	if(isset($_COOKIE["ultimaVisita"])){
+
+		setcookie("ultimaVisita", date("c"), time() + 90 * 24 * 60 * 60);
+		$_COOKIE["ultimaVisita"] = date("c");
+
+	}
+
 	$estiloUsu;
-	foreach ($GLOBALS["estilosUsuarios"] as $key => $value) {
+	foreach ($GLOBALS["usuarios"] as $key => $value) {
 		if($key == $_SESSION["usuarioLog"]){
-			$estiloUsu = $value;
+			$estiloUsu = $value[2];
 			break;
 		}
 	}

@@ -1,6 +1,6 @@
 <?php  
 	
-	require_once("head.php");
+
 	
 	$idUsu = $_COOKIE["idUsuario"];
 	$ultimaVisita;
@@ -20,7 +20,7 @@
 		$ultimaVisita = (string) $ultimaVisitaDia . " a las " . (string) $ultimaVisitaHora;
 	}
 
-	
+	require_once("head.php");
 
 	if(!empty($_GET["existe"])){
 		darBienvenida($idUsu, $ultimaVisita, $_GET["existe"]);

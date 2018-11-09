@@ -3,21 +3,12 @@
 	
 	session_start();
 
-	/*Array de usuarios registrados provisionales*/
-	$usuariosReg = array(
-		"pepee1" => "11111111",
-		"manolo2" => "22222222",
-		"sergio3" => "33333333",
-		"juaan4" => "44444444",
-		"luiis5" => "55555555");
-
-	/*Array de identificadores de los usuarios registrados*/
-	$identUsuariosReg = array(
-		"1" => "pepee1",
-		"2" => "manolo2",
-		"3" => "sergio3",
-		"4" => "juaan4",
-		"5" => "luiis5");
+	$usuarios = array(
+		"1" => ["pepee1", "11111111", "normal"],
+		"2" => ["manolo2","22222222","accesible"],
+		"3" => ["sergio3", "33333333","normal"],
+		"4" => ["juaan4", "44444444", "accesible"],
+		"5" => ["luiis5", "55555555", "normal"]);
 
 	$ultimaVisita = "Ahora";
 	$hayCookie = false;
@@ -44,8 +35,8 @@
 	/*Funcion que realiza la comprobacion del login*/
 	function hacerLogin(&$usu, &$pass){
 		$existe = false;
-		foreach ($GLOBALS["usuariosReg"] as $key => $value) {
-			if($key == $usu && $value == $pass){
+		foreach ($GLOBALS["usuarios"] as $key => $value) {
+			if($value[0] == $usu && $value[1] == $pass){
 				$existe = true;
 				break;
 			}
@@ -56,8 +47,8 @@
 		 
 		if($existe == true){
 			$idUsu;
-			foreach ($GLOBALS["identUsuariosReg"] as $key => $value) {
-				if($value == $usu){
+			foreach ($GLOBALS["usuarios"] as $key => $value) {
+				if($value[0] == $usu){
 					$idUsu = $key;
 					break;
 				}
