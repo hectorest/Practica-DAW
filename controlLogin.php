@@ -1,36 +1,29 @@
-
-<?php
-	
-	session_start();
-
-	$usuarios = array(
-		"1" => ["pepee1", "11111111", "normal"],
-		"2" => ["manolo2","22222222","accesible"],
-		"3" => ["sergio3", "33333333","normal"],
-		"4" => ["juaan4", "44444444", "accesible"],
-		"5" => ["luiis5", "55555555", "normal"]);
-
-	$ultimaVisita = "Ahora";
-	$hayCookie = false;
-	
-	if(isset($_COOKIE["idUsuario"])){
-		hacerLoginCookie($_COOKIE["idUsuario"]);
+<?php	
+session_start();
+$usuarios = array(
+	"1" => ["pepee1", "11111111", "normal"],
+	"2" => ["manolo2","22222222","accesible"],
+	"3" => ["sergio3", "33333333","normal"],
+	"4" => ["juaan4", "44444444", "accesible"],
+	"5" => ["luiis5", "55555555", "normal"]);
+$ultimaVisita = "Ahora";
+$hayCookie = false;
+if(isset($_COOKIE["idUsuario"])){
+	hacerLoginCookie($_COOKIE["idUsuario"]);
+}
+else{
+	if(isset($_POST["recordarme"])){
+		$hayCookie = true;
+		if(isset($_POST["login"], $_POST["pass"])){
+			hacerLogin($_POST["login"], $_POST["pass"]);
+		}
 	}
 	else{
-		
-		if(isset($_POST["recordarme"])){
-			$hayCookie = true;
-			if(isset($_POST["login"], $_POST["pass"])){
-				hacerLogin($_POST["login"], $_POST["pass"]);
-			}
+		if(isset($_POST["login"], $_POST["pass"])){
+			hacerLogin($_POST["login"], $_POST["pass"]);
 		}
-		else{
-			if(isset($_POST["login"], $_POST["pass"])){
-				hacerLogin($_POST["login"], $_POST["pass"]);
-			}
-		}
-
 	}
+}
 	
 	/*Funcion que realiza la comprobacion del login*/
 	function hacerLogin(&$usu, &$pass){
@@ -82,7 +75,7 @@
 
 	function hacerLoginCookie(&$idUsu){
 		$existe = false;
-		foreach ($GLOBALS["identUsuariosReg"] as $key => $value) {
+		foreach ($GLOBALS["usuarios"] as $key => $value) {
 			if($key == $idUsu){
 				$existe = true;
 				break;

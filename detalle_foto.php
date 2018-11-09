@@ -1,34 +1,31 @@
-
 <?php
-	require_once("head.php");
-	require_once("header.php");
-	if(isset($_SESSION["usuarioLog"])){
-		require_once("barraNavSesionIniciada.php");
-		if(isset($_GET["id"])){
-			if(!is_numeric($_GET["id"])){
-
-					echo<<<modalDetalle
-
-					<button type="button" onclick="cerrarMensajeModal(0);">X</button>
-					<div class="modal">
-						<div class="contenido">
+session_start();
+require_once("head.php");
+require_once("header.php");
+if(isset($_SESSION["usuarioLog"])){
+	require_once("barraNavSesionIniciada.php");
+	if(isset($_GET["id"])){
+		if(!is_numeric($_GET["id"])){
+			echo<<<modalDetalle
+				<button type="button" onclick="cerrarMensajeModal(0);">X</button>
+				<div class="modal">
+					<div class="contenido">
 						<span>
 							<img src="./img/error.png" alt="error-detalle-foto">
 							<h2>Error</h2>
 						</span>
-							<p>Esta página de foto no existe</p>
-							<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
-						</div>
+						<p>Esta página de foto no existe</p>
+						<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
 					</div>
-
+				</div>
 modalDetalle;
-
-			}else{
-				$imagenAColocar = EsParOImpar($_GET["id"]);
-				mostrarDetalleFoto($_GET["id"], $imagenAColocar);
-			}
+		}
+		else{
+			$imagenAColocar = EsParOImpar($_GET["id"]);
+			mostrarDetalleFoto($_GET["id"], $imagenAColocar);
 		}
 	}
+}
 	else{
 		require_once("barraNavSesionNoIniciada.php");
 		echo<<<modalDetalleSesionNoIniciada

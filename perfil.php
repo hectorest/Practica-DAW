@@ -1,47 +1,42 @@
-
 <?php
-	
-	$identUsuariosReg = array(
-		"1" => "pepee1",
-		"2" => "manolo2",
-		"3" => "sergio3",
-		"4" => "juaan4",
-		"5" => "luiis5");
+session_start();
+require_once("head.php");
+require_once("header.php");
+if(!isset($_SESSION["usuarioLog"])){
+	require_once("barraNavSesionNoIniciada.php");
+	mostrarErrorPerfilSinIniciarSesion();
+}
+else{
+	require_once("barraNavSesionIniciada.php");
+	extraerNombreUsuario($_SESSION["usuarioLog"]);
+}
 
-	function mostrarErrorPerfilSinIniciarSesion(){
-		echo<<<modalPerfil
-
-					<button type="button" onclick="cerrarMensajeModal(4);">X</button>
-					<div class="modal">
-						<div class="contenido">
-						<span>
-							<img src="./img/error.png" alt="error-detalle-foto">
-							<h2>Error</h2>
-						</span>
-							<p>No puedes acceder a tu perfil sin haber iniciado sesión previamente</p>
-							<button type="button" onclick="cerrarMensajeModal(4);">Aceptar</button>
-						</div>
-					</div>
-
+$usuarios = array(
+"1" => ["pepee1", "11111111", "normal"],
+"2" => ["manolo2","22222222","accesible"],
+"3" => ["sergio3", "33333333","normal"],
+"4" => ["juaan4", "44444444", "accesible"],
+"5" => ["luiis5", "55555555", "normal"]);
+function mostrarErrorPerfilSinIniciarSesion(){
+	echo<<<modalPerfil
+		<button type="button" onclick="cerrarMensajeModal(4);">X</button>
+			<div class="modal">
+				<div class="contenido">
+					<span>
+						<img src="./img/error.png" alt="error-detalle-foto">
+						<h2>Error</h2>
+					</span>
+					<p>No puedes acceder a tu perfil sin haber iniciado sesión previamente</p>
+					<button type="button" onclick="cerrarMensajeModal(4);">Aceptar</button>
+				</div>
+			</div>
 modalPerfil;
-	}
-
-	require_once("head.php");
-	require_once("header.php");
-	if(!isset($_SESSION["usuarioLog"])){
-		require_once("barraNavSesionNoIniciada.php");
-		mostrarErrorPerfilSinIniciarSesion();
-	}
-	else{
-		require_once("barraNavSesionIniciada.php");
-		extraerNombreUsuario($_SESSION["usuarioLog"]);
-	}
-
+}
 	function extraerNombreUsuario(&$idUsuario){
 		$nomUsu;
-		foreach ($GLOBALS["identUsuariosReg"] as $key => $value) {
+		foreach ($GLOBALS["usuarios"] as $key => $value) {
 			if($key == $idUsuario){
-				$nomUsu = $value;
+				$nomUsu = $value[0];
 				break;
 			}
 		}

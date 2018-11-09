@@ -1,47 +1,86 @@
 <?php
-
-session_start();
-
 $usuarios = array(
-		"1" => ["pepee1", "11111111", "normal"],
-		"2" => ["manolo2","22222222","accesible"],
-		"3" => ["sergio3", "33333333","normal"],
-		"4" => ["juaan4", "44444444", "accesible"],
-		"5" => ["luiis5", "55555555", "normal"]);
-
-if(isset($_SESSION["usuarioLog"])){
-
-	if(isset($_COOKIE["ultimaVisita"])){
-
-		setcookie("ultimaVisita", date("c"), time() + 90 * 24 * 60 * 60);
-		$_COOKIE["ultimaVisita"] = date("c");
-
-	}
-
-	$estiloUsu;
-	foreach ($GLOBALS["usuarios"] as $key => $value) {
-		if($key == $_SESSION["usuarioLog"]){
-			$estiloUsu = $value[2];
-			break;
+	"1" => ["pepee1", "11111111", "normal"],
+	"2" => ["manolo2","22222222","accesible"],
+	"3" => ["sergio3", "33333333","normal"],
+	"4" => ["juaan4", "44444444", "accesible"],
+	"5" => ["luiis5", "55555555", "normal"]);
+if(isset($_COOKIE["idUsuario"])){
+	require_once("controlCookie.php");
+	if(isset($_SESSION["usuarioLog"])){
+		if(isset($_COOKIE["ultimaVisita"])){
+			setcookie("ultimaVisita", date("c"), time() + 90 * 24 * 60 * 60);
+			$_COOKIE["ultimaVisita"] = date("c");
+		}
+		$estiloUsu;
+		foreach ($GLOBALS["usuarios"] as $key => $value) {
+			if($key == $_SESSION["usuarioLog"]){
+				$estiloUsu = $value[2];
+				break;
+			}
+		}
+		if($estiloUsu == "normal"){
+			$estiloCss = '<link rel="stylesheet" title="Normal" type="text/css" href="estilo.css" />';
+			$estiloCssAlt = '<link rel="alternate stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
+			extraerUrl();
+		}
+		else{
+			$estiloCss = '<link rel="stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
+			$estiloCssAlt = '<link rel="alternate stylesheet" title="Normal" type="text/css" href="estilo.css" />';
+			extraerUrl();
 		}
 	}
-
-	if($estiloUsu == "normal"){
+	else{
 		$estiloCss = '<link rel="stylesheet" title="Normal" type="text/css" href="estilo.css" />';
 		$estiloCssAlt = '<link rel="alternate stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
+		extraerUrl();
+		mostrarMensErrorBienv();
 	}
-	else{
-		$estiloCss = '<link rel="stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
-		$estiloCssAlt = '<link rel="alternate stylesheet" title="Normal" type="text/css" href="estilo.css" />';
-	}
-
 }
 else{
-	$estiloCss = '<link rel="stylesheet" title="Normal" type="text/css" href="estilo.css" />';
-	$estiloCssAlt = '<link rel="alternate stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
+	if(isset($_SESSION["usuarioLog"])){
+		if(isset($_COOKIE["ultimaVisita"])){
+			setcookie("ultimaVisita", date("c"), time() + 90 * 24 * 60 * 60);
+			$_COOKIE["ultimaVisita"] = date("c");
+		}
+		$estiloUsu;
+		foreach ($GLOBALS["usuarios"] as $key => $value) {
+			if($key == $_SESSION["usuarioLog"]){
+				$estiloUsu = $value[2];
+				break;
+			}
+		}
+		if($estiloUsu == "normal"){
+			$estiloCss = '<link rel="stylesheet" title="Normal" type="text/css" href="estilo.css" />';
+			$estiloCssAlt = '<link rel="alternate stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
+			extraerUrl();
+		}
+		else{
+			$estiloCss = '<link rel="stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
+			$estiloCssAlt = '<link rel="alternate stylesheet" title="Normal" type="text/css" href="estilo.css" />';
+			extraerUrl();
+		}
+	}
+	else{
+		$estiloCss = '<link rel="stylesheet" title="Normal" type="text/css" href="estilo.css" />';
+		$estiloCssAlt = '<link rel="alternate stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
+		extraerUrl();
+	}
 }
 
-extraerUrl();
+function mostrarMensErrorBienv(){
+			echo <<<errorCookie
+			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<h2>El usuario almacenado no es válido o ha expirado</h2>
+				</span>
+					<button type="button" onclick="cerrarMensajeModal(2);">Aceptar</button>
+				</div>
+			</div>
+errorCookie;
+}
 
 function extraerUrl(){
 	$urlRel = $_SERVER['REQUEST_URI'];

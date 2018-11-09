@@ -543,6 +543,37 @@ body>nav + button:focus{
 	color: #000000;
 }
 
+body>button{
+	position: fixed;
+	color: #000000;
+	font-size: 25px;
+	z-index: 50;
+  	font-weight: bold;
+  	cursor: pointer;
+  	background: red;
+  	border: 0.1em solid #8A0000;
+  	border-radius: 50%;
+  	top:10px;
+  	right: 10px;
+  	width: 40px;
+  	height: 40px;
+  	animation: modal 0.5s 0s forwards;
+	visibility: hidden;
+	opacity: 0; 
+	text-align: center;
+}
+
+body>button:hover{
+	background-color: #ffffff;
+	color: #000000;
+	cursor: pointer;
+}
+
+body>button:focus{
+	background-color: #ffffff;
+	color: #000000;
+}
+
 
 @keyframes modal{
 

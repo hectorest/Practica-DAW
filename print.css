@@ -225,6 +225,14 @@ body>nav + button + div{
 	display: none;
 }
 
+body>button{
+	display: none;
+}
+
+body>button + div{
+	display: none;
+}
+
 /*PAGINACION*/
 
 	body>.paginacion{

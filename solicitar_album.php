@@ -1,34 +1,28 @@
-
 <?php
-	
-	function mostrarErrorSolAlbumSinIniciarSesion(){
-		echo<<<modalSolAlbumSesionNoIniciada
-
-			<button type="button" onclick="cerrarMensajeModal(4);">X</button>
-			<div class="modal">
-				<div class="contenido">
+function mostrarErrorSolAlbumSinIniciarSesion(){
+	echo<<<modalSolAlbumSesionNoIniciada
+		<button type="button" onclick="cerrarMensajeModal(4);">X</button>
+		<div class="modal">
+			<div class="contenido">
 				<span>
 					<img src="./img/error.png" alt="error-detalle-foto">
 					<h2>Error</h2>
 				</span>
-					<p>Debes iniciar sesión para poder solicitar un álbum</p>
-					<button type="button" onclick="cerrarMensajeModal(4);">Aceptar</button>
-				</div>
+				<p>Debes iniciar sesión para poder solicitar un álbum</p>
+				<button type="button" onclick="cerrarMensajeModal(4);">Aceptar</button>
 			</div>
-
+			</div>
 modalSolAlbumSesionNoIniciada;
-	}
-
-
-	require_once("head.php");
-	require_once("header.php");
-
-	if(!isset($_SESSION["usuarioLog"])){
-		require_once("barraNavSesionNoIniciada.php");
-		mostrarErrorSolAlbumSinIniciarSesion();
-	}
-	else{
-		require_once("barraNavSesionIniciada.php");
+}
+session_start();
+require_once("head.php");
+require_once("header.php");
+if(!isset($_SESSION["usuarioLog"])){
+	require_once("barraNavSesionNoIniciada.php");
+	mostrarErrorSolAlbumSinIniciarSesion();
+}
+else{
+	require_once("barraNavSesionIniciada.php");
 ?>
 
 
