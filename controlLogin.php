@@ -90,5 +90,9 @@ else{
 			$extra = "bienvenido.php?existe=true";
 			header("Location: http://$host$uri/$extra");
 		}
+		else{
+			$extra = "bienvenido.php?existe=false";
+			header("Location: http://$host$uri/$extra");
+		}
 	}
 ?>

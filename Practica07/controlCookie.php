@@ -16,9 +16,10 @@ function hacerLoginCookie(&$idUsu){
 				break;
 			}
 		}
-		if($existe == true){
+		if($existe == false){
 
-			$_SESSION["usuarioLog"] = $_COOKIE["idUsuario"];
+			$GLOBALS["cookieFalsa"] = true;
+			$GLOBALS["cookieFalsaFormAcceso"] = true;
 
 		}
 }

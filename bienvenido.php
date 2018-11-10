@@ -18,6 +18,10 @@ if(!empty($_GET["existe"])){
 	darBienvenida($idUsu, $ultimaVisita, $_GET["existe"]);
 	require_once("head.php");
 }
+else{
+	require_once("head.php");
+	mostrarMensErrorBienvUrl();
+}
 
 	function darBienvenida(&$idUsu, &$date, &$succes){
 		
@@ -64,12 +68,32 @@ RecuerdoInicSes;
 			<div class="modal">
 				<div class="contenido">
 				<span>
-					<h2>El usuario almacenado no es válido o ha expirado</h2>
+					<img src="./img/error.png" alt="error-login">
+					<h2>Error</h2>
 				</span>
+					<p>El usuario almacenado no es válido o ha expirado</p>
 					<button type="button" onclick="cerrarMensajeModal(2);">Aceptar</button>
 				</div>
 			</div>
 errorCookie;
+		}
+
+		function mostrarMensErrorBienvUrl(){
+			echo<<<modalMensErrorBienvUrl
+
+			<button type="button" onclick="cerrarMensajeModal(0);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-login">
+					<h2>Error</h2>
+				</span>
+					<p>No se ha iniciado sesión de ninguna forma en la página web</p>
+					<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
+				</div>
+			</div>
+
+modalMensErrorBienvUrl;
 		}
 
 ?>

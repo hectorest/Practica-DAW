@@ -24,7 +24,7 @@ else{
 			}
 		}
 
-		if($hayGet==true){	
+		if($hayGet==true && $cookieFalsa == false){	
 
 			if($hayFiltros == true){
 
@@ -53,28 +53,37 @@ filtros;
 		
 		else{
 
-			echo<<<noHayResultBusq
+			if($cookieFalsa){
+				mostrarMensErrorCookie();
+			}
+			else{
+				echo<<<noHayResultBusq
 
-				<section id="resultados">
-					<br><a href="formulario_busqueda.php" title="Realizar otra búsqueda"><span class="icon-search">Buscar de nuevo</span></a><br>
-					<p><b>No hay resultados</b></p>
-				</section>
+					<section id="resultados">
+						<br><a href="formulario_busqueda.php" title="Realizar otra búsqueda"><span class="icon-search">Buscar de nuevo</span></a><br>
+						<p><b>No hay resultados</b></p>
+					</section>
 
 noHayResultBusq;
+			}
 
 		}
 	}
 		else{
+			if($cookieFalsa){
+				mostrarMensErrorCookie();
+			}
+			else{
+				echo<<<noHaBuscado
 
-			echo<<<noHaBuscado
-
-				<section id="resultados">
-					<br><a href="formulario_busqueda.php" title="Realizar otra búsqueda"><span class="icon-search">Buscar de nuevo</span></a><br>
-					<p><b>No hay resultados</b></p>
-				</section>
+					<section id="resultados">
+						<br><a href="formulario_busqueda.php" title="Realizar otra búsqueda"><span class="icon-search">Buscar de nuevo</span></a><br>
+						<p><b>No hay resultados</b></p>
+					</section>
 
 noHaBuscado;
 			}
+		}
 
 function cambiarClave(&$clave){
 	$clav = array(

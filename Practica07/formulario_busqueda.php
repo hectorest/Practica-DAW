@@ -2,12 +2,15 @@
 session_start();
 require_once("head.php");
 require_once("header.php");
-if(isset($_SESSION["usuarioLog"])){
+if(isset($_SESSION["usuarioLog"]) && $cookieFalsa == false){
 	require_once("barraNavSesionIniciada.php");
 }
 else{
 	require_once("barraNavSesionNoIniciada.php");
-}
+	if($cookieFalsa){
+		mostrarMensErrorCookie();
+	}
+	else{
 ?>
 		<form action="resultado_busqueda.php" method="get"  class="formulario" id="formBuscAvanz">
 
@@ -74,6 +77,10 @@ else{
 
 		</form>
 
+<?php
+		}
+	}
+?>
 
 <?php
 	require_once("footer.php");

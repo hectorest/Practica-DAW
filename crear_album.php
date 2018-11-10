@@ -24,7 +24,11 @@ if(!isset($_SESSION["usuarioLog"])){
 	mostrarErrorCrearAlbumSinIniciarSesion();
 }
 else{
-	require_once("barraNavSesionIniciada.php");
+	if($cookieFalsa == true){
+		mostrarMensErrorCookie();
+	}
+	else{
+		require_once("barraNavSesionIniciada.php");
 ?>
 
 			<form action="respuesta_crear_album.php" method="post" class="formulario" id="formCrearAmb">
@@ -53,6 +57,7 @@ else{
 
 	<?php 
 
+			}
 		}
 
 	?>

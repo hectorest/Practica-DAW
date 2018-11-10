@@ -5,6 +5,7 @@ $usuarios = array(
 	"3" => ["sergio3", "33333333","normal"],
 	"4" => ["juaan4", "44444444", "accesible"],
 	"5" => ["luiis5", "55555555", "normal"]);
+$cookieFalsa = false;
 if(isset($_COOKIE["idUsuario"])){
 	require_once("controlCookie.php");
 	if(isset($_SESSION["usuarioLog"])){
@@ -22,27 +23,20 @@ if(isset($_COOKIE["idUsuario"])){
 		if($estiloUsu == "normal"){
 			$estiloCss = '<link rel="stylesheet" title="Normal" type="text/css" href="estilo.css" />';
 			$estiloCssAlt = '<link rel="alternate stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
-			extraerUrl();
+			
 		}
 		else{
 			$estiloCss = '<link rel="stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
 			$estiloCssAlt = '<link rel="alternate stylesheet" title="Normal" type="text/css" href="estilo.css" />';
-			extraerUrl();
 		}
 	}
 	else{
 		$estiloCss = '<link rel="stylesheet" title="Normal" type="text/css" href="estilo.css" />';
 		$estiloCssAlt = '<link rel="alternate stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
-		extraerUrl();
-		mostrarMensErrorBienv();
 	}
 }
 else{
 	if(isset($_SESSION["usuarioLog"])){
-		if(isset($_COOKIE["ultimaVisita"])){
-			setcookie("ultimaVisita", date("c"), time() + 90 * 24 * 60 * 60);
-			$_COOKIE["ultimaVisita"] = date("c");
-		}
 		$estiloUsu;
 		foreach ($GLOBALS["usuarios"] as $key => $value) {
 			if($key == $_SESSION["usuarioLog"]){
@@ -53,35 +47,35 @@ else{
 		if($estiloUsu == "normal"){
 			$estiloCss = '<link rel="stylesheet" title="Normal" type="text/css" href="estilo.css" />';
 			$estiloCssAlt = '<link rel="alternate stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
-			extraerUrl();
 		}
 		else{
 			$estiloCss = '<link rel="stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
 			$estiloCssAlt = '<link rel="alternate stylesheet" title="Normal" type="text/css" href="estilo.css" />';
-			extraerUrl();
 		}
 	}
 	else{
 		$estiloCss = '<link rel="stylesheet" title="Normal" type="text/css" href="estilo.css" />';
 		$estiloCssAlt = '<link rel="alternate stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
-		extraerUrl();
 	}
 }
 
-function mostrarMensErrorBienv(){
+function mostrarMensErrorCookie(){
 			echo <<<errorCookie
 			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
 			<div class="modal">
 				<div class="contenido">
 				<span>
-					<h2>El usuario almacenado no es válido o ha expirado</h2>
+					<img src="./img/error.png" alt="error-login">
+					<h2>Error</h2>
 				</span>
+					<p>El usuario almacenado no es válido o ha expirado</p>
 					<button type="button" onclick="cerrarMensajeModal(2);">Aceptar</button>
 				</div>
 			</div>
 errorCookie;
 }
 
+extraerUrl();
 function extraerUrl(){
 	$urlRel = $_SERVER['REQUEST_URI'];
 	$pagArray = explode("/", $urlRel);

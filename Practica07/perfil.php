@@ -41,7 +41,12 @@ modalPerfil;
 			}
 		}
 		if(!empty($nomUsu)){
-			mostrarPerfilUsuario($nomUsu);
+			if(!$GLOBALS["cookieFalsa"]){
+				mostrarPerfilUsuario($nomUsu);
+			}
+			else{
+				mostrarMensErrorCookie();
+			}
 		}
 	}
 

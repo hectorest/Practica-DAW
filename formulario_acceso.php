@@ -1,6 +1,8 @@
 <?php
 session_start();
+$cookieFalsaFormAcceso = false;
 if(isset($_COOKIE["idUsuario"])){
+	require_once("controlCookie.php");
 	if(!isset($_SESSION["usuarioLog"])){
 		$host = $_SERVER['HTTP_HOST']; 
 		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
@@ -10,15 +12,13 @@ if(isset($_COOKIE["idUsuario"])){
 }
 require_once("head.php");
 require_once("header.php");
-if(isset($_SESSION["usuarioLog"])){
+if(isset($_SESSION["usuarioLog"]) && $cookieFalsaFormAcceso == false){
 	require_once("barraNavSesionIniciada.php");
 }
 else{
 	require_once("barraNavSesionNoIniciada.php");
 }
-?>
 
-	<?php
 		if(isset($_GET["er"])){
 			
 			echo<<<modalAcceso
@@ -38,8 +38,7 @@ else{
 modalAcceso;
 		}
 
-		if(isset($_SESSION["usuarioLog"])){
-
+		if(isset($_SESSION["usuarioLog"]) && $cookieFalsaFormAcceso == false){
 			$identUsuariosReg = array(
 				"1" => "pepee1",
 				"2" => "manolo2",
@@ -72,6 +71,10 @@ modalAcceso;
 modalAccesoPorUrl;
 		}
 		else {
+			if($cookieFalsaFormAcceso){
+				mostrarMensErrorCookie();
+			}
+			else{
 	?>
 		<form action="controlLogin.php" method="post" class="formulario" id="formAcc">
 
@@ -103,7 +106,10 @@ modalAccesoPorUrl;
 		</form>
 
 	<?php  
+
+			}
 		}
+		
 	?>
 <?php
 	require_once("footer.php");
