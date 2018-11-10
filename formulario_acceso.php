@@ -39,17 +39,17 @@ modalAcceso;
 		}
 
 		if(isset($_SESSION["usuarioLog"]) && $cookieFalsaFormAcceso == false){
-			$identUsuariosReg = array(
-				"1" => "pepee1",
-				"2" => "manolo2",
-				"3" => "sergio3",
-				"4" => "juaan4",
-				"5" => "luiis5");
+			$usuarios = array(
+				"1" => ["pepee1", "11111111", "normal"],
+				"2" => ["manolo2","22222222","accesible"],
+				"3" => ["sergio3", "33333333","normal"],
+				"4" => ["juaan4", "44444444", "accesible"],
+				"5" => ["luiis5", "55555555", "normal"]);
 
 			$nomUsu;
-			foreach ($GLOBALS["identUsuariosReg"] as $key => $value) {
+			foreach ($GLOBALS["usuarios"] as $key => $value) {
 				if($key == $_SESSION["usuarioLog"]){
-					$nomUsu = $value;
+					$nomUsu = $value[0];
 					break;
 				}
 			}

@@ -2,11 +2,14 @@
 session_start();
 require_once("head.php");
 require_once("header.php");
-if(isset($_SESSION["usuarioLog"])){
+if(isset($_SESSION["usuarioLog"]) && $cookieFalsa == false){
 	require_once("barraNavSesionIniciada.php");
 }
 else{
 	require_once("barraNavSesionNoIniciada.php");
+	if($cookieFalsa){
+		mostrarMensErrorCookie();
+	}
 }
 ?>	
 
@@ -24,7 +27,7 @@ else{
 			}
 		}
 
-		if($hayGet==true && $cookieFalsa == false){	
+		if($hayGet==true){	
 
 			if($hayFiltros == true){
 
@@ -53,36 +56,27 @@ filtros;
 		
 		else{
 
-			if($cookieFalsa){
-				mostrarMensErrorCookie();
-			}
-			else{
-				echo<<<noHayResultBusq
+			echo<<<noHayResultBusq
 
-					<section id="resultados">
-						<br><a href="formulario_busqueda.php" title="Realizar otra búsqueda"><span class="icon-search">Buscar de nuevo</span></a><br>
-						<p><b>No hay resultados</b></p>
-					</section>
+				<section id="resultados">
+					<br><a href="formulario_busqueda.php" title="Realizar otra búsqueda"><span class="icon-search">Buscar de nuevo</span></a><br>
+					<p><b>No hay resultados</b></p>
+				</section>
 
 noHayResultBusq;
-			}
 
 		}
 	}
 		else{
-			if($cookieFalsa){
-				mostrarMensErrorCookie();
-			}
-			else{
-				echo<<<noHaBuscado
 
-					<section id="resultados">
-						<br><a href="formulario_busqueda.php" title="Realizar otra búsqueda"><span class="icon-search">Buscar de nuevo</span></a><br>
-						<p><b>No hay resultados</b></p>
-					</section>
+			echo<<<noHaBuscado
+
+				<section id="resultados">
+					<br><a href="formulario_busqueda.php" title="Realizar otra búsqueda"><span class="icon-search">Buscar de nuevo</span></a><br>
+					<p><b>No hay resultados</b></p>
+				</section>
 
 noHaBuscado;
-			}
 		}
 
 function cambiarClave(&$clave){
@@ -177,7 +171,6 @@ function mostrarResultBusq(){
 				<span class="icon-to-end" title="Últimas 5 imágenes"></span>
 			</div>
 		</div>
-}
 
 resultadoBusqueda;
 

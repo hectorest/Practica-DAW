@@ -10,7 +10,7 @@ else{
 	if($cookieFalsa){
 		mostrarMensErrorCookie();
 	}
-	else{
+}
 ?>
 		<form action="resultado_busqueda.php" method="get"  class="formulario" id="formBuscAvanz">
 
@@ -76,11 +76,6 @@ else{
 			</fieldset>
 
 		</form>
-
-<?php
-		}
-	}
-?>
 
 <?php
 	require_once("footer.php");
