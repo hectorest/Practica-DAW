@@ -72,7 +72,7 @@ CREATE TABLE `fotos` (
   `Fichero` varchar(500) COLLATE latin1_spanish_ci NOT NULL,
   `Alternativo` varchar(10) COLLATE latin1_spanish_ci NOT NULL,
   `FRegistro` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -83,7 +83,7 @@ CREATE TABLE `fotos` (
 CREATE TABLE `paises` (
   `IdPais` int(11) NOT NULL,
   `NomPais` varchar(200) COLLATE latin1_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `paises`
@@ -119,7 +119,7 @@ CREATE TABLE `solicitudes` (
   `IColor` tinyint(1) NOT NULL,
   `FRegistro` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   `Coste` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -139,7 +139,7 @@ CREATE TABLE `usuarios` (
   `Foto` varchar(200) COLLATE latin1_spanish_ci NOT NULL,
   `FRegistro` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   `Estilo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
