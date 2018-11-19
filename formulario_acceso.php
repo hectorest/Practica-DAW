@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once("conexion_db.php");
 $cookieFalsaFormAcceso = false;
 if(isset($_COOKIE["idUsuario"])){
 	require_once("controlCookie.php");
@@ -39,17 +40,25 @@ modalAcceso;
 		}
 
 		if(isset($_SESSION["usuarioLog"]) && $cookieFalsaFormAcceso == false){
-			$usuarios = array(
-				"1" => ["pepee1", "11111111", "normal"],
-				"2" => ["manolo2","22222222","accesible"],
-				"3" => ["sergio3", "33333333","normal"],
-				"4" => ["juaan4", "44444444", "accesible"],
-				"5" => ["luiis5", "55555555", "normal"]);
+		 // Ejecuta una sentencia SQL 
+			$sentencia = 'SELECT * FROM usuarios'; 
+					 if(!($usuarios = $mysqli->query($sentencia))) { 
+					   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+					   echo '</p>'; 
+					   exit; 
+					 }
 
 			$nomUsu;
-			foreach ($GLOBALS["usuarios"] as $key => $value) {
+			/*foreach ($GLOBALS["usuarios"] as $key => $value) {
 				if($key == $_SESSION["usuarioLog"]){
 					$nomUsu = $value[0];
+					break;
+				}
+			}*/
+
+			while($fila = $usuarios->fetch_assoc()) { 
+				if($fila['IdUsuario'] == $_SESSION["usuarioLog"]){
+					$nomUsu = $fila['NomUsuario'];
 					break;
 				}
 			}

@@ -2,21 +2,25 @@
 session_start();
 require_once("head.php");
 require_once("header.php");
+require_once("conexion_db.php");
+
 if(!isset($_SESSION["usuarioLog"])){
 	require_once("barraNavSesionNoIniciada.php");
 	mostrarErrorPerfilSinIniciarSesion();
 }
 else{
 	require_once("barraNavSesionIniciada.php");
-	extraerNombreUsuario($_SESSION["usuarioLog"]);
+	mostrarPerfilUsuario();
 }
 
-$usuarios = array(
+/*$usuarios = array(
 "1" => ["pepee1", "11111111", "normal"],
 "2" => ["manolo2","22222222","accesible"],
 "3" => ["sergio3", "33333333","normal"],
 "4" => ["juaan4", "44444444", "accesible"],
-"5" => ["luiis5", "55555555", "normal"]);
+"5" => ["luiis5", "55555555", "normal"]);*/
+
+
 function mostrarErrorPerfilSinIniciarSesion(){
 	echo<<<modalPerfil
 		<button type="button" onclick="cerrarMensajeModal(4);">X</button>
@@ -32,34 +36,27 @@ function mostrarErrorPerfilSinIniciarSesion(){
 			</div>
 modalPerfil;
 }
-	function extraerNombreUsuario(&$idUsuario){
-		$nomUsu;
-		foreach ($GLOBALS["usuarios"] as $key => $value) {
-			if($key == $idUsuario){
-				$nomUsu = $value[0];
-				break;
-			}
-		}
-		if(!empty($nomUsu)){
-			if(!$GLOBALS["cookieFalsa"]){
-				mostrarPerfilUsuario($nomUsu);
-			}
-			else{
-				mostrarMensErrorCookie();
-			}
-		}
-	}
+	function mostrarPerfilUsuario(){
+		 
+		 // Ejecuta una sentencia SQL 
+		 $sentencia = 'SELECT * FROM usuarios u, paises p where p.IdPais=u.Pais and IdUsuario=4'; 
+		 if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
+		   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
+		   echo '</p>'; 
+		   exit; 
+		 } 
 
-	function mostrarPerfilUsuario(&$nomUsu){
+		$fila = $resultado->fetch_object();
+
 		echo <<<perfilUsuario
 
 			<section>
 
-			<p id='bienvenidaUsuarioPerfil'>¡Hola $nomUsu!</p>
+			<p id='bienvenidaUsuarioPerfil'>¡Hola $fila->NomUsuario!</p>
 
 			<h3>Mis Datos:</h3>
 
-			<img src="./img/foto_perfil.png" alt="foto_perfil">
+			<img src="$fila->Foto" alt="foto_perfil">
 
 			<div class="contTabla">
 				<table class="tabla" title="Puedes hacer scroll lateral en la tabla si no cabe en tu pantalla para poder ver todos los datos que contiene">
@@ -67,42 +64,42 @@ modalPerfil;
 					<tr>
 						
 						<td>Nombre:</td>
-						<td>$nomUsu</td>
+						<td>$fila->NomUsuario</td>
 
 					</tr>
 
 					<tr>
 						
 						<td>Email:</td>
-						<td>usuarionuevo@gmail.com</td>
+						<td>$fila->Email</td>
 
 					</tr>
 
 					<tr>
 
 						<td>Sexo:</td>
-						<td>Hombre</td>
+						<td>$fila->Sexo</td>
 
 					</tr>
 
 					<tr>
 						
 						<td>Fecha nacimiento:</td>
-						<td><time datetime="1998-09-15">15 de septiembre de 1998</time></td>
+						<td><time datetime="1998-09-15">$fila->FNacimiento</time></td>
 
 					</tr>
 
 					<tr>
 
 						<td>Ciudad de Residencia:</td>
-						<td>San Vicente</td>
+						<td>$fila->Ciudad</td>
 
 					</tr>
 
 					<tr>
 
 						<td>País de Residencia:</td>
-						<td>España</td>
+						<td>$fila->NomPais</td>
 
 					</tr>
 				</table>

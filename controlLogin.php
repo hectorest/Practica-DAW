@@ -1,11 +1,6 @@
 <?php	
 session_start();
-$usuarios = array(
-	"1" => ["pepee1", "11111111", "normal"],
-	"2" => ["manolo2","22222222","accesible"],
-	"3" => ["sergio3", "33333333","normal"],
-	"4" => ["juaan4", "44444444", "accesible"],
-	"5" => ["luiis5", "55555555", "normal"]);
+require_once("conexion_db.php");
 $ultimaVisita = "Ahora";
 $hayCookie = false;
 if(isset($_COOKIE["idUsuario"])){
@@ -28,25 +23,51 @@ else{
 	/*Funcion que realiza la comprobacion del login*/
 	function hacerLogin(&$usu, &$pass){
 		$existe = false;
-		foreach ($GLOBALS["usuarios"] as $key => $value) {
+		/*foreach ($GLOBALS["usuarios"] as $key => $value) {
 			if($value[0] == $usu && $value[1] == $pass){
 				$existe = true;
 				break;
 			}
-		}
+		}*/
+
+		 $sentencia = 'SELECT * FROM usuarios'; 
+		 if(!($usuarios = $GLOBALS["mysqli"]->query($sentencia))) { 
+		   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+		   echo '</p>'; 
+		   exit; 
+		 } 
+
+		// Recorre el resultado y pasa a true si encuentra un usuario con una contraseña coincidentes con los de la tabla
+		 while($fila = $usuarios->fetch_assoc()) { 
+		   if($fila['NomUsuario']== $usu && $fila['Clave'] == $pass){
+		   	   $existe = true;
+				break;
+			}
+		 } 
 
 		$host = $_SERVER['HTTP_HOST']; 
 		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 		 
 		if($existe == true){
 			$idUsu;
-			foreach ($GLOBALS["usuarios"] as $key => $value) {
+			/*foreach ($GLOBALS["usuarios"] as $key => $value) {
 				if($value[0] == $usu){
 					$idUsu = $key;
 					break;
 				}
-			}
-
+			}*/
+			$sentencia = 'SELECT * FROM usuarios'; 
+				 if(!($usuarios =  $GLOBALS["mysqli"]->query($sentencia))) { 
+				   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+				   echo '</p>'; 
+				   exit; 
+				 } 
+			 while($fila = $usuarios->fetch_assoc()) {
+			 	if($fila['NomUsuario']== $usu){
+			 		$idUsu = $fila['IdUsuario'];
+					break;
+			 	}
+			 }
 			$_SESSION["usuarioLog"] = $idUsu;
 
 			if($GLOBALS["hayCookie"]){
@@ -75,12 +96,20 @@ else{
 
 	function hacerLoginCookie(&$idUsu){
 		$existe = false;
-		foreach ($GLOBALS["usuarios"] as $key => $value) {
+		/*foreach ($GLOBALS["usuarios"] as $key => $value) {
 			if($key == $idUsu){
 				$existe = true;
 				break;
 			}
+		}*/
+
+		while($fila = $usuarios->fetch_assoc()) {
+			 if($fila['IdUsuario']== $idUsu){
+				$existe = true;
+				break;
+			}
 		}
+
 		$host = $_SERVER['HTTP_HOST']; 
 		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\'); 
 		if($existe == true){
