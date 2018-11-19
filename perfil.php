@@ -37,9 +37,12 @@ function mostrarErrorPerfilSinIniciarSesion(){
 modalPerfil;
 }
 	function mostrarPerfilUsuario(){
+
+		$idUsuSesion=$_SESSION["usuarioLog"];
+		echo $idUsuSesion;
 		 
 		 // Ejecuta una sentencia SQL 
-		 $sentencia = 'SELECT * FROM usuarios u, paises p where p.IdPais=u.Pais and IdUsuario=4'; 
+		 $sentencia = 'SELECT * FROM usuarios u, paises p where p.IdPais=u.Pais and u.IdUsuario='.$idUsuSesion; 
 		 if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
 		   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
 		   echo '</p>'; 
