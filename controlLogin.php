@@ -102,6 +102,12 @@ else{
 				break;
 			}
 		}*/
+		$sentencia = 'SELECT * FROM usuarios'; 
+		 if(!($usuarios = $GLOBALS["mysqli"]->query($sentencia))) { 
+		   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+		   echo '</p>'; 
+		   exit; 
+		 } 
 
 		while($fila = $usuarios->fetch_assoc()) {
 			 if($fila['IdUsuario']== $idUsu){

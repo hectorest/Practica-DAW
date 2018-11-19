@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2018 a las 13:33:27
+-- Tiempo de generación: 19-11-2018 a las 19:33:51
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -30,10 +30,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `albumes` (
   `IdAlbum` int(11) NOT NULL,
-  `Titulo` varchar(200) COLLATE latin1_spanish_ci NOT NULL,
-  `Descripcion` text COLLATE latin1_spanish_ci NOT NULL,
+  `Titulo` varchar(200) NOT NULL,
+  `Descripcion` text NOT NULL,
   `Usuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -43,18 +43,18 @@ CREATE TABLE `albumes` (
 
 CREATE TABLE `estilos` (
   `IdEstilo` int(11) NOT NULL,
-  `Nombre` varchar(200) COLLATE latin1_spanish_ci NOT NULL,
-  `Descripcion` text COLLATE latin1_spanish_ci NOT NULL,
-  `Fichero` varchar(500) COLLATE latin1_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+  `Nombre` varchar(200) NOT NULL,
+  `Descripcion` text NOT NULL,
+  `Fichero` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `estilos`
 --
 
 INSERT INTO `estilos` (`IdEstilo`, `Nombre`, `Descripcion`, `Fichero`) VALUES
-(1, 'Normal', 'Este es el estilo normal de la web. Los colores empleados son los colores corporativos de la marca. Se trata de un estilo monocromático, que emplea distintos tonos de naranja.', 'estilo.css'),
-(2, 'Accesible', 'Se trata de una version alternativa del estilo. Las características que lo distinguen son: mayor tamaño de los elementos de la web y el uso de colores de alto contraste como son el blanco y el negro.', 'estilo_accesible.css');
+(1, 'Normal', 'Este es el estilo normal de la web. Los colores empleados son los colores corporativos de la marca. Se trata de un estilo monocrom?tico, que emplea distintos tonos de naranja.', 'estilo.css'),
+(2, 'Accesible', 'Se trata de una version alternativa del estilo. Las caracter?sticas que lo distinguen son: mayor tama?o de los elementos de la web y el uso de colores de alto contraste como son el blanco y el negro.', 'estilo_accesible.css');
 
 -- --------------------------------------------------------
 
@@ -64,15 +64,15 @@ INSERT INTO `estilos` (`IdEstilo`, `Nombre`, `Descripcion`, `Fichero`) VALUES
 
 CREATE TABLE `fotos` (
   `IdFoto` int(11) NOT NULL,
-  `Titulo` varchar(200) COLLATE latin1_spanish_ci NOT NULL,
-  `Descripcion` text COLLATE latin1_spanish_ci NOT NULL,
+  `Titulo` varchar(200) NOT NULL,
+  `Descripcion` mediumtext NOT NULL,
   `Fecha` date NOT NULL,
   `Pais` int(11) NOT NULL,
   `Album` int(11) NOT NULL,
-  `Fichero` varchar(500) COLLATE latin1_spanish_ci NOT NULL,
-  `Alternativo` varchar(10) COLLATE latin1_spanish_ci NOT NULL,
+  `Fichero` varchar(500) NOT NULL,
+  `Alternativo` varchar(10) NOT NULL,
   `FRegistro` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -82,8 +82,8 @@ CREATE TABLE `fotos` (
 
 CREATE TABLE `paises` (
   `IdPais` int(11) NOT NULL,
-  `NomPais` varchar(200) COLLATE latin1_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+  `NomPais` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `paises`
@@ -102,24 +102,24 @@ INSERT INTO `paises` (`IdPais`, `NomPais`) VALUES
 CREATE TABLE `solicitudes` (
   `IdAlbum` int(11) NOT NULL,
   `Album` int(11) NOT NULL,
-  `Nombre` varchar(200) COLLATE latin1_spanish_ci NOT NULL,
-  `Titulo` varchar(200) COLLATE latin1_spanish_ci NOT NULL,
-  `Descripcion` text COLLATE latin1_spanish_ci NOT NULL,
-  `Email` varchar(200) COLLATE latin1_spanish_ci NOT NULL,
-  `d_Calle` varchar(200) COLLATE latin1_spanish_ci NOT NULL,
+  `Nombre` varchar(200) NOT NULL,
+  `Titulo` varchar(200) NOT NULL,
+  `Descripcion` mediumtext NOT NULL,
+  `Email` varchar(200) NOT NULL,
+  `d_Calle` varchar(200) NOT NULL,
   `d_Numero` int(11) NOT NULL,
   `d_CP` int(11) NOT NULL,
   `d_Pais` int(11) NOT NULL,
-  `d_Localidad` varchar(200) COLLATE latin1_spanish_ci NOT NULL,
-  `d_Provincia` varchar(200) COLLATE latin1_spanish_ci NOT NULL,
-  `Color` varchar(200) COLLATE latin1_spanish_ci NOT NULL,
+  `d_Localidad` varchar(200) NOT NULL,
+  `d_Provincia` varchar(200) NOT NULL,
+  `Color` varchar(200) NOT NULL,
   `Copias` int(11) NOT NULL,
   `Resolucion` int(11) NOT NULL,
   `Fecha` date NOT NULL,
   `IColor` tinyint(1) NOT NULL,
   `FRegistro` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   `Coste` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -129,17 +129,17 @@ CREATE TABLE `solicitudes` (
 
 CREATE TABLE `usuarios` (
   `IdUsuario` int(11) NOT NULL,
-  `NomUsuario` varchar(15) COLLATE latin1_spanish_ci NOT NULL,
-  `Clave` varchar(200) COLLATE latin1_spanish_ci NOT NULL,
-  `Email` varchar(200) COLLATE latin1_spanish_ci NOT NULL,
+  `NomUsuario` varchar(15) NOT NULL,
+  `Clave` varchar(200) NOT NULL,
+  `Email` varchar(200) NOT NULL,
   `Sexo` tinyint(4) NOT NULL,
   `FNacimiento` date NOT NULL,
-  `Ciudad` varchar(200) COLLATE latin1_spanish_ci NOT NULL,
+  `Ciudad` varchar(200) NOT NULL,
   `Pais` int(11) NOT NULL,
-  `Foto` varchar(200) COLLATE latin1_spanish_ci NOT NULL,
+  `Foto` varchar(200) NOT NULL,
   `FRegistro` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   `Estilo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuarios`
