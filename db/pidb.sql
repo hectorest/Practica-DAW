@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2018 a las 19:53:31
--- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 7.2.11
+-- Tiempo de generación: 20-11-2018 a las 03:50:32
+-- Versión del servidor: 10.1.35-MariaDB
+-- Versión de PHP: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -90,12 +90,39 @@ CREATE TABLE `paises` (
 -- Volcado de datos para la tabla `paises`
 --
 
-CREATE TRIGGER `ContinenteCorrecto` BEFORE INSERT ON `paises` FOR EACH ROW BEGIN DECLARE mensajeError VARCHAR(500); IF NEW.Continente = '' OR NEW.Continente NOT IN('Europa', 'Norteamérica', 'Sudamérica', 'Asia', 'Oceanía', 'África', 'Antártida') THEN SET mensajeError = concat('Error al insertar continente: el valor de la columna Continente no puede ser cadena vacía o ", y, además, su valor debe de corresponderse con alguno de los 7 existentes. Lista de continentes: Europa, Asia, Oceanía, Norteamérica, Sudamérica, África y Antártida. (Se debe escribir el continente con los acentos que tenga). Continente especificado: ', NEW.Continente); SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = mensajeError; END IF; END
-
 INSERT INTO `paises` (`IdPais`, `NomPais`, `Continente`) VALUES
 (1, 'España', 'Europa'),
 (2, 'Colombia', 'Sudamérica'),
-(3, 'Alemania', 'Europa');
+(3, 'Alemania', 'Europa'),
+(4, 'Francia', 'Europa'),
+(5, 'Suiza', 'Europa'),
+(6, 'Suecia', 'Europa'),
+(7, 'China', 'Asia'),
+(8, 'Corea-Norte', 'Asia'),
+(9, 'Corea-Sur', 'Asia'),
+(10, 'Japón', 'Asia'),
+(11, 'EE.UU', 'Norteamérica'),
+(12, 'Canadá', 'Norteamérica'),
+(13, 'Marruecos', 'África'),
+(14, 'Sudáfrica', 'África'),
+(15, 'Australia', 'Oceanía'),
+(16, 'Argentina', 'Sudamérica'),
+(17, 'México', 'Norteamérica'),
+(18, 'Perú', 'Sudamérica');
+
+--
+-- Disparadores `paises`
+--
+DELIMITER $$
+CREATE TRIGGER `ContinenteCorrecto` BEFORE INSERT ON `paises` FOR EACH ROW BEGIN
+DECLARE mensajeError VARCHAR(500);
+IF NEW.Continente = '' OR NEW.Continente NOT IN('Europa', 'Norteamérica', 'Sudamérica', 'Asia', 'Oceanía', 'África', 'Antártida') THEN
+SET mensajeError = concat('Error al insertar continente: el valor de la columna Continente no puede ser cadena vacía o ", y, además, su valor debe de corresponderse con alguno de los 7 existentes. Lista de continentes: Europa, Asia, Oceanía, Norteamérica, Sudamérica, África y Antártida. (Se debe escribir el continente con los acentos que tenga). Continente especificado: ', NEW.Continente);
+SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = mensajeError;
+END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -225,7 +252,7 @@ ALTER TABLE `fotos`
 -- AUTO_INCREMENT de la tabla `paises`
 --
 ALTER TABLE `paises`
-  MODIFY `IdPais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IdPais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitudes`
