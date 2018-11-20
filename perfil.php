@@ -50,6 +50,17 @@ modalPerfil;
 		 } 
 
 		$fila = $resultado->fetch_object();
+		
+		$sexo;
+		if($fila->Sexo == 1){
+			$sexo = "Hombre";
+		}
+		else if($fila->Sexo == 2){
+			$sexo = "Mujer";
+		}
+		else{
+			$sexo = "Otro";
+		}
 
 		echo <<<perfilUsuario
 
@@ -81,7 +92,7 @@ modalPerfil;
 					<tr>
 
 						<td>Sexo:</td>
-						<td>$fila->Sexo</td>
+						<td>$sexo</td>
 
 					</tr>
 

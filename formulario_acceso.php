@@ -20,6 +20,24 @@ else{
 	require_once("barraNavSesionNoIniciada.php");
 }
 
+function mostrarModalAccesoPorUrl(&$nomUsu){
+	echo<<<modalAccesoPorUrl
+
+			<button type="button" onclick="cerrarMensajeModal(0);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<h2><span class="icon-attention-circled"></span>¡Atención!</h2>
+				</span>
+					<p>Ya has iniciado sesión previamente. Tu nombre es: $nomUsu</p>
+					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar Sesión</button>
+					<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
+				</div>
+			</div>
+
+modalAccesoPorUrl;
+}
+
 		if(isset($_GET["er"])){
 			
 			echo<<<modalAcceso
@@ -40,44 +58,30 @@ modalAcceso;
 		}
 
 		if(isset($_SESSION["usuarioLog"]) && $cookieFalsaFormAcceso == false){
-		 // Ejecuta una sentencia SQL 
-			$sentencia = 'SELECT * FROM usuarios'; 
-					 if(!($usuarios = $mysqli->query($sentencia))) { 
-					   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
-					   echo '</p>'; 
-					   exit; 
-					 }
 
-			$nomUsu;
-			/*foreach ($GLOBALS["usuarios"] as $key => $value) {
-				if($key == $_SESSION["usuarioLog"]){
-					$nomUsu = $value[0];
-					break;
-				}
-			}*/
+			$usuarioSesion = $_SESSION["usuarioLog"];
+			$usuarioSesion = $GLOBALS["mysqli"]->real_escape_string($usuarioSesion);
+			$usuarioSesion = (int) $usuarioSesion;
 
-			while($fila = $usuarios->fetch_assoc()) { 
-				if($fila['IdUsuario'] == $_SESSION["usuarioLog"]){
-					$nomUsu = $fila['NomUsuario'];
-					break;
-				}
+		 	// Ejecuta una sentencia SQL 
+			$sentencia = 'SELECT * FROM usuarios WHERE IdUsuario = '. $usuarioSesion; 
+			if(!($usuario = $mysqli->query($sentencia))) { 
+				echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+				echo '</p>'; 
+				exit; 
 			}
 
-			echo<<<modalAccesoPorUrl
+			$nomUsu;
 
-			<button type="button" onclick="cerrarMensajeModal(0);">X</button>
-			<div class="modal">
-				<div class="contenido">
-				<span>
-					<h2><span class="icon-attention-circled"></span>¡Atención!</h2>
-				</span>
-					<p>Ya has iniciado sesión previamente. Tu nombre es: $nomUsu</p>
-					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar Sesión</button>
-					<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
-				</div>
-			</div>
+			if(mysqli_num_rows($usuario)){
+				$fila = $usuario->fetch_object();
+				$nomUsu = $fila->NomUsuario;
+				mostrarModalAccesoPorUrl($nomUsu);
+			}
+			else{
+				mostrarMensErrorCookie();
+			}
 
-modalAccesoPorUrl;
 		}
 		else {
 			if($cookieFalsaFormAcceso){

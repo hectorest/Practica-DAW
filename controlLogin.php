@@ -24,9 +24,6 @@ else{
 	function hacerLogin(&$usu, &$pass){
 		$existe = false;
 
-		$usu = htmlentities($usu);
-		$pass = htmlentities($pass);
-
 		$usu = $GLOBALS["mysqli"]->real_escape_string($usu);
 		$pass = $GLOBALS["mysqli"]->real_escape_string($pass);
 
@@ -114,18 +111,20 @@ else{
 				break;
 			}
 		}*/
-		$sentencia = 'SELECT * FROM usuarios'; 
-		 if(!($usuarios = $GLOBALS["mysqli"]->query($sentencia))) { 
-		   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
-		   echo '</p>'; 
-		   exit; 
-		 } 
+		$usuarioCookie = $idUsu;
+		$usuarioCookie = $GLOBALS["mysqli"]->real_escape_string($usuarioCookie);
+		$usuarioCookie = (int) $usuarioCookie;
 
-		while($fila = $usuarios->fetch_assoc()) {
-			 if($fila['IdUsuario']== $idUsu){
-				$existe = true;
-				break;
-			}
+		// Ejecuta una sentencia SQL 
+		$sentencia = 'SELECT * FROM usuarios WHERE IdUsuario = '. $usuarioCookie; 
+		if(!($usuario = $GLOBALS["mysqli"]->query($sentencia))) { 
+			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+			echo '</p>'; 
+			exit; 
+		}
+
+		if(mysqli_num_rows($usuario)){
+			$existe = true;
 		}
 
 		$host = $_SERVER['HTTP_HOST']; 

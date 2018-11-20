@@ -23,6 +23,8 @@ else{
 		if($succes == true){
 
 			$nomUsu;
+		
+			$idUsu = $GLOBALS["mysqli"]->real_escape_string($idUsu);
 
 			$sentencia = 'SELECT * FROM usuarios WHERE IdUsuario=' . $idUsu; 
 		 	if(!($usuario = $GLOBALS["mysqli"]->query($sentencia))) { 

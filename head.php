@@ -1,10 +1,5 @@
 <?php
-$usuarios = array(
-	"1" => ["pepee1", "11111111", "normal"],
-	"2" => ["manolo2","22222222","accesible"],
-	"3" => ["sergio3", "33333333","normal"],
-	"4" => ["juaan4", "44444444", "accesible"],
-	"5" => ["luiis5", "55555555", "normal"]);
+require_once("conexion_db.php");
 $cookieFalsa = false;
 if(isset($_COOKIE["idUsuario"])){
 	require_once("controlCookie.php");
@@ -13,49 +8,76 @@ if(isset($_COOKIE["idUsuario"])){
 			setcookie("ultimaVisita", date("c"), time() + 90 * 24 * 60 * 60);
 			$_COOKIE["ultimaVisita"] = date("c");
 		}
-		$estiloUsu;
-		foreach ($GLOBALS["usuarios"] as $key => $value) {
-			if($key == $_SESSION["usuarioLog"]){
-				$estiloUsu = $value[2];
-				break;
-			}
+
+		$usuarioSesion = $_SESSION["usuarioLog"];
+		$usuarioSesion = $GLOBALS["mysqli"]->real_escape_string($usuarioSesion);
+		$usuarioSesion = (int) $usuarioSesion;
+
+		// Ejecuta una sentencia SQL 
+		$sentencia = 'SELECT e.IdEstilo, e.Nombre, e.Descripcion, e.Fichero FROM usuarios u JOIN estilos e ON (u.Estilo = e.IdEstilo) WHERE u.IdUsuario = '. $usuarioSesion; 
+		if(!($estilo = $GLOBALS["mysqli"]->query($sentencia))) { 
+			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+			echo '</p>'; 
+			exit; 
 		}
-		if($estiloUsu == "normal"){
-			$estiloCss = '<link rel="stylesheet" title="Normal" type="text/css" href="estilo.css" />';
-			$estiloCssAlt = '<link rel="alternate stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
-			
-		}
-		else{
-			$estiloCss = '<link rel="stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
-			$estiloCssAlt = '<link rel="alternate stylesheet" title="Normal" type="text/css" href="estilo.css" />';
+
+		if(mysqli_num_rows($estilo)){
+			$fila = $estilo->fetch_object();
+			$nombreEstiloUsu = "'" . $fila->Nombre . "'";
+			$ficheroEstiloUsu = "'" . $fila->Fichero . "'";
+			$IdEstilo = (int) $fila->IdEstilo;
 		}
 	}
 	else{
-		$estiloCss = '<link rel="stylesheet" title="Normal" type="text/css" href="estilo.css" />';
-		$estiloCssAlt = '<link rel="alternate stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
+		$nombreEstiloUsu = "'Normal'";
+		$ficheroEstiloUsu = "'estilo.css'";
+		$sentencia = 'SELECT IdEstilo FROM estilos WHERE Fichero = '. $ficheroEstiloUsu; 
+		if(!($estilo = $GLOBALS["mysqli"]->query($sentencia))) { 
+			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+			echo '</p>'; 
+			exit; 
+		}
+		if(mysqli_num_rows($estilo)){
+			$fila = $estilo->fetch_object();
+			$IdEstilo = $fila->IdEstilo;
+		}
 	}
 }
 else{
 	if(isset($_SESSION["usuarioLog"])){
-		$estiloUsu;
-		foreach ($GLOBALS["usuarios"] as $key => $value) {
-			if($key == $_SESSION["usuarioLog"]){
-				$estiloUsu = $value[2];
-				break;
-			}
+
+		$usuarioSesion = $_SESSION["usuarioLog"];
+		$usuarioSesion = $GLOBALS["mysqli"]->real_escape_string($usuarioSesion);
+		$usuarioSesion = (int) $usuarioSesion;
+
+		// Ejecuta una sentencia SQL 
+		$sentencia = 'SELECT e.IdEstilo, e.Nombre, e.Descripcion, e.Fichero FROM usuarios u JOIN estilos e ON (u.Estilo = e.IdEstilo) WHERE u.IdUsuario = '. $usuarioSesion; 
+		if(!($estilo = $GLOBALS["mysqli"]->query($sentencia))) { 
+			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+			echo '</p>'; 
+			exit; 
 		}
-		if($estiloUsu == "normal"){
-			$estiloCss = '<link rel="stylesheet" title="Normal" type="text/css" href="estilo.css" />';
-			$estiloCssAlt = '<link rel="alternate stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
-		}
-		else{
-			$estiloCss = '<link rel="stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
-			$estiloCssAlt = '<link rel="alternate stylesheet" title="Normal" type="text/css" href="estilo.css" />';
+
+		if(mysqli_num_rows($estilo)){
+			$fila = $estilo->fetch_object();
+			$nombreEstiloUsu = "'" . $fila->Nombre . "'";
+			$ficheroEstiloUsu = "'" . $fila->Fichero . "'";
+			$IdEstilo = (int) $fila->IdEstilo;
 		}
 	}
 	else{
-		$estiloCss = '<link rel="stylesheet" title="Normal" type="text/css" href="estilo.css" />';
-		$estiloCssAlt = '<link rel="alternate stylesheet" title="Accesible" type="text/css" href="estilo_accesible.css" />';
+		$nombreEstiloUsu = "'Normal'";
+		$ficheroEstiloUsu = "'estilo.css'";
+		$sentencia = 'SELECT IdEstilo FROM estilos WHERE Fichero = '. $ficheroEstiloUsu; 
+		if(!($estilo = $GLOBALS["mysqli"]->query($sentencia))) { 
+			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+			echo '</p>'; 
+			exit; 
+		}
+		if(mysqli_num_rows($estilo)){
+			$fila = $estilo->fetch_object();
+			$IdEstilo = $fila->IdEstilo;
+		}
 	}
 }
 
@@ -123,7 +145,7 @@ function obtenerTitle(&$pagina){
 }
 
 function escribirHead(&$title){
-echo <<<cabecera
+echo <<<cabeceraParte1
 <!DOCTYPE html> 
 <html lang="es"> 
 <!-- La cabecera --> 
@@ -137,13 +159,32 @@ echo <<<cabecera
 	<link rel="shortcut icon" type="image/x-icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
 	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="./logotipo-e-icono/icono-pi-daw.ico"/>
 	<link rel="stylesheet" type="text/css" href="fontello/css/fontello.css"/>
-	{$GLOBALS['estiloCss']}
-	{$GLOBALS['estiloCssAlt']}
+	<link rel='stylesheet' title={$GLOBALS['nombreEstiloUsu']} type='text/css' href={$GLOBALS['ficheroEstiloUsu']} />
+cabeceraParte1;
+
+//Extraemos estilos alternativos atendiendo al estilo elegido
+
+$sentencia = 'SELECT IdEstilo, Nombre, Fichero FROM estilos WHERE IdEstilo NOT IN('. $GLOBALS['IdEstilo'] . ')'; 
+if(!($estilosAlt = $GLOBALS["mysqli"]->query($sentencia))) { 
+	echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+	echo '</p>'; 
+	exit; 
+}
+
+if(mysqli_num_rows($estilosAlt) >= 1){
+	while($fila = $estilosAlt->fetch_assoc()){
+		$nombreEstiloAltUsu = "'" . $fila["Nombre"] . "'";
+		$ficheroEstiloAltUsu = "'" . $fila["Fichero"] . "'";
+		echo "<link rel='alternate stylesheet' title=$nombreEstiloAltUsu type='text/css' href=$ficheroEstiloAltUsu />";
+	}
+}
+
+echo <<<cabeceraParte2
 	<link rel="stylesheet" type="text/css" media="print" href="print.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1"/> 
 	<script type="text/javascript" src="script.js"></script>
 </head> 
-cabecera;
+cabeceraParte2;
 }
 
 ?>
