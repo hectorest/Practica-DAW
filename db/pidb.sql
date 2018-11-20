@@ -82,16 +82,20 @@ CREATE TABLE `fotos` (
 
 CREATE TABLE `paises` (
   `IdPais` int(11) NOT NULL,
-  `NomPais` varchar(200) NOT NULL
+  `NomPais` varchar(200) NOT NULL,
+  `Continente` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `paises`
 --
 
-INSERT INTO `paises` (`IdPais`, `NomPais`) VALUES
-(1, 'España'),
-(2, 'Colombia');
+CREATE TRIGGER `ContinenteCorrecto` BEFORE INSERT ON `paises` FOR EACH ROW BEGIN DECLARE mensajeError VARCHAR(500); IF NEW.Continente = '' OR NEW.Continente NOT IN('Europa', 'Norteamérica', 'Sudamérica', 'Asia', 'Oceanía', 'África', 'Antártida') THEN SET mensajeError = concat('Error al insertar continente: el valor de la columna Continente no puede ser cadena vacía o ", y, además, su valor debe de corresponderse con alguno de los 7 existentes. Lista de continentes: Europa, Asia, Oceanía, Norteamérica, Sudamérica, África y Antártida. (Se debe escribir el continente con los acentos que tenga). Continente especificado: ', NEW.Continente); SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = mensajeError; END IF; END
+
+INSERT INTO `paises` (`IdPais`, `NomPais`, `Continente`) VALUES
+(1, 'España', 'Europa'),
+(2, 'Colombia', 'Sudamérica'),
+(3, 'Alemania', 'Europa');
 
 -- --------------------------------------------------------
 

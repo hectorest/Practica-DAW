@@ -2,6 +2,7 @@
 session_start();
 require_once("head.php");
 require_once("header.php");
+require_once("conexion_db.php");
 if(isset($_SESSION["usuarioLog"]) && $cookieFalsa == false){
 	require_once("barraNavSesionIniciada.php");
 }
@@ -45,6 +46,9 @@ filtros;
 					$clave = $key;
 					cambiarClave($clave);
 					if($value != ""){
+						if($key == "pais"){
+							$value = extraerPais($value); 
+						}
 						echo"<p><b>$clave:</b> $value</p>";
 					}
 				}
@@ -119,6 +123,22 @@ function cambiarClave(&$clave){
 			break;
 		}
 	}
+}
+
+function extraerPais(&$IdP){
+
+	$sentencia = 'SELECT NomPais FROM paises WHERE IdPais =' . $IdP;
+	
+	if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))){
+		echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
+		echo '</p>'; 
+		exit; 
+	}
+
+	$fila = $resultado->fetch_object();
+
+	return $fila->NomPais;
+
 }
 
 function mostrarResultBusq(){

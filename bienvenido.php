@@ -1,12 +1,7 @@
 <?php  
 $idUsu = $_COOKIE["idUsuario"];
 $ultimaVisita;
-$usuarios = array(
-	"1" => ["pepee1", "11111111", "normal"],
-	"2" => ["manolo2","22222222","accesible"],
-	"3" => ["sergio3", "33333333","normal"],
-	"4" => ["juaan4", "44444444", "accesible"],
-	"5" => ["luiis5", "55555555", "normal"]);
+require_once("conexion_db.php");
 if(isset($_COOKIE["ultimaVisita"])){
 	$ultimaVisita = $_COOKIE["ultimaVisita"];
 	$ultimaVisita = strtotime($ultimaVisita);
@@ -28,16 +23,24 @@ else{
 		if($succes == true){
 
 			$nomUsu;
-			foreach ($GLOBALS["usuarios"] as $key => $value) {
-				if($key == $idUsu){
-					$nomUsu = $value[0];
-					break;
-				}
-			}
 
-			setcookie("ultimaVisita", date("c"), time() + 90 * 24 * 60 * 60);
-			$_COOKIE["ultimaVisita"] = date("c");
-			mostrarMensBienv($nomUsu, $date);
+			$sentencia = 'SELECT * FROM usuarios WHERE IdUsuario=' . $idUsu; 
+		 	if(!($usuario = $GLOBALS["mysqli"]->query($sentencia))) { 
+		   		echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+		   		echo '</p>'; 
+		   		exit; 
+		 	} 
+
+		 	if(mysqli_num_rows($usuario)){
+		 		$fila = $usuario->fetch_object();
+		 		$nomUsu = $fila->NomUsuario;
+		 		setcookie("ultimaVisita", date("c"), time() + 90 * 24 * 60 * 60);
+				$_COOKIE["ultimaVisita"] = date("c");
+				mostrarMensBienv($nomUsu, $date);
+		 	}
+		 	else{
+		 		mostrarMensErrorBienv();
+		 	}
 
 		}
 		else{

@@ -2,6 +2,7 @@
 session_start();
 require_once("head.php");
 require_once("header.php");
+require_once("conexion_db.php");
 if(isset($_SESSION["usuarioLog"]) && $cookieFalsa == false){
 	require_once("barraNavSesionIniciada.php");
 }
@@ -15,7 +16,6 @@ else{
 		<form action="resultado_busqueda.php" method="get"  class="formulario" id="formBuscAvanz">
 
 			<fieldset>
-
 			<legend>
 				Búsqueda avanzada
 			</legend>
@@ -36,29 +36,41 @@ else{
 					<label for="pais">País:</label>
 					<select name="pais" id="pais">
 						<option value="">Escoge</option>
-						<optgroup label="Europa">
-							<option>Alemania</option>
-							<option>España</option>
-							<option>Francia</option>
-							<option>Inglaterra</option>
-							<option>Rusia</option>
-							<option>Suiza</option>
-						</optgroup>
-						<optgroup label="Asia">
-							<option>China</option>
-							<option>Japón</option>
-						</optgroup>
-						<optgroup label="Norteamérica">
-							<option>Estados Unidos</option>
-							<option>Canadá</option>
-						</optgroup>
-						<optgroup label="Centroamérica">
-							<option>México</option>
-						</optgroup>
-						<optgroup label="Sudamérica">
-							<option>Argentina</option>
-							<option>Brasil</option>
-						</optgroup>
+						<?php  
+							
+							extraerContinentes();
+
+							function extraerContinentes(){
+								$sentencia = 'SELECT DISTINCT Continente FROM paises order by (Continente) ASC';
+								if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))){
+									echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
+			   						echo '</p>'; 
+			  						exit; 
+								}
+
+								while($fila = $resultado->fetch_assoc()){
+									echo "<optgroup label='{$fila['Continente']}'>";
+									extraerPaisesContinente($fila['Continente']);
+									echo "</optgroup>";
+								}
+							}
+
+							function extraerPaisesContinente(&$continente){
+								$sentencia = 'SELECT IdPais, NomPais FROM paises p WHERE p.Continente='. "'" . $continente . "'" . 'ORDER BY (NomPais) ASC';
+								if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))){
+									echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
+			   						echo '</p>'; 
+			  						exit; 
+								}
+
+								while($fila = $resultado->fetch_assoc()){
+									$IdPais = $fila["IdPais"];
+									echo "<option value=$IdPais>{$fila['NomPais']}</option>";
+								}
+							}
+
+
+						?>
 					</select>
 				</p>
 				<p>
