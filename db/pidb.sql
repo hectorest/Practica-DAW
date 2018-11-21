@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2018 a las 03:50:32
+-- Tiempo de generación: 21-11-2018 a las 02:06:28
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -34,6 +34,16 @@ CREATE TABLE `albumes` (
   `Descripcion` text NOT NULL,
   `Usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `albumes`
+--
+
+INSERT INTO `albumes` (`IdAlbum`, `Titulo`, `Descripcion`, `Usuario`) VALUES
+(1, 'Fotos Playa España', 'Este álbum es una recopilación de mis viajes a las diferentes playas de España', 3),
+(2, 'Fotos Montaña Asia', 'Este álbum es una recopilación de las diferentes montañas de Asia', 4),
+(3, 'Fotos Paisajes Montaña', 'Imágenes de diferentes paisajes de montaña de todo el mundo.', 3),
+(4, 'Fotos Playas', 'Álbum que contiene todas las fotos de todas las playas del mundo que he visitado.', 4);
 
 -- --------------------------------------------------------
 
@@ -70,9 +80,39 @@ CREATE TABLE `fotos` (
   `Pais` int(11) NOT NULL,
   `Album` int(11) NOT NULL,
   `Fichero` varchar(500) NOT NULL,
-  `Alternativo` varchar(10) NOT NULL,
+  `Alternativo` varchar(200) NOT NULL,
   `FRegistro` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `fotos`
+--
+
+INSERT INTO `fotos` (`IdFoto`, `Titulo`, `Descripcion`, `Fecha`, `Pais`, `Album`, `Fichero`, `Alternativo`, `FRegistro`) VALUES
+(1, 'Foto Playa España', 'Una imagen de una playa de España al atardecer.', '2018-11-07', 1, 1, 'imagen-muestra/paisaje.jpg', 'Playa de España al atardecer', '2018-11-21 00:37:02'),
+(2, 'Imagen Montaña Asia', 'Una foto de una montaña de Pekin.', '2018-11-08', 7, 2, 'imagen-muestra/images2.jpg', 'Foto de una montaña de Pekín', '2018-11-21 01:57:16'),
+(3, 'Foto Playa Francia', 'Imagen de una playa ubicada en Francia.', '2018-11-12', 4, 4, 'imagen-muestra/imagen-muestra.jpg', 'Foto de una playa francesa', '2018-11-21 01:36:18'),
+(4, 'Foto Playa Europa', 'Una playa de Europa.', '2018-10-19', 5, 4, 'imagen-muestra/imagen-muestra.jpg', 'Una playa de Europa', '2018-11-21 01:51:40'),
+(5, 'Foto Montaña Sudáfrica', 'Una foto de una montaña de Sudáfrica.', '2018-11-11', 14, 3, 'imagen-muestra/descarga.jpg', 'Foto de una montaña de Sudáfrica', '2018-11-21 01:44:40'),
+(6, 'Foto Playa Australia', 'Imagen de una playa de Australia.', '2018-11-03', 15, 4, 'imagen-muestra/imagen-muestra.jpg', 'Foto de una playa de Australia', '2018-11-21 01:51:50'),
+(7, 'Foto Playa Argentina', 'Una imagen de una playa de Argentina.', '2018-11-02', 16, 4, 'imagen-muestra/images2.jpg', 'Foto de una playa de Argentina', '2018-11-21 01:50:07'),
+(8, 'Foto Montaña Japón', 'Una imagen de una montaña de Japón.', '2018-11-05', 10, 3, 'imagen-muestra/descarga.jpg', 'Foto de una montaña de Japón', '2018-11-21 01:50:10');
+
+--
+-- Disparadores `fotos`
+--
+DELIMITER $$
+CREATE TRIGGER `comprobarLongitudAlternativo` BEFORE INSERT ON `fotos` FOR EACH ROW BEGIN
+	DECLARE mensajeError VARCHAR(500);
+    DECLARE alt INTEGER;
+	SET alt = LENGTH(NEW.Alternativo);
+	IF alt < 10 THEN
+	SET mensajeError = concat('Error al insertar Alternativo: Su longitud debe de ser minimo de 10 caracteres. Longitud del texto introducido: ', alt);
+	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = mensajeError;
+	END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -234,7 +274,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `albumes`
 --
 ALTER TABLE `albumes`
-  MODIFY `IdAlbum` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdAlbum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `estilos`
@@ -246,7 +286,7 @@ ALTER TABLE `estilos`
 -- AUTO_INCREMENT de la tabla `fotos`
 --
 ALTER TABLE `fotos`
-  MODIFY `IdFoto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdFoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `paises`
