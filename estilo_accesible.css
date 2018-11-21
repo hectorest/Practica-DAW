@@ -609,14 +609,20 @@ body>button:focus{
 		display: flex;
 		justify-content: center;
 	}
-		body>.paginacion>div>span,p{
+
+		body>.paginacion>div>a{
+			text-decoration: none;
+			color: #000000;
+		}
+
+		body>.paginacion>div>a,p{
 
 			justify-content: center;
 			display: inline-block;
 
 		}
 
-		body>.paginacion>div>span:hover{
+		body>.paginacion>div>a:hover{
 			color: #ffffff;
 			background-color: #000000;
 			border-radius: 0.5em;

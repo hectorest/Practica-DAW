@@ -39,7 +39,6 @@ modalPerfil;
 	function mostrarPerfilUsuario(){
 
 		$idUsuSesion=$_SESSION["usuarioLog"];
-		echo $idUsuSesion;
 		 
 		 // Ejecuta una sentencia SQL 
 		 $sentencia = 'SELECT * FROM usuarios u, paises p where p.IdPais=u.Pais and u.IdUsuario='.$idUsuSesion;
@@ -50,7 +49,7 @@ modalPerfil;
 		 } 
 
 		$fila = $resultado->fetch_object();
-		
+
 		$sexo;
 		if($fila->Sexo == 1){
 			$sexo = "Hombre";

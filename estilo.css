@@ -603,18 +603,27 @@ body>button:focus{
 		display: flex;
 		justify-content: center;
 	}
+
+		body>.paginacion>div>a{
+			text-decoration: none;
+			color: #000000;
+		}
 	
-		body>.paginacion>div>span,p{
+		body>.paginacion>div>a,p{
 
 			justify-content: center;
 			display: inline-block;
 
 		}
 
-		body>.paginacion>div>span:hover{
+		body>.paginacion>div>a:hover{
 			color: #D67731;
 			cursor: pointer;
 		}
+
+			body>.paginacion>div>a>span{
+				text-decoration: none;
+			}
 
 		body>.paginacion>div>p{
 			border: 0.2em solid #D67731;

@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once("head.php");
-require_once("header.php");	
+require_once("header.php");
 if(isset($_SESSION["usuarioLog"]) && $cookieFalsa == false){
 	require_once("barraNavSesionIniciada.php");
 }
@@ -51,70 +51,112 @@ else{
 			</form>
 		</div>
 
+<?php
+
+	require_once("conexion_db.php");
+	require_once("convertirDatos.php");
+
+	$tamPag = 5; //establezco el tamanyo de pagina, es decir, el numero tope de registros a mostrar
+
+	if(!empty($_GET["pagina"]) && is_numeric($_GET["pagina"]) && $_GET["pagina"] > 0){ //si me han pasado un parametro y es numerico, mi inicio empieza desde esa pagina
+		$pagina = $_GET["pagina"];
+		$inicio = ($pagina - 1) * $tamPag;
+	}
+	else{ //si no, empiezo por la primera pagina
+		$pagina = 1;
+		$inicio = 0;
+	}
+
+	//realizamos la sentencia sql para extraer la totalidad de datos de la base de datos con el fin de establecer las paginas totales de las que dispondre
+	$sentencia = 'SELECT * FROM fotos';
+	if(!($resultado = $mysqli->query($sentencia))) { 
+		echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+		echo '</p>'; 
+		exit; 
+	}
+
+	if(mysqli_num_rows($resultado) >= 1){
+		$numTotalRegistros = mysqli_num_rows($resultado);
+		$totalPaginas = ceil($numTotalRegistros / $tamPag);
+	}
+
+	//para pasar las paginas anterior y siguiente a la paginacion
+	if(($pagina + 1) < $totalPaginas){
+		$paginaSig = $pagina + 1;
+	}
+	else{
+		$paginaSig = $totalPaginas;
+	}
+
+	if(($pagina - 1) > 0){
+		$paginaAnt = $pagina - 1;	
+	}
+	else{
+		$paginaAnt = 0;
+	}
+
+	crearIndex();
+
+	function crearIndex(){
+
+		echo<<<indexParte1
 		<section id="contFotosIndex"> 
 			<h3>Últimas 5 imágenes subidas</h3>
 			<div class="imagenes">
-				<article>
-					<h4><a href="detalle_foto.php?id=1" title="Ver detalles de la foto">Titulo foto Ejemplo 1</a></h4>
-					<figure>
-						<a href="detalle_foto.php?id=1" title="Ver detalles de la foto"><img src="./imagen-muestra/imagen-muestra.jpg" alt="Titulo foto Ejemplo 1"/></a>
-					</figure>
-					<footer>
-						<p><time datetime="2018-09-15">Fecha de foto ejemplo 1, por ejemplo: 15 de septiembre de 2018</time></p>
-						<p>Pais foto ejemplo 1</p>
-					</footer>
-				</article>
-				<article>
-					<h4><a href="detalle_foto.php?id=2" title="Ver detalles de la foto">Titulo foto Ejemplo 2</a></h4>
-					<figure>
-						<a href="detalle_foto.php?id=2" title="Ver detalles de la foto"><img src="./imagen-muestra/descarga.jpg" alt="Titulo foto Ejemplo 2"/></a>
-					</figure>
-					<footer>
-						<p><time datetime="2018-09-15">Fecha de foto ejemplo 2, por ejemplo: 15 de septiembre de 2018</time></p>
-						<p>Pais foto ejemplo 2</p>
-					</footer>
-				</article>
-				<article>
-					<h4><a href="detalle_foto.php?id=3" title="Ver detalles de la foto">Titulo foto Ejemplo 3</a></h4>
-					<figure>
-						<a href="detalle_foto.php?id=3" title="Ver detalles de la foto"><img src="./imagen-muestra/images.jpg" alt="Titulo foto Ejemplo 3"/></a>
-					</figure>
-					<footer>
-						<p><time datetime="2018-09-15">Fecha de foto ejemplo 3, por ejemplo: 15 de septiembre de 2018</time></p>
-						<p>Pais foto ejemplo 3</p>
-					</footer>
-				</article>
-				<article>
-					<h4><a href="detalle_foto.php?id=4" title="Ver detalles de la foto">Titulo foto Ejemplo 4</a></h4>
-					<figure>
-						<a href="detalle_foto.php?id=4" title="Ver detalles de la foto"><img src="./imagen-muestra/images2.jpg" alt="Titulo foto Ejemplo 4"/></a>
-					</figure>
-					<footer>
-						<p><time datetime="2018-09-15">Fecha de foto ejemplo 4, por ejemplo: 15 de septiembre de 2018</time></p>
-						<p>Pais foto ejemplo 4</p>
-					</footer>
-				</article>
-				<article>
-					<h4><a href="detalle_foto.php?id=5" title="Ver detalles de la foto">Titulo foto Ejemplo 5</a></h4>
-					<figure>
-						<a href="detalle_foto.php?id=5" title="Ver detalles de la foto"><img src="./imagen-muestra/paisaje.jpg" alt="Titulo foto Ejemplo 5"/></a>
-					</figure>
-					<footer>
-						<p><time datetime="2018-09-15">Fecha de foto ejemplo 5, por ejemplo: 15 de septiembre de 2018</time></p>
-						<p>Pais foto ejemplo 5</p>
-					</footer>
-				</article>
+indexParte1;
+
+		//extraigo las fotos indicando por cual pagina debo empezar y cuantas imagenes mostrar como tope
+		$sentencia = 'SELECT * FROM fotos' . ' ORDER BY (IdFoto) DESC ' . 'LIMIT ' . $GLOBALS["inicio"] . ',' . $GLOBALS["tamPag"];
+		if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
+			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
+			echo '</p>'; 
+			exit; 
+		}
+
+		if(mysqli_num_rows($resultado) >= 1){
+			while($fila = $resultado->fetch_assoc()){
+
+				$idFoto = $fila["IdFoto"];
+				$titulo = $fila["Titulo"];
+				$fichero = $fila["Fichero"];
+				$alt = $fila["Alternativo"];
+				$fecha = $fila["Fecha"];
+				$pais = extraerPais($fila["Pais"]);
+
+				echo<<<articulo
+
+			<article>
+				<h4><a href="detalle_foto.php?id=$idFoto" title="Ver detalles de la foto">$titulo</a></h4>
+				<figure>
+					<a href="detalle_foto.php?id=$idFoto" title="Ver detalles de la foto"><img src="./$fichero" alt="$alt"/></a>
+				</figure>
+				<footer>
+					<p><time datetime="$fecha">$fecha</time></p>
+					<p>$pais</p>
+				</footer>
+			</article>
+articulo;
+			}
+		}
+
+		echo<<<indexParte2
 			</div> 
 		</section>
 		<div class="paginacion">
 			<div>
-				<span class="icon-to-start" title="Primeras 5 imágenes"></span>
-				<span class="icon-left-open" title="Anteriores 5 imágenes"></span>
-				<p>Página <output>1</output> / 5</p>
-				<span class="icon-right-open" title="Siguientes 5 imágenes"></span>
-				<span class="icon-to-end" title="Últimas 5 imágenes"></span>
+				<a href="index.php?pagina=0"><span class="icon-to-start" title="Primeras 5 imágenes"></span></a>
+				<a href="index.php?pagina={$GLOBALS['paginaAnt']}"><span class="icon-left-open" title="Anteriores 5 imágenes"></span></a>
+				<p>Página <output>{$GLOBALS['pagina']}</output> / {$GLOBALS['totalPaginas']}</p>
+				<a href="index.php?pagina={$GLOBALS['paginaSig']}"><span class="icon-right-open" title="Siguientes 5 imágenes"></span></a>
+				<a href="index.php?pagina={$GLOBALS['totalPaginas']}"><span class="icon-to-end" title="Últimas 5 imágenes"></span></a>
 			</div>
-		</div> 
+		</div>
+indexParte2;
+
+	}
+
+
+ ?>
 
 <?php
 	require_once("footer.php");
