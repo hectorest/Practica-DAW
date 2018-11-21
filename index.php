@@ -54,7 +54,6 @@ else{
 <?php
 
 	require_once("conexion_db.php");
-	require_once("convertirDatos.php");
 
 	$tamPag = 5; //establezco el tamanyo de pagina, es decir, el numero tope de registros a mostrar
 
@@ -106,7 +105,7 @@ else{
 indexParte1;
 
 		//extraigo las fotos indicando por cual pagina debo empezar y cuantas imagenes mostrar como tope
-		$sentencia = 'SELECT * FROM fotos' . ' ORDER BY (IdFoto) DESC ' . 'LIMIT ' . $GLOBALS["inicio"] . ',' . $GLOBALS["tamPag"];
+		$sentencia = 'SELECT * FROM fotos JOIN paises ON (IdPais = Pais)' . ' ORDER BY (IdFoto) DESC ' . 'LIMIT ' . $GLOBALS["inicio"] . ',' . $GLOBALS["tamPag"];
 		if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
 			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
 			echo '</p>'; 
@@ -121,7 +120,7 @@ indexParte1;
 				$fichero = $fila["Fichero"];
 				$alt = $fila["Alternativo"];
 				$fecha = $fila["Fecha"];
-				$pais = extraerPais($fila["Pais"]);
+				$pais = $fila["NomPais"];
 
 				echo<<<articulo
 

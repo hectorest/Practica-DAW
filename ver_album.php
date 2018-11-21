@@ -15,21 +15,6 @@ else{
 }
 ?>
 <?php
-function extraerPais(&$IdP){
-
-	$sentencia = 'SELECT NomPais FROM paises WHERE IdPais =' . $IdP;
-	
-	if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))){
-		echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
-		echo '</p>'; 
-		exit; 
-	}
-
-	$fila = $resultado->fetch_object();
-
-	return $fila->NomPais;
-
-}
 
 function mostrarAlbum(&$IdAlbum){
 
@@ -49,65 +34,59 @@ function mostrarAlbum(&$IdAlbum){
 		   exit; 
 		 }
 
-	$sentencia3 = 'SELECT DISTINCT Pais FROM fotos where Album='.$idAlbum;
+	$sentencia3 = 'SELECT DISTINCT NomPais, Pais FROM fotos, paises where Album='.$idAlbum.' and Pais=IdPais';
 		 if(!($resultado3 = $GLOBALS["mysqli"]->query($sentencia3))) { 
 		   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
 		   echo '</p>'; 
 		   exit; 
 		 }
 
-	$sentencia4 = 'SELECT max(Fecha) FROM fotos where Album='.$idAlbum;
+	$sentencia4 = 'SELECT max(Fecha) fechaMax, min(Fecha) fechaMin FROM fotos where Album='.$idAlbum;
 		 if(!($resultado4 = $GLOBALS["mysqli"]->query($sentencia4))) { 
 		   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
 		   echo '</p>'; 
 		   exit; 
 		 } 
 
-	$sentencia5 = 'SELECT min(Fecha) FROM fotos where Album='.$idAlbum;
-		 if(!($resultado5 = $GLOBALS["mysqli"]->query($sentencia5))) { 
-		   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
-		   echo '</p>'; 
-		   exit; 
-		 }
 
 	$fila2 = $resultado2->fetch_object();
 	$tituloAlbum=$fila2->Titulo;
 	$descAlbum=$fila2->Descripcion;
 
 	$fila4 = $resultado4->fetch_object();
-	$fila5 = $resultado5->fetch_object();
-	$maxFecha=$fila4->Fecha;
-	$minFecha=$fila5->Fecha;
+	$minFecha=$fila4->fechaMin;
+	$maxFecha=$fila4->fechaMax;
 
 
 	echo <<<parte1
 		<section>
-			<h3>$tituloAlbum:</h3>
+			<h3>$tituloAlbum</h3>
 
 			<p>$descAlbum</p>
 
 			<div id="filtrosAplicados" class="mostrarDatos">
 parte1;
-			$fila3 = $resultado3->fetch_object();
-				while($fila3 = $resultado3->fetch_object()) {
 
-					echo"<p>$fila3->Pais</p>";
+				while($fila3 = $resultado3->fetch_assoc()) {
+
+					$pais=$fila3["NomPais"];
+					echo"<p>$pais</p>";
 
 				}
 
 	echo<<<parte2
-			"</div>"
+			</div>
 			<p>$minFecha - $maxFecha</p>
-			<div class="imagenes">
+			<div>
 parte2;
-			$fila1 = $resultado1->fetch_object();
-				while($fila1 = $resultado1->fetch_object()) {
+
+				while($fila1 = $resultado1->fetch_assoc()) {
 
 					echo<<<foto
 				<article>
-					<h4><a href="detalle_foto.php?id=$fila1->IdFoto" title="Ver detalles de la foto">$fila1->Titulo</a></h4>
+					<h4><a href="detalle_foto.php?id={$fila1['IdFoto']}" title="Ver detalles de la foto">{$fila1['Titulo']}</a></h4>
 					<figure>
-						<a href="detalle_foto.php?id=$fila1->IdFoto" title="Ver detalles de la foto"><img src="$fila1->Fichero" alt="fila1->Titulo"/></a>
+						<a href="detalle_foto.php?id={$fila1['IdFoto']}" title="Ver detalles de la foto"><img src="{$fila1['Fichero']}" alt="{$fila1['Alternativo']}"/></a>
 					</figure>
 				</article>
 foto;

@@ -5,7 +5,7 @@ require_once("header.php");
 require_once("conexion_db.php");
 if(!isset($_SESSION["usuarioLog"])){
 	require_once("barraNavSesionNoIniciada.php");
-	mostrarErrorPerfilSinIniciarSesion();
+	mostrarErrorConfigurarSinIniciarSesion();
 }
 else{
 	require_once("barraNavSesionIniciada.php");
@@ -51,7 +51,7 @@ function mostrarFormularioConfigurar(){
 formularioConfigurarArriba;
 
 			while($fila = $resultado->fetch_object()) { 
-				echo "<input type='radio' name='$fila->Nombre' id='$fila->Nombre' value='$fila->Nombre'><span>$fila->Nombre</span>";
+				echo "<input type='radio' name='estiloWeb' id='$fila->Nombre' value='$fila->Nombre'><span>$fila->Nombre</span>";
 			} 
 
 	echo<<<formularioConfigurarDebajo
@@ -63,6 +63,22 @@ formularioConfigurarArriba;
 			</fieldset>
 		</form>
 formularioConfigurarDebajo;
+}
+
+function mostrarErrorConfigurarSinIniciarSesion(){
+	echo<<<modalPerfil
+		<button type="button" onclick="cerrarMensajeModal(4);">X</button>
+			<div class="modal">
+				<div class="contenido">
+					<span>
+						<img src="./img/error.png" alt="error-detalle-foto">
+						<h2>Error</h2>
+					</span>
+					<p>No puedes configurar el estilo sin haber iniciado sesión previamente</p>
+					<button type="button" onclick="cerrarMensajeModal(4);">Aceptar</button>
+				</div>
+			</div>
+modalPerfil;
 }
 
 ?>
