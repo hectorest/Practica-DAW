@@ -49,11 +49,11 @@ function mostrarFormularioConfigurar(){
 					<label for="elegirEstilo">Estilo:</label>
 					<span>
 formularioConfigurarArriba;
-
+		if(mysqli_num_rows($resultado)){
 			while($fila = $resultado->fetch_object()) { 
 				echo "<input type='radio' name='estiloWeb' id='$fila->Nombre' value='$fila->Nombre'><span>$fila->Nombre</span>";
-			} 
-
+			}
+		} 
 	echo<<<formularioConfigurarDebajo
 					</span>
 				</p>

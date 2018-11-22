@@ -29,7 +29,7 @@ else{
 		<section>
 			
 			<h3>Añadir foto a álbum</h3>
-			<p>En esta página podrás añadir una foto a uno de tus álbumes.</p>
+			<p>En esta página podrás añadir una foto a uno de tus álbumes. Los campos con * son obligatorios</p>
 			
 		</section>
 
@@ -51,8 +51,8 @@ else{
 					<textarea id="descripcion" name="descripcion" placeholder="Descripción de la foto" rows="10" cols="50" maxlength="4000" title="Tope de caracteres o letras: 4000"></textarea>
 				</p>
 				<p>
-					<label for="fechaFoto">Fecha de la foto*:</label>
-					<input type="date" required name="fechaFoto" id="fechaFoto" title="Fecha de la foto"/>
+					<label for="fechaFoto">Fecha de la foto**:</label>
+					<input type="date" name="fechaFoto" id="fechaFoto" title="Fecha de la foto"/>
 				</p>
 				<p>
 					<label for="pais">País*:</label>
@@ -69,7 +69,7 @@ else{
 				</p>
 				<p>
 					<label for="texto_alternativo">Texto Alternativo*:</label>
-					<input type="text" required name="texto_alternativo" id="texto_alternativo" minlength="10" placeholder="Texto alternativo" maxlength="200" title="Este es el texto que identifica a la imagen"/>
+					<input type="text" required name="texto_alternativo" id="texto_alternativo" minlength="10" placeholder="Texto alternativo" maxlength="200" title="Este es el texto que identifica a la imagen (debe tener un mínimo de 10 carácteres)"/>
 				</p>
 				<p>
 
@@ -89,6 +89,7 @@ else{
 				<p>
 					<button type="submit">Enviar</button> <!--En realidad, el boton submit, una vez pulsado, redirigira, si todos los datos son correctos, a la pagina de respuesta de la solicitud de album-->
 				</p>
+				<p>**Si no se especifica la fecha de la foto, el sistema guardará la fecha en que se añada la foto al álbum</p>
 			</fieldset>
 		</form>
 

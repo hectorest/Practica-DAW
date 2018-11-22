@@ -29,6 +29,9 @@ function cerrarMensajeModal(param){
 	else if (param == 6){
 		location.href = "./crear_album.php";
 	}
+	else if (param == 7){
+		location.href = "./mis_albumes.php";
+	}
 	else{
 		location.href = "./index.php";
 	}
