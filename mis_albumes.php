@@ -47,6 +47,7 @@ else{
 				<table class="tabla" title="Puedes hacer scroll lateral en la tabla si no cabe en tu pantalla para poder ver todos los datos que contiene">
 arribaTablaMisAlbumes;
 
+			if(mysqli_num_rows($resultado)){
 				while($fila = $resultado->fetch_object()) {
 
 				   	echo "<tr>"; 
@@ -56,6 +57,12 @@ arribaTablaMisAlbumes;
   					echo "</tr>";
 
 				}
+			}else{
+					echo "<tr>"; 
+   					echo "<td>No dispones de álbumes</td>"; 
+  					echo "</tr>";
+
+			}
 				echo<<<debajoTablaMisAlbumes
 					</table>
 				</div>

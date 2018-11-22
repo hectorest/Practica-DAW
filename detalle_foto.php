@@ -69,7 +69,7 @@ function EsParOImpar($id){
 }
 
 function mostrarDetalleFoto(&$idImg){
-	$sentencia = 'SELECT f.Titulo, a.Titulo AS AlbumTit, Fichero, f.Descripcion, f.Fecha, Alternativo, NomPais, NomUsuario FROM fotos f JOIN albumes a ON (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (usuarios.Pais = paises.IdPais) WHERE IdFoto = ' . $idImg;
+	$sentencia = 'SELECT f.Titulo, a.Titulo AS AlbumTit, Fichero, f.Descripcion, f.Fecha, Alternativo, NomPais, NomUsuario FROM fotos f JOIN albumes a ON (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (f.Pais = paises.IdPais) WHERE IdFoto = ' . $idImg;
 	if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
 		echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
 		echo '</p>'; 
@@ -79,20 +79,20 @@ function mostrarDetalleFoto(&$idImg){
 	if(mysqli_num_rows($resultado)){
 		$fila = $resultado->fetch_object();
 		echo <<<detalleFoto
-	<article id="detFoto">
-		<h3>$fila->Titulo</h3>
-		<figure>
-			<img src="$fila->Fichero" alt="$fila->Alternativo"/>
-		</figure>
-		<div>
-			<h4>Descripción:</h4>
-			<p class="p-left">$fila->Descripcion</p>
-			<p><time datetime="$fila->Fecha">$fila->Fecha</time></p>
-			<p>$fila->NomPais</p>
-			<a href="album.php" title="Álbum al que pertenece la foto">Álbum: $fila->AlbumTit</a>
-			<a href="usuario.php" title="Autor de la foto">Usuario: $fila->NomUsuario</a>					
-		</div>
-	</article>
+		<article class="detFoto">
+			<h3>$fila->Titulo</h3>
+			<figure>
+				<img src="$fila->Fichero" alt="$fila->Alternativo"/>
+			</figure>
+			<div>
+				<h4>Descripción:</h4>
+				<p class="p-left">$fila->Descripcion</p>
+				<p><time datetime="$fila->Fecha">$fila->Fecha</time></p>
+				<p>$fila->NomPais</p>
+				<a href="album.php" title="Álbum al que pertenece la foto">Álbum: $fila->AlbumTit</a>
+				<a href="usuario.php" title="Autor de la foto">Usuario: $fila->NomUsuario</a>					
+			</div>
+		</article>
 detalleFoto;
 	}
 	else{

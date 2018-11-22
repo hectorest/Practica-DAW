@@ -20,7 +20,7 @@ function mostrarAlbum(&$IdAlbum){
 
 	$idAlbum=$_GET["IdAlbum"];
 
-	$sentencia1 = 'SELECT * FROM fotos where Album='.$idAlbum;
+	$sentencia1 = 'SELECT f.Titulo, a.Titulo AS AlbumTit, Fichero, f.Descripcion, f.Fecha, Alternativo, NomPais, NomUsuario FROM fotos f JOIN albumes a ON (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (f.Pais = paises.IdPais) where Album='.$idAlbum;
 		 if(!($resultado1 = $GLOBALS["mysqli"]->query($sentencia1))) { 
 		   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
 		   echo '</p>'; 
@@ -47,16 +47,18 @@ function mostrarAlbum(&$IdAlbum){
 		   echo '</p>'; 
 		   exit; 
 		 } 
+if(mysqli_num_rows($resultado1)) {
+	if(mysqli_num_rows($resultado2)) {
+		$fila2 = $resultado2->fetch_object();
+		$tituloAlbum=$fila2->Titulo;
+		$descAlbum=$fila2->Descripcion;
+	}
 
-
-	$fila2 = $resultado2->fetch_object();
-	$tituloAlbum=$fila2->Titulo;
-	$descAlbum=$fila2->Descripcion;
-
-	$fila4 = $resultado4->fetch_object();
-	$minFecha=$fila4->fechaMin;
-	$maxFecha=$fila4->fechaMax;
-
+	if(mysqli_num_rows($resultado4)) {
+		$fila4 = $resultado4->fetch_object();
+		$minFecha=$fila4->fechaMin;
+		$maxFecha=$fila4->fechaMax;
+	}
 
 	echo <<<parte1
 		<section>
@@ -64,49 +66,72 @@ function mostrarAlbum(&$IdAlbum){
 
 			<p>$descAlbum</p>
 
-			<div id="filtrosAplicados" class="mostrarDatos">
+			<div id="paisesAlbum" class="mostrarDatos">
+			<p>Este álbum recoje fotos de los siguientes países:</p>
 parte1;
-
+			if(mysqli_num_rows($resultado3)){
 				while($fila3 = $resultado3->fetch_assoc()) {
 
 					$pais=$fila3["NomPais"];
 					echo"<p>$pais</p>";
 
 				}
+			}
 
 	echo<<<parte2
 			</div>
-			<p>$minFecha - $maxFecha</p>
+			<p>Las fotos de este álbum han sido tomadas entre las fechas:</p>
+			<p>$minFecha y $maxFecha</p>
 			<div>
 parte2;
-
-				while($fila1 = $resultado1->fetch_assoc()) {
+		if(mysqli_num_rows($resultado1)){
+				while($fila1 = $resultado1->fetch_object()) {
 
 					echo<<<foto
-				<article>
-					<h4><a href="detalle_foto.php?id={$fila1['IdFoto']}" title="Ver detalles de la foto">{$fila1['Titulo']}</a></h4>
-					<figure>
-						<a href="detalle_foto.php?id={$fila1['IdFoto']}" title="Ver detalles de la foto"><img src="{$fila1['Fichero']}" alt="{$fila1['Alternativo']}"/></a>
-					</figure>
-				</article>
+					<article class="detFoto">
+						<h3>$fila1->Titulo</h3>
+						<figure>
+							<img src="$fila1->Fichero" alt="$fila1->Alternativo"/>
+						</figure>
+						<div>
+							<h4>Descripción:</h4>
+							<p class="p-left">$fila1->Descripcion</p>
+							<p><time datetime="$fila1->Fecha">$fila1->Fecha</time></p>
+							<p>$fila1->NomPais</p>					
+						</div>
+					</article>
 foto;
-
 				}
+
+		}
+	}else{
+
+		mostrarMensModalErrorPagAlbumNoExistente();
+
+	}
 	echo<<<parte3
-			</div>		
-		<div class="paginacion">
-			<div>
-				<span class="icon-to-start" title="Primeras 5 imágenes"></span>
-				<span class="icon-left-open" title="Anteriores 5 imágenes"></span>
-				<p>Página <output>1</output> / 5</p>
-				<span class="icon-right-open" title="Siguientes 5 imágenes"></span>
-				<span class="icon-to-end" title="Últimas 5 imágenes"></span>
 			</div>
-		</div>
 	</section>
 parte3;
 
-}	
+}
+
+	function mostrarMensModalErrorPagAlbumNoExistente(){
+		echo<<<modalDetalle
+				<button type="button" onclick="cerrarMensajeModal(7);">X</button>
+				<div class="modal">
+					<div class="contenido">
+						<span>
+							<img src="./img/error.png" alt="error-detalle-foto">
+							<h2>Error</h2>
+						</span>
+						<p>Estes álbum no existe o no contiene fotos</p>
+						<button type="button" onclick="cerrarMensajeModal(7);">Cerrar</button>
+					</div>
+				</div>
+modalDetalle;
+	}
+
 ?>
 <?php
 	require_once("footer.php");
