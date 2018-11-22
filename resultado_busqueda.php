@@ -58,20 +58,102 @@ else{
 				
 filtros;
 
+				require_once("controlUrlPag.php");
+
+				$getSaneado = $_GET;
+
+				foreach ($getSaneado as $key => $value){
+					if(!empty($value)){
+						$GLOBALS["mysqli"]->real_escape_string($value);
+					}
+				}
+
 				foreach ($_GET as $key => $value) {
 					$clave = $key;
 					cambiarClave($clave);
 					if($value != ""){
-						if($key == "pais"){
+						if($key == "Pais"){
 							$value = extraerPais($value); 
 						}
-						echo"<p><b>$clave:</b> $value</p>";
+						if($key != "pagina"){
+							echo"<p><b>$clave:</b> $value</p>";
+						}
 					}
 				}
 
 				echo "</div>";
-				mostrarResultBusq();
+				
+				$busqueda = '';
+				$contador = 0;
+				$comparador = "=";
 
+				foreach ($_GET as $key => $value){
+					if($key == "pagina"){
+						$value = null;
+					}
+					if(!empty($value)){
+						if($contador == 0){
+							if($key == "Album" || $key == "a.Album"){
+								$key = 'a.' . 'Titulo';
+							}
+							if($key == "Titulo" || $key == "f.Titulo"){
+								$key = 'f.' . 'Titulo';
+							}
+							if($key == "FRegistro" || $key == "f.FRegistro"){
+								$key = 'f.' . 'FRegistro';
+								$comparador = ' LIKE ';
+								$value = (string) $value;
+								$value = "%$value%";
+							}
+							if($key == "Pais" || $key == "f.Pais"){
+								$key = 'f.' . 'Pais';
+							}
+							if(is_numeric($value)){
+								$busqueda = $busqueda . $key . $comparador . $value; 
+							}
+							else{
+								$busqueda = $busqueda . $key . $comparador . "'" . $value . "'";
+							}
+							
+							$contador = $contador + 1;
+						}
+						else{
+							if($key == "Album" || $key == "a.Album"){
+								$key = 'a.' . 'Titulo';
+							}
+							if($key == "Titulo" || $key == "f.Titulo"){
+								$key = 'f.' . 'Titulo';
+							}
+							if($key == "FRegistro" || $key == "f.FRegistro"){
+								$key = 'f.' . 'FRegistro';
+								$comparador = ' LIKE ';
+								$value = (string) $value;
+								$value = "%$value%";
+							}
+							if($key == "Pais" || $key == "f.Pais"){
+								$key = 'f.' . 'Pais';
+							}
+							if(is_numeric($value)){
+								$busqueda = $busqueda . ' AND ' . $key . $comparador . $value; 
+							}
+							else{
+								$busqueda = $busqueda . ' AND ' . $key . $comparador . "'" . $value . "'";
+							}
+						}
+					}
+				}
+
+				$sentencia = 'SELECT IdFoto, f.Titulo, a.Titulo AS AlbumTit, NomUsuario, Fichero, Alternativo, Fecha, NomPais FROM fotos f JOIN albumes a on (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (usuarios.Pais = paises.IdPais) WHERE ' . $busqueda;
+
+				if(!($resultado = $mysqli->query($sentencia))) { 
+					echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+					echo '</p>'; 
+					exit; 
+				}
+
+				require_once("paginacion.php");
+
+				mostrarResultBusq();
 		}
 		
 		else{
@@ -101,37 +183,14 @@ noHaBuscado;
 
 function cambiarClave(&$clave){
 	$clav = array(
-		"album" => "Álbum",
-		"autor" => "Autor",
-		"date1" => "Desde",
-		"date2" => "Hasta",
-		"titulo" => "Título",
-		"desc" => "Descripción",
+		"Album" => "Álbum",
+		"NomUsuario" => "Autor",
+		"FRegistro" => "Fecha",
+		"Titulo" => "Título",
+		"Descripcion" => "Descripción",
 		"palClave" => "Palabra clave",
-		"passw1" => "Contraseña",
-		"pass" => "Contraseña",
-		"sexo" => "Sexo",
-		"fNac" => "Fecha de nacimiento",
-		"cRes" => "Ciudad de residencia",
-		"pais" => "País",
-		"local" => "Localidad",
-		"pRes" => "País de residencia",
-		"usuario" => "Usuario",
-		"email" => "Email",
-		"texto_adicional" => "Texto adicional",
-		"cp" => "Código Postal",
-		"calle" => "Calle",
-		"numero" => "Número",
-		"local" => "Localidad",
-		"prov" => "Provincia",
-		"telefono" => "Teléfono",
-		"color_portada" => "Color portada",
-		"num_copias" => "Número de copias",
-		"resolucion" => "Resolución",
-		"frecep" => "Fecha de recepción",
-		"colorobn" => "Color o Blanco y negro",
-		"nombre" => "Nombre"
-		);
+		"Pais" => "País",
+	);
 
 	foreach ($clav as $key => $value) {
 		if($clave == $key){
@@ -143,56 +202,68 @@ function cambiarClave(&$clave){
 
 function mostrarResultBusq(){
 
-	echo <<<resultadoBusqueda
+	echo<<<resultadoBusqueda1
 
-			<h3>Resultados de la búsqueda:</h3>
-			<a href="formulario_busqueda.php" title="Realizar otra búsqueda"><span class="icon-search">Buscar de nuevo</span></a>
+		<h3>Resultados de la búsqueda:</h3>
+		<a href="formulario_busqueda.php" title="Realizar otra búsqueda"><span class="icon-search">Buscar de nuevo</span></a>
 
-			<div class="imagenes">
-				<article>
-					<h4><a href="detalle_foto.php?id=1" title="Ver detalles de la foto">Titulo foto Ejemplo 1</a></h4>
-					<figure>
-						<a href="detalle_foto.php?id=1" title="Ver detalles de la foto"><img src="./imagen-muestra/imagen-muestra.jpg" alt="Titulo foto Ejemplo 1"/></a>
-					</figure>
-					<footer>
-						<p><time datetime="2018-09-15">Fecha de foto ejemplo 1, por ejemplo: 15 de septiembre de 2018</time></p>
-						<p>Pais foto ejemplo 1</p>
-					</footer>
-				</article>
-				<article>
-					<h4><a href="detalle_foto.php?id=2" title="Ver detalles de la foto">Titulo foto Ejemplo 2</a></h4>
-					<figure>
-						<a href="detalle_foto.php?id=2" title="Ver detalles de la foto"><img src="./imagen-muestra/descarga.jpg" alt="Titulo foto Ejemplo 2"/></a>
-					</figure>
-					<footer>
-						<p><time datetime="2018-09-15">Fecha de foto ejemplo 2, por ejemplo: 15 de septiembre de 2018</time></p>
-						<p>Pais foto ejemplo 2</p>
-					</footer>
-				</article>
-				<article>
-					<h4><a href="detalle_foto.php?id=3" title="Ver detalles de la foto">Titulo foto Ejemplo 3</a></h4>
-					<figure>
-						<a href="detalle_foto.php?id=3" title="Ver detalles de la foto"><img src="./imagen-muestra/images.jpg" alt="Titulo foto Ejemplo 3"/></a>
-					</figure>
-					<footer>
-						<p><time datetime="2018-09-15">Fecha de foto ejemplo 3, por ejemplo: 15 de septiembre de 2018</time></p>
-						<p>Pais foto ejemplo 3</p>
-					</footer>
-				</article>
-			</div>
+		<div class="imagenes">
+resultadoBusqueda1;
+
+		require_once("paginacion.php");
+
+		$sentencia = $sentencia = 'SELECT IdFoto, f.Titulo, a.Titulo AS AlbumTit, NomUsuario, Fichero, Alternativo, Fecha, NomPais FROM fotos f JOIN albumes a on (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (usuarios.Pais = paises.IdPais) WHERE ' . $GLOBALS["busqueda"] . ' ORDER BY (f.FRegistro) DESC ' . 'LIMIT ' . $GLOBALS["inicio"] . ',' . $GLOBALS["tamPag"];
+
+		if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
+			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
+			echo '</p>'; 
+			exit; 
+		}
+
+		if(mysqli_num_rows($resultado) >= 1){
+			while($fila = $resultado->fetch_assoc()){
+
+				$idFoto = $fila["IdFoto"];
+				$titulo = $fila["Titulo"];
+				$fichero = $fila["Fichero"];
+				$alt = $fila["Alternativo"];
+				$fecha = $fila["Fecha"];
+				$pais = $fila["NomPais"];
+
+		echo<<<articulo
+
+			<article>
+				<h4><a href="detalle_foto.php?id=$idFoto" title="Ver detalles de la foto">$titulo</a></h4>
+				<figure>
+					<a href="detalle_foto.php?id=$idFoto" title="Ver detalles de la foto"><img src="./$fichero" alt="$alt"/></a>
+				</figure>
+				<footer>
+					<p><time datetime="$fecha">$fecha</time></p>
+					<p>$pais</p>
+				</footer>
+			</article>
+articulo;
+			}
+		}
+		else{
+			echo "<p><b>No hay resultados</b></p>";
+		}
+			
+	echo<<<resultadoBusqueda2
+		</div>
 		</section> 
 		
 		<div class="paginacion">
 			<div>
-				<span class="icon-to-start" title="Primeras 5 imágenes"></span>
-				<span class="icon-left-open" title="Anteriores 5 imágenes"></span>
-				<p>Página <output>1</output> / 5</p>
-				<span class="icon-right-open" title="Siguientes 5 imágenes"></span>
-				<span class="icon-to-end" title="Últimas 5 imágenes"></span>
+				<a href="resultado_busqueda.php?{$GLOBALS['getUrl']}&pagina=1"><span class="icon-to-start" title="Primeras 5 imágenes"></span></a>
+				<a href="resultado_busqueda.php?{$GLOBALS['getUrl']}&pagina={$GLOBALS['paginaAnt']}"><span class="icon-left-open" title="Anteriores 5 imágenes"></span></a>
+				<p>Página <output>{$GLOBALS['pagina']}</output> / {$GLOBALS['totalPaginas']}</p>
+				<a href="resultado_busqueda.php?{$GLOBALS['getUrl']}&pagina={$GLOBALS['paginaSig']}"><span class="icon-right-open" title="Siguientes 5 imágenes"></span></a>
+				<a href="resultado_busqueda.php?{$GLOBALS['getUrl']}&pagina={$GLOBALS['totalPaginas']}"><span class="icon-to-end" title="Últimas 5 imágenes"></span></a>
 			</div>
 		</div>
+resultadoBusqueda2;
 
-resultadoBusqueda;
 
 }
 

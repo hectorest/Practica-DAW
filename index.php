@@ -30,17 +30,17 @@ else{
 
 							<p>
 								<label for="autor">Autor:</label>
-								<input type="text" name="autor" id="autorRap">
+								<input type="text" name="NomUsuario" id="autorRap">
 							</p>
 
 							<p>
 								<label for="album">Álbum:</label>
-								<input type="text" name="album" id="albumRap">
+								<input type="text" name="Album" id="albumRap">
 							</p>
 
 							<p>
 								<label for="titulo">Título:</label>
-								<input type="text" name="titulo" id="tituloRap">
+								<input type="text" name="Titulo" id="tituloRap">
 							</p>
 
 						<button type="submit"><span id="butFiltBuscRap" class="icon-search"></span></button>
@@ -54,17 +54,7 @@ else{
 <?php
 
 	require_once("conexion_db.php");
-
-	$tamPag = 5; //establezco el tamanyo de pagina, es decir, el numero tope de registros a mostrar
-
-	if(!empty($_GET["pagina"]) && is_numeric($_GET["pagina"]) && $_GET["pagina"] > 0){ //si me han pasado un parametro y es numerico, mi inicio empieza desde esa pagina
-		$pagina = $_GET["pagina"];
-		$inicio = ($pagina - 1) * $tamPag;
-	}
-	else{ //si no, empiezo por la primera pagina
-		$pagina = 1;
-		$inicio = 0;
-	}
+	require_once("controlUrlPag.php");
 
 	//realizamos la sentencia sql para extraer la totalidad de datos de la base de datos con el fin de establecer las paginas totales de las que dispondre
 	$sentencia = 'SELECT * FROM fotos';
@@ -74,25 +64,7 @@ else{
 		exit; 
 	}
 
-	if(mysqli_num_rows($resultado) >= 1){
-		$numTotalRegistros = mysqli_num_rows($resultado);
-		$totalPaginas = ceil($numTotalRegistros / $tamPag);
-	}
-
-	//para pasar las paginas anterior y siguiente a la paginacion
-	if(($pagina + 1) < $totalPaginas){
-		$paginaSig = $pagina + 1;
-	}
-	else{
-		$paginaSig = $totalPaginas;
-	}
-
-	if(($pagina - 1) > 0){
-		$paginaAnt = $pagina - 1;	
-	}
-	else{
-		$paginaAnt = 0;
-	}
+	require_once("paginacion.php");
 
 	crearIndex();
 
@@ -105,7 +77,7 @@ else{
 indexParte1;
 
 		//extraigo las fotos indicando por cual pagina debo empezar y cuantas imagenes mostrar como tope
-		$sentencia = 'SELECT * FROM fotos JOIN paises ON (IdPais = Pais)' . ' ORDER BY (IdFoto) DESC ' . 'LIMIT ' . $GLOBALS["inicio"] . ',' . $GLOBALS["tamPag"];
+		$sentencia = 'SELECT * FROM fotos JOIN paises ON (IdPais = Pais)' . ' ORDER BY (FRegistro) DESC ' . 'LIMIT ' . $GLOBALS["inicio"] . ',' . $GLOBALS["tamPag"];
 		if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
 			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
 			echo '</p>'; 
@@ -143,11 +115,11 @@ articulo;
 		</section>
 		<div class="paginacion">
 			<div>
-				<a href="index.php?pagina=0"><span class="icon-to-start" title="Primeras 5 imágenes"></span></a>
-				<a href="index.php?pagina={$GLOBALS['paginaAnt']}"><span class="icon-left-open" title="Anteriores 5 imágenes"></span></a>
+				<a href="{$GLOBALS['getUrl']}?pagina=1"><span class="icon-to-start" title="Primeras 5 imágenes"></span></a>
+				<a href="{$GLOBALS['getUrl']}?pagina={$GLOBALS['paginaAnt']}"><span class="icon-left-open" title="Anteriores 5 imágenes"></span></a>
 				<p>Página <output>{$GLOBALS['pagina']}</output> / {$GLOBALS['totalPaginas']}</p>
-				<a href="index.php?pagina={$GLOBALS['paginaSig']}"><span class="icon-right-open" title="Siguientes 5 imágenes"></span></a>
-				<a href="index.php?pagina={$GLOBALS['totalPaginas']}"><span class="icon-to-end" title="Últimas 5 imágenes"></span></a>
+				<a href="{$GLOBALS['getUrl']}?pagina={$GLOBALS['paginaSig']}"><span class="icon-right-open" title="Siguientes 5 imágenes"></span></a>
+				<a href="{$GLOBALS['getUrl']}?pagina={$GLOBALS['totalPaginas']}"><span class="icon-to-end" title="Últimas 5 imágenes"></span></a>
 			</div>
 		</div>
 indexParte2;

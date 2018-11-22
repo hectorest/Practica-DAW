@@ -2,11 +2,45 @@
 session_start();
 require_once("head.php");
 require_once("header.php");
+require_once("conexion_db.php");
 if(isset($_SESSION["usuarioLog"]) && $cookieFalsa == false){
 	require_once("barraNavSesionIniciada.php");
 	if(isset($_GET["id"])){
 		if(!is_numeric($_GET["id"])){
-			echo<<<modalDetalle
+			mostrarMensModalErrorPagDetalleFotoNoExistente();
+		}
+		else{
+			$idFoto = $GLOBALS["mysqli"]->real_escape_string($_GET["id"]);
+			mostrarDetalleFoto($idFoto);
+		}
+	}
+}
+else{
+	require_once("barraNavSesionNoIniciada.php");
+	if($cookieFalsa){
+		mostrarMensErrorCookie();
+	}
+	else{
+		echo<<<modalDetalleSesionNoIniciada
+
+			<button type="button" onclick="cerrarMensajeModal(4);">X</button>
+			<div class="modal">
+				<div class="contenido">
+					<span>
+						<img src="./img/error.png" alt="error-detalle-foto">
+						<h2>Error</h2>
+					</span>
+					<p>Debes iniciar sesión para poder ver el detalle de la foto</p>
+					<button type="button" onclick="cerrarMensajeModal(4);">Aceptar</button>
+				</div>
+			</div>
+
+modalDetalleSesionNoIniciada;
+		}
+	}
+
+	function mostrarMensModalErrorPagDetalleFotoNoExistente(){
+		echo<<<modalDetalle
 				<button type="button" onclick="cerrarMensajeModal(0);">X</button>
 				<div class="modal">
 					<div class="contenido">
@@ -19,36 +53,9 @@ if(isset($_SESSION["usuarioLog"]) && $cookieFalsa == false){
 					</div>
 				</div>
 modalDetalle;
-		}
-		else{
-			$imagenAColocar = EsParOImpar($_GET["id"]);
-			mostrarDetalleFoto($_GET["id"], $imagenAColocar);
-		}
 	}
-}
-	else{
-		require_once("barraNavSesionNoIniciada.php");
-		if($cookieFalsa){
-			mostrarMensErrorCookie();
-		}
-		else{
-			echo<<<modalDetalleSesionNoIniciada
 
-				<button type="button" onclick="cerrarMensajeModal(4);">X</button>
-				<div class="modal">
-					<div class="contenido">
-						<span>
-						<img src="./img/error.png" alt="error-detalle-foto">
-						<h2>Error</h2>
-						</span>
-						<p>Debes iniciar sesión para poder ver el detalle de la foto</p>
-						<button type="button" onclick="cerrarMensajeModal(4);">Aceptar</button>
-					</div>
-				</div>
 
-modalDetalleSesionNoIniciada;
-		}
-	}
 ?>
 <?php
 
@@ -61,28 +68,38 @@ function EsParOImpar($id){
 	}
 }
 
-function mostrarDetalleFoto($idImg, $img){
-echo <<<detalleFoto
+function mostrarDetalleFoto(&$idImg){
+	$sentencia = 'SELECT f.Titulo, a.Titulo AS AlbumTit, Fichero, f.Descripcion, f.Fecha, Alternativo, NomPais, NomUsuario FROM fotos f JOIN albumes a ON (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (usuarios.Pais = paises.IdPais) WHERE IdFoto = ' . $idImg;
+	if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
+		echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
+		echo '</p>'; 
+		exit; 
+	}
+
+	if(mysqli_num_rows($resultado)){
+		$fila = $resultado->fetch_object();
+		echo <<<detalleFoto
 	<article id="detFoto">
-		<h3>Titulo foto Ejemplo $idImg</h3>
+		<h3>$fila->Titulo</h3>
 		<figure>
-			$img
+			<img src="$fila->Fichero" alt="$fila->Alternativo"/>
 		</figure>
 		<div>
 			<h4>Descripción:</h4>
-			<p class="p-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			<p><time datetime="2018-09-15">Fecha de foto ejemplo $idImg, por ejemplo: 15 de septiembre de 2018</time></p>
-			<p>Pais foto ejemplo $idImg</p>
-			<a href="album.php" title="Álbum al que pertenece la foto">Álbum</a>
-			<a href="usuario.php" title="Autor de la foto">Usuario</a>					
+			<p class="p-left">$fila->Descripcion</p>
+			<p><time datetime="$fila->Fecha">$fila->Fecha</time></p>
+			<p>$fila->NomPais</p>
+			<a href="album.php" title="Álbum al que pertenece la foto">Álbum: $fila->AlbumTit</a>
+			<a href="usuario.php" title="Autor de la foto">Usuario: $fila->NomUsuario</a>					
 		</div>
 	</article>
 detalleFoto;
+	}
+	else{
+		mostrarMensModalErrorPagDetalleFotoNoExistente();
+	}
+
+
 }
 
 ?>
