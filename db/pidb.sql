@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2018 a las 04:09:15
+-- Tiempo de generación: 22-11-2018 a las 22:17:15
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -81,7 +81,7 @@ CREATE TABLE `fotos` (
   `Album` int(11) NOT NULL,
   `Fichero` varchar(500) NOT NULL,
   `Alternativo` varchar(200) NOT NULL,
-  `FRegistro` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
+  `FRegistro` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -102,13 +102,27 @@ INSERT INTO `fotos` (`IdFoto`, `Titulo`, `Descripcion`, `Fecha`, `Pais`, `Album`
 -- Disparadores `fotos`
 --
 DELIMITER $$
-CREATE TRIGGER `comprobarLongitudAlternativo` BEFORE INSERT ON `fotos` FOR EACH ROW BEGIN
+CREATE TRIGGER `comprobarAlternativoYFecha` BEFORE INSERT ON `fotos` FOR EACH ROW BEGIN
 	DECLARE mensajeError VARCHAR(500);
     DECLARE alt INTEGER;
+    DECLARE anyoFecha INTEGER;
+    DECLARE fReg DATE;
+    DECLARE fTopeIni INTEGER;
 	SET alt = LENGTH(NEW.Alternativo);
+    SET anyoFecha = YEAR(NEW.Fecha);
+    SET fReg =  DATE(NEW.FRegistro);
+    SET FTopeIni = 1826;
 	IF alt < 10 THEN
-	SET mensajeError = concat('Error al insertar Alternativo: Su longitud debe de ser minimo de 10 caracteres. Longitud del texto introducido: ', alt);
-	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = mensajeError;
+		SET mensajeError = concat('Error al insertar Alternativo: Su longitud debe de ser minimo de 10 caracteres. Longitud del texto introducido: ', alt);
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = mensajeError;
+    ELSEIF NEW.Fecha = '' OR NEW.Fecha = NULL THEN
+		SET NEW.Fecha = fReg;
+    ELSEIF anyoFecha < fTopeIni THEN
+		SET mensajeError = concat('Error al insertar Fecha: La fecha de creacion de la foto no puede ser menor que la fecha de la primera fotografia tomada (Anyo 1826), introduce una fecha valida (cualquiera a partir del anyo 1826 es valida siempre y cuando no excedas la fecha actual). Fecha introducida: ', NEW.Fecha);
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = mensajeError;
+    ELSEIF NEW.Fecha > fReg THEN
+		SET mensajeError = concat('Error al insertar Fecha: La fecha de creacion de la foto no puede ser mayor que la fecha actual, introduce una fecha valida. Fecha introducida: ', NEW.Fecha);
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = mensajeError;
 	END IF;
 END
 $$
@@ -208,7 +222,7 @@ CREATE TABLE `usuarios` (
   `Ciudad` varchar(200) NOT NULL,
   `Pais` int(11) NOT NULL,
   `Foto` varchar(200) NOT NULL,
-  `FRegistro` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `FRegistro` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `Estilo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -290,7 +304,7 @@ ALTER TABLE `estilos`
 -- AUTO_INCREMENT de la tabla `fotos`
 --
 ALTER TABLE `fotos`
-  MODIFY `IdFoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `IdFoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `paises`
@@ -308,7 +322,7 @@ ALTER TABLE `solicitudes`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
