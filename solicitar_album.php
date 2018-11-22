@@ -126,57 +126,14 @@ else{
 					<label for="pais">País*:</label>
 					<select required name="pais" id="pais">
 						<option value="">Escoge</option>
-						<optgroup label="Europa">
-							<option>Alemania</option>
-							<option>España</option>
-							<option>Francia</option>
-							<option>Inglaterra</option>
-							<option>Rusia</option>
-							<option>Suiza</option>
-						</optgroup>
-						<optgroup label="Asia">
-							<option>China</option>
-							<option>Japón</option>
-						</optgroup>
-						<optgroup label="Norteamérica">
-							<option>Estados Unidos</option>
-							<option>Canadá</option>
-						</optgroup>
-						<optgroup label="Centroamérica">
-							<option>México</option>
-						</optgroup>
-						<optgroup label="Sudamérica">
-							<option>Argentina</option>
-							<option>Brasil</option>
-						</optgroup>
+						<?php  
+							require_once("obtenerPaises.php");
+						?>
 					</select>
 					<label for="local">Localidad*:</label>
-					<select required name="local" id="local">
-						
-						<option value="">Escoge</option>
-						<option>San Vicente</option>
-						<option>Elche/Elx</option>
-						<option>Elda</option>
-						<option>Alicante</option>
-						<option>Castellón</option>
-						<option>Valencia</option>
-						<option>Sevilla</option>
-						<option>Murcia</option>
-						<option>Madrid</option>
-						<option>Pekín</option>
-						<option>Tokio</option>
-
-					</select>
+					<input type="text" required name="local" id="local">
 					<label for="prov">Provincia*:</label>
-					<select required name="prov" id="prov">
-						
-						<option value="">Escoge</option>
-						<option>Comunidad Valenciana</option>
-						<option>Madrid</option>
-						<option>Murcia</option>
-						<option>Andalucia</option>
-
-					</select>
+					<input type="text" required name="prov" id="prov">
 				</p>
 				<p>
 					<label for="telefono">Teléfono:</label>
@@ -208,9 +165,10 @@ else{
 					<select required name="album" id="album" title="Escoge un álbum entre los que tienes creados en tu cuenta">
 						
 						<option value="">Escoge</option>
-						<option>Álbum 1</option>
-						<option>Álbum 2</option>
-						<option>Álbum 3</option>
+						
+						<?php
+							require_once("obtenerAlbumes.php");
+						?>
 
 					</select>
 

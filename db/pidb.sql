@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2018 a las 02:06:28
+-- Tiempo de generación: 22-11-2018 a las 04:09:15
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -40,10 +40,10 @@ CREATE TABLE `albumes` (
 --
 
 INSERT INTO `albumes` (`IdAlbum`, `Titulo`, `Descripcion`, `Usuario`) VALUES
-(1, 'Fotos Playa España', 'Este álbum es una recopilación de mis viajes a las diferentes playas de España', 3),
-(2, 'Fotos Montaña Asia', 'Este álbum es una recopilación de las diferentes montañas de Asia', 4),
-(3, 'Fotos Paisajes Montaña', 'Imágenes de diferentes paisajes de montaña de todo el mundo.', 3),
-(4, 'Fotos Playas', 'Álbum que contiene todas las fotos de todas las playas del mundo que he visitado.', 4);
+(1, 'Fotos Playa España', 'Este álbum es una recopilación de mis viajes a las diferentes playas de España', 1),
+(2, 'Fotos Montaña Asia', 'Este álbum es una recopilación de las diferentes montañas de Asia', 2),
+(3, 'Fotos Paisajes Montaña', 'Imágenes de diferentes paisajes de montaña de todo el mundo.', 1),
+(4, 'Fotos Playas', 'Álbum que contiene todas las fotos de todas las playas del mundo que he visitado.', 2);
 
 -- --------------------------------------------------------
 
@@ -217,8 +217,11 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`IdUsuario`, `NomUsuario`, `Clave`, `Email`, `Sexo`, `FNacimiento`, `Ciudad`, `Pais`, `Foto`, `FRegistro`, `Estilo`) VALUES
-(3, 'pepee1', '11111111', 'pepee1@pi.es', 1, '1998-11-08', 'Valencia', 1, './img/pepee1.png', '0000-00-00 00:00:00', 1),
-(4, 'manolo2', '22222222', 'manolo2@pi.es', 2, '1998-11-09', 'San Vicente del Raspeig', 1, './img/manolo2.png', '0000-00-00 00:00:00', 2);
+(1, 'pepee1', '11111111', 'pepee1@pi.es', 1, '1998-11-08', 'Valencia', 1, './img/pepee1.png', '2018-11-22 04:07:06', 1),
+(2, 'manolo2', '22222222', 'manolo2@pi.es', 2, '1998-11-09', 'San Vicente del Raspeig', 1, './img/manolo2.png', '2018-11-22 04:07:10', 2),
+(3, 'sergio3', '33333333', 'sergio3@gmail.com', 1, '2010-02-10', 'Whashington DC', 11, './img/pepee1.png', '2018-11-22 04:07:16', 1),
+(4, 'juaan4', '44444444', 'juan4@gmail.com', 1, '2008-02-10', 'Sudáfrica', 14, './img/manolo2.png', '2018-11-22 04:07:22', 2),
+(5, 'luiis5', '55555555', 'luis5@gmail.com', 1, '2005-02-10', 'Pekín', 7, './img/pepee1.png', '2018-11-22 04:07:25', 1);
 
 --
 -- Índices para tablas volcadas
@@ -242,7 +245,8 @@ ALTER TABLE `estilos`
 --
 ALTER TABLE `fotos`
   ADD PRIMARY KEY (`IdFoto`),
-  ADD KEY `ajena_Fotos-Album` (`Album`);
+  ADD KEY `ajena_Fotos-Album` (`Album`),
+  ADD KEY `ajena_Pais-Paises` (`Pais`) USING BTREE;
 
 --
 -- Indices de la tabla `paises`
@@ -286,7 +290,7 @@ ALTER TABLE `estilos`
 -- AUTO_INCREMENT de la tabla `fotos`
 --
 ALTER TABLE `fotos`
-  MODIFY `IdFoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `IdFoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `paises`
@@ -304,7 +308,7 @@ ALTER TABLE `solicitudes`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
@@ -320,7 +324,8 @@ ALTER TABLE `albumes`
 -- Filtros para la tabla `fotos`
 --
 ALTER TABLE `fotos`
-  ADD CONSTRAINT `ajena_Fotos-Album` FOREIGN KEY (`Album`) REFERENCES `albumes` (`IdAlbum`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `ajena_Fotos-Album` FOREIGN KEY (`Album`) REFERENCES `albumes` (`IdAlbum`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ajena_Pais-Paises` FOREIGN KEY (`Pais`) REFERENCES `paises` (`IdPais`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `solicitudes`

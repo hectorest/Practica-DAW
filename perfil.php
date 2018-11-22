@@ -13,14 +13,6 @@ else{
 	mostrarPerfilUsuario();
 }
 
-/*$usuarios = array(
-"1" => ["pepee1", "11111111", "normal"],
-"2" => ["manolo2","22222222","accesible"],
-"3" => ["sergio3", "33333333","normal"],
-"4" => ["juaan4", "44444444", "accesible"],
-"5" => ["luiis5", "55555555", "normal"]);*/
-
-
 function mostrarErrorPerfilSinIniciarSesion(){
 	echo<<<modalPerfil
 		<button type="button" onclick="cerrarMensajeModal(4);">X</button>
@@ -123,8 +115,8 @@ modalPerfil;
 				<a href="mis_albumes.php" title="Acceder a mis álbumes"><span class="icon-album"></span><span>Mis álbumes</span></a>
 				<a href="crear_album.php" title="Crea un álbum"><span class="icon-new-album"></span><span>Crear álbum</span></a>
 				<a href="solicitar_album.php" title="Solicita un álbum"><span class="icon-print"></span><span>Solicitar álbum</span></a>
-				<a href="configurar.php" title="Configurar el estilo de la web"><span class="icon-print"></span><span>Configurar</span></a>
-				<a href=""  title="Cerrar Sesión"><span class="icon-logout"></span><span>Cerrar Sesión</span></a>
+				<a href="configurar.php" title="Configurar el estilo de la web"><span class="icon-conf"></span><span>Configurar</span></a>
+				<a href="eliminar_sesion.php"  title="Cerrar Sesión"><span class="icon-logout"></span><span>Cerrar Sesión</span></a>
 			</div>
 
 		</section>

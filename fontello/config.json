@@ -113,6 +113,12 @@
       "css": "attention-circled",
       "code": 59404,
       "src": "fontawesome"
+    },
+    {
+      "uid": "e99461abfef3923546da8d745372c995",
+      "css": "conf",
+      "code": 59405,
+      "src": "fontawesome"
     }
   ]
 }

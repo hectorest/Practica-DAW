@@ -14,19 +14,6 @@ function mostrarErrorAnyadirFotoSinIniciarSesion(){
 			</div>
 modalAnyadirFotoSesionNoIniciada;
 }
-function extraerAlbumes(){
-	$sentencia = 'SELECT * FROM albumes';
-	if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))){
-		echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
-		echo '</p>'; 
-		exit; 
-	}
-
-	while($fila = $resultado->fetch_assoc()){
-		$IdAlbum = $fila["IdAlbum"];
-		echo "<option value=$IdAlbum>{$fila['Titulo']}</option>";
-	}
-}
 session_start();
 require_once("head.php");
 require_once("header.php");
@@ -91,9 +78,11 @@ else{
 					<select required name="album" id="album" title="Escoge un álbum entre los que tienes creados en tu cuenta">
 						
 						<option value="">Escoge</option>
-					<?php
-						extraerAlbumes();
-					?>
+
+						<?php
+							require_once("obtenerAlbumes.php");
+						?>
+
 					</select>
 
 				</p>
