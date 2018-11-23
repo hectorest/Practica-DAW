@@ -1,5 +1,17 @@
 <?php
+if(!empty($_GET["idPais"])){
+	$getSaneado = $_GET;
+	$idPaisSaneado;
+	foreach($getSaneado as $key => $value){
+		if(!empty($value)){
+			$GLOBALS["mysqli"]->real_escape_string($value);
+			if($key=="idPais"){
+				$idPaisSaneado=$value;
+			}
+		}
 
+	}
+}
 	extraerContinentes();
 	
 	function extraerContinentes(){
@@ -28,10 +40,13 @@
 
 		while($fila = $resultado->fetch_assoc()){
 			$IdPais = $fila["IdPais"];
-			echo "<option value=$IdPais>{$fila['NomPais']}</option>";
+			if(!empty($GLOBALS["idPaisSaneado"]) && $IdPais==$GLOBALS["idPaisSaneado"]){
+				echo "<option selected value=$IdPais>{$fila['NomPais']}</option>";
+			}else{
+				echo "<option value=$IdPais>{$fila['NomPais']}</option>";
+			}
 		}
 		$resultado->free();
 	}
-
 
 ?>

@@ -16,6 +16,22 @@ else{
 ?>
 <?php
 
+function mostrarErrorPaginaNoExistente(){
+		echo<<<modalDetalle
+				<button type="button" onclick="cerrarMensajeModal(7);">X</button>
+				<div class="modal">
+					<div class="contenido">
+						<span>
+							<img src="./img/error.png" alt="error-detalle-foto">
+							<h2>Error</h2>
+						</span>
+						<p>Esta foto no existe dentro del álbum</p>
+						<button type="button" onclick="cerrarMensajeModal(7);">Cerrar</button>
+					</div>
+				</div>
+modalDetalle;
+}
+
 function mostrarAlbum(&$IdAlbum){
 
 	$idAlbum=$GLOBALS["mysqli"]->real_escape_string($_GET["IdAlbum"]);
@@ -26,7 +42,8 @@ function mostrarAlbum(&$IdAlbum){
 		   echo '</p>'; 
 		   exit; 
 		 }
-
+	
+	$tamPag = 1; //establezco el tamanyo de pagina, es decir, el numero tope de registros a mostrar
 	require_once("paginacion.php");
 	require_once("controlUrlPag.php");
 
@@ -56,79 +73,86 @@ function mostrarAlbum(&$IdAlbum){
 		   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
 		   echo '</p>'; 
 		   exit; 
-		 } 
-if(mysqli_num_rows($resultado1)) {
-	if(mysqli_num_rows($resultado2)) {
-		$fila2 = $resultado2->fetch_object();
-		$tituloAlbum=$fila2->Titulo;
-		$descAlbum=$fila2->Descripcion;
+		 }
+	if(!empty($_GET["pagina"]) && ($_GET["pagina"] > $totalPaginas || !is_numeric($_GET["pagina"]))){
+		$pagina = $totalPaginas;
+		mostrarErrorPaginaNoExistente();
 	}
+	else{
 
-	if(mysqli_num_rows($resultado4)) {
-		$fila4 = $resultado4->fetch_object();
-		$minFecha=$fila4->fechaMin;
-		$maxFecha=$fila4->fechaMax;
-	}
-
-	echo <<<parte1
-		<section>
-			<h3>$tituloAlbum</h3>
-
-			<p>$descAlbum</p>
-
-			<div id="paisesAlbum" class="mostrarDatos">
-			<p>Este álbum recoje fotos de los siguientes países:</p>
-parte1;
-			if(mysqli_num_rows($resultado3)){
-				while($fila3 = $resultado3->fetch_assoc()) {
-
-					$pais=$fila3["NomPais"];
-					echo"<p>$pais</p>";
-
-				}
+		if(mysqli_num_rows($resultado1)) {
+			if(mysqli_num_rows($resultado2)) {
+				$fila2 = $resultado2->fetch_object();
+				$tituloAlbum=$fila2->Titulo;
+				$descAlbum=$fila2->Descripcion;
 			}
 
-	echo<<<parte2
-			</div>
-			<p>Las fotos de este álbum han sido tomadas entre las fechas:</p>
-			<p>$minFecha y $maxFecha</p>
-			<div>
+			if(mysqli_num_rows($resultado4)) {
+				$fila4 = $resultado4->fetch_object();
+				$minFecha=$fila4->fechaMin;
+				$maxFecha=$fila4->fechaMax;
+			}
+
+			echo <<<parte1
+				<section>
+					<h3>$tituloAlbum</h3>
+
+					<p>$descAlbum</p>
+
+					<div id="paisesAlbum" class="mostrarDatos">
+					<p>Este álbum recoje fotos de los siguientes países:</p>
+parte1;
+					if(mysqli_num_rows($resultado3)){
+						while($fila3 = $resultado3->fetch_assoc()) {
+
+							$pais=$fila3["NomPais"];
+							echo"<p>$pais</p>";
+
+						}
+					}
+
+			echo<<<parte2
+					</div>
+					<p>Las fotos de este álbum han sido tomadas entre las fechas:</p>
+					<p>$minFecha y $maxFecha</p>
+					<div>
 parte2;
-		if(mysqli_num_rows($resultado1)){
-				while($fila1 = $resultado1->fetch_object()) {
+				if(mysqli_num_rows($resultado1)){
+						while($fila1 = $resultado1->fetch_object()) {
 
-					echo<<<foto
-					<article class="detFoto">
-						<h3>$fila1->Titulo</h3>
-						<figure>
-							<img src="$fila1->Fichero" alt="$fila1->Alternativo"/>
-						</figure>
-						<div>
-							<h4>Descripción:</h4>
-							<p class="p-left">$fila1->Descripcion</p>
-							<p><time datetime="$fila1->Fecha">$fila1->Fecha</time></p>
-							<p>$fila1->NomPais</p>					
-						</div>
-					</article>
+							echo<<<foto
+							<article class="detFoto">
+								<h3>$fila1->Titulo</h3>
+								<figure>
+									<img src="$fila1->Fichero" alt="$fila1->Alternativo"/>
+								</figure>
+								<div>
+									<h4>Descripción:</h4>
+									<p class="p-left">$fila1->Descripcion</p>
+									<p><time datetime="$fila1->Fecha">$fila1->Fecha</time></p>
+									<p>$fila1->NomPais</p>					
+								</div>
+							</article>
 foto;
+						}
+
 				}
+			}else{
 
-		}
-	}else{
+				mostrarMensModalErrorPagAlbumNoExistente();
 
-		mostrarMensModalErrorPagAlbumNoExistente();
-
-	}
+			}
+}
 	echo<<<parte3
 			</div>
 	</section>
 	<div class="paginacion">
 		<div>
-			<a href="ver_album.php?$getUrl&pagina=1"><span class="icon-to-start" title="Primeras 5 imágenes"></span></a>
-			<a href="ver_album.php?$getUrl&pagina=$paginaAnt"><span class="icon-left-open" title="Anteriores 5 imágenes"></span></a>
-			<p>Página <output>$pagina</output> / $totalPaginas</p>
-			<a href="ver_album.php?$getUrl&pagina=$paginaSig"><span class="icon-right-open" title="Siguientes 5 imágenes"></span></a>
-			<a href="ver_album.php?$getUrl&pagina=$totalPaginas"><span class="icon-to-end" title="Últimas 5 imágenes"></span></a>
+			<a href="ver_album.php?$getUrl&pagina=1"><span class="icon-to-start" title="Primera imagen"></span></a>
+			<a href="ver_album.php?$getUrl&pagina=$paginaAnt"><span class="icon-left-open" title="Imagen anterior"></span></a>
+			<p>Imagen: <output>$pagina</output> / $totalPaginas</p>
+			<a href="ver_album.php?$getUrl&pagina=$paginaSig"><span class="icon-right-open" title="Imagen siguiente"></span></a>
+			<a href="ver_album.php?$getUrl&pagina=$totalPaginas"><span class="icon-to-end" title="Última imagen"></span></a>
 		</div>
 	</div>
 parte3;
@@ -151,7 +175,7 @@ parte3;
 							<img src="./img/error.png" alt="error-detalle-foto">
 							<h2>Error</h2>
 						</span>
-						<p>Estes álbum no existe o no contiene fotos</p>
+						<p>Este álbum no existe o no contiene fotos</p>
 						<button type="button" onclick="cerrarMensajeModal(7);">Cerrar</button>
 					</div>
 				</div>

@@ -53,6 +53,22 @@ else{
 
 <?php
 
+	function mostrarErrorPaginaNoExistente(){
+		echo<<<modalDetalle
+				<button type="button" onclick="cerrarMensajeModal(0);">X</button>
+				<div class="modal">
+					<div class="contenido">
+						<span>
+							<img src="./img/error.png" alt="error-detalle-foto">
+							<h2>Error</h2>
+						</span>
+						<p>Esta página no existe</p>
+						<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
+					</div>
+				</div>
+modalDetalle;
+	}
+
 	require_once("conexion_db.php");
 	require_once("controlUrlPag.php");
 
@@ -63,14 +79,20 @@ else{
 		echo '</p>'; 
 		exit; 
 	}
-
+	
+	$tamPag = 5; //establezco el tamanyo de pagina, es decir, el numero tope de registros a mostrar
 	require_once("paginacion.php");
 
+	if(!empty($_GET["pagina"]) && ($_GET["pagina"] > $totalPaginas || !is_numeric($_GET["pagina"]))){
+		$pagina = $totalPaginas;
+		mostrarErrorPaginaNoExistente();
+	}else{
 	//liberamos memoria y cerramos conexion
 	$resultado->free();
 
 	crearIndex();
 
+}
 	function crearIndex(){
 
 		echo<<<indexParte1

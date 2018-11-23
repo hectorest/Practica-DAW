@@ -32,6 +32,9 @@ function cerrarMensajeModal(param){
 	else if (param == 7){
 		location.href = "./mis_albumes.php";
 	}
+	else if (param == 8){
+		location.href = "./formulario_busqueda.php";
+	}
 	else{
 		location.href = "./index.php";
 	}

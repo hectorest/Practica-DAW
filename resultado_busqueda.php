@@ -15,6 +15,22 @@ else{
 ?>	
 
 <?php
+	
+	function mostrarErrorPaginaNoExistente(){
+		echo<<<modalDetalle
+				<button type="button" onclick="cerrarMensajeModal(8);">X</button>
+				<div class="modal">
+					<div class="contenido">
+						<span>
+							<img src="./img/error.png" alt="error-detalle-foto">
+							<h2>Error</h2>
+						</span>
+						<p>Esta página del resultado de la búsqueda no existe</p>
+						<button type="button" onclick="cerrarMensajeModal(8);">Cerrar</button>
+					</div>
+				</div>
+modalDetalle;
+	}
 
 	function extraerPais(&$IdP){
 
@@ -31,6 +47,24 @@ else{
 		$resultado->free();
 
 		return $fila->NomPais;
+
+	}
+	
+	function extraerUsuario(&$IdUsu){
+
+		$sentencia = 'SELECT NomUsuario FROM usuarios WHERE IdUsuario =' . $IdUsu;
+		
+		if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))){
+			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
+			echo '</p>'; 
+			exit; 
+		}
+
+		$fila = $resultado->fetch_object();
+
+		$resultado->free();
+
+		return $fila->NomUsuario;
 
 	}
 
@@ -66,6 +100,9 @@ filtros;
 
 				foreach ($getSaneado as $key => $value){
 					if(!empty($value)){
+						/*if(is_numeric($value)){
+							$value = (string) $value;
+						}*/
 						$GLOBALS["mysqli"]->real_escape_string($value);
 					}
 				}
@@ -76,6 +113,14 @@ filtros;
 					if($value != ""){
 						if($key == "Pais"){
 							$value = extraerPais($value); 
+						}
+						if($key == "Usuario"){
+							if(!is_numeric($value)){
+								$value = "Autor no registrado";
+							}
+							else{
+								$value = extraerUsuario($value); 
+							}
 						}
 						if($key != "pagina"){
 							echo"<p><b>$clave:</b> $value</p>";
@@ -100,6 +145,9 @@ filtros;
 							}
 							if($key == "Titulo" || $key == "f.Titulo"){
 								$key = 'f.' . 'Titulo';
+								$comparador = ' LIKE ';
+								$value = (string) $value;
+								$value = "%$value%";
 							}
 							if($key == "palClave"){
 								$key = 'f.' . 'Descripcion';
@@ -109,6 +157,11 @@ filtros;
 							}
 							if($key == "Pais" || $key == "f.Pais"){
 								$key = 'f.' . 'Pais';
+							}
+							if($key == "Usuario"){
+								if(!is_numeric($value)){
+									$value = "";
+								}
 							}
 							if(is_numeric($value)){
 								$busqueda = $busqueda . $key . $comparador . $value; 
@@ -135,6 +188,11 @@ filtros;
 							if($key == "Pais" || $key == "f.Pais"){
 								$key = 'f.' . 'Pais';
 							}
+							if($key == "Usuario"){
+								if(!is_numeric($value)){
+									$value = "";
+								}
+							}
 							if(is_numeric($value)){
 								$busqueda = $busqueda . ' AND ' . $key . $comparador . $value; 
 							}
@@ -146,18 +204,28 @@ filtros;
 				}
 
 				$sentencia = 'SELECT IdFoto, f.Titulo, a.Titulo AS AlbumTit, NomUsuario, Fichero, Alternativo, Fecha, NomPais FROM fotos f JOIN albumes a on (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (usuarios.Pais = paises.IdPais) WHERE ' . $busqueda;
-
 				if(!($resultado = $mysqli->query($sentencia))) { 
 					echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
 					echo '</p>'; 
 					exit; 
 				}
-
+	
+				$tamPag = 5; //establezco el tamanyo de pagina, es decir, el numero tope de registros a mostrar
 				require_once("paginacion.php");
 
 				$resultado->free();
 
-				mostrarResultBusq();
+				if(!empty($_GET["pagina"]) && ($_GET["pagina"] > $totalPaginas || !is_numeric($_GET["pagina"]))){
+					$pagina = $totalPaginas;
+					echo<<<cerrarSection
+						</div>
+					</section> 
+cerrarSection;
+					mostrarErrorPaginaNoExistente();
+				}
+				else{
+					mostrarResultBusq();
+				}
 		}
 		
 		else{
@@ -216,7 +284,7 @@ resultadoBusqueda1;
 
 		require_once("paginacion.php");
 
-		$sentencia = $sentencia = 'SELECT IdFoto, f.Titulo, a.Titulo AS AlbumTit, NomUsuario, Fichero, Alternativo, Fecha, NomPais FROM fotos f JOIN albumes a on (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (usuarios.Pais = paises.IdPais) WHERE ' . $GLOBALS["busqueda"] . ' ORDER BY (f.FRegistro) DESC ' . 'LIMIT ' . $GLOBALS["inicio"] . ',' . $GLOBALS["tamPag"];
+		$sentencia = $sentencia = 'SELECT IdFoto, f.Titulo, a.Titulo AS AlbumTit, NomUsuario, Fichero, Alternativo, Fecha, NomPais FROM fotos f JOIN albumes a on (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (f.Pais = paises.IdPais) WHERE ' . $GLOBALS["busqueda"] . ' ORDER BY (f.FRegistro) DESC ' . 'LIMIT ' . $GLOBALS["inicio"] . ',' . $GLOBALS["tamPag"];
 
 		if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
 			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 

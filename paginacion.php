@@ -1,6 +1,4 @@
 <?php
-	
-	$tamPag = 5; //establezco el tamanyo de pagina, es decir, el numero tope de registros a mostrar
 
 	if(!empty($_GET["pagina"]) && is_numeric($_GET["pagina"]) && $_GET["pagina"] > 0){ //si me han pasado un parametro y es numerico, mi inicio empieza desde esa pagina
 		$pagina = $_GET["pagina"];

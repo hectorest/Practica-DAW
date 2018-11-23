@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2018 a las 22:17:15
--- Versión del servidor: 10.1.35-MariaDB
--- Versión de PHP: 7.2.9
+-- Tiempo de generación: 23-11-2018 a las 14:43:53
+-- Versión del servidor: 10.1.36-MariaDB
+-- Versión de PHP: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -92,11 +92,16 @@ INSERT INTO `fotos` (`IdFoto`, `Titulo`, `Descripcion`, `Fecha`, `Pais`, `Album`
 (1, 'Foto Playa España', 'Una imagen de una playa de España al atardecer.', '2018-11-07', 1, 1, 'imagen-muestra/paisaje.jpg', 'Playa de España al atardecer', '2018-11-21 00:37:02'),
 (2, 'Imagen Montaña Asia', 'Una foto de una montaña de Pekin.', '2018-11-08', 7, 2, 'imagen-muestra/images2.jpg', 'Foto de una montaña de Pekín', '2018-11-21 01:57:16'),
 (3, 'Foto Playa Francia', 'Imagen de una playa ubicada en Francia.', '2018-11-12', 4, 4, 'imagen-muestra/imagen-muestra.jpg', 'Foto de una playa francesa', '2018-11-21 01:36:18'),
-(4, 'Foto Playa Europa', 'Una playa de Europa.', '2018-10-19', 5, 4, 'imagen-muestra/imagen-muestra.jpg', 'Una playa de Europa', '2018-11-21 01:51:40'),
+(4, 'Foto Playa Europa', 'Una playa de Europa.', '2018-10-19', 5, 4, 'imagen-muestra/paisaje2.jpg', 'Una playa de Europa', '2018-11-23 12:06:19'),
 (5, 'Foto Montaña Sudáfrica', 'Una foto de una montaña de Sudáfrica.', '2018-11-11', 14, 3, 'imagen-muestra/descarga.jpg', 'Foto de una montaña de Sudáfrica', '2018-11-21 01:44:40'),
-(6, 'Foto Playa Australia', 'Imagen de una playa de Australia.', '2018-11-03', 15, 4, 'imagen-muestra/imagen-muestra.jpg', 'Foto de una playa de Australia', '2018-11-21 01:51:50'),
-(7, 'Foto Playa Argentina', 'Una imagen de una playa de Argentina.', '2018-11-02', 16, 4, 'imagen-muestra/images2.jpg', 'Foto de una playa de Argentina', '2018-11-21 01:50:07'),
-(8, 'Foto Montaña Japón', 'Una imagen de una montaña de Japón.', '2018-11-05', 10, 3, 'imagen-muestra/descarga.jpg', 'Foto de una montaña de Japón', '2018-11-21 01:50:10');
+(6, 'Foto Playa Australia', 'Imagen de una playa de Australia.', '2018-11-03', 15, 4, 'imagen-muestra/paisaje1.jpg', 'Foto de una playa de Australia', '2018-11-23 12:07:02'),
+(7, 'Foto Playa Argentina', 'Una imagen de una playa de Argentina.', '2018-11-02', 16, 4, 'imagen-muestra/paisaje3.jpg', 'Foto de una playa de Argentina', '2018-11-23 12:05:42'),
+(8, 'Foto Montaña Japón', 'Una imagen de una montaña de Japón.', '2018-11-05', 10, 3, 'imagen-muestra/images.jpg', 'Foto de una montaña de Japón', '2018-11-23 12:09:00'),
+(18, 'Oso con oseznos', 'Esta foto representa una familia de osos', '2018-11-23', 5, 3, './imagen-muestra/osos1.jpeg', 'Oso y sus oseznos', '2018-11-23 12:45:30'),
+(19, 'Mapache adulto', 'Esta imagen es de una mapache en su etapa adulta', '2018-11-23', 17, 3, './imagen-muestra/mapache1.jpg', 'Mapache etapa adulta', '2018-11-23 12:40:37'),
+(20, 'Cabra con grandes cuernos', 'La cabra montesa tiene unos grandes cuernos, como se puede observar en esta imagen', '2017-04-04', 6, 3, './imagen-muestra/cabra1.jpg', 'Cabra montesa macho', '2018-11-23 12:42:12'),
+(21, 'La astucia del zorro', 'Este astuto zorro campa a sus anchos por la estepa Madrileña', '2017-07-03', 1, 3, './imagen-muestra/zorro1.jpg', 'Zorro en estepa madrileña', '2018-11-23 12:43:17'),
+(22, 'El fiero puma', 'En la selva africana hay pumas', '2016-09-05', 14, 3, './imagen-muestra/puma1.jpg', 'Puma de Sudáfrica', '2018-11-23 12:44:34');
 
 --
 -- Disparadores `fotos`
@@ -304,7 +309,7 @@ ALTER TABLE `estilos`
 -- AUTO_INCREMENT de la tabla `fotos`
 --
 ALTER TABLE `fotos`
-  MODIFY `IdFoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `IdFoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `paises`

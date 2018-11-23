@@ -46,6 +46,13 @@ else{
 
 			<div class="contTabla">
 				<table class="tabla" title="Puedes hacer scroll lateral en la tabla si no cabe en tu pantalla para poder ver todos los datos que contiene">
+					<tr>
+						
+						<th>Título</th>
+						<th>Descripción</th>
+						<th></th>
+
+					</tr>
 arribaTablaMisAlbumes;
 
 			if(mysqli_num_rows($resultado)){
