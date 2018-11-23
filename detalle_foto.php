@@ -14,6 +14,9 @@ if(isset($_SESSION["usuarioLog"]) && $cookieFalsa == false){
 			mostrarDetalleFoto($idFoto);
 		}
 	}
+	else{
+		mostrarMensModalErrorPagDetalleFotoNoExistente();
+	}
 }
 else{
 	require_once("barraNavSesionNoIniciada.php");

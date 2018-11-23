@@ -32,6 +32,22 @@ else{
 modalDetalle;
 	}
 
+	function mostrarErrorNoHaBuscado(){
+		echo<<<modalDetalle
+				<button type="button" onclick="cerrarMensajeModal(8);">X</button>
+				<div class="modal">
+					<div class="contenido">
+						<span>
+							<img src="./img/error.png" alt="error-detalle-foto">
+							<h2>Error</h2>
+						</span>
+						<p>No has realizado ninguna búsqueda. ¡Anímate y busca algo en PI!</p>
+						<button type="button" onclick="cerrarMensajeModal(8);">Buscar</button>
+					</div>
+				</div>
+modalDetalle;
+	}
+
 	function extraerPais(&$IdP){
 
 		$sentencia = 'SELECT NomPais FROM paises WHERE IdPais =' . $IdP;
@@ -52,19 +68,26 @@ modalDetalle;
 	
 	function extraerUsuario(&$IdUsu){
 
-		$sentencia = 'SELECT NomUsuario FROM usuarios WHERE IdUsuario =' . $IdUsu;
-		
-		if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))){
-			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
-			echo '</p>'; 
-			exit; 
+		if(is_numeric($IdUsu)){
+
+			$sentencia = 'SELECT NomUsuario FROM usuarios WHERE IdUsuario =' . $IdUsu;
+			
+			if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))){
+				echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
+				echo '</p>'; 
+				exit; 
+			}
+
+			$fila = $resultado->fetch_object();
+
+			$resultado->free();
+
+			return $fila->NomUsuario;
+
 		}
-
-		$fila = $resultado->fetch_object();
-
-		$resultado->free();
-
-		return $fila->NomUsuario;
+		else{
+			return $IdUsu;
+		}
 
 	}
 
@@ -80,7 +103,7 @@ modalDetalle;
 			}
 		}
 
-		if($hayGet==true){	
+		if($hayGet==true){
 
 			if($hayFiltros == true){
 
@@ -100,9 +123,6 @@ filtros;
 
 				foreach ($getSaneado as $key => $value){
 					if(!empty($value)){
-						/*if(is_numeric($value)){
-							$value = (string) $value;
-						}*/
 						$GLOBALS["mysqli"]->real_escape_string($value);
 					}
 				}
@@ -110,17 +130,12 @@ filtros;
 				foreach ($getSaneado as $key => $value) {
 					$clave = $key;
 					cambiarClave($clave);
-					if($value != ""){
+					if(!empty($value)){
 						if($key == "Pais"){
 							$value = extraerPais($value); 
 						}
 						if($key == "Usuario"){
-							if(!is_numeric($value)){
-								$value = "Autor no registrado";
-							}
-							else{
-								$value = extraerUsuario($value); 
-							}
+							$value = extraerUsuario($value); 
 						}
 						if($key != "pagina"){
 							echo"<p><b>$clave:</b> $value</p>";
@@ -142,6 +157,9 @@ filtros;
 						if($contador == 0){
 							if($key == "Album" || $key == "a.Album"){
 								$key = 'a.' . 'Titulo';
+								$comparador = ' LIKE ';
+								$value = (string) $value;
+								$value = "%$value%";
 							}
 							if($key == "Titulo" || $key == "f.Titulo"){
 								$key = 'f.' . 'Titulo';
@@ -155,13 +173,18 @@ filtros;
 								$value = (string) $value;
 								$value = "%$value%";
 							}
-							if($key == "Pais" || $key == "f.Pais"){
-								$key = 'f.' . 'Pais';
+							if($key == "Fecha"){
+								$comparador = ' LIKE ';
+								$value = (string) $value;
+								$value = "%$value%";
 							}
 							if($key == "Usuario"){
 								if(!is_numeric($value)){
 									$value = "";
 								}
+							}
+							if($key == "Pais" || $key == "f.Pais"){
+								$key = 'f.' . 'Pais';
 							}
 							if(is_numeric($value)){
 								$busqueda = $busqueda . $key . $comparador . $value; 
@@ -175,6 +198,9 @@ filtros;
 						else{
 							if($key == "Album" || $key == "a.Album"){
 								$key = 'a.' . 'Titulo';
+								$comparador = ' LIKE ';
+								$value = (string) $value;
+								$value = "%$value%";
 							}
 							if($key == "Titulo" || $key == "f.Titulo"){
 								$key = 'f.' . 'Titulo';
@@ -185,13 +211,18 @@ filtros;
 								$value = (string) $value;
 								$value = "%$value%";
 							}
-							if($key == "Pais" || $key == "f.Pais"){
-								$key = 'f.' . 'Pais';
+							if($key == "Fecha"){
+								$comparador = ' LIKE ';
+								$value = (string) $value;
+								$value = "%$value%";
 							}
 							if($key == "Usuario"){
 								if(!is_numeric($value)){
 									$value = "";
 								}
+							}
+							if($key == "Pais" || $key == "f.Pais"){
+								$key = 'f.' . 'Pais';
 							}
 							if(is_numeric($value)){
 								$busqueda = $busqueda . ' AND ' . $key . $comparador . $value; 
@@ -209,7 +240,7 @@ filtros;
 					echo '</p>'; 
 					exit; 
 				}
-	
+
 				$tamPag = 5; //establezco el tamanyo de pagina, es decir, el numero tope de registros a mostrar
 				require_once("paginacion.php");
 
@@ -225,33 +256,21 @@ cerrarSection;
 				}
 				else{
 					mostrarResultBusq();
-				}
+				}	
+	
 		}
-		
 		else{
 
-			echo<<<noHayResultBusq
-
-				<section id="resultados">
-					<br><a href="formulario_busqueda.php" title="Realizar otra búsqueda"><span class="icon-search">Buscar de nuevo</span></a><br>
-					<p><b>No hay resultados</b></p>
-				</section>
-
-noHayResultBusq;
+			mostrarErrorNoHaBuscado();
 
 		}
 	}
-		else{
+	else{
 
-			echo<<<noHaBuscado
+		mostrarErrorNoHaBuscado();
 
-				<section id="resultados">
-					<br><a href="formulario_busqueda.php" title="Realizar otra búsqueda"><span class="icon-search">Buscar de nuevo</span></a><br>
-					<p><b>No hay resultados</b></p>
-				</section>
+	}	
 
-noHaBuscado;
-		}
 
 function cambiarClave(&$clave){
 	$clav = array(

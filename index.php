@@ -29,17 +29,17 @@ else{
 					</legend>
 
 							<p>
-								<label for="autor">Autor:</label>
+								<label for="autorRap">Autor:</label>
 								<input type="text" name="NomUsuario" id="autorRap">
 							</p>
 
 							<p>
-								<label for="album">Álbum:</label>
+								<label for="albumRap">Álbum:</label>
 								<input type="text" name="Album" id="albumRap">
 							</p>
 
 							<p>
-								<label for="titulo">Título:</label>
+								<label for="tituloRap">Título:</label>
 								<input type="text" name="Titulo" id="tituloRap">
 							</p>
 
