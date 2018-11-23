@@ -16,7 +16,7 @@
 	</p>
 	<p>
 		<label for="sexo">Sexo*:</label>
-		<select id="sexo" name="sexo" required>
+		<select id="sexo" name="Sexo" required>
 			<option value="">Escoge</option>
 			<option value="1">Hombre</option>
 			<option value="2">Mujer</option>
@@ -29,15 +29,15 @@
 	</p>
 	<p>
 		<label for="cres">Ciudad de residencia*:</label>
-		<input type="text" maxlength="200" required name="passw1" id="passw1" title="Introduce la ciudad de residencia" />
+		<input type="text" maxlength="200" required name="cRes" id="cres" title="Introduce la ciudad de residencia" />
 	</p>
 	<p>
 		<label for="pres">País de residencia*:</label>
 		<select required name="pRes" id="pres">
 			<option value="">Escoge</option>
 			<?php
-				require_once("conexion_db.php");
 				require_once("obtenerPaises.php");
+				$GLOBALS["mysqli"]->close();
 			?>
 		</select>
 	</p>

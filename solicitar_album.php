@@ -168,6 +168,7 @@ else{
 						
 						<?php
 							require_once("obtenerAlbumes.php");
+							$GLOBALS["mysqli"]->close();
 						?>
 
 					</select>

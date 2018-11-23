@@ -123,6 +123,9 @@ modalPerfil;
 		</section>
 
 perfilUsuario;
+
+		$resultado->free();
+		$GLOBALS["mysqli"]->close();
 	}
 
 			

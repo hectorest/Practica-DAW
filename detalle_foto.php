@@ -59,15 +59,6 @@ modalDetalle;
 ?>
 <?php
 
-function EsParOImpar($id){
-	if($id % 2 == 0){
-		return '<img src="./imagen-muestra/paisaje.jpg" alt="Titulo foto Ejemplo &id"/>';
-	}
-	else{
-		return '<img src="./imagen-muestra/imagen-muestra.jpg" alt="Titulo foto Ejemplo &id"/>';
-	}
-}
-
 function mostrarDetalleFoto(&$idImg){
 	$sentencia = 'SELECT f.Titulo, a.Titulo AS AlbumTit, Fichero, f.Descripcion, f.Fecha, Alternativo, NomPais, NomUsuario FROM fotos f JOIN albumes a ON (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (f.Pais = paises.IdPais) WHERE IdFoto = ' . $idImg;
 	if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
@@ -99,6 +90,8 @@ detalleFoto;
 		mostrarMensModalErrorPagDetalleFotoNoExistente();
 	}
 
+	$resultado->free();
+	$GLOBALS["mysqli"]->close();
 
 }
 

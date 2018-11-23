@@ -4,11 +4,12 @@ require_once("head.php");
 require_once("header.php");
 require_once("conexion_db.php");
 if(isset($_SESSION["usuarioLog"]) && $cookieFalsa == false){
+	
 	require_once("barraNavSesionIniciada.php");
 
-			if(!empty($_GET["er"])){
-			$error = $_GET["er"];
-			echo<<<modalModificar
+	if(!empty($_GET["er"])){
+		$error = $_GET["er"];
+		echo<<<modalModificar
 
 			<button type="button" onclick="cerrarMensajeModal(1);">X</button>
 			<div class="modal">
@@ -37,12 +38,11 @@ arribaFormulario;
 
 		echo<<<debajoFormulario
 				<p>
-					<button type="submit">Modificar</button> <!--En realidad, el boton submit, una vez pulsado, redirigira, si todos los datos son correctos, a la pagina de respuesta de la solicitud de album-->
+					<button type="submit">Modificar</button>
 				</p>
 			</fieldset>
 		</form>
 debajoFormulario;
-
 	}
 	else{
 		if($cookieFalsa){

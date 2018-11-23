@@ -1,41 +1,38 @@
 <?php
 session_start();
+require_once("conexion_db.php");
+$hayPost = false;
+foreach ($_POST as $value){
+	if(isset($value)){
+		$hayPost=true;
+	}
+}
+if($hayPost==true){	
+$sanearPost = $_POST;
+foreach($sanearPost as $key => $value){
+	$GLOBALS["mysqli"]->real_escape_string($value);
+}
+if($sanearPost["passw1"] != $sanearPost["passw2"]){
+	$host = $_SERVER['HTTP_HOST']; 
+	$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
+	$extra = 'formulario_registro.php';
+	header("Location: http://$host$uri/$extra?er=300");
+}else{
 require_once("head.php");
 require_once("header.php");
-?>
-
-<?php
-
-	$hayPost = false;
 	
-	foreach ($_POST as $value){
-		if(isset($value)){
-			$hayPost=true;
-		}
-	}
+	echo<<<arribaTabla
 
-	if($hayPost==true){	
+		<section>
+			<div class="contTabla">
 
-		if($_POST["passw1"] != $_POST["passw2"]){
-			$host = $_SERVER['HTTP_HOST']; 
-			$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
-			$extra = 'formulario_registro.php';
-			header("Location: http://$host$uri/$extra?er=300");
+			<table class="tabla" title="Puedes hacer scroll lateral en la tabla si no cabe en tu pantalla para poder ver todos los datos que contiene">
 
-		}else{
-
-			echo<<<arribaTabla
-
-			<section>
-				<div class="contTabla">
-
-				<table class="tabla" title="Puedes hacer scroll lateral en la tabla si no cabe en tu pantalla para poder ver todos los datos que contiene">
-
-				<caption>Datos de registro:</caption>
+			<caption>Datos de registro:</caption>
 
 arribaTabla;
 
-			foreach ($_POST as $key => $value) {
+			foreach ($sanearPost as $key => $value) {
 				if($key!="passw2" && $key!="fPer"){
 					$clave = $key;
 					cambiarClave($clave);
@@ -43,6 +40,17 @@ arribaTabla;
 						echo"<tr><td>$clave:</td><td><i>No hay datos</i></td></tr>";
 					}
 					else{
+						if($key == "Sexo"){
+							if($value == 1){
+								$value = "Hombre";
+							}
+							else if($value == 2){
+								$value = "Mujer";
+							}
+							else{
+								$value = "Otro";
+							}
+						}
 						echo"<tr><td>$clave:</td><td>$value</td></tr>";
 					}
 				}
@@ -88,14 +96,13 @@ function cambiarClave(&$clave){
 	$clavesNombre = array(
 		"album" => "Álbum",
 		"autor" => "Autor",
-		"date1" => "Desde",
-		"date2" => "Hasta",
+		"Fecha" => "Fecha",
 		"titulo" => "Título",
 		"desc" => "Descripción",
 		"palClave" => "Palabra clave",
 		"passw1" => "Contraseña",
 		"pass" => "Contraseña",
-		"sexo" => "Sexo",
+		"Sexo" => "Sexo",
 		"fNac" => "Fecha de nacimiento",
 		"cRes" => "Ciudad de residencia",
 		"pais" => "País",

@@ -21,8 +21,9 @@ require_once("head.php");
 require_once("header.php");
 require_once("conexion_db.php");
 if(!isset($_SESSION["usuarioLog"])){
+	$GLOBALS["mysqli"]->close();
 	require_once("barraNavSesionNoIniciada.php");
-	mostrarErrorCrearAlbumSinIniciarSesion();
+	mostrarErrorMisAlbumesSinIniciarSesion();
 }
 else{
 	if($cookieFalsa == true){
@@ -31,7 +32,7 @@ else{
 	else{
 		require_once("barraNavSesionIniciada.php");
 
-				$idUsuSesion=$_SESSION["usuarioLog"];
+				$idUsuSesion= $GLOBALS["mysqli"]->real_escape_string($_SESSION["usuarioLog"]);
 
 				$sentencia = 'SELECT * FROM albumes WHERE Usuario='.$idUsuSesion;
 				 if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
@@ -68,8 +69,9 @@ arribaTablaMisAlbumes;
 				</div>
 			</section>
 debajoTablaMisAlbumes;
-
+			$resultado->free();
 		}
+		$GLOBALS["mysqli"]->close();
 	}
 ?>
 

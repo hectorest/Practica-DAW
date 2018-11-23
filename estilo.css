@@ -669,6 +669,10 @@ body>.formulario{
 			flex-wrap: wrap;
 		}
 
+			body>.formulario>fieldset>p>button{
+				margin: auto;
+			}
+			
 			body>.formulario>fieldset>p>label{
 				align-self: center;
 				width: 5em;
@@ -983,12 +987,6 @@ body>.formulario{
 
 		.detFoto>div>a:focus{
 			color: #D67731;
-		}
-
-		.p-left{
-
-			text-align: left;
-
 		}
 
 		body>section>p>span{

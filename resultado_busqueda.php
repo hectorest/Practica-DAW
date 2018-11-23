@@ -28,6 +28,8 @@ else{
 
 		$fila = $resultado->fetch_object();
 
+		$resultado->free();
+
 		return $fila->NomPais;
 
 	}
@@ -68,7 +70,7 @@ filtros;
 					}
 				}
 
-				foreach ($_GET as $key => $value) {
+				foreach ($getSaneado as $key => $value) {
 					$clave = $key;
 					cambiarClave($clave);
 					if($value != ""){
@@ -87,7 +89,7 @@ filtros;
 				$contador = 0;
 				$comparador = "=";
 
-				foreach ($_GET as $key => $value){
+				foreach ($getSaneado as $key => $value){
 					if($key == "pagina"){
 						$value = null;
 					}
@@ -99,8 +101,8 @@ filtros;
 							if($key == "Titulo" || $key == "f.Titulo"){
 								$key = 'f.' . 'Titulo';
 							}
-							if($key == "FRegistro" || $key == "f.FRegistro"){
-								$key = 'f.' . 'FRegistro';
+							if($key == "palClave"){
+								$key = 'f.' . 'Descripcion';
 								$comparador = ' LIKE ';
 								$value = (string) $value;
 								$value = "%$value%";
@@ -124,8 +126,8 @@ filtros;
 							if($key == "Titulo" || $key == "f.Titulo"){
 								$key = 'f.' . 'Titulo';
 							}
-							if($key == "FRegistro" || $key == "f.FRegistro"){
-								$key = 'f.' . 'FRegistro';
+							if($key == "palClave"){
+								$key = 'f.' . 'Descripcion';
 								$comparador = ' LIKE ';
 								$value = (string) $value;
 								$value = "%$value%";
@@ -152,6 +154,8 @@ filtros;
 				}
 
 				require_once("paginacion.php");
+
+				$resultado->free();
 
 				mostrarResultBusq();
 		}
@@ -264,6 +268,8 @@ articulo;
 		</div>
 resultadoBusqueda2;
 
+		$resultado->free();
+		$GLOBALS["mysqli"]->close();
 
 }
 

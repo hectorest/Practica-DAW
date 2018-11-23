@@ -6,7 +6,9 @@ require_once("conexion_db.php");
 if(isset($_SESSION["usuarioLog"]) && $cookieFalsa == false){
 	require_once("barraNavSesionIniciada.php");
 
-		 $sentencia = 'SELECT * FROM usuarios WHERE IdUsuario='.$_SESSION["usuarioLog"];
+		$sesionSaneada = $mysqli->real_escape_string($_SESSION["usuarioLog"]);
+
+		 $sentencia = 'SELECT * FROM usuarios WHERE IdUsuario='.$sesionSaneada;
 		 if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
 		   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
 		   echo '</p>'; 
@@ -36,6 +38,9 @@ if(isset($_SESSION["usuarioLog"]) && $cookieFalsa == false){
 
 modalRegistroPorUrl;
 		 } 
+
+		 $resultado->free();
+		 $mysqli->close();
 
 	}
 	else{

@@ -1,5 +1,6 @@
 <?php
 function mostrarErrorAnyadirFotoSinIniciarSesion(){
+	$GLOBALS["mysqli"]->close();
 	echo<<<modalAnyadirFotoSesionNoIniciada
 		<button type="button" onclick="cerrarMensajeModal(4);">X</button>
 		<div class="modal">
@@ -17,6 +18,7 @@ modalAnyadirFotoSesionNoIniciada;
 session_start();
 require_once("head.php");
 require_once("header.php");
+require_once("conexion_db.php");
 if(!isset($_SESSION["usuarioLog"])){
 	require_once("barraNavSesionNoIniciada.php");
 	mostrarErrorAnyadirFotoSinIniciarSesion();
@@ -29,7 +31,7 @@ else{
 		<section>
 			
 			<h3>Añadir foto a álbum</h3>
-			<p>En esta página podrás añadir una foto a uno de tus álbumes. Los campos con * son obligatorios</p>
+			<p>En esta página podrás añadir una foto a uno de tus álbumes. Los campos con * son obligatorios. Los campos con ** tienen una aclaración asociada a su funcionamiento.</p>
 			
 		</section>
 
@@ -81,6 +83,7 @@ else{
 
 						<?php
 							require_once("obtenerAlbumes.php");
+							$GLOBALS["mysqli"]->close();
 						?>
 
 					</select>

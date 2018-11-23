@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once("conexion_db.php");
 $cookieFalsaFormAcceso = false;
 if(isset($_COOKIE["idUsuario"])){
 	require_once("controlCookie.php");
@@ -36,6 +35,7 @@ function mostrarModalAccesoPorUrl(&$nomUsu){
 			</div>
 
 modalAccesoPorUrl;
+
 }
 
 		if(isset($_GET["er"])){
@@ -81,7 +81,8 @@ modalAcceso;
 			else{
 				mostrarMensErrorCookie();
 			}
-
+			$usuario->free();
+			$mysqli->close();
 		}
 		else {
 			if($cookieFalsaFormAcceso){
@@ -120,6 +121,7 @@ modalAcceso;
 
 	<?php  
 
+				$mysqli->close();
 			}
 		}
 		

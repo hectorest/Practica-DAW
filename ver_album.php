@@ -18,9 +18,19 @@ else{
 
 function mostrarAlbum(&$IdAlbum){
 
-	$idAlbum=$_GET["IdAlbum"];
+	$idAlbum=$GLOBALS["mysqli"]->real_escape_string($_GET["IdAlbum"]);
 
-	$sentencia1 = 'SELECT f.Titulo, a.Titulo AS AlbumTit, Fichero, f.Descripcion, f.Fecha, Alternativo, NomPais, NomUsuario FROM fotos f JOIN albumes a ON (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (f.Pais = paises.IdPais) where Album='.$idAlbum;
+	$sentencia = 'SELECT f.Titulo, a.Titulo AS AlbumTit, Fichero, f.Descripcion, f.Fecha, Alternativo, NomPais, NomUsuario FROM fotos f JOIN albumes a ON (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (f.Pais = paises.IdPais) where Album='.$idAlbum;
+		 if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
+		   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
+		   echo '</p>'; 
+		   exit; 
+		 }
+
+	require_once("paginacion.php");
+	require_once("controlUrlPag.php");
+
+	$sentencia1 = 'SELECT f.Titulo, a.Titulo AS AlbumTit, Fichero, f.Descripcion, f.Fecha, Alternativo, NomPais, NomUsuario FROM fotos f JOIN albumes a ON (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (f.Pais = paises.IdPais) where Album='.$idAlbum.' LIMIT ' . $inicio . ',' . $tamPag;
 		 if(!($resultado1 = $GLOBALS["mysqli"]->query($sentencia1))) { 
 		   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
 		   echo '</p>'; 
@@ -112,7 +122,23 @@ foto;
 	echo<<<parte3
 			</div>
 	</section>
+	<div class="paginacion">
+		<div>
+			<a href="ver_album.php?$getUrl&pagina=1"><span class="icon-to-start" title="Primeras 5 imágenes"></span></a>
+			<a href="ver_album.php?$getUrl&pagina=$paginaAnt"><span class="icon-left-open" title="Anteriores 5 imágenes"></span></a>
+			<p>Página <output>$pagina</output> / $totalPaginas</p>
+			<a href="ver_album.php?$getUrl&pagina=$paginaSig"><span class="icon-right-open" title="Siguientes 5 imágenes"></span></a>
+			<a href="ver_album.php?$getUrl&pagina=$totalPaginas"><span class="icon-to-end" title="Últimas 5 imágenes"></span></a>
+		</div>
+	</div>
 parte3;
+
+	$resultado->free();
+	$resultado1->free();
+	$resultado2->free();
+	$resultado3->free();
+	$resultado4->free();
+	$GLOBALS["mysqli"]->close();
 
 }
 

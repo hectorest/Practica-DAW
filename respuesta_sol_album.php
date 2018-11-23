@@ -2,6 +2,7 @@
 session_start();
 require_once("head.php");
 require_once("header.php");
+require_once("conexion_db.php");
 if(!isset($_SESSION["usuarioLog"])){
 	require_once("barraNavSesionNoIniciada.php");
 }
@@ -17,6 +18,13 @@ else{
 	foreach ($_POST as $value){
 		if(isset($value)){
 			$hayPost=true;
+		}
+	}
+
+	$postSaneado = $_POST;
+	foreach ($postSaneado as $key => $value) {
+		if(!empty($value)){
+			$GLOBALS["mysqli"]->real_escape_string($value);
 		}
 	}
 		if($hayPost==true){	
@@ -45,7 +53,7 @@ else{
 
 arribaTabla;
 
-			foreach ($_POST as $key => $value) {
+			foreach ($postSaneado as $key => $value) {
 				$clave = $key;
 				cambiarClave($clave);
 				if($value == ""){
@@ -68,8 +76,12 @@ arribaTabla;
 
 bajoTabla;
 
+			$GLOBALS["mysqli"]->close();
 		}
 		else{
+
+			$GLOBALS["mysqli"]->close();
+			
 			echo<<<modalRespSolAlbum
 
 			<button type="button" onclick="cerrarMensajeModal(0);">X</button>

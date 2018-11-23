@@ -676,6 +676,7 @@ body>.formulario{
 			align-self: center;
 		}
 
+
 		body>.formulario>fieldset>legend{
 			margin: auto;
 		}
@@ -1036,12 +1037,6 @@ body>.formulario{
 			background-color: #000000;
 			color: #ffffff;
 			border-radius: 0.5em;
-		}
-
-		.p-left{
-
-			text-align: left;
-
 		}
 
 		body>section>p>span{

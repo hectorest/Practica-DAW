@@ -30,7 +30,7 @@ else{
 		$usu = "'" . $usu . "'";
 		$pass = "'" . $pass . "'";
 
-		 $sentencia = 'SELECT * FROM usuarios WHERE NomUsuario=' . $usu . ' and Clave=' . $pass; //creo que asi te ahorras bucles, simplemente extraes el usuario directamente y si no lo ecuentra el numero de filas sera 0
+		 $sentencia = 'SELECT * FROM usuarios WHERE NomUsuario=' . $usu . ' and Clave=' . $pass;
 		 if(!($usuario = $GLOBALS["mysqli"]->query($sentencia))) { 
 		   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
 		   echo '</p>'; 
@@ -41,42 +41,16 @@ else{
 		 	$existe = true;
 		 }
 
-		// Recorre el resultado y pasa a true si encuentra un usuario con una contraseña coincidentes con los de la tabla
-		 /*while($fila = $usuarios->fetch_assoc()) { 
-		   if($fila['NomUsuario']== $usu && $fila['Clave'] == $pass){
-		   	   $existe = true;
-				break;
-			}
-		 }*/
-
 		$host = $_SERVER['HTTP_HOST']; 
 		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 		 
 		if($existe == true){
-			//echo "HOLA";
+
 			$idUsu;
 
 			$fila = $usuario->fetch_object();
 		 	$idUsu = $fila->IdUsuario;
 
-			/*foreach ($GLOBALS["usuarios"] as $key => $value) {
-				if($value[0] == $usu){
-					$idUsu = $key;
-					break;
-				}
-			}*/
-			/*$sentencia = 'SELECT * FROM usuarios'; 
-				 if(!($usuarios =  $GLOBALS["mysqli"]->query($sentencia))) { 
-				   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
-				   echo '</p>'; 
-				   exit; 
-				 } 
-			 while($fila = $usuarios->fetch_assoc()) {
-			 	if($fila['NomUsuario']== $usu){
-			 		$idUsu = $fila['IdUsuario'];
-					break;
-			 	}
-			 }*/
 			$_SESSION["usuarioLog"] = $idUsu;
 
 			if($GLOBALS["hayCookie"]){
@@ -86,16 +60,29 @@ else{
 				$_COOKIE["idUsuario"] = $idUsu;
 				$_COOKIE["ultimaVisita"] = date("c");
 
+				//liberamos memoria y cerramos conexion
+				$usuario->free();
+				$GLOBALS["mysqli"]->close();
+
 				$extra = 'perfil.php';
 				header("Location: http://$host$uri/$extra");
 			}
 			else{
+
+				//liberamos memoria y cerramos conexion
+				$usuario->free();
+				$GLOBALS["mysqli"]->close();
+
 				$extra = 'perfil.php';
 				header("Location: http://$host$uri/$extra");
 			}
 
 		}
 		else{
+
+			//liberamos memoria y cerramos conexion
+			$usuario->free();
+			$GLOBALS["mysqli"]->close();
 
 			$extra = 'formulario_acceso.php';
 			header("Location: http://$host$uri/$extra?er=404");
@@ -105,12 +92,7 @@ else{
 
 	function hacerLoginCookie(&$idUsu){
 		$existe = false;
-		/*foreach ($GLOBALS["usuarios"] as $key => $value) {
-			if($key == $idUsu){
-				$existe = true;
-				break;
-			}
-		}*/
+		
 		$usuarioCookie = $idUsu;
 		$usuarioCookie = $GLOBALS["mysqli"]->real_escape_string($usuarioCookie);
 		$usuarioCookie = (int) $usuarioCookie;
@@ -133,10 +115,19 @@ else{
 
 			$_SESSION["usuarioLog"] = $_COOKIE["idUsuario"];
 
+			//liberamos memoria y cerramos conexion
+			$usuario->free();
+			$GLOBALS["mysqli"]->close();
+
 			$extra = "bienvenido.php?existe=true";
 			header("Location: http://$host$uri/$extra");
 		}
 		else{
+
+			//liberamos memoria y cerramos conexion
+			$usuario->free();
+			$GLOBALS["mysqli"]->close();
+
 			$extra = "bienvenido.php?existe=false";
 			header("Location: http://$host$uri/$extra");
 		}

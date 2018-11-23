@@ -15,6 +15,7 @@
 			extraerPaisesContinente($fila['Continente']);
 			echo "</optgroup>";
 		}
+		$resultado->free();
 	}
 
 	function extraerPaisesContinente(&$continente){
@@ -29,6 +30,7 @@
 			$IdPais = $fila["IdPais"];
 			echo "<option value=$IdPais>{$fila['NomPais']}</option>";
 		}
+		$resultado->free();
 	}
 
 

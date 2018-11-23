@@ -66,6 +66,9 @@ else{
 
 	require_once("paginacion.php");
 
+	//liberamos memoria y cerramos conexion
+	$resultado->free();
+
 	crearIndex();
 
 	function crearIndex(){
@@ -123,6 +126,10 @@ articulo;
 			</div>
 		</div>
 indexParte2;
+
+		//liberamos memoria y cerramos conexion
+		$resultado->free();
+		$GLOBALS["mysqli"]->close();
 
 	}
 

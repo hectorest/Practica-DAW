@@ -39,6 +39,7 @@ else{
 		 		setcookie("ultimaVisita", date("c"), time() + 90 * 24 * 60 * 60);
 				$_COOKIE["ultimaVisita"] = date("c");
 				mostrarMensBienv($nomUsu, $date);
+				$usuario->free();
 		 	}
 		 	else{
 		 		mostrarMensErrorBienv();

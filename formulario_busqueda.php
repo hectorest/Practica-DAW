@@ -26,7 +26,7 @@ else{
 				</p>
 				<p>
 					<label for="date">Fecha:</label>
-					<input type="date" name="FRegistro" id="date"/>
+					<input type="date" name="Fecha" id="date"/>
 				</p>
 				<p>
 					<label for="pais">País:</label>
@@ -34,6 +34,7 @@ else{
 						<option value="">Escoge</option>
 						<?php  
 							require_once("obtenerPaises.php");
+							$GLOBALS{"mysqli"}->close();
 						?>
 					</select>
 				</p>
