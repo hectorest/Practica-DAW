@@ -48,6 +48,22 @@ modalDetalle;
 modalDetalle;
 	}
 
+	function mostrarMensErrorFechasInvalidas(){
+		echo<<<modalDetalle
+				<button type="button" onclick="cerrarMensajeModal(8);">X</button>
+				<div class="modal">
+					<div class="contenido">
+						<span>
+							<img src="./img/error.png" alt="error-detalle-foto">
+							<h2>Error</h2>
+						</span>
+						<p>La primera fecha que introduces (Desde) no puede ser mayor que la segunda (Hasta). Emplea un formato correcto para realizar la búsqueda utilizando fechas.</p>
+						<button type="button" onclick="cerrarMensajeModal(8);">Buscar</button>
+					</div>
+				</div>
+modalDetalle;
+	}
+
 	function extraerPais(&$IdP){
 
 		$sentencia = 'SELECT NomPais FROM paises WHERE IdPais =' . $IdP;
@@ -127,6 +143,11 @@ filtros;
 					}
 				}
 
+				$hay2Fechas = false;
+				if(!empty($getSaneado["Desde"]) && !empty($getSaneado["Hasta"])){
+					$hay2Fechas = true;
+				}
+
 				foreach ($getSaneado as $key => $value) {
 					$clave = $key;
 					cambiarClave($clave);
@@ -137,6 +158,11 @@ filtros;
 						if($key == "Usuario"){
 							$value = extraerUsuario($value); 
 						}
+						if(!$hay2Fechas){
+							if($key == "Desde" || $key == "Hasta"){
+								$clave = "Fecha";
+							}
+						}
 						if($key != "pagina"){
 							echo"<p><b>$clave:</b> $value</p>";
 						}
@@ -145,118 +171,49 @@ filtros;
 
 				echo "</div>";
 				
-				$busqueda = '';
-				$contador = 0;
-				$comparador = "=";
+				$FechasValidas = true;
+				require_once("rellenarVariableBusqueda.php");
 
-				foreach ($getSaneado as $key => $value){
-					if($key == "pagina"){
-						$value = null;
+				if(!empty($busqueda)){
+					$sentencia = 'SELECT IdFoto, f.Titulo, a.Titulo AS AlbumTit, NomUsuario, Fichero, Alternativo, Fecha, NomPais FROM fotos f JOIN albumes a on (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (usuarios.Pais = paises.IdPais) WHERE ' . $busqueda;
+					if(!($resultado = $mysqli->query($sentencia))) { 
+						echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+						echo '</p>'; 
+						exit; 
 					}
-					if(!empty($value)){
-						if($contador == 0){
-							if($key == "Album" || $key == "a.Album"){
-								$key = 'a.' . 'Titulo';
-								$comparador = ' LIKE ';
-								$value = (string) $value;
-								$value = "%$value%";
-							}
-							if($key == "Titulo" || $key == "f.Titulo"){
-								$key = 'f.' . 'Titulo';
-								$comparador = ' LIKE ';
-								$value = (string) $value;
-								$value = "%$value%";
-							}
-							if($key == "palClave"){
-								$key = 'f.' . 'Descripcion';
-								$comparador = ' LIKE ';
-								$value = (string) $value;
-								$value = "%$value%";
-							}
-							if($key == "Fecha"){
-								$comparador = ' LIKE ';
-								$value = (string) $value;
-								$value = "%$value%";
-							}
-							if($key == "Usuario"){
-								if(!is_numeric($value)){
-									$value = "";
-								}
-							}
-							if($key == "Pais" || $key == "f.Pais"){
-								$key = 'f.' . 'Pais';
-							}
-							if(is_numeric($value)){
-								$busqueda = $busqueda . $key . $comparador . $value; 
-							}
-							else{
-								$busqueda = $busqueda . $key . $comparador . "'" . $value . "'";
-							}
-							
-							$contador = $contador + 1;
-						}
-						else{
-							if($key == "Album" || $key == "a.Album"){
-								$key = 'a.' . 'Titulo';
-								$comparador = ' LIKE ';
-								$value = (string) $value;
-								$value = "%$value%";
-							}
-							if($key == "Titulo" || $key == "f.Titulo"){
-								$key = 'f.' . 'Titulo';
-							}
-							if($key == "palClave"){
-								$key = 'f.' . 'Descripcion';
-								$comparador = ' LIKE ';
-								$value = (string) $value;
-								$value = "%$value%";
-							}
-							if($key == "Fecha"){
-								$comparador = ' LIKE ';
-								$value = (string) $value;
-								$value = "%$value%";
-							}
-							if($key == "Usuario"){
-								if(!is_numeric($value)){
-									$value = "";
-								}
-							}
-							if($key == "Pais" || $key == "f.Pais"){
-								$key = 'f.' . 'Pais';
-							}
-							if(is_numeric($value)){
-								$busqueda = $busqueda . ' AND ' . $key . $comparador . $value; 
-							}
-							else{
-								$busqueda = $busqueda . ' AND ' . $key . $comparador . "'" . $value . "'";
-							}
-						}
-					}
-				}
 
-				$sentencia = 'SELECT IdFoto, f.Titulo, a.Titulo AS AlbumTit, NomUsuario, Fichero, Alternativo, Fecha, NomPais FROM fotos f JOIN albumes a on (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (usuarios.Pais = paises.IdPais) WHERE ' . $busqueda;
-				if(!($resultado = $mysqli->query($sentencia))) { 
-					echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
-					echo '</p>'; 
-					exit; 
-				}
+					$tamPag = 5; //establezco el tamanyo de pagina, es decir, el numero tope de registros a mostrar
+					require_once("paginacion.php");
 
-				$tamPag = 5; //establezco el tamanyo de pagina, es decir, el numero tope de registros a mostrar
-				require_once("paginacion.php");
+					$resultado->free(); //liberamos de la memoria el resultado de la consulta
 
-				$resultado->free();
-
-				if(!empty($_GET["pagina"]) && ($_GET["pagina"] > $totalPaginas || !is_numeric($_GET["pagina"]))){
-					$pagina = $totalPaginas;
-					echo<<<cerrarSection
-						</div>
-					</section> 
+					if(!empty($_GET["pagina"]) && ($_GET["pagina"] > $totalPaginas || !is_numeric($_GET["pagina"]))){
+						$pagina = $totalPaginas;
+						echo<<<cerrarSection
+							</div>
+						</section> 
 cerrarSection;
-					mostrarErrorPaginaNoExistente();
+						mostrarErrorPaginaNoExistente();
+					}
+					else{
+						if($FechasValidas){
+							mostrarResultBusq();
+						}
+					}	
 				}
 				else{
-					mostrarResultBusq();
-				}	
+					if($FechasValidas){
+						echo<<<SinResultados
+								<h3>Resultados de la búsqueda:</h3>
+								<a href="formulario_busqueda.php" title="Realizar otra búsqueda"><span class="icon-search">Buscar de nuevo</span></a>
+
+								<div class="imagenes">
+									<p><b>No hay resultados</b></p>
+								</div>
+							</section>
+SinResultados;
+					}
+				}
 	
 		}
 		else{
@@ -276,6 +233,7 @@ function cambiarClave(&$clave){
 	$clav = array(
 		"Album" => "Álbum",
 		"NomUsuario" => "Autor",
+		"Usuario" => "Autor",
 		"FRegistro" => "Fecha",
 		"Titulo" => "Título",
 		"Descripcion" => "Descripción",
@@ -303,7 +261,7 @@ resultadoBusqueda1;
 
 		require_once("paginacion.php");
 
-		$sentencia = $sentencia = 'SELECT IdFoto, f.Titulo, a.Titulo AS AlbumTit, NomUsuario, Fichero, Alternativo, Fecha, NomPais FROM fotos f JOIN albumes a on (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (f.Pais = paises.IdPais) WHERE ' . $GLOBALS["busqueda"] . ' ORDER BY (f.FRegistro) DESC ' . 'LIMIT ' . $GLOBALS["inicio"] . ',' . $GLOBALS["tamPag"];
+		$sentencia = $sentencia = 'SELECT IdFoto, f.Titulo, a.Titulo AS AlbumTit, NomUsuario, Fichero, Alternativo, Fecha, NomPais FROM fotos f JOIN albumes a on (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (f.Pais = paises.IdPais) WHERE ' . $GLOBALS["busqueda"] . ' ORDER BY (Fecha) DESC ' . 'LIMIT ' . $GLOBALS["inicio"] . ',' . $GLOBALS["tamPag"];
 
 		if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
 			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 

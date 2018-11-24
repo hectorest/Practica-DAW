@@ -86,11 +86,14 @@ modalDetalle;
 	if(!empty($_GET["pagina"]) && ($_GET["pagina"] > $totalPaginas || !is_numeric($_GET["pagina"]))){
 		$pagina = $totalPaginas;
 		mostrarErrorPaginaNoExistente();
-	}else{
-	//liberamos memoria y cerramos conexion
-	$resultado->free();
+	}
+	else{
 
-	crearIndex();
+		if(mysqli_num_rows($resultado) >= 1){
+			crearIndex();
+		}
+
+		$resultado->free();
 
 }
 	function crearIndex(){

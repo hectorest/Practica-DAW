@@ -25,8 +25,12 @@ else{
 					<input type="text" name="Titulo" id="titulo"/>
 				</p>
 				<p>
-					<label for="date">Fecha:</label>
-					<input type="date" name="Fecha" id="date"/>
+					<label for="date">Fecha entre:</label>
+					<input type="date" name="Desde" id="date"/>
+				</p>
+				<p>
+					<label for="date1">y</label>
+					<input type="date" name="Hasta" id="date1"/>
 				</p>
 				<p>
 					<label for="pais">País:</label>
