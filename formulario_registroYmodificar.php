@@ -17,19 +17,19 @@ if(isset($_SESSION["usuarioLog"])){
 echo<<<formularioModificarParte0
 	<p>
 		<label for="usuario">Usuario:</label>
-		<input type="text" value="$fila->NomUsuario" pattern="[A-Za-z0-9]{6,14}" minlength="6" maxlength="14" title="El nombre de usuario tendrá como mínimo 6 caracteres que pueden ser tanto letras mayúsculas como minúsculas y como números. El máximo número de caracteres permitido es 14. Los espacios en blanco no están permitidos"  name="usuario" id="usuario"/>
+		<input type="text" value="$fila->NomUsuario" pattern="[A-Za-z0-9]{3,15}" minlength="3" maxlength="15" title="El nombre de usuario tendrá como mínimo 6 caracteres que pueden ser tanto letras mayúsculas como minúsculas y como números. El máximo número de caracteres permitido es 14. Los espacios en blanco no están permitidos"  name="usuario" id="usuario"/>
 	</p>
 	<p>
 		<label for="passw1">Contraseña:</label>
-		<input type="password" value="$fila->Clave" pattern="[A-Za-z0-9¿?¡!-_@#$%&=]{8,16}" minlength="8" maxlength="16" name="passw1" id="passw1" title="La contraseña tendrá un mínimo de 8 caracteres y un máximo de 16. Podrás escribir tanto letras mayúsculas como minúsculas además de números y los siguientes símbolos: ¿?¡!-_@#$%&=. Los espacios en blanco no están permitidos" />
+		<input type="password" value="$fila->Clave" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])[A-Za-z0-9_]{6,15}$" minlength="6" maxlength="15" name="passw1" id="passw1" title="La contraseña tendrá un mínimo de 6 caracteres y un máximo de 15. Debes escribir como mínimo una letra mayúscula, una minúscula y un número. Solo el caracter especial subrayado (_) está permitido. No se admiten espacios en blanco" />
 	</p>
 	<p>
 		<label for="passw2">Repetir contraseña:</label>
-		<input type="password" value="$fila->Clave" pattern="[A-Za-z0-9¿?¡!-_@#$%&=]{8,16}" minlength="8" maxlength="16" name="passw2" id="passw2" title="La contraseña debe de coincidir con la escrita en la casilla anterior" />
+		<input type="password" value="$fila->Clave" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])[A-Za-z0-9_]{6,15}$" minlength="6" maxlength="15" name="passw2" id="passw2" title="La contraseña debe de coincidir con la escrita en la casilla anterior" />
 	</p>
 	<p>
 		<label for="email">Email:</label>
-		<input type="email" value="$fila->Email" name="email" id="email"/>
+		<input type="email" value="$fila->Email" pattern="/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/" name="email" id="email"/>
 	</p>
 	<p>
 		<label for="sexo">Sexo:</label>
@@ -138,19 +138,19 @@ formularioModificarParte2;
 ?>
 	<p>
 		<label for="usuario">Usuario*:</label>
-		<input type="text" pattern="[A-Za-z0-9]{6,14}" minlength="6" maxlength="14" title="El nombre de usuario tendrá como mínimo 6 caracteres que pueden ser tanto letras mayúsculas como minúsculas y como números. El máximo número de caracteres permitido es 14. Los espacios en blanco no están permitidos" required name="usuario" id="usuario"/>
+		<input type="text" pattern="[A-Za-z0-9]{3,15}" minlength="3" maxlength="15" title="El nombre de usuario tendrá como mínimo 6 caracteres que pueden ser tanto letras mayúsculas como minúsculas y como números. El máximo número de caracteres permitido es 14. Los espacios en blanco no están permitidos" required name="usuario" id="usuario"/>
 	</p>
 	<p>
 		<label for="passw1">Contraseña*:</label>
-		<input type="password" pattern="[A-Za-z0-9¿?¡!-_@#$%&=]{8,16}" minlength="8" maxlength="16" required name="passw1" id="passw1" title="La contraseña tendrá un mínimo de 8 caracteres y un máximo de 16. Podrás escribir tanto letras mayúsculas como minúsculas además de números y los siguientes símbolos: ¿?¡!-_@#$%&=. Los espacios en blanco no están permitidos" />
+		<input type="password" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])[A-Za-z0-9_]{6,15}$" minlength="6" maxlength="15" required name="passw1" id="passw1" title="La contraseña tendrá un mínimo de 6 caracteres y un máximo de 15. Debes escribir como mínimo una letra mayúscula, una minúscula y un número. Solo el caracter especial subrayado (_) está permitido. No se admiten espacios en blanco" />
 	</p>
 	<p>
 		<label for="passw2">Repetir contraseña*:</label>
-		<input type="password" pattern="[A-Za-z0-9¿?¡!-_@#$%&=]{8,16}" minlength="8" maxlength="16" required name="passw2" id="passw2" title="La contraseña debe de coincidir con la escrita en la casilla anterior" />
+		<input type="password" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])[A-Za-z0-9_]{6,15}$" minlength="6" maxlength="15" required name="passw2" id="passw2" title="La contraseña debe de coincidir con la escrita en la casilla anterior" />
 	</p>
 	<p>
 		<label for="email">Email*:</label>
-		<input type="email" required name="email" id="email"/>
+		<input type="email" required name="email" pattern="/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/" id="email"/>
 	</p>
 	<p>
 		<label for="sexo">Sexo*:</label>
