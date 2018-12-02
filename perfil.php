@@ -53,6 +53,10 @@ modalPerfil;
 			$sexo = "Otro";
 		}
 
+		if($fila->Foto == ''){
+			$fila->Foto = "./img/foto_perfil.png";
+		}
+
 		echo <<<perfilUsuario
 
 			<section>

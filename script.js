@@ -35,6 +35,12 @@ function cerrarMensajeModal(param){
 	else if (param == 8){
 		location.href = "./formulario_busqueda.php";
 	}
+	else if (param == 9){
+		location.href = "./configurar.php";
+	}
+	else if (param == 9){
+		location.href = "./formulario_modificar.php";
+	}
 	else{
 		location.href = "./index.php";
 	}

@@ -100,11 +100,11 @@ modalAcceso;
 
 			<p>
 				<label for="usuario">Usuario:</label>
-				<input type="text" minlength="6" maxlength="14" required name="login" id="usuario"/>
+				<input type="text" minlength="3" maxlength="15" required name="login" id="usuario"/>
 			</p>
 			<p>
 				<label for="passw">Contraseña:</label>
-				<input type="password" minlength="8" maxlength="16" required name="pass" id="passw"/>
+				<input type="password" minlength="6" maxlength="15" required name="pass" id="passw"/>
 			</p>
 			<p id="pCasillaRecordarme">
 				<input type="checkbox" name="recordarme" id="recordarme"/>

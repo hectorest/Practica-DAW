@@ -17,24 +17,28 @@ if(isset($_SESSION["usuarioLog"])){
 echo<<<formularioModificarParte0
 	<p>
 		<label for="usuario">Usuario:</label>
-		<input type="text" value="$fila->NomUsuario" pattern="[A-Za-z0-9]{3,15}" minlength="3" maxlength="15" title="El nombre de usuario tendrá como mínimo 6 caracteres que pueden ser tanto letras mayúsculas como minúsculas y como números. El máximo número de caracteres permitido es 14. Los espacios en blanco no están permitidos"  name="usuario" id="usuario"/>
+		<input type="text" value="$fila->NomUsuario" pattern="[A-Za-z0-9]{3,15}" minlength="3" maxlength="15" title="El nombre de usuario tendrá como mínimo 6 caracteres que pueden ser tanto letras mayúsculas como minúsculas y como números. El máximo número de caracteres permitido es 14. Los espacios en blanco no están permitidos"  name="NomUsuario" id="usuario"/>
 	</p>
 	<p>
-		<label for="passw1">Contraseña:</label>
-		<input type="password" value="$fila->Clave" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])[A-Za-z0-9_]{6,15}$" minlength="6" maxlength="15" name="passw1" id="passw1" title="La contraseña tendrá un mínimo de 6 caracteres y un máximo de 15. Debes escribir como mínimo una letra mayúscula, una minúscula y un número. Solo el caracter especial subrayado (_) está permitido. No se admiten espacios en blanco" />
+		<label for="passw0">Contraseña actual:</label>
+		<input type="password" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])[A-Za-z0-9_]{6,15}$" minlength="6" maxlength="15" required name="passw0" id="passw0" title="Debes introducir tu contraseña actual para poder confirmar los cambios" />
 	</p>
 	<p>
-		<label for="passw2">Repetir contraseña:</label>
+		<label for="passw1">Contraseña nueva:</label>
+		<input type="password" value="$fila->Clave" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])[A-Za-z0-9_]{6,15}$" minlength="6" maxlength="15" name="Clave" id="passw1" title="La contraseña tendrá un mínimo de 6 caracteres y un máximo de 15. Debes escribir como mínimo una letra mayúscula, una minúscula y un número. Solo el caracter especial subrayado (_) está permitido. No se admiten espacios en blanco" />
+	</p>
+	<p>
+		<label for="passw2">Repetir contraseña nueva:</label>
 		<input type="password" value="$fila->Clave" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])[A-Za-z0-9_]{6,15}$" minlength="6" maxlength="15" name="passw2" id="passw2" title="La contraseña debe de coincidir con la escrita en la casilla anterior" />
 	</p>
 	<p>
 		<label for="email">Email:</label>
-		<input type="email" value="$fila->Email" pattern="/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/" name="email" id="email"/>
+		<input type="email" value="$fila->Email" pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$" name="Email" id="email"/>
 	</p>
 	<p>
 		<label for="sexo">Sexo:</label>
 		<select id="sexo" name="Sexo">
-			<option value="">Escoge</option>
+			<option value="0">Escoge</option>
 formularioModificarParte0;
 
 		switch ($fila->Sexo) {
@@ -74,15 +78,16 @@ echo<<<formularioModificarParte1
 	</p>
 	<p>
 		<label for="fnac">Fecha de nacimiento:</label>
-		<input type="date" value="$fila->FNacimiento" name="fNac" id="fnac"/>
+		<input type="date" value="$fila->FNacimiento" name="FNacimiento" id="fnac"/>
 	</p>
+	<p>
 	<p>
 		<label for="cres">Ciudad de residencia:</label>
-		<input type="text" value="$fila->Ciudad" maxlength="200" name="cRes" id="cres" title="Introduce la ciudad de residencia" />
+		<input type="text" value="$fila->Ciudad" maxlength="200" name="Ciudad" id="cres" title="Introduce la ciudad de residencia" />
 	</p>
 	<p>
-	<label for="pres">País de residencia:</label>
-			<select name="pRes" id="pres">
+		<label for="pres">País de residencia:</label>
+			<select name="Pais" id="pres">
 			<option value="">Escoge</option>
 formularioModificarParte1;
 	
@@ -129,7 +134,7 @@ echo<<<formularioModificarParte2
 	</p>
 	<p>
 		<label for="fper" id="labfper">Foto de perfil:</label>
-		<input type="file" accept="image/*" name="fPer" id="fper"/>
+		<input type="file" accept="image/*" name="Foto" id="fper"/>
 	</p>
 formularioModificarParte2;
 		}
@@ -150,7 +155,7 @@ formularioModificarParte2;
 	</p>
 	<p>
 		<label for="email">Email*:</label>
-		<input type="email" required name="email" pattern="/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/" id="email"/>
+		<input type="email" required name="email" pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$" id="email"/>
 	</p>
 	<p>
 		<label for="sexo">Sexo*:</label>
@@ -167,7 +172,7 @@ formularioModificarParte2;
 	</p>
 	<p>
 		<label for="cres">Ciudad de residencia*:</label>
-		<input type="text" maxlength="200" required name="cRes" id="cres" title="Introduce la ciudad de residencia" />
+		<input type="text" maxlength="200" name="cRes" id="cres" title="Introduce la ciudad de residencia" />
 	</p>
 	<p>
 		<label for="pres">País de residencia*:</label>

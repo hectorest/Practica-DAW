@@ -52,8 +52,8 @@ modalRegistroPorUrl;
 ?>
 
 	<?php
-		if(!empty($_GET["er"])){
-			$error = $_GET["er"];
+		if(!empty($_GET["er"]) && $_GET["er"] == 300){
+			
 			echo<<<modalRegistro
 
 			<button type="button" onclick="cerrarMensajeModal(1);">X</button>
@@ -61,9 +61,27 @@ modalRegistroPorUrl;
 				<div class="contenido">
 				<span>
 					<img src="./img/error.png" alt="error-registro">
-					<h2>Error $error</h2>
+					<h2>Error</h2>
 				</span>
 					<p>¡Las contraseñas no coinciden!</p>
+					<button type="button" onclick="cerrarMensajeModal(1);">Cerrar</button>
+				</div>
+			</div>
+
+modalRegistro;
+		}
+		if(!empty($_GET["er"]) && $_GET["er"] == 301){
+			
+			echo<<<modalRegistro
+
+			<button type="button" onclick="cerrarMensajeModal(1);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-registro">
+					<h2>Error</h2>
+				</span>
+					<p>¡El nombre de usuario ya existe!</p>
 					<button type="button" onclick="cerrarMensajeModal(1);">Cerrar</button>
 				</div>
 			</div>

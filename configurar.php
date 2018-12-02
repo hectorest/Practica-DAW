@@ -37,7 +37,7 @@ function mostrarFormularioConfigurar(){
 		 }
 
 	echo<<<formularioConfigurarArriba
-		<form action="respuesta_sol_album.php" method="post" class="formulario">
+		<form action="respuesta_configuracion.php" method="post" class="formulario">
 				
 			<fieldset>
 
@@ -51,7 +51,7 @@ function mostrarFormularioConfigurar(){
 formularioConfigurarArriba;
 		if(mysqli_num_rows($resultado)){
 			while($fila = $resultado->fetch_object()) { 
-				echo "<input type='radio' name='estiloWeb' id='$fila->Nombre' value='$fila->Nombre'><span>$fila->Nombre</span>";
+				echo "<input type='radio' name='estiloWeb' id='$fila->Nombre' value='$fila->IdEstilo'><span>$fila->Nombre</span>";
 			}
 		} 
 	echo<<<formularioConfigurarDebajo

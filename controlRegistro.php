@@ -18,63 +18,51 @@ if($sanearPost["passw1"] != $sanearPost["passw2"]){
 	$extra = 'formulario_registro.php';
 	header("Location: http://$host$uri/$extra?er=300");
 }else{
-require_once("head.php");
-require_once("header.php");
-	
-	echo<<<arribaTabla
 
-		<section>
-			<div class="contTabla">
+	//insertar datos base de datos
+	require_once("validarRegistro.php");
 
-			<table class="tabla" title="Puedes hacer scroll lateral en la tabla si no cabe en tu pantalla para poder ver todos los datos que contiene">
+	if($datosCorrectos){
 
-			<caption>Datos de registro:</caption>
-
-arribaTabla;
-
-			foreach ($sanearPost as $key => $value) {
-				if($key!="passw2" && $key!="fPer"){
-					$clave = $key;
-					cambiarClave($clave);
-					if($value == ""){
-						echo"<tr><td>$clave:</td><td><i>No hay datos</i></td></tr>";
-					}
-					else{
-						if($key == "Sexo"){
-							if($value == 1){
-								$value = "Hombre";
-							}
-							else if($value == 2){
-								$value = "Mujer";
-							}
-							else{
-								$value = "Otro";
-							}
-						}
-						echo"<tr><td>$clave:</td><td>$value</td></tr>";
-					}
-				}
-			}
-
-			echo<<<bajotabla
-
-					</table>
-
-				</div>
-
-				<div class="enlPerf">
-					<a href="index.php" title="Volver a inicio">Aceptar</a>
-				</div>
-
-			</section>
-
-bajotabla;
-
-
+		//primero comprobamos si existe ya el nombre de usuario
+		$sentencia = 'SELECT * FROM usuarios WHERE NomUsuario =' . "'" . $sanearPost["usuario"] . "'";
+		if(!($resultado = $mysqli->query($sentencia))) { 
+			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+			echo '</p>'; 
+			exit; 
 		}
+		if(mysqli_num_rows($resultado)){
+			$host = $_SERVER['HTTP_HOST']; 
+			$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
+			$extra = 'formulario_registro.php';
+			header("Location: http://$host$uri/$extra?er=301");
+		}
+		else{
 
+			require_once("rellenarInsertarDatosRegistro.php");
+			$insertarDatos = $insertarDatos . "SYSDATE(),1";
+
+			$sentencia = 'INSERT INTO usuarios (IdUsuario, NomUsuario, Clave, Email, Sexo, FNacimiento, Ciudad, Pais, Foto, FRegistro, Estilo) VALUES (' . $insertarDatos . ')';
+			if(!($resultado = $mysqli->query($sentencia))) { 
+				echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+				echo '</p>'; 
+				exit; 
+			}
+			if($mysqli->affected_rows >= 1){
+				
+				//pasamos a mostrar la tabla con los datos del usuario registrado
+
+				require_once("head.php");
+				require_once("header.php");
+				require_once("barraNavSesionNoIniciada.php");
+
+				require_once("escribirTablaRegNuevoUsuario.php");
+
+			}
+		}
 	}
 	else{
+
 		echo<<<modalControlRegistro
 
 			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
@@ -84,52 +72,32 @@ bajotabla;
 					<img src="./img/error.png" alt="error-control-registro">
 					<h2>Error</h2>
 				</span>
-					<p>No has enviado los datos para registrarte</p>
+					<p>Los datos enviados se han corrompido. Anulado el registro del nuevo usuario</p>
 					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
 				</div>
 			</div>
 
 modalControlRegistro;
-	}
 
-function cambiarClave(&$clave){
-	$clavesNombre = array(
-		"album" => "Álbum",
-		"autor" => "Autor",
-		"Fecha" => "Fecha",
-		"titulo" => "Título",
-		"desc" => "Descripción",
-		"palClave" => "Palabra clave",
-		"passw1" => "Contraseña",
-		"pass" => "Contraseña",
-		"Sexo" => "Sexo",
-		"fNac" => "Fecha de nacimiento",
-		"cRes" => "Ciudad de residencia",
-		"pais" => "País",
-		"local" => "Localidad",
-		"pRes" => "País de residencia",
-		"usuario" => "Usuario",
-		"email" => "Email",
-		"texto_adicional" => "Texto adicional",
-		"cp" => "Código Postal",
-		"calle" => "Calle",
-		"numero" => "Número",
-		"local" => "Localidad",
-		"prov" => "Provincia",
-		"telefono" => "Teléfono",
-		"color_portada" => "Color portada",
-		"num_copias" => "Número de copias",
-		"resolucion" => "Resolución",
-		"frecep" => "Fecha de recepción",
-		"colorobn" => "Color o Blanco y negro",
-		"nombre" => "Nombre"
-		);
-
-	foreach ($clavesNombre as $key => $value) {
-		if($clave==$key){
-			$clave = $value;
 		}
 	}
+}
+else{
+	echo<<<modalControlRegistro
+
+		<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+		<div class="modal">
+			<div class="contenido">
+			<span>
+				<img src="./img/error.png" alt="error-control-registro">
+				<h2>Error</h2>
+			</span>
+				<p>No has enviado los datos para registrarte</p>
+				<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
+			</div>
+		</div>
+
+modalControlRegistro;
 }
 
 ?>
