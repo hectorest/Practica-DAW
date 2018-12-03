@@ -60,7 +60,7 @@ modalControlRegistro;
 
 	}
 
-	if(isset($_SESSION["usuarioLog"])){
+	if(!isset($_SESSION["usuarioLog"])){
 		mostrarErrorSinEnvioModificarDatos();
 		exit;
 	}
