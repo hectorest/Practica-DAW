@@ -1,79 +1,53 @@
 <?php
 session_start();
-require_once("head.php");
-require_once("header.php");
 require_once("conexion_db.php");
 if(!isset($_SESSION["usuarioLog"])){
 	require_once("barraNavSesionNoIniciada.php");
 }
-else{
-	require_once("barraNavSesionIniciada.php");
-}
 ?>
-
 <?php
+function mostrarMensErrorAccesoRemoto(){
 
-	$hayPost = false;
-	
-	foreach ($_POST as $value){
-		if(isset($value)){
-			$hayPost=true;
-		}
-	}
+		echo<<<modalControlModificar
 
-	if($hayPost==true){
-
-		$postSaneado = $_POST;
-		foreach ($postSaneado as $key => $value) {
-			if(!empty($value)){
-				$GLOBALS["mysqli"]->real_escape_string($value);
-			}
-		}
-
-		echo<<<arribaTabla
-
-			<section>
-
-				<h3>Álbum creado</h3>
-				<p>Has creado el álbum correctamente.</p>
-			
-			<div class="contTabla">
-
-				<table class="tabla">
-
-					<caption>Información del álbum:</caption>
-
-arribaTabla;
-
-			foreach ($postSaneado as $key => $value) {
-				$clave = $key;
-				cambiarClave($clave);
-				if($value == ""){
-					echo"<tr><td>$key:</td><td><i>No hay datos</i></td></tr>";
-				}
-				else{
-					echo"<tr><td>$clave:</td><td>$value</td></tr>";
-				}
-			}
-
-			echo<<<bajoTabla
-				</table>
+			<button type="button" onclick="cerrarMensajeModal(10);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-control-registro">
+					<h2>Error</h2>
+				</span>
+					<p>Para poder realizar cualquier cambio en los datos almacenados en Pictures & Images debes enviar los datos desde la dirección del propio sitio web</p>
+					<button type="button" onclick="cerrarMensajeModal(10);">Cerrar</button>
+				</div>
 			</div>
 
-			<div class="enlPerf" id="inicioResSolAlbum">
-				<a href="index.php" title="Volver a inicio">Aceptar</a>
+modalControlModificar;
+
+}
+function mostrarMensErrorDatosCorruptos(){
+
+		echo<<<modalControlRegistro
+
+			<button type="button" onclick="cerrarMensajeModal(10);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-control-registro">
+					<h2>Error</h2>
+				</span>
+					<p>Los datos enviados se han corrompido. Anulado el registro del nuevo usuario</p>
+					<button type="button" onclick="cerrarMensajeModal(10);">Cerrar</button>
+				</div>
 			</div>
 
-		</section>
-bajoTabla;
+modalControlRegistro;
 
-		$GLOBALS["mysqli"]->close();
-	}
-	else{
-
-		$GLOBALS["mysqli"]->close();
-		
-		echo<<<modalcrear_album
+}
+if(!isset($_SESSION["usuarioLog"])){
+	require_once("head.php");
+	require_once("header.php");
+	echo<<<modalcrear_album
 
 			<button type="button" onclick="cerrarMensajeModal(0);">X</button>
 			<div class="modal">
@@ -88,7 +62,113 @@ bajoTabla;
 			</div>
 
 modalcrear_album;
+	exit;
+}
+else{
+	if(!isset($_SERVER['HTTP_REFERER'])){
+		$serverCorrecto = false;
+		require_once("head.php");
+		require_once("header.php");
+		mostrarMensErrorAccesoRemoto();
+		exit;
 	}
+	else{
+		$url = parse_url($_SERVER['HTTP_REFERER']);
+		if($url['host'] != $_SERVER['SERVER_NAME']){
+			$serverCorrecto = false;
+			require_once("head.php");
+			require_once("header.php");
+			mostrarMensErrorAccesoRemoto();
+			exit;
+		}
+		else{
+			$serverCorrecto = true;
+		}
+	}
+}
+$hayPost = false;
+foreach ($_POST as $value){
+	if(isset($value)){
+		$hayPost=true;
+	}
+}
+if($serverCorrecto == true && $hayPost == true){
+	$sanearPost = $_POST;
+	foreach ($sanearPost as $key => $value) {
+		if(!empty($value)){
+			$GLOBALS["mysqli"]->real_escape_string($value);
+		}
+	}
+	if(!empty($sanearPost["titulo"]) && filter_has_var(INPUT_POST, 'titulo')){
+		$sentencia = 'SELECT * FROM albumes WHERE Titulo =' . "'" . $sanearPost["titulo"] . "'";
+		if(!($resultado = $mysqli->query($sentencia))) { 
+			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+			echo '</p>'; 
+			exit; 
+		}
+		if(mysqli_num_rows($resultado)){
+			$host = $_SERVER['HTTP_HOST']; 
+			$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
+			$extra = 'crear_album.php';
+			header("Location: http://$host$uri/$extra?er=301");
+		}
+		else{
+			$insertarDatos = "''";
+			foreach ($sanearPost as $key => $value) {
+				if(!empty($value)){
+					if(is_numeric($value)){
+						$insertarDatos = $insertarDatos . ',' . $value;
+					}
+					else{
+						$insertarDatos = $insertarDatos . ',' . "'". $value . "'";
+					}
+				}
+				else{
+					$insertarDatos = $insertarDatos . ",''";
+				}
+			}
+			$insertarDatos = $insertarDatos . ',' . "'" . $_SESSION["usuarioLog"] . "'";
+			$sentencia = 'INSERT INTO albumes (IdAlbum, Titulo, Descripcion, Usuario) VALUES (' . $insertarDatos . ')';
+			if(!($resultado = $mysqli->query($sentencia))) { 
+				echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error;
+				echo '</p>';
+				exit;
+			}
+			if($mysqli->affected_rows >= 1){
+				require_once("head.php");
+				require_once("header.php");
+				require_once("barraNavSesionIniciada.php");
+				require_once("rellenarTablaNuevoAlbum.php");
+			}
+		}
+	}
+	else{
+		require_once("head.php");
+		require_once("header.php");
+		mostrarMensErrorDatosCorruptos();
+	}
+	$GLOBALS["mysqli"]->close();
+}
+else{
+	$GLOBALS["mysqli"]->close();
+	require_once("head.php");
+	require_once("header.php");
+	echo<<<modalcrear_album
+
+			<button type="button" onclick="cerrarMensajeModal(0);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-control-registro">
+					<h2>Error</h2>
+				</span>
+					<p>No has enviado los datos para crear un álbum</p>
+					<button type="button" onclick="cerrarMensajeModal(6);">Crear álbum</button>
+				</div>
+			</div>
+
+modalcrear_album;
+}
 
 function cambiarClave(&$clave){
 	$clav = array(
@@ -130,9 +210,7 @@ function cambiarClave(&$clave){
 		}
 	}
 }
-
 ?>
-
 <?php
 	require_once("footer.php");
 ?>

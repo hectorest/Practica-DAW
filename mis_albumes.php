@@ -17,6 +17,23 @@ function mostrarErrorMisAlbumesSinIniciarSesion(){
 
 modalMisAlbumesSesionNoIniciada;
 }
+function mostrarErrorNoHayAlbumes(){
+		echo<<<modalMisAlbumesSesionNoIniciada
+
+			<button type="button" onclick="cerrarMensajeModal(3);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-detalle-foto">
+					<h2>Error</h2>
+				</span>
+					<p>No dispones de álbumes</p>
+					<button type="button" onclick="cerrarMensajeModal(3);">Aceptar</button>
+				</div>
+			</div>
+
+modalMisAlbumesSesionNoIniciada;
+}
 require_once("head.php");
 require_once("header.php");
 require_once("conexion_db.php");
@@ -40,22 +57,22 @@ else{
 				   echo '</p>'; 
 				   exit; 
 				 }
-				echo<<<arribaTablaMisAlbumes
-			<section>
-			<h3>Mis Álbumes:</h3>
-
-			<div class="contTabla">
-				<table class="tabla" title="Puedes hacer scroll lateral en la tabla si no cabe en tu pantalla para poder ver todos los datos que contiene">
-					<tr>
-						
-						<th>Título</th>
-						<th>Descripción</th>
-						<th></th>
-
-					</tr>
-arribaTablaMisAlbumes;
 
 			if(mysqli_num_rows($resultado)){
+				echo<<<arribaTablaMisAlbumes
+					<section>
+					<h3>Mis Álbumes:</h3>
+
+					<div class="contTabla">
+						<table class="tabla" title="Puedes hacer scroll lateral en la tabla si no cabe en tu pantalla para poder ver todos los datos que contiene">
+							<tr>
+								
+								<th>Título</th>
+								<th>Descripción</th>
+								<th></th>
+
+							</tr>
+arribaTablaMisAlbumes;
 				while($fila = $resultado->fetch_object()) {
 
 				   	echo "<tr>"; 
@@ -65,17 +82,19 @@ arribaTablaMisAlbumes;
   					echo "</tr>";
 
 				}
-			}else{
-					echo "<tr>"; 
-   					echo "<td>No dispones de álbumes</td>"; 
-  					echo "</tr>";
+
+				echo<<<debajoTablaMisAlbumes
+							</table>
+						</div>
+					</section>
+debajoTablaMisAlbumes;
 
 			}
-				echo<<<debajoTablaMisAlbumes
-					</table>
-				</div>
-			</section>
-debajoTablaMisAlbumes;
+			else{
+
+				mostrarErrorNoHayAlbumes(); 
+
+			}
 			$resultado->free();
 		}
 		$GLOBALS["mysqli"]->close();

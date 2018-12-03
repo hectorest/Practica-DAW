@@ -17,8 +17,28 @@ function mostrarErrorCrearAlbumSinIniciarSesion(){
 
 modalCrearAlbumSesionNoIniciada;
 }
+function mostrarErrorCrearAlbumConTituloRepetido(){
+		echo<<<modalCrearAlbumSesionNoIniciada
+
+			<button type="button" onclick="cerrarMensajeModal(1);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-detalle-foto">
+					<h2>Error</h2>
+				</span>
+					<p>Ya tienes un álbum con ese título</p>
+					<button type="button" onclick="cerrarMensajeModal(1);">Aceptar</button>
+				</div>
+			</div>
+
+modalCrearAlbumSesionNoIniciada;
+}
 require_once("head.php");
 require_once("header.php");
+if(!empty($_GET["er"]) && $_GET["er"] == 301){
+	mostrarErrorCrearAlbumConTituloRepetido();
+}
 if(!isset($_SESSION["usuarioLog"])){
 	require_once("barraNavSesionNoIniciada.php");
 	mostrarErrorCrearAlbumSinIniciarSesion();

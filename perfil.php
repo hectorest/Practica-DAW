@@ -57,6 +57,14 @@ modalPerfil;
 			$fila->Foto = "./img/foto_perfil.png";
 		}
 
+		if($fila->Ciudad == ''){
+			$fila->Ciudad = "No hay datos";
+		}
+
+		if($fila->NomPais == 'Ninguno'){
+			$fila->NomPais = "No hay datos";
+		}
+
 		echo <<<perfilUsuario
 
 			<section>

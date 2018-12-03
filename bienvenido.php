@@ -1,24 +1,37 @@
-<?php  
-$idUsu = $_COOKIE["idUsuario"];
-$ultimaVisita;
-require_once("conexion_db.php");
-if(isset($_COOKIE["ultimaVisita"])){
-	$ultimaVisita = $_COOKIE["ultimaVisita"];
-	$ultimaVisita = strtotime($ultimaVisita);
-	$ultimaVisitaDia = date('d-m-Y',$ultimaVisita);
-	$ultimaVisitaHora = date('H:i',$ultimaVisita);
-	$ultimaVisita = (string) $ultimaVisitaDia . " a las " . (string) $ultimaVisitaHora;
-}
-if(!empty($_GET["existe"])){
-	darBienvenida($idUsu, $ultimaVisita, $_GET["existe"]);
-	require_once("head.php");
+<?php
+$cookieFalsa = false;
+require_once("controlCookie.php");
+if(!$cookieFalsa){
+	$idUsu = $_COOKIE["idUsuario"];
+	$nomUsu;
+	$date;
+	$ultimaVisita;
+	require_once("conexion_db.php");
+	if(isset($_COOKIE["ultimaVisita"])){
+		$ultimaVisita = $_COOKIE["ultimaVisita"];
+		$ultimaVisita = strtotime($ultimaVisita);
+		$ultimaVisitaDia = date('d-m-Y',$ultimaVisita);
+		$ultimaVisitaHora = date('H:i',$ultimaVisita);
+		$ultimaVisita = (string) $ultimaVisitaDia . " a las " . (string) $ultimaVisitaHora;
+	}
+	if(!empty($_GET["existe"])){
+		darBienvenida($idUsu, $ultimaVisita, $_GET["existe"]);
+		require_once("head.php");
+		if(!empty($nomUsu) && !empty($date)){
+			mostrarMensBienv($nomUsu, $date);
+		}
+	}
+	else{
+		require_once("head.php");
+		mostrarMensErrorBienvUrl();
+	}
 }
 else{
 	require_once("head.php");
-	mostrarMensErrorBienvUrl();
+	mostrarMensErrorBienv();
 }
 
-	function darBienvenida(&$idUsu, &$date, &$succes){
+function darBienvenida(&$idUsu, &$date, &$succes){
 		
 		if($succes == true){
 
@@ -38,20 +51,23 @@ else{
 		 		$nomUsu = $fila->NomUsuario;
 		 		setcookie("ultimaVisita", date("c"), time() + 90 * 24 * 60 * 60);
 				$_COOKIE["ultimaVisita"] = date("c");
-				mostrarMensBienv($nomUsu, $date);
+				$GLOBALS["nomUsu"] = $nomUsu;
+				$GLOBALS["date"] = $date;
 				$usuario->free();
 		 	}
 		 	else{
+		 		require_once("head.php");
 		 		mostrarMensErrorBienv();
 		 	}
 
 		}
 		else{
+			require_once("head.php");
 			mostrarMensErrorBienv();
 		}
 	
 
-	}
+}
 
 		function mostrarMensBienv(&$usu, &$date){
 			echo <<<RecuerdoInicSes

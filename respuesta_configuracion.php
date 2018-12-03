@@ -89,7 +89,91 @@ modalSolAlbumSesionNoIniciada;
 
 	}
 
-	if($haySesion){
+	function mostrarMensEstiloCorrompido(){
+
+		echo<<<modalControlRegistro
+
+			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-control-registro">
+					<h2>Error</h2>
+				</span>
+					<p>Los datos enviados se han corrompido. Anulado el cambio en la configuración de la web</p>
+					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
+				</div>
+			</div>
+
+modalControlRegistro;
+
+	}
+
+	function mostrarMensErrorCargaDeEstilos(){
+
+		echo<<<modalControlRegistro
+
+			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-control-registro">
+					<h2>Error</h2>
+				</span>
+					<p>Se ha producido un error a la hora de cargar los estilos disponibles</p>
+					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
+				</div>
+			</div>
+
+modalControlRegistro;
+
+	}
+
+	function mostrarMensErrorAccesoRemoto(){
+
+		echo<<<modalControlRegistro
+
+			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-control-registro">
+					<h2>Error</h2>
+				</span>
+					<p>Para poder realizar cualquier cambio en los datos almacenados en Pictures & Images debes enviar los datos desde la dirección del propio sitio web</p>
+					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
+				</div>
+			</div>
+
+modalControlRegistro;
+
+	}
+
+	if(!isset($_SESSION["usuarioLog"])){
+		mostrarErrorRespConf();
+		exit;
+	}
+	else{
+		if(!isset($_SERVER["HTTP_REFERER"])){
+			$serverCorrecto = false;
+			mostrarMensErrorAccesoRemoto();
+			exit;
+		}
+		else{
+			$url = parse_url($_SERVER["HTTP_REFERER"]);
+			if($url["host"] != $_SERVER["SERVER_NAME"]){
+				$serverCorrecto = false;
+				mostrarMensErrorAccesoRemoto();
+				exit;
+			}
+			else{
+				$serverCorrecto = true;
+			}
+		}
+	}
+	
+
+	if($haySesion && $serverCorrecto){
 		if(!empty($_POST)){
 			$postSaneado = $_POST;
 			foreach ($postSaneado as $key => $value) {
@@ -97,55 +181,71 @@ modalSolAlbumSesionNoIniciada;
 			  		$mysqli->real_escape_string($value);
 			  	}
 			}
-			if(is_numeric($postSaneado["estiloWeb"])){
 
-				$sentencia = 'SELECT * FROM estilos WHERE IdEstilo = ' . $postSaneado["estiloWeb"];
-				if(!($estilo = $GLOBALS["mysqli"]->query($sentencia))) { 
-					echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
-					echo '</p>'; 
-					exit; 
-				}
+			$sentencia = 'SELECT count(IdEstilo) as TotalEstilos FROM estilos';
+			if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
+				echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
+				echo '</p>'; 
+				exit; 
+			}
 
-				$nomEstilo = $estilo->fetch_object();
-				$nomEstilo = $nomEstilo->Nombre;
+			if(mysqli_num_rows($resultado)){
 
-				if(mysqli_num_rows($estilo) >= 1){
-					$sentencia = 'UPDATE usuarios SET Estilo = '. "'" . $postSaneado["estiloWeb"] . "'" . ' WHERE IdUsuario = ' . $_SESSION["usuarioLog"];
-					if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
-					  echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
-					  echo '</p>'; 
-					  exit; 
+				$rangoEstilos = $resultado->fetch_object();
+				$rangoEstilos = (int) $rangoEstilos->TotalEstilos;
+
+				$int_options = array("options" => array("min_range" => 1, "max_range" => $rangoEstilos));
+
+				if(!empty($postSaneado["estiloWeb"]) && filter_var($postSaneado["estiloWeb"], FILTER_VALIDATE_INT, $int_options)){
+
+					$sentencia = 'SELECT * FROM estilos WHERE IdEstilo = ' . $postSaneado["estiloWeb"];
+					if(!($estilo = $GLOBALS["mysqli"]->query($sentencia))) { 
+						echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+						echo '</p>'; 
+						exit; 
 					}
-					if($mysqli->affected_rows > 0){
-						require_once("head.php");
-						require_once("header.php");
-						require_once("barraNavSesionIniciada.php");
-						mostrarMensEstiloCambiado($nomEstilo);
+
+					$nomEstilo = $estilo->fetch_object();
+					$nomEstilo = $nomEstilo->Nombre;
+
+					if(mysqli_num_rows($estilo) >= 1){
+						$sentencia = 'UPDATE usuarios SET Estilo = '. "'" . $postSaneado["estiloWeb"] . "'" . ' WHERE IdUsuario = ' . $_SESSION["usuarioLog"];
+						if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
+						  echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
+						  echo '</p>'; 
+						  exit; 
+						}
+						if($mysqli->affected_rows > 0){
+							require_once("head.php");
+							mostrarMensEstiloCambiado($nomEstilo);
+						}
+						else if($mysqli->affected_rows == 0){
+							require_once("head.php");
+							mostrarMensEstiloSinModificar($nomEstilo);
+						}
 					}
-					else if($mysqli->affected_rows == 0){
-						require_once("head.php");
-						require_once("header.php");
-						require_once("barraNavSesionIniciada.php");
-						mostrarMensEstiloSinModificar($nomEstilo);
+					else{
+						mostrarErrorEstiloNoExistente();
 					}
+
 				}
 				else{
-					mostrarErrorEstiloNoExistente();
+					require_once("head.php");
+					mostrarMensEstiloCorrompido();
 				}
-
+			}
+			else{
+				require_once("head.php");
+				mostrarMensErrorCargaDeEstilos();
 			}
 		}
 		else{
 			require_once("head.php");
-			require_once("header.php");
-			require_once("barraNavSesionNoIniciada.php");
 			mostrarErrorEstiloNoExistente();
 		}
 	}
 	else{
 		require_once("head.php");
-		require_once("header.php");
-		require_once("barraNavSesionNoIniciada.php");
 		mostrarErrorRespConf();
 	}
 

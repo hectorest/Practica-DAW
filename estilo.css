@@ -910,6 +910,25 @@ body>.formulario{
 			color: #000000;
 		}
 
+		#enlaceAnyadirFotoAlbum{
+			text-align: center;
+		}
+
+			#enlaceAnyadirFotoAlbum>a{
+				text-decoration: none;
+				color: #394648;
+				font-weight: bold;
+			}
+
+			#enlaceAnyadirFotoAlbum>a:hover{
+				color: #D67731;
+			}
+
+			#enlaceAnyadirFotoAlbum>a:focus{
+				color: #D67731;
+			}
+
+
 /*PAGINA DETALLE IMAGEN*/
 
 	.detFoto{

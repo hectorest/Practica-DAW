@@ -60,7 +60,37 @@ modalControlRegistro;
 
 	}
 
-	if($haySesion){
+	if(isset($_SESSION["usuarioLog"])){
+		mostrarErrorSinEnvioModificarDatos();
+		exit;
+	}
+	else{
+		if(!isset($_SERVER["HTTP_REFERER"])){
+			$serverCorrecto = false;
+			$host = $_SERVER['HTTP_HOST']; 
+			$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
+			$extra = 'formulario_modificar.php';
+			header("Location: http://$host$uri/$extra?er=310");
+			exit;
+		}
+		else{
+			$url = parse_url($_SERVER["HTTP_REFERER"]);
+			if($url["host"] != $_SERVER["SERVER_NAME"]){
+				$serverCorrecto = false;
+				$host = $_SERVER['HTTP_HOST']; 
+				$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
+				$extra = 'formulario_modificar.php';
+				header("Location: http://$host$uri/$extra?er=310");
+				exit;
+			}
+			else{
+				$serverCorrecto = true;
+			}
+		}
+	}
+	
+
+	if($haySesion && $serverCorrecto){
 		if(!empty($_POST)){
 
 			$sanearPost = $_POST;
@@ -141,6 +171,18 @@ modalControlRegistro;
 					}
 				}
 
+				if(empty($sanearPost["Pais"])){
+					$actualizarDatosUsuario = $actualizarDatosUsuario  . ",Pais" . "=" . "'0'";
+				}
+
+				if(empty($sanearPost["Ciudad"])){
+					$actualizarDatosUsuario = $actualizarDatosUsuario  . ",Ciudad" . "=" . "''";
+				}
+
+				if(empty($sanearPost["Foto"])){
+					$actualizarDatosUsuario = $actualizarDatosUsuario  . ",Foto" . "=" . "''";
+				}
+
 				$sentencia = 'UPDATE usuarios SET ' . $actualizarDatosUsuario . ' WHERE IdUsuario = ' . $_SESSION["usuarioLog"];
 				if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
 					echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
@@ -151,7 +193,7 @@ modalControlRegistro;
 					require_once("head.php");
 					require_once("header.php");
 					require_once("barraNavSesionIniciada.php");
-					require_once("escribirTablaRegModificarDatosUsuario.php");
+					require_once("escribirTablaRegNuevoUsuario.php");
 				}
 				else{
 					mostrarErrorActualizarDatos();

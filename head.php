@@ -3,32 +3,7 @@ require_once("conexion_db.php");
 $cookieFalsa = false;
 if(isset($_COOKIE["idUsuario"])){
 	require_once("controlCookie.php");
-	if(isset($_SESSION["usuarioLog"])){
-		if(isset($_COOKIE["ultimaVisita"])){
-			setcookie("ultimaVisita", date("c"), time() + 90 * 24 * 60 * 60);
-			$_COOKIE["ultimaVisita"] = date("c");
-		}
-
-		$usuarioSesion = $_SESSION["usuarioLog"];
-		$usuarioSesion = $GLOBALS["mysqli"]->real_escape_string($usuarioSesion);
-		$usuarioSesion = (int) $usuarioSesion;
-
-		// Ejecuta una sentencia SQL 
-		$sentencia = 'SELECT e.IdEstilo, e.Nombre, e.Descripcion, e.Fichero FROM usuarios u JOIN estilos e ON (u.Estilo = e.IdEstilo) WHERE u.IdUsuario = '. $usuarioSesion; 
-		if(!($estilo = $GLOBALS["mysqli"]->query($sentencia))) { 
-			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
-			echo '</p>'; 
-			exit; 
-		}
-
-		if(mysqli_num_rows($estilo)){
-			$fila = $estilo->fetch_object();
-			$nombreEstiloUsu = "'" . $fila->Nombre . "'";
-			$ficheroEstiloUsu = "'" . $fila->Fichero . "'";
-			$IdEstilo = (int) $fila->IdEstilo;
-		}
-	}
-	else{
+	if($cookieFalsa == true){
 		$nombreEstiloUsu = "'Normal'";
 		$ficheroEstiloUsu = "'estilo.css'";
 		$sentencia = 'SELECT IdEstilo FROM estilos WHERE Fichero = '. $ficheroEstiloUsu; 
@@ -40,6 +15,47 @@ if(isset($_COOKIE["idUsuario"])){
 		if(mysqli_num_rows($estilo)){
 			$fila = $estilo->fetch_object();
 			$IdEstilo = $fila->IdEstilo;
+		}
+	}
+	else{
+		if(isset($_SESSION["usuarioLog"])){
+			if(isset($_COOKIE["ultimaVisita"])){
+				setcookie("ultimaVisita", date("c"), time() + 90 * 24 * 60 * 60);
+				$_COOKIE["ultimaVisita"] = date("c");
+			}
+
+			$usuarioSesion = $_SESSION["usuarioLog"];
+			$usuarioSesion = $GLOBALS["mysqli"]->real_escape_string($usuarioSesion);
+			$usuarioSesion = (int) $usuarioSesion;
+
+			// Ejecuta una sentencia SQL 
+			$sentencia = 'SELECT e.IdEstilo, e.Nombre, e.Descripcion, e.Fichero FROM usuarios u JOIN estilos e ON (u.Estilo = e.IdEstilo) WHERE u.IdUsuario = '. $usuarioSesion; 
+			if(!($estilo = $GLOBALS["mysqli"]->query($sentencia))) { 
+				echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+				echo '</p>'; 
+				exit; 
+			}
+
+			if(mysqli_num_rows($estilo)){
+				$fila = $estilo->fetch_object();
+				$nombreEstiloUsu = "'" . $fila->Nombre . "'";
+				$ficheroEstiloUsu = "'" . $fila->Fichero . "'";
+				$IdEstilo = (int) $fila->IdEstilo;
+			}
+		}
+		else{
+			$nombreEstiloUsu = "'Normal'";
+			$ficheroEstiloUsu = "'estilo.css'";
+			$sentencia = 'SELECT IdEstilo FROM estilos WHERE Fichero = '. $ficheroEstiloUsu; 
+			if(!($estilo = $GLOBALS["mysqli"]->query($sentencia))) { 
+				echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+				echo '</p>'; 
+				exit; 
+			}
+			if(mysqli_num_rows($estilo)){
+				$fila = $estilo->fetch_object();
+				$IdEstilo = $fila->IdEstilo;
+			}
 		}
 	}
 }

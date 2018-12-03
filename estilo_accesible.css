@@ -963,6 +963,29 @@ body>.formulario{
 			color: #000000;
 		}
 
+		#enlaceAnyadirFotoAlbum{
+			text-align: center;
+		}
+
+			#enlaceAnyadirFotoAlbum>a{
+				text-decoration: none;
+				color: #394648;
+				font-weight: bold;
+			}
+
+			#enlaceAnyadirFotoAlbum>a:hover{
+				color: #ffffff;
+				background-color: #000000;
+				border-radius: 0.5em;
+			}
+
+			#enlaceAnyadirFotoAlbum>a:focus{
+				color: #ffffff;
+				background-color: #000000;
+				border-radius: 0.5em;
+			}
+
+
 /*PAGINA DETALLE IMAGEN*/
 
 	body>#detFoto{

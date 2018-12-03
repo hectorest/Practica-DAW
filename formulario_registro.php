@@ -70,7 +70,7 @@ modalRegistroPorUrl;
 
 modalRegistro;
 		}
-		if(!empty($_GET["er"]) && $_GET["er"] == 301){
+		else if(!empty($_GET["er"]) && $_GET["er"] == 301){
 			
 			echo<<<modalRegistro
 
@@ -87,6 +87,24 @@ modalRegistro;
 			</div>
 
 modalRegistro;
+		}
+		else if(!empty($_GET["er"]) && $_GET["er"] == 310){
+			
+			echo<<<modalControlRegistro
+
+			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-control-registro">
+					<h2>Error</h2>
+				</span>
+					<p>Para poder realizar cualquier cambio en los datos almacenados en Pictures & Images debes enviar los datos desde la dirección del propio sitio web</p>
+					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
+				</div>
+			</div>
+
+modalControlRegistro;
 		}
 		echo<<<arribaFormulario
 		<form action="controlRegistro.php" method="post" class="formulario" id="formReg">

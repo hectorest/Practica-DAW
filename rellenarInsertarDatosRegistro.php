@@ -3,7 +3,7 @@
 	$insertarDatos = "''";
 	
 	foreach ($sanearPost as $key => $value) {
-		if($key == 'passw2' || $key == 'fPer'){
+		if($key == 'passw2' || $key == 'Foto'){
 			$insertarDatos = $insertarDatos;
 		}
 		else{
@@ -21,8 +21,8 @@
 		}
 	}
 
-	if(!empty($sanearPost["fPer"])){
-		$insertarDatos = $insertarDatos . ',' . "'" . $sanearPost["fPer"] . "'" . ',';
+	if(!empty($sanearPost["Foto"])){
+		$insertarDatos = $insertarDatos . ',' . "'" . $sanearPost["Foto"] . "'" . ',';
 	}
 	else{
 		$insertarDatos = $insertarDatos . ",'',";

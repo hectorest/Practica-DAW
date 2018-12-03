@@ -12,20 +12,63 @@ $sanearPost = $_POST;
 foreach($sanearPost as $key => $value){
 	$GLOBALS["mysqli"]->real_escape_string($value);
 }
-if($sanearPost["passw1"] != $sanearPost["passw2"]){
+if($sanearPost["Clave"] != $sanearPost["passw2"]){
 	$host = $_SERVER['HTTP_HOST']; 
 	$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
 	$extra = 'formulario_registro.php';
 	header("Location: http://$host$uri/$extra?er=300");
 }else{
+	if(!isset($_SESSION["usuarioLog"])){
+		echo<<<modalControlRegistro
+
+		<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+		<div class="modal">
+			<div class="contenido">
+			<span>
+				<img src="./img/error.png" alt="error-control-registro">
+				<h2>Error</h2>
+			</span>
+				<p>No has enviado los datos para registrarte</p>
+				<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
+			</div>
+		</div>
+
+modalControlRegistro;
+		exit;
+	}
+	else{
+		if(!isset($_SERVER["HTTP_REFERER"])){
+			$serverCorrecto = false;
+			$host = $_SERVER['HTTP_HOST']; 
+			$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
+			$extra = 'formulario_registro.php';
+			header("Location: http://$host$uri/$extra?er=310");
+			exit;
+		}
+		else{
+			$url = parse_url($_SERVER["HTTP_REFERER"]);
+			if($url["host"] != $_SERVER["SERVER_NAME"]){
+				$serverCorrecto = false;
+				$host = $_SERVER['HTTP_HOST']; 
+				$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
+				$extra = 'formulario_registro.php';
+				header("Location: http://$host$uri/$extra?er=310");
+				exit;
+			}
+			else{
+				$serverCorrecto = true;
+			}
+		}
+	}
+	
 
 	//insertar datos base de datos
 	require_once("validarRegistro.php");
 
-	if($datosCorrectos){
+	if($serverCorrecto && $datosCorrectos){
 
 		//primero comprobamos si existe ya el nombre de usuario
-		$sentencia = 'SELECT * FROM usuarios WHERE NomUsuario =' . "'" . $sanearPost["usuario"] . "'";
+		$sentencia = 'SELECT * FROM usuarios WHERE NomUsuario =' . "'" . $sanearPost["NomUsuario"] . "'";
 		if(!($resultado = $mysqli->query($sentencia))) { 
 			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
 			echo '</p>'; 

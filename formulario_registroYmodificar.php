@@ -38,7 +38,7 @@ echo<<<formularioModificarParte0
 	<p>
 		<label for="sexo">Sexo:</label>
 		<select id="sexo" name="Sexo">
-			<option value="0">Escoge</option>
+			<option value="">Escoge</option>
 formularioModificarParte0;
 
 		switch ($fila->Sexo) {
@@ -88,11 +88,11 @@ echo<<<formularioModificarParte1
 	<p>
 		<label for="pres">País de residencia:</label>
 			<select name="Pais" id="pres">
-			<option value="">Escoge</option>
+			<option value="0">Escoge</option>
 formularioModificarParte1;
 	
 	function extraerContinentes(){
-		$sentencia0 = 'SELECT DISTINCT Continente FROM paises order by (Continente) ASC';
+		$sentencia0 = 'SELECT DISTINCT Continente FROM paises where Continente != ' . "'Ninguno'" . 'order by (Continente) ASC';
 		if(!($resultado0 = $GLOBALS["mysqli"]->query($sentencia0))){
 			echo "<p>Error al ejecutar la sentencia <b>$sentencia0</b>: " . $GLOBALS["mysqli"]->error; 
 			echo '</p>'; 
@@ -143,11 +143,11 @@ formularioModificarParte2;
 ?>
 	<p>
 		<label for="usuario">Usuario*:</label>
-		<input type="text" pattern="[A-Za-z0-9]{3,15}" minlength="3" maxlength="15" title="El nombre de usuario tendrá como mínimo 6 caracteres que pueden ser tanto letras mayúsculas como minúsculas y como números. El máximo número de caracteres permitido es 14. Los espacios en blanco no están permitidos" required name="usuario" id="usuario"/>
+		<input type="text" pattern="[A-Za-z0-9]{3,15}" minlength="3" maxlength="15" title="El nombre de usuario tendrá como mínimo 6 caracteres que pueden ser tanto letras mayúsculas como minúsculas y como números. El máximo número de caracteres permitido es 14. Los espacios en blanco no están permitidos" required name="NomUsuario" id="usuario"/>
 	</p>
 	<p>
 		<label for="passw1">Contraseña*:</label>
-		<input type="password" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])[A-Za-z0-9_]{6,15}$" minlength="6" maxlength="15" required name="passw1" id="passw1" title="La contraseña tendrá un mínimo de 6 caracteres y un máximo de 15. Debes escribir como mínimo una letra mayúscula, una minúscula y un número. Solo el caracter especial subrayado (_) está permitido. No se admiten espacios en blanco" />
+		<input type="password" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])[A-Za-z0-9_]{6,15}$" minlength="6" maxlength="15" required name="Clave" id="passw1" title="La contraseña tendrá un mínimo de 6 caracteres y un máximo de 15. Debes escribir como mínimo una letra mayúscula, una minúscula y un número. Solo el caracter especial subrayado (_) está permitido. No se admiten espacios en blanco" />
 	</p>
 	<p>
 		<label for="passw2">Repetir contraseña*:</label>
@@ -155,7 +155,7 @@ formularioModificarParte2;
 	</p>
 	<p>
 		<label for="email">Email*:</label>
-		<input type="email" required name="email" pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$" id="email"/>
+		<input type="email" required name="Email" pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$" id="email"/>
 	</p>
 	<p>
 		<label for="sexo">Sexo*:</label>
@@ -168,16 +168,16 @@ formularioModificarParte2;
 	</p>
 	<p>
 		<label for="fnac">Fecha de nacimiento*:</label>
-		<input type="date" required name="fNac" id="fnac"/>
+		<input type="date" required name="FNacimiento" id="fnac"/>
 	</p>
 	<p>
 		<label for="cres">Ciudad de residencia*:</label>
-		<input type="text" maxlength="200" name="cRes" id="cres" title="Introduce la ciudad de residencia" />
+		<input type="text" maxlength="200" name="Ciudad" id="cres" title="Introduce la ciudad de residencia" />
 	</p>
 	<p>
 		<label for="pres">País de residencia*:</label>
-		<select required name="pRes" id="pres">
-			<option value="">Escoge</option>
+		<select name="Pais" id="pres">
+			<option value="0">Escoge</option>
 			<?php
 				require_once("obtenerPaises.php");
 				$GLOBALS["mysqli"]->close();
@@ -186,7 +186,7 @@ formularioModificarParte2;
 	</p>
 	<p>
 		<label for="fper" id="labfper">Foto de perfil:</label>
-		<input type="file" accept="image/*" name="fPer" id="fper"/>
+		<input type="file" accept="image/*" name="Foto" id="fper"/>
 	</p>
 <?php
 	}

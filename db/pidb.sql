@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2018 a las 14:43:53
--- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 7.2.11
+-- Tiempo de generación: 03-12-2018 a las 02:50:48
+-- Versión del servidor: 10.1.35-MariaDB
+-- Versión de PHP: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -43,7 +43,8 @@ INSERT INTO `albumes` (`IdAlbum`, `Titulo`, `Descripcion`, `Usuario`) VALUES
 (1, 'Fotos Playa España', 'Este álbum es una recopilación de mis viajes a las diferentes playas de España', 1),
 (2, 'Fotos Montaña Asia', 'Este álbum es una recopilación de las diferentes montañas de Asia', 2),
 (3, 'Fotos Paisajes Montaña', 'Imágenes de diferentes paisajes de montaña de todo el mundo.', 1),
-(4, 'Fotos Playas', 'Álbum que contiene todas las fotos de todas las playas del mundo que he visitado.', 2);
+(4, 'Fotos Playas', 'Álbum que contiene todas las fotos de todas las playas del mundo que he visitado.', 2),
+(18, 'Fotos Piscina', '', 29);
 
 -- --------------------------------------------------------
 
@@ -150,6 +151,7 @@ CREATE TABLE `paises` (
 --
 
 INSERT INTO `paises` (`IdPais`, `NomPais`, `Continente`) VALUES
+(0, 'Ninguno', 'Ninguno'),
 (1, 'España', 'Europa'),
 (2, 'Colombia', 'Sudamérica'),
 (3, 'Alemania', 'Europa'),
@@ -175,7 +177,7 @@ INSERT INTO `paises` (`IdPais`, `NomPais`, `Continente`) VALUES
 DELIMITER $$
 CREATE TRIGGER `ContinenteCorrecto` BEFORE INSERT ON `paises` FOR EACH ROW BEGIN
 DECLARE mensajeError VARCHAR(500);
-IF NEW.Continente = '' OR NEW.Continente NOT IN('Europa', 'Norteamérica', 'Sudamérica', 'Asia', 'Oceanía', 'África', 'Antártida') THEN
+IF NEW.Continente = '' OR NEW.Continente NOT IN('Europa', 'Norteamérica', 'Sudamérica', 'Asia', 'Oceanía', 'África', 'Antártida', 'Ninguno') THEN
 SET mensajeError = concat('Error al insertar continente: el valor de la columna Continente no puede ser cadena vacía o ", y, además, su valor debe de corresponderse con alguno de los 7 existentes. Lista de continentes: Europa, Asia, Oceanía, Norteamérica, Sudamérica, África y Antártida. (Se debe escribir el continente con los acentos que tenga). Continente especificado: ', NEW.Continente);
 SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = mensajeError;
 END IF;
@@ -236,11 +238,13 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`IdUsuario`, `NomUsuario`, `Clave`, `Email`, `Sexo`, `FNacimiento`, `Ciudad`, `Pais`, `Foto`, `FRegistro`, `Estilo`) VALUES
-(1, 'pepee1', '11111111', 'pepee1@pi.es', 1, '1998-11-08', 'Valencia', 1, './img/pepee1.png', '2018-11-22 04:07:06', 1),
-(2, 'manolo2', '22222222', 'manolo2@pi.es', 2, '1998-11-09', 'San Vicente del Raspeig', 1, './img/manolo2.png', '2018-11-22 04:07:10', 2),
-(3, 'sergio3', '33333333', 'sergio3@gmail.com', 1, '2010-02-10', 'Whashington DC', 11, './img/pepee1.png', '2018-11-22 04:07:16', 1),
-(4, 'juaan4', '44444444', 'juan4@gmail.com', 1, '2008-02-10', 'Sudáfrica', 14, './img/manolo2.png', '2018-11-22 04:07:22', 2),
-(5, 'luiis5', '55555555', 'luis5@gmail.com', 1, '2005-02-10', 'Pekín', 7, './img/pepee1.png', '2018-11-22 04:07:25', 1);
+(1, 'pepee1', 'Pepe11', 'pepee1@pi.es', 1, '1998-11-08', 'Valencia', 8, '', '2018-12-03 02:50:08', 1),
+(2, 'manolo2', 'Manolo22', 'manolo2@pi.es', 2, '1998-11-09', 'San Vicente del Raspeig', 1, './img/manolo2.png', '2018-12-03 02:50:13', 2),
+(3, 'sergio3', 'Sergio33', 'sergio3@gmail.com', 1, '2010-02-10', 'Whashington DC', 11, './img/pepee1.png', '2018-12-03 02:50:19', 1),
+(4, 'juaan4', 'Juan44', 'juan4@gmail.com', 1, '2008-02-10', 'Sudáfrica', 14, './img/manolo2.png', '2018-12-03 02:50:24', 2),
+(5, 'luiis5', 'Luis55', 'luis5@gmail.com', 1, '2005-02-10', 'Pekín', 7, './img/pepee1.png', '2018-12-03 02:50:32', 1),
+(28, 'Hola12', 'Hola12', 'holahola12@gmail.es', 1, '2018-12-04', '', 8, '', '2018-12-02 23:23:27', 1),
+(29, 'Guan60', 'Guan60', 'guan60@gmail.com', 1, '2018-12-12', '', 0, '', '2018-12-03 02:42:56', 1);
 
 --
 -- Índices para tablas volcadas
@@ -251,6 +255,7 @@ INSERT INTO `usuarios` (`IdUsuario`, `NomUsuario`, `Clave`, `Email`, `Sexo`, `FN
 --
 ALTER TABLE `albumes`
   ADD PRIMARY KEY (`IdAlbum`),
+  ADD UNIQUE KEY `TituloUnico` (`Titulo`),
   ADD KEY `ajena-Albumes-Usuarios` (`Usuario`);
 
 --
@@ -297,7 +302,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `albumes`
 --
 ALTER TABLE `albumes`
-  MODIFY `IdAlbum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IdAlbum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `estilos`
@@ -315,7 +320,7 @@ ALTER TABLE `fotos`
 -- AUTO_INCREMENT de la tabla `paises`
 --
 ALTER TABLE `paises`
-  MODIFY `IdPais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `IdPais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitudes`
@@ -327,7 +332,7 @@ ALTER TABLE `solicitudes`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Restricciones para tablas volcadas

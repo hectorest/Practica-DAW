@@ -10,16 +10,15 @@ require_once("conexion_db.php");
 			"titulo" => "Título",
 			"desc" => "Descripción",
 			"palClave" => "Palabra clave",
-			"passw1" => "Contraseña",
-			"pass" => "Contraseña",
+			"Clave" => "Contraseña",
 			"Sexo" => "Sexo",
-			"fNac" => "Fecha de nacimiento",
-			"cRes" => "Ciudad de residencia",
-			"pais" => "País",
+			"FNacimiento" => "Fecha de nacimiento",
+			"Ciudad" => "Ciudad de residencia",
+			"Pais" => "País",
 			"local" => "Localidad",
-			"pRes" => "País de residencia",
-			"usuario" => "Usuario",
-			"email" => "Email",
+			"Pais" => "País de residencia",
+			"NomUsuario" => "Usuario",
+			"Email" => "Email",
 			"texto_adicional" => "Texto adicional",
 			"cp" => "Código Postal",
 			"calle" => "Calle",
@@ -33,7 +32,7 @@ require_once("conexion_db.php");
 			"frecep" => "Fecha de recepción",
 			"colorobn" => "Color o Blanco y negro",
 			"nombre" => "Nombre"
-			);
+		);
 
 		foreach ($clavesNombre as $key => $value) {
 			if($clave==$key){
@@ -42,7 +41,12 @@ require_once("conexion_db.php");
 		}
 	}
 
-	$sentencia = 'SELECT * FROM usuarios JOIN paises ON (usuarios.Pais = paises.IdPais) WHERE NomUsuario =' . "'" . $sanearPost["usuario"] . "'";
+	if(isset($_SESSION["usuarioLog"])){
+		$sesionSaneada = $mysqli->real_escape_string($_SESSION["usuarioLog"]);
+		$titulo = "<h3>Modificación realizada</h3>";
+	}
+
+	$sentencia = 'SELECT * FROM usuarios JOIN paises ON (usuarios.Pais = paises.IdPais) WHERE NomUsuario =' . "'" . $sanearPost["NomUsuario"] . "'";
 		if(!($resultado = $mysqli->query($sentencia))) { 
 			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
 			echo '</p>'; 
@@ -53,10 +57,17 @@ require_once("conexion_db.php");
 
 			$respuesta = $resultado->fetch_object();
 			$pais = $respuesta->NomPais;
+			if($pais == 'Ninguno'){
+				$pais = 'No hay datos';
+			}
+			if(!empty($titulo)){
 
-			echo<<<arribaTabla
+				echo<<<arribaTabla
 
 					<section>
+						
+						$titulo
+
 						<div class="contTabla">
 
 						<table class="tabla" title="Puedes hacer scroll lateral en la tabla si no cabe en tu pantalla para poder ver todos los datos que contiene">
@@ -65,8 +76,25 @@ require_once("conexion_db.php");
 
 arribaTabla;
 
+			}
+			else{
+
+				echo<<<arribaTabla
+
+					<section>
+
+						<div class="contTabla">
+
+						<table class="tabla" title="Puedes hacer scroll lateral en la tabla si no cabe en tu pantalla para poder ver todos los datos que contiene">
+
+						<caption>Datos de registro:</caption>
+
+arribaTabla;
+
+			}
+
 			foreach ($sanearPost as $key => $value) {
-				if($key!="passw2" && $key!="fPer"){
+				if($key!="passw2" && $key!="fPer" && $key!="passw0"){
 					$clave = $key;
 					cambiarClave($clave);
 					if($value == ""){
@@ -84,7 +112,7 @@ arribaTabla;
 								$value = "Otro";
 							}
 						}
-						if($key == "pRes"){
+						if($key == "Pais"){
 							$value = $pais;
 						}
 						echo"<tr><td>$clave:</td><td>$value</td></tr>";
