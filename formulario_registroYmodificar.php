@@ -151,7 +151,7 @@ formularioModificarParte2;
 	</p>
 	<p>
 		<label for="passw2">Repetir contraseña*:</label>
-		<input type="password" minlength="6" maxlength="15" required name="passw2" id="passw2" title="La contraseña debe de coincidir con la escrita en la casilla anterior" />
+		<input type="password" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])[A-Za-z0-9_]{6,15}$" minlength="6" maxlength="15" required name="passw2" id="passw2" title="La contraseña debe de coincidir con la escrita en la casilla anterior" />
 	</p>
 	<p>
 		<label for="email">Email*:</label>
