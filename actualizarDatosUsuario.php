@@ -63,6 +63,8 @@ modalControlRegistro;
 
 	if(!isset($_SESSION["usuarioLog"])){
 		require_once("head.php");
+		require_once("header.php");
+		require_once("barraNavSesionIniciada.php");
 		mostrarErrorSinEnvioModificarDatos();
 		exit;
 	}
@@ -191,10 +193,10 @@ modalControlRegistro;
 					echo '</p>'; 
 					exit; 
 				}
+				require_once("head.php");
+				require_once("header.php");
+				require_once("barraNavSesionIniciada.php");
 				if($mysqli->affected_rows >= 0){
-					require_once("head.php");
-					require_once("header.php");
-					require_once("barraNavSesionIniciada.php");
 					require_once("escribirTablaRegNuevoUsuario.php");
 				}
 				else{
@@ -202,6 +204,10 @@ modalControlRegistro;
 				}
 			}
 			else{
+
+				require_once("head.php");
+				require_once("header.php");
+				require_once("barraNavSesionIniciada.php");
 
 				echo<<<modalControlRegistro
 

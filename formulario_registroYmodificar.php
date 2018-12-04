@@ -17,7 +17,7 @@ if(isset($_SESSION["usuarioLog"])){
 echo<<<formularioModificarParte0
 	<p>
 		<label for="usuario">Usuario:</label>
-		<input type="text" value="$fila->NomUsuario" pattern="[A-Za-z0-9]{3,15}" minlength="3" maxlength="15" title="El nombre de usuario tendrá como mínimo 6 caracteres que pueden ser tanto letras mayúsculas como minúsculas y como números. El máximo número de caracteres permitido es 14. Los espacios en blanco no están permitidos"  name="NomUsuario" id="usuario"/>
+		<input type="text" value="$fila->NomUsuario" pattern="^[A-Za-z0-9]{3,15}$" minlength="3" maxlength="15" title="El nombre de usuario tendrá como mínimo 6 caracteres que pueden ser tanto letras mayúsculas como minúsculas y como números. El máximo número de caracteres permitido es 14. Los espacios en blanco no están permitidos"  name="NomUsuario" id="usuario"/>
 	</p>
 	<p>
 		<label for="passw0">Contraseña actual:</label>
@@ -33,7 +33,7 @@ echo<<<formularioModificarParte0
 	</p>
 	<p>
 		<label for="email">Email:</label>
-		<input type="email" value="$fila->Email" pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$" name="Email" id="email"/>
+		<input type="email" value="$fila->Email" pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})$" name="Email" id="email"/>
 	</p>
 	<p>
 		<label for="sexo">Sexo:</label>
@@ -143,7 +143,7 @@ formularioModificarParte2;
 ?>
 	<p>
 		<label for="usuario">Usuario*:</label>
-		<input type="text" pattern="[A-Za-z0-9]{3,15}" minlength="3" maxlength="15" title="El nombre de usuario tendrá como mínimo 6 caracteres que pueden ser tanto letras mayúsculas como minúsculas y como números. El máximo número de caracteres permitido es 14. Los espacios en blanco no están permitidos" required name="NomUsuario" id="usuario"/>
+		<input type="text" pattern="^[A-Za-z0-9]{3,15}$" minlength="3" maxlength="15" title="El nombre de usuario tendrá como mínimo 6 caracteres que pueden ser tanto letras mayúsculas como minúsculas y como números. El máximo número de caracteres permitido es 14. Los espacios en blanco no están permitidos" required name="NomUsuario" id="usuario"/>
 	</p>
 	<p>
 		<label for="passw1">Contraseña*:</label>
@@ -151,11 +151,11 @@ formularioModificarParte2;
 	</p>
 	<p>
 		<label for="passw2">Repetir contraseña*:</label>
-		<input type="password" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])[A-Za-z0-9_]{6,15}$" minlength="6" maxlength="15" required name="passw2" id="passw2" title="La contraseña debe de coincidir con la escrita en la casilla anterior" />
+		<input type="password" minlength="6" maxlength="15" required name="passw2" id="passw2" title="La contraseña debe de coincidir con la escrita en la casilla anterior" />
 	</p>
 	<p>
 		<label for="email">Email*:</label>
-		<input type="email" required name="Email" pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$" id="email"/>
+		<input type="email" pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})$" required name="Email" id="email"/>
 	</p>
 	<p>
 		<label for="sexo">Sexo*:</label>

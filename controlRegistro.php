@@ -88,10 +88,12 @@ if($sanearPost["Clave"] != $sanearPost["passw2"]){
 			}
 		}
 		else{
-
+			require_once("head.php");
+			require_once("header.php");
+			require_once("barraNavSesionNoIniciada.php");
 			echo<<<modalControlRegistro
 
-				<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+				<button type="button" onclick="cerrarMensajeModal(10);">X</button>
 				<div class="modal">
 					<div class="contenido">
 					<span>
@@ -99,7 +101,7 @@ if($sanearPost["Clave"] != $sanearPost["passw2"]){
 						<h2>Error</h2>
 					</span>
 						<p>Los datos enviados se han corrompido. Anulado el registro del nuevo usuario</p>
-						<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
+						<button type="button" onclick="cerrarMensajeModal(10);">Cerrar</button>
 					</div>
 				</div>
 
