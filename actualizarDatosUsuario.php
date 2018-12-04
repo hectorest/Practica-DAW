@@ -211,7 +211,7 @@ modalControlRegistro;
 
 				echo<<<modalControlRegistro
 
-			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+			<button type="button" onclick="cerrarMensajeModal(3);">X</button>
 			<div class="modal">
 				<div class="contenido">
 				<span>
@@ -219,7 +219,7 @@ modalControlRegistro;
 					<h2>Error</h2>
 				</span>
 					<p>Los datos enviados se han corrompido. Anulada la modificación de datos del usuario actual</p>
-					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
+					<button type="button" onclick="cerrarMensajeModal(3);">Cerrar</button>
 				</div>
 			</div>
 
