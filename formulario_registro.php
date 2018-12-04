@@ -92,7 +92,7 @@ modalRegistro;
 			
 			echo<<<modalControlRegistro
 
-			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+			<button type="button" onclick="cerrarMensajeModal(1);">X</button>
 			<div class="modal">
 				<div class="contenido">
 				<span>
@@ -100,7 +100,7 @@ modalRegistro;
 					<h2>Error</h2>
 				</span>
 					<p>Para poder realizar cualquier cambio en los datos almacenados en Pictures & Images debes enviar los datos desde la dirección del propio sitio web</p>
-					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
+					<button type="button" onclick="cerrarMensajeModal(1);">Cerrar</button>
 				</div>
 			</div>
 

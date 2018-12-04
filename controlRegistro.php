@@ -17,8 +17,18 @@ if($sanearPost["Clave"] != $sanearPost["passw2"]){
 	$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
 	$extra = 'formulario_registro.php';
 	header("Location: http://$host$uri/$extra?er=300");
-}else{
-	if(!isset($_SERVER["HTTP_REFERER"])){
+}
+if(!isset($_SERVER["HTTP_REFERER"])){
+	$serverCorrecto = false;
+	$host = $_SERVER['HTTP_HOST']; 
+	$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
+	$extra = 'formulario_registro.php';
+	header("Location: http://$host$uri/$extra?er=310");
+	exit;
+}
+else{
+	$url = parse_url($_SERVER["HTTP_REFERER"]);
+	if($url["host"] != $_SERVER["SERVER_NAME"]){
 		$serverCorrecto = false;
 		$host = $_SERVER['HTTP_HOST']; 
 		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
@@ -27,26 +37,16 @@ if($sanearPost["Clave"] != $sanearPost["passw2"]){
 		exit;
 	}
 	else{
-		$url = parse_url($_SERVER["HTTP_REFERER"]);
-		if($url["host"] != $_SERVER["SERVER_NAME"]){
-			$serverCorrecto = false;
-			$host = $_SERVER['HTTP_HOST']; 
-			$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
-			$extra = 'formulario_registro.php';
-			header("Location: http://$host$uri/$extra?er=310");
-			exit;
-		}
-		else{
-			$serverCorrecto = true;
-		}
+		$serverCorrecto = true;
 	}
 }
+
 	
 
 	//insertar datos base de datos
 	require_once("validarRegistro.php");
 
-	if($serverCorrecto){
+	//if($serverCorrecto){
 
 		if($datosCorrectos){
 
@@ -108,13 +108,13 @@ if($sanearPost["Clave"] != $sanearPost["passw2"]){
 modalControlRegistro;
 
 		}
-	}
+	/*}
 	else{
 		$host = $_SERVER['HTTP_HOST']; 
 		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
 		$extra = 'formulario_registro.php';
 		header("Location: http://$host$uri/$extra?er=310");
-	}
+	}*/
 }
 else{
 	require_once("head.php");
