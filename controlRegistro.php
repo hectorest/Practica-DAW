@@ -117,6 +117,9 @@ modalControlRegistro;
 	}
 }
 else{
+	require_once("head.php");
+	require_once("header.php");
+	require_once("barraNavSesionNoIniciada.php");
 	echo<<<modalControlRegistro
 
 		<button type="button" onclick="cerrarMensajeModal(2);">X</button>
