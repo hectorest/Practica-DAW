@@ -18,7 +18,7 @@
 		if(mysqli_num_rows($resultado) >= 1){
 			while($fila = $resultado->fetch_assoc()){
 				$IdAlbum = $fila["IdAlbum"];
-				echo "<option value=$IdAlbum>{$fila['Titulo']}</option>";
+				echo "<option value=$IdAlbum>$IdAlbum - {$fila['Titulo']}</option>";
 			}
 		}
 		$resultado->free();

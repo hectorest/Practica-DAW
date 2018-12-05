@@ -38,8 +38,14 @@ function cerrarMensajeModal(param){
 	else if (param == 9){
 		location.href = "./configurar.php";
 	}
-	else if (param == 9){
+	else if (param == 10){
 		location.href = "./formulario_modificar.php";
+	}
+	else if (param == 11){
+		location.href = "./anyadir_foto_album.php";
+	}
+	else if (param == 12){
+		location.href = "./solicitar_album.php";
 	}
 	else{
 		location.href = "./index.php";

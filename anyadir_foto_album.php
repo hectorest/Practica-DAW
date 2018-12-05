@@ -57,8 +57,8 @@ else{
 					<input type="date" name="fechaFoto" id="fechaFoto" title="Fecha de la foto"/>
 				</p>
 				<p>
-					<label for="pais">País*:</label>
-					<select required name="pais" id="pais">
+					<label for="Pais">País*:</label>
+					<select required name="Pais" id="Pais">
 						<option value="">Escoge</option>
 						<?php  
 							require_once("obtenerPaises.php");
@@ -67,7 +67,7 @@ else{
 				</p>
 				<p>
 					<label for="fper" id="labfper">Foto*:</label>
-					<input type="file" accept="image/*" required name="fPer" id="fper"/>
+					<input type="file" accept="image/*" name="fPer" id="fper"/>
 				</p>
 				<p>
 					<label for="texto_alternativo">Texto Alternativo*:</label>

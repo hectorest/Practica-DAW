@@ -29,10 +29,24 @@ else{
 	}
 		if($hayPost==true){	
 
-			/*Valores ficticios de las paginas y las fotos totales del album elegido por el usuario*/
+			$sentencia = 'SELECT count() nomFotos FROM fotos WHERE Album =' . "'" . $postSaneado["album"] . "'";
+			if(!($resultado = $mysqli->query($sentencia))) { 
+				echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+				echo '</p>'; 
+				exit; 
+			}
 
-			$numPag = 15;
-			$totalFotosAlbum = 30;
+			if(mysqli_num_rows($resultado)){
+				$fila = $usuario->fetch_object();
+			}
+
+			$totalFotosAlbum = $fila->nomFotos;
+
+			if($totalFotosAlbum%$_POST["fotoXpagina"]==0){
+				$numPag = $totalFotosAlbum/$_POST["fotoXpagina"];
+			}else{
+				$numPag = ceil($totalFotosAlbum/$_POST["fotoXpagina"]);
+			}
 
 			$precio = calcularPrecioAlbum($numPag, $totalFotosAlbum, $_POST["num_copias"], $_POST["resolucion"], $_POST["colorobn"]);
 
@@ -130,7 +144,8 @@ function cambiarClave(&$clave){
 		"resolucion" => "Resolución",
 		"frecep" => "Fecha de recepción",
 		"colorobn" => "Color o Blanco y negro",
-		"nombre" => "Nombre"
+		"nombre" => "Nombre",
+		"fotosXpagina" => "Fotos por página"
 		);
 
 	foreach ($clavesNombre as $key => $value) {

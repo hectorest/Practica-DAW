@@ -151,6 +151,11 @@ else{
 				</p>
 
 				<p>
+					<label for="fotosXpagina">Fotos por página:</label>
+					<input type="number" name="fotosXpagina" id="fotosXpagina" value="1" min="1" max="3" />
+				</p>
+
+				<p>
 
 					<label for="resolucion">Resolución de impresión:</label>
 					<input type="range" name="resolucion" id="resolucion" min="150" max="900" step="150" value="150" onchange="document.getElementById('outresolucion').textContent=this.value"/>

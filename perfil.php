@@ -123,7 +123,7 @@ modalPerfil;
 			</div>
 			<div class="enlPerf">
 				<a href="formulario_modificar.php" title="Modificar mis datos"><span class="icon-pencil"></span><span>Modificar mis datos</span></a>
-				<a href="darse_de_baja.php" title="Borrar cuenta"><span class="icon-user-times"></span><span>Darme de baja</span></a>
+				<a href="dar_baja.php" title="Borrar cuenta"><span class="icon-user-times"></span><span>Darme de baja</span></a>
 				<a href="mis_albumes.php" title="Acceder a mis álbumes"><span class="icon-album"></span><span>Mis álbumes</span></a>
 				<a href="anyadir_foto_album.php" title="Añadir foto a un álbum"><span class="icon-file-image"></span><span>Añadir foto a álbum</span></a>
 				<a href="crear_album.php" title="Crea un álbum"><span class="icon-new-album"></span><span>Crear álbum</span></a>
