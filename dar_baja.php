@@ -108,7 +108,7 @@ tablaFilas;
 			echo<<<tablaFilas
 					<tr>
 						
-						<td>No dispones de ningún álbum</td>
+						<td>No has creado ningún álbum</td>
 						<td>0</td>
 
 					</tr>
