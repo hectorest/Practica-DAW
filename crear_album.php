@@ -34,10 +34,32 @@ function mostrarErrorCrearAlbumConTituloRepetido(){
 
 modalCrearAlbumSesionNoIniciada;
 }
+function mostrarMensErrorAccesoRemoto(){
+
+		echo<<<modalControlModificar
+
+			<button type="button" onclick="cerrarMensajeModal(10);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-control-registro">
+					<h2>Error</h2>
+				</span>
+					<p>Para poder realizar cualquier cambio en los datos almacenados en Pictures & Images debes enviar los datos desde la dirección del propio sitio web</p>
+					<button type="button" onclick="cerrarMensajeModal(10);">Cerrar</button>
+				</div>
+			</div>
+
+modalControlModificar;
+
+}
 require_once("head.php");
 require_once("header.php");
 if(!empty($_GET["er"]) && $_GET["er"] == 301){
 	mostrarErrorCrearAlbumConTituloRepetido();
+}
+if(!empty($_GET["er"]) && $_GET["er"] == 310){
+	mostrarMensErrorAccesoRemoto();
 }
 if(!isset($_SESSION["usuarioLog"])){
 	require_once("barraNavSesionNoIniciada.php");

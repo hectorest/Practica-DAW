@@ -10,7 +10,12 @@ if(!isset($_SESSION["usuarioLog"])){
 }
 else{
 	require_once("barraNavSesionIniciada.php");
-	mostrarDarBaja();
+	if(!empty($_GET["er"]) && $_GET["er"] == 310){
+
+	}
+	else{
+		mostrarDarBaja();
+	}
 }
 
 function mostrarErrorDarBaja(){
@@ -29,9 +34,34 @@ function mostrarErrorDarBaja(){
 modalDarBaja;
 }
 
+function mostrarErrorServer(){
+	echo<<<modalErrorServer
+		<button type="button" onclick="cerrarMensajeModal(0);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-control-registro">
+					<h2>Error</h2>
+				</span>
+					<p>Para poder realizar cualquier cambio en los datos almacenados en Pictures & Images debes enviar los datos desde la dirección del propio sitio web</p>
+					<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
+				</div>
+			</div>
+modalErrorServer;
+}
+
 function mostrarDarBaja(){
 
-	$idUsuSesion=$_SESSION["usuarioLog"];
+	$sentencia0 = 'SELECT * FROM usuarios where IdUsuario='.$_SESSION["usuarioLog"];
+		 if(!($resultado0= $GLOBALS["mysqli"]->query($sentencia0))) { 
+		   echo "<p>Error al ejecutar la sentencia <b>$sentencia0</b>: " . $GLOBALS["mysqli"]->error; 
+		   echo '</p>'; 
+		   exit; 
+		 }
+
+	if($GLOBALS["mysqli"]->num_rows()){
+
+		$idUsuSesion=$_SESSION["usuarioLog"];
 
 		$totalfotos=0;
 		 
@@ -101,6 +131,25 @@ tablaFilas;
 			</fieldset>
 		</form>
 darBajaDebajo;
+
+	}
+	else{
+			echo<<<modalControlRegistro
+
+			<button type="button" onclick="cerrarMensajeModal(0);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-control-registro">
+					<h2>Error</h2>
+				</span>
+					<p>¡El usuario que desea borrar no existe!</p>
+					<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
+				</div>
+			</div>
+
+modalControlRegistro;
+	}
 }
 
 ?>
