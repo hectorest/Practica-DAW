@@ -21,12 +21,4 @@
 		}
 	}
 
-	if(!empty($sanearPost["Foto"])){
-		$insertarDatos = $insertarDatos . ',' . "'" . $sanearPost["Foto"] . "'" . ',';
-	}
-	else{
-		$insertarDatos = $insertarDatos . ",'',";
-	}
-
-
 ?>

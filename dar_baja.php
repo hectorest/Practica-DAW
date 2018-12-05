@@ -59,14 +59,14 @@ function mostrarDarBaja(){
 		   exit; 
 		 }
 
-	if($GLOBALS["mysqli"]->num_rows()){
+	if(mysqli_num_rows($resultado0)){
 
 		$idUsuSesion=$_SESSION["usuarioLog"];
 
 		$totalfotos=0;
 		 
 		 // Ejecuta una sentencia SQL 
-		 $sentencia = 'SELECT a.Titulo, count(f.album) fotosAlbum FROM fotos f join albumes a on (a.IdAlbum = f.Album) where a.Usuario='.$idUsuSesion.' GROUP BY a.Titulo';
+		 $sentencia = 'SELECT a.Titulo, count(f.album) fotosAlbum FROM fotos f right join albumes a on (f.Album = a.IdAlbum) join usuarios on (a.Usuario = usuarios.IdUsuario) where a.Usuario='.$idUsuSesion.' GROUP BY a.Titulo';
 		 if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
 		   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
 		   echo '</p>'; 
@@ -77,7 +77,7 @@ function mostrarDarBaja(){
 
 			<section>
 
-			<h3>¡Atención, los siguientes datos van a ser elimindaos del sitio web!</h3>
+			<h3>¡Atención, los siguientes datos van a ser eliminados del sitio web!</h3>
 
 			<div class="contTabla">
 				<table class="tabla" title="Puedes hacer scroll lateral en la tabla si no cabe en tu pantalla para poder ver todos los datos que contiene">
@@ -103,6 +103,17 @@ tablaFilas;
 					$totalfotos=$totalfotos + $fila["fotosAlbum"];
 
 			}
+		}
+		else{
+			echo<<<tablaFilas
+					<tr>
+						
+						<td>No dispones de ningún álbum</td>
+						<td>0</td>
+
+					</tr>
+tablaFilas;
+					$totalfotos=$totalfotos;
 		}
 
 		echo <<<darBajaDebajo

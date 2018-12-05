@@ -46,7 +46,6 @@ require_once("conexion_db.php");
 
 	if(isset($_SESSION["usuarioLog"])){
 		$sesionSaneada = $mysqli->real_escape_string($_SESSION["usuarioLog"]);
-		$titulo = "<h3>Modificación realizada</h3>";
 	}
 	$sentencia = 'SELECT * FROM fotos JOIN paises ON (fotos.Pais = paises.IdPais) WHERE fotos.Titulo =' . "'" . $sanearPost["titulo"] . "'";
 		if(!($resultado = $mysqli->query($sentencia))) { 
@@ -78,24 +77,6 @@ require_once("conexion_db.php");
 						$album = 'No hay datos';
 					}
 
-			if(!empty($titulo)){
-
-				echo<<<arribaTabla
-
-					<section>
-						
-						$titulo
-
-						<div class="contTabla">
-
-						<table class="tabla" title="Puedes hacer scroll lateral en la tabla si no cabe en tu pantalla para poder ver todos los datos que contiene">
-
-						<caption>Datos de la foto añadida:</caption>
-
-arribaTabla;
-
-			}
-			else{
 
 				echo<<<arribaTabla
 
@@ -108,8 +89,6 @@ arribaTabla;
 						<caption>Datos de la foto añadida:</caption>
 
 arribaTabla;
-
-			}
 
 			foreach ($sanearPost as $key => $value) {
 				if($key!="passw2" && $key!="fPer" && $key!="passw0"){

@@ -56,6 +56,12 @@ if(!empty($sanearPost["FNacimiento"])){
 			else{
 
 				require_once("rellenarInsertarDatosRegistro.php");
+				if(!empty($sanearPost["Foto"])){
+					$insertarDatos = $insertarDatos . ',' . "'" . $sanearPost["Foto"] . "'" . ',';
+				}
+				else{
+					$insertarDatos = $insertarDatos . ",'',";
+				}
 				$insertarDatos = $insertarDatos . "SYSDATE(),1";
 
 				$sentencia = 'INSERT INTO usuarios (IdUsuario, NomUsuario, Clave, Email, Sexo, FNacimiento, Ciudad, Pais, Foto, FRegistro, Estilo) VALUES (' . $insertarDatos . ')';

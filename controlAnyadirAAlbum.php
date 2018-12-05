@@ -13,7 +13,8 @@ foreach($sanearPost as $key => $value){
 	$GLOBALS["mysqli"]->real_escape_string($value);
 }
 	require_once("comprobacionServer.php");
-	comprobarServer("anyadir_foto_album.php");
+	$urlPag = "anyadir_foto_album.php";
+	comprobarServer($urlPag);
 	
 
 	//insertar datos base de datos
@@ -24,7 +25,7 @@ foreach($sanearPost as $key => $value){
 		if($datosCorrectos){
 
 			require_once("rellenarInsertarDatosRegistro.php");
-				$insertarDatos = $insertarDatos . "SYSDATE()";
+				$insertarDatos = $insertarDatos . ",SYSDATE()";
 				$sentencia = 'INSERT INTO fotos (IdFoto, Titulo, Descripcion, Fecha, Pais, Fichero, Alternativo, Album, FRegistro) VALUES (' . $insertarDatos . ')';
 				if(!($resultado = $mysqli->query($sentencia))) { 
 					echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
