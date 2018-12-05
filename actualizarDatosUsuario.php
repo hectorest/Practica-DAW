@@ -70,7 +70,8 @@ modalControlRegistro;
 	}
 	else{
 		require_once("comprobacionServer.php");
-		comprobarServer("formulario_modificar.php");
+		$urlPag = "formulario_modificar.php";
+		comprobarServer($urlPag);
 	}
 	
 
@@ -129,6 +130,15 @@ modalControlRegistro;
 				$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
 				$extra = 'formulario_modificar.php';
 				header("Location: http://$host$uri/$extra?er=305");
+			}
+			if(!empty($sanearPost["FNacimiento"])){
+				$fechaActual = date('Y-m-d');
+				if($fechaActual <= $sanearPost["FNacimiento"]){
+					$host = $_SERVER['HTTP_HOST']; 
+					$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
+					$extra = 'formulario_modificar.php';
+					header("Location: http://$host$uri/$extra?er=320");
+				}
 			}
 
 			//actualizar datos base de datos

@@ -93,7 +93,7 @@ modalSolAlbumSesionNoIniciada;
 
 		echo<<<modalControlRegistro
 
-			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+			<button type="button" onclick="cerrarMensajeModal(0);">X</button>
 			<div class="modal">
 				<div class="contenido">
 				<span>
@@ -101,7 +101,7 @@ modalSolAlbumSesionNoIniciada;
 					<h2>Error</h2>
 				</span>
 					<p>Los datos enviados se han corrompido. Anulado el cambio en la configuración de la web</p>
-					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
+					<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
 				</div>
 			</div>
 
@@ -113,7 +113,7 @@ modalControlRegistro;
 
 		echo<<<modalControlRegistro
 
-			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+			<button type="button" onclick="cerrarMensajeModal(0);">X</button>
 			<div class="modal">
 				<div class="contenido">
 				<span>
@@ -121,7 +121,7 @@ modalControlRegistro;
 					<h2>Error</h2>
 				</span>
 					<p>Se ha producido un error a la hora de cargar los estilos disponibles</p>
-					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
+					<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
 				</div>
 			</div>
 
@@ -133,7 +133,7 @@ modalControlRegistro;
 
 		echo<<<modalControlRegistro
 
-			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+			<button type="button" onclick="cerrarMensajeModal(0);">X</button>
 			<div class="modal">
 				<div class="contenido">
 				<span>
@@ -141,7 +141,7 @@ modalControlRegistro;
 					<h2>Error</h2>
 				</span>
 					<p>Para poder realizar cualquier cambio en los datos almacenados en Pictures & Images debes enviar los datos desde la dirección del propio sitio web</p>
-					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
+					<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
 				</div>
 			</div>
 

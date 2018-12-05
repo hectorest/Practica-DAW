@@ -47,7 +47,8 @@ modalcrear_album;
 }
 else{
 	require_once("comprobacionServer.php");
-	comprobarServer("crear_album.php");
+	$urlPag = "crear_album.php";
+	comprobarServer($urlPag);
 }
 $hayPost = false;
 foreach ($_POST as $value){

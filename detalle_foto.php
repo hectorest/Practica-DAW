@@ -63,7 +63,7 @@ modalDetalle;
 <?php
 
 function mostrarDetalleFoto(&$idImg){
-	$sentencia = 'SELECT f.Titulo, a.Titulo AS AlbumTit, Fichero, f.Descripcion, f.Fecha, Alternativo, NomPais, NomUsuario, a.Usuario AS Usuario FROM fotos f JOIN albumes a ON (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (f.Pais = paises.IdPais) WHERE IdFoto = ' . $idImg;
+	$sentencia = 'SELECT f.Titulo, a.Titulo AS AlbumTit, IdAlbum, Fichero, f.Descripcion, f.Fecha, Alternativo, NomPais, NomUsuario, a.Usuario AS Usuario FROM fotos f JOIN albumes a ON (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (f.Pais = paises.IdPais) WHERE IdFoto = ' . $idImg;
 	if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
 		echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
 		echo '</p>'; 
@@ -83,7 +83,7 @@ function mostrarDetalleFoto(&$idImg){
 				<p class="p-left">$fila->Descripcion</p>
 				<p><time datetime="$fila->Fecha">$fila->Fecha</time></p>
 				<p>$fila->NomPais</p>
-				<a href="resultado_busqueda.php?Album=$fila->AlbumTit" title="Álbum al que pertenece la foto">Álbum: $fila->AlbumTit</a>
+				<a href="resultado_busqueda.php?Album=$fila->IdAlbum" title="Álbum al que pertenece la foto">Álbum: $fila->AlbumTit</a>
 				<a href="resultado_busqueda.php?Usuario=$fila->Usuario" title="Autor de la foto">Usuario: $fila->NomUsuario</a>					
 			</div>
 		</article>

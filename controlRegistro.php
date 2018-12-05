@@ -18,8 +18,18 @@ if($sanearPost["Clave"] != $sanearPost["passw2"]){
 	$extra = 'formulario_registro.php';
 	header("Location: http://$host$uri/$extra?er=300");
 }
+if(!empty($sanearPost["FNacimiento"])){
+	$fechaActual = date('Y-m-d');
+	if($fechaActual <= $sanearPost["FNacimiento"]){
+		$host = $_SERVER['HTTP_HOST']; 
+		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
+		$extra = 'formulario_registro.php';
+		header("Location: http://$host$uri/$extra?er=320");
+	}
+}
 	require_once("comprobacionServer.php");
-	comprobarServer("formulario_registro.php");
+	$urlPag = "formulario_registro.php";
+	comprobarServer($urlPag);
 
 	
 

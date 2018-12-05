@@ -3,7 +3,8 @@ session_start();
 require_once("conexion_db.php");
 
 	require_once("comprobacionServer.php");
-	comprobarServer("dar_baja.php");
+	$urlPag = "dar_baja.php";
+	comprobarServer($urlPag);
 
 	if($serverCorrecto){
 		if(isset($_POST["usu"], $_POST["pass"])){

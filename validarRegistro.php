@@ -70,7 +70,14 @@
 				$fec = strtotime($value);
 				$fecha = date('Y-m-d', $fec);
 				if($fecha == $value){
-					$datosCorrectos = true;
+					$fechaActual = date('Y-m-d');
+					if($value < $fechaActual){
+						$datosCorrectos = true;
+					}
+					else{
+						$datosCorrectos = false;
+						break;
+					}
 				}
 				else{
 					$datosCorrectos = false;

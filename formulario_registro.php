@@ -106,6 +106,24 @@ modalRegistro;
 
 modalControlRegistro;
 		}
+		else if(!empty($_GET["er"]) && $_GET["er"] == 320){
+			
+			echo<<<modalControlRegistro
+
+			<button type="button" onclick="cerrarMensajeModal(1);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-control-registro">
+					<h2>Error</h2>
+				</span>
+					<p>La fecha de nacimiento debe ser menor que la fecha actual</p>
+					<button type="button" onclick="cerrarMensajeModal(1);">Cerrar</button>
+				</div>
+			</div>
+
+modalControlRegistro;
+		}
 		echo<<<arribaFormulario
 		<form action="controlRegistro.php" method="post" class="formulario" id="formReg">
 			

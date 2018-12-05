@@ -1,7 +1,8 @@
 <?php
+$serverCorrecto = false;
 function comprobarServer(&$urlPag){
 	if(empty($_SERVER["HTTP_REFERER"])){
-			$serverCorrecto = false;
+			$GLOBALS["serverCorrecto"] = false;
 			$host = $_SERVER['HTTP_HOST']; 
 			$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
 			$extra = "$urlPag";
@@ -11,7 +12,7 @@ function comprobarServer(&$urlPag){
 		else{
 			$url = parse_url($_SERVER["HTTP_REFERER"]);
 			if($url["host"] != $_SERVER["SERVER_NAME"]){
-				$serverCorrecto = false;
+				$GLOBALS["serverCorrecto"] = false;
 				$host = $_SERVER['HTTP_HOST']; 
 				$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
 				$extra = "$urlPag";
@@ -19,7 +20,7 @@ function comprobarServer(&$urlPag){
 				exit;
 			}
 			else{
-				$serverCorrecto = true;
+				$GLOBALS["serverCorrecto"] = true;
 			}
 		}
 }

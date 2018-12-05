@@ -26,10 +26,10 @@
 					$value = "%$value%";
 				}
 				if($key == "Titulo"){
-						$key = 'f.' . 'Titulo';
-						$comparador = ' LIKE ';
-						$value = (string) $value;
-						$value = "%$value%";
+					$key = 'f.' . 'Titulo';
+					$comparador = ' LIKE ';
+					$value = (string) $value;
+					$value = "%$value%";
 				}
 				if($key == "palClave"){
 					$key = 'f.' . 'Descripcion';
@@ -46,7 +46,7 @@
 				else{
 					$busqueda = $busqueda . $key . $comparador . "'" . $value . "'";
 				}
-							
+						
 				$contador = $contador + 1;
 			}
 			else{

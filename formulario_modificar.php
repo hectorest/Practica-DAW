@@ -62,7 +62,7 @@ modalModificar;
 		else if($_GET["er"] == 310){
 			echo<<<modalControlModificar
 
-			<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+			<button type="button" onclick="cerrarMensajeModal(0);">X</button>
 			<div class="modal">
 				<div class="contenido">
 				<span>
@@ -70,7 +70,24 @@ modalModificar;
 					<h2>Error</h2>
 				</span>
 					<p>Para poder realizar cualquier cambio en los datos almacenados en Pictures & Images debes enviar los datos desde la dirección del propio sitio web</p>
-					<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
+					<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
+				</div>
+			</div>
+
+modalControlModificar;
+		}
+		else if($_GET["er"] == 320){
+			echo<<<modalControlModificar
+
+			<button type="button" onclick="cerrarMensajeModal(1);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-control-registro">
+					<h2>Error</h2>
+				</span>
+					<p>La fecha de nacimiento debe ser menor que la fecha actual</p>
+					<button type="button" onclick="cerrarMensajeModal(1);">Cerrar</button>
 				</div>
 			</div>
 
@@ -91,6 +108,9 @@ arribaFormulario;
 		echo<<<debajoFormulario
 				<p>
 					<button type="submit">Modificar</button>
+				</p>
+				<p>
+					En el caso de no insertar ningún valor en alguno de los campos que eran obligatorios en el formulario de registro de un nuevo usuario se mantendrá su valor actual en el sistema
 				</p>
 			</fieldset>
 		</form>
