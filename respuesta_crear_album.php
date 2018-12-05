@@ -6,25 +6,6 @@ if(!isset($_SESSION["usuarioLog"])){
 }
 ?>
 <?php
-function mostrarMensErrorAccesoRemoto(){
-
-		echo<<<modalControlModificar
-
-			<button type="button" onclick="cerrarMensajeModal(10);">X</button>
-			<div class="modal">
-				<div class="contenido">
-				<span>
-					<img src="./img/error.png" alt="error-control-registro">
-					<h2>Error</h2>
-				</span>
-					<p>Para poder realizar cualquier cambio en los datos almacenados en Pictures & Images debes enviar los datos desde la dirección del propio sitio web</p>
-					<button type="button" onclick="cerrarMensajeModal(10);">Cerrar</button>
-				</div>
-			</div>
-
-modalControlModificar;
-
-}
 function mostrarMensErrorDatosCorruptos(){
 
 		echo<<<modalControlRegistro
@@ -65,26 +46,8 @@ modalcrear_album;
 	exit;
 }
 else{
-	if(!isset($_SERVER['HTTP_REFERER'])){
-		$serverCorrecto = false;
-		require_once("head.php");
-		require_once("header.php");
-		mostrarMensErrorAccesoRemoto();
-		exit;
-	}
-	else{
-		$url = parse_url($_SERVER['HTTP_REFERER']);
-		if($url['host'] != $_SERVER['SERVER_NAME']){
-			$serverCorrecto = false;
-			require_once("head.php");
-			require_once("header.php");
-			mostrarMensErrorAccesoRemoto();
-			exit;
-		}
-		else{
-			$serverCorrecto = true;
-		}
-	}
+	require_once("comprobacionServer.php");
+	comprobarServer("crear_album.php");
 }
 $hayPost = false;
 foreach ($_POST as $value){

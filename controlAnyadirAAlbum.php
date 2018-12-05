@@ -12,28 +12,8 @@ $sanearPost = $_POST;
 foreach($sanearPost as $key => $value){
 	$GLOBALS["mysqli"]->real_escape_string($value);
 }
-if(!isset($_SERVER["HTTP_REFERER"])){
-		$serverCorrecto = false;
-		$host = $_SERVER['HTTP_HOST']; 
-		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
-		$extra = 'anyadir_foto_album.php';
-		header("Location: http://$host$uri/$extra?er=310");
-		exit;
-	}
-	else{
-		$url = parse_url($_SERVER["HTTP_REFERER"]);
-		if($url["host"] != $_SERVER["SERVER_NAME"]){
-			$serverCorrecto = false;
-			$host = $_SERVER['HTTP_HOST']; 
-			$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
-			$extra = 'anyadir_foto_album.php';
-			header("Location: http://$host$uri/$extra?er=310");
-			exit;
-		}
-		else{
-			$serverCorrecto = true;
-		}
-	}
+	require_once("comprobacionServer.php");
+	comprobarServer("anyadir_foto_album.php");
 	
 
 	//insertar datos base de datos
@@ -90,7 +70,7 @@ modalControlAnyadirAAlbum;
 	else{
 		$host = $_SERVER['HTTP_HOST']; 
 		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
-		$extra = 'formulario_registro.php';
+		$extra = 'anyadir_foto_album.php';
 		header("Location: http://$host$uri/$extra?er=310");
 	}
 }

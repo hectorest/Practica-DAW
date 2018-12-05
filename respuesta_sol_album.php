@@ -29,7 +29,7 @@ else{
 	}
 		if($hayPost==true){	
 
-			$sentencia = 'SELECT count() nomFotos FROM fotos WHERE Album =' . "'" . $postSaneado["album"] . "'";
+			$sentencia = 'SELECT count(IdFoto) numFotos FROM fotos WHERE Album =' . "'" . $postSaneado["album"] . "'";
 			if(!($resultado = $mysqli->query($sentencia))) { 
 				echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
 				echo '</p>'; 
@@ -40,7 +40,7 @@ else{
 				$fila = $usuario->fetch_object();
 			}
 
-			$totalFotosAlbum = $fila->nomFotos;
+			$totalFotosAlbum = $fila->numFotos;
 
 			if($totalFotosAlbum%$_POST["fotoXpagina"]==0){
 				$numPag = $totalFotosAlbum/$_POST["fotoXpagina"];
@@ -153,36 +153,6 @@ function cambiarClave(&$clave){
 			$clave = $value;
 		}
 	}
-}
-
-function calcularPrecioAlbum($numpag, $totalFotosAlbum, $numCopias, $resolucion, $colorobn){
-					
-	$precioTotalPags = 0.0;
-					
-	if($numpag < 5){
-		$precioTotalPags += $numPag * 0.10;
-	}
-	else if($numpag >= 5 && $numpag <= 10){
-		$precioTotalPags += $numpag * 0.08;
-	}
-	else{
-		$precioTotalPags += $numpag * 0.07;
-	}
-
-	$precioTotalFotos = 0.0;
-
-	if($colorobn == "color"){
-		$precioTotalFotos += $totalFotosAlbum * 0.05;
-	}
-
-	if($resolucion > 300){
-		$precioTotalFotos += $totalFotosAlbum * 0.02;
-	}
-
-	$precioTotal = ($precioTotalPags + $precioTotalFotos) * $numCopias;
-
-	return $precioTotal;
-					
 }
 
 ?>

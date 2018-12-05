@@ -152,7 +152,7 @@ else{
 
 				<p>
 					<label for="fotosXpagina">Fotos por página:</label>
-					<input type="number" name="fotosXpagina" id="fotosXpagina" value="1" min="1" max="3" />
+					<input type="number" name="fotosXpagina" id="fotosXpagina" value="1" min="1" max="3" title="El número máximo de fotos por página es de 3"/>
 				</p>
 
 				<p>

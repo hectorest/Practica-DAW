@@ -69,28 +69,8 @@ modalControlRegistro;
 		exit;
 	}
 	else{
-		if(!isset($_SERVER["HTTP_REFERER"])){
-			$serverCorrecto = false;
-			$host = $_SERVER['HTTP_HOST']; 
-			$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
-			$extra = 'formulario_modificar.php';
-			header("Location: http://$host$uri/$extra?er=310");
-			exit;
-		}
-		else{
-			$url = parse_url($_SERVER["HTTP_REFERER"]);
-			if($url["host"] != $_SERVER["SERVER_NAME"]){
-				$serverCorrecto = false;
-				$host = $_SERVER['HTTP_HOST']; 
-				$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
-				$extra = 'formulario_modificar.php';
-				header("Location: http://$host$uri/$extra?er=310");
-				exit;
-			}
-			else{
-				$serverCorrecto = true;
-			}
-		}
+		require_once("comprobacionServer.php");
+		comprobarServer("formulario_modificar.php");
 	}
 	
 

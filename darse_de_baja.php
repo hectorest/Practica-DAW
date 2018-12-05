@@ -2,8 +2,19 @@
 session_start();
 require_once("conexion_db.php");
 
-	if(isset($_POST["usu"], $_POST["pass"])){
-		borrarCuenta($_POST["usu"], $_POST["pass"]);
+	require_once("comprobacionServer.php");
+	comprobarServer("dar_baja.php");
+
+	if($serverCorrecto){
+		if(isset($_POST["usu"], $_POST["pass"])){
+			borrarCuenta($_POST["usu"], $_POST["pass"]);
+		}
+	}
+	else{
+		$host = $_SERVER['HTTP_HOST']; 
+		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
+		$extra = 'dar_baja.php';
+		header("Location: http://$host$uri/$extra?er=310");
 	}
 
 function borrarCuenta(&$usu, &$pass){
@@ -52,7 +63,7 @@ function borrarCuenta(&$usu, &$pass){
 		   exit; 
 		 } 
 
-		 if($mysqli->affected_rows>0){
+		 if($GLOBALS["mysqli"]->affected_rows>0){
 		 	$host = $_SERVER['HTTP_HOST']; 
 			$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\'); 
 			$extra = 'baja_confirmada.php';

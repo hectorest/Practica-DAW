@@ -25,9 +25,24 @@ if(!isset($_SESSION["usuarioLog"])){
 }
 else{
 	require_once("barraNavSesionIniciada.php");
+	if(!empty($_GET["er"]) && $_GET["er"] == 310){
+			echo<<<modalControlAnyadirFoto
+
+			<button type="button" onclick="cerrarMensajeModal(0);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-control-registro">
+					<h2>Error</h2>
+				</span>
+					<p>Para poder realizar cualquier cambio en los datos almacenados en Pictures & Images debes enviar los datos desde la dirección del propio sitio web</p>
+					<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
+				</div>
+			</div>
+
+modalControlAnyadirFoto;
+	}
 ?>
-
-
 		<section>
 			
 			<h3>Añadir foto a álbum</h3>
