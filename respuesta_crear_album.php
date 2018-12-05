@@ -135,6 +135,7 @@ if($serverCorrecto == true && $hayPost == true){
 				exit;
 			}
 			if($mysqli->affected_rows >= 1){
+				$idNuevoAlbum = $mysqli->insert_id;
 				require_once("head.php");
 				require_once("header.php");
 				require_once("barraNavSesionIniciada.php");

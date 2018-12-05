@@ -183,10 +183,6 @@ modalControlRegistro;
 					$actualizarDatosUsuario = $actualizarDatosUsuario  . ",Ciudad" . "=" . "''";
 				}
 
-				if(empty($sanearPost["Foto"])){
-					$actualizarDatosUsuario = $actualizarDatosUsuario  . ",Foto" . "=" . "''";
-				}
-
 				$sentencia = 'UPDATE usuarios SET ' . $actualizarDatosUsuario . ' WHERE IdUsuario = ' . $_SESSION["usuarioLog"];
 				if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
 					echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
