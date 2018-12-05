@@ -17,6 +17,7 @@ if($sanearPost["Clave"] != $sanearPost["passw2"]){
 	$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
 	$extra = 'formulario_registro.php';
 	header("Location: http://$host$uri/$extra?er=300");
+	exit;
 }
 if(!empty($sanearPost["FNacimiento"])){
 	$fechaActual = date('Y-m-d');
@@ -25,6 +26,7 @@ if(!empty($sanearPost["FNacimiento"])){
 		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
 		$extra = 'formulario_registro.php';
 		header("Location: http://$host$uri/$extra?er=320");
+		exit;
 	}
 }
 	require_once("comprobacionServer.php");
@@ -89,7 +91,7 @@ if(!empty($sanearPost["FNacimiento"])){
 			require_once("barraNavSesionNoIniciada.php");
 			echo<<<modalControlRegistro
 
-				<button type="button" onclick="cerrarMensajeModal(10);">X</button>
+				<button type="button" onclick="cerrarMensajeModal(0);">X</button>
 				<div class="modal">
 					<div class="contenido">
 					<span>
@@ -97,20 +99,13 @@ if(!empty($sanearPost["FNacimiento"])){
 						<h2>Error</h2>
 					</span>
 						<p>Los datos enviados se han corrompido. Anulado el registro del nuevo usuario</p>
-						<button type="button" onclick="cerrarMensajeModal(10);">Cerrar</button>
+						<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
 					</div>
 				</div>
 
 modalControlRegistro;
 
 		}
-	/*}
-	else{
-		$host = $_SERVER['HTTP_HOST']; 
-		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
-		$extra = 'formulario_registro.php';
-		header("Location: http://$host$uri/$extra?er=310");
-	}*/
 }
 else{
 	require_once("head.php");
@@ -118,7 +113,7 @@ else{
 	require_once("barraNavSesionNoIniciada.php");
 	echo<<<modalControlRegistro
 
-		<button type="button" onclick="cerrarMensajeModal(2);">X</button>
+		<button type="button" onclick="cerrarMensajeModal(0);">X</button>
 		<div class="modal">
 			<div class="contenido">
 			<span>
@@ -126,7 +121,7 @@ else{
 				<h2>Error</h2>
 			</span>
 				<p>No has enviado los datos para registrarte</p>
-				<button type="button" onclick="cerrarMensajeModal(2);">Cerrar</button>
+				<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
 			</div>
 		</div>
 

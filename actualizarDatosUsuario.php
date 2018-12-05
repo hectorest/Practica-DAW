@@ -117,6 +117,7 @@ modalControlRegistro;
 					$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
 					$extra = 'formulario_modificar.php';
 					header("Location: http://$host$uri/$extra?er=302");
+					exit;
 				}
 			}
 			if($sanearPost["Clave"] != $sanearPost["passw2"]){
@@ -124,12 +125,14 @@ modalControlRegistro;
 				$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
 				$extra = 'formulario_modificar.php';
 				header("Location: http://$host$uri/$extra?er=300");
+				exit;
 			}
 			if($sanearPost["passw0"] != $claveAct){
 				$host = $_SERVER['HTTP_HOST']; 
 				$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
 				$extra = 'formulario_modificar.php';
 				header("Location: http://$host$uri/$extra?er=305");
+				exit;
 			}
 			if(!empty($sanearPost["FNacimiento"])){
 				$fechaActual = date('Y-m-d');
@@ -138,6 +141,7 @@ modalControlRegistro;
 					$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
 					$extra = 'formulario_modificar.php';
 					header("Location: http://$host$uri/$extra?er=320");
+					exit;
 				}
 			}
 

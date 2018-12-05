@@ -66,7 +66,7 @@ function mostrarDarBaja(){
 		$totalfotos=0;
 		 
 		 // Ejecuta una sentencia SQL 
-		 $sentencia = 'SELECT a.Titulo, count(f.album) fotosAlbum FROM fotos f right join albumes a on (f.Album = a.IdAlbum) join usuarios on (a.Usuario = usuarios.IdUsuario) where a.Usuario='.$idUsuSesion.' GROUP BY a.Titulo';
+		 $sentencia = 'SELECT a.Titulo, count(f.album) fotosAlbum FROM fotos f right join albumes a on (f.Album = a.IdAlbum) where a.Usuario='.$idUsuSesion.' GROUP BY a.Titulo';
 		 if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
 		   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
 		   echo '</p>'; 
@@ -147,7 +147,7 @@ darBajaDebajo;
 	else{
 			echo<<<modalControlRegistro
 
-			<button type="button" onclick="cerrarMensajeModal(0);">X</button>
+			<button type="button" onclick="cerrarMensajeModal(3);">X</button>
 			<div class="modal">
 				<div class="contenido">
 				<span>
@@ -155,7 +155,7 @@ darBajaDebajo;
 					<h2>Error</h2>
 				</span>
 					<p>¡El usuario que desea borrar no existe!</p>
-					<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
+					<button type="button" onclick="cerrarMensajeModal(3);">Cerrar</button>
 				</div>
 			</div>
 
