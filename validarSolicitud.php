@@ -235,7 +235,7 @@ $continuo = true;
 					$fecha = date('Y-m-d', $fec);
 					if($fecha == $value){
 						$fechaActual = date('Y-m-d');
-						if($value < $fechaActual){
+						if($value > $fechaActual){
 							$datosCorrectos = true;
 						}
 						else{
@@ -250,6 +250,87 @@ $continuo = true;
 				}
 				else{
 					$datosCorrectos = true;
+					break;
+				}
+			}
+			if($key == "nombre"){
+				if(!empty($value)){
+					$datosCorrectos = true;
+				}
+				else{
+					$datosCorrectos = false;
+					break;
+				}
+			}
+			if($key == "titulo"){
+				if(!empty($value)){
+					$datosCorrectos = true;
+				}
+				else{
+					$datosCorrectos = false;
+					break;
+				}
+			}
+			if($key == "calle"){
+				if(!empty($value)){
+					$datosCorrectos = true;
+				}
+				else{
+					$datosCorrectos = false;
+					break;
+				}
+			}
+			if($key == "local"){
+				if(!empty($value)){
+					$datosCorrectos = true;
+				}
+				else{
+					$datosCorrectos = false;
+					break;
+				}
+			}
+			if($key == "prov"){
+				if(!empty($value)){
+					$datosCorrectos = true;
+				}
+				else{
+					$datosCorrectos = false;
+					break;
+				}
+			}
+			if($key == "numero"){
+				if(!empty($value) && filter_var($value, FILTER_VALIDATE_INT)){
+					$datosCorrectos = true;
+				}
+				else{
+					$datosCorrectos = false;
+					break;
+				}
+			}
+			if($key == "cp"){
+				if(!empty($value) && filter_var($value, FILTER_VALIDATE_INT)){
+					$datosCorrectos = true;
+				}
+				else{
+					$datosCorrectos = false;
+					break;
+				}
+			}
+			if($key == "copias"){
+				if(!empty($value) && filter_var($value, FILTER_VALIDATE_INT)){
+					$datosCorrectos = true;
+				}
+				else{
+					$datosCorrectos = false;
+					break;
+				}
+			}
+			if($key == "resolucion"){
+				if(!empty($value) && filter_var($value, FILTER_VALIDATE_INT)){
+					$datosCorrectos = true;
+				}
+				else{
+					$datosCorrectos = false;
 					break;
 				}
 			}
