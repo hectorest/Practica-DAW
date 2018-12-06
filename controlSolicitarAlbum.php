@@ -18,7 +18,6 @@ foreach($sanearPost as $key => $value){
 	
 	//insertar datos base de datos
 	require_once("validarSolicitud.php");
-	$datosCorrectos=true;
 
 if($serverCorrecto){
 
