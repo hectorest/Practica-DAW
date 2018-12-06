@@ -1,17 +1,5 @@
 <?php
-session_start();
-require_once("head.php");
-require_once("header.php");
 require_once("conexion_db.php");
-if(!isset($_SESSION["usuarioLog"])){
-	require_once("barraNavSesionNoIniciada.php");
-}
-else{
-	require_once("barraNavSesionIniciada.php");
-}
-?>
-		
-	<?php
 
 	$hayPost = false;
 	
@@ -29,35 +17,13 @@ else{
 	}
 		if($hayPost==true){	
 
-			$sentencia = 'SELECT count(IdFoto) numFotos FROM fotos WHERE Album =' . "'" . $postSaneado["album"] . "'";
-			if(!($resultado = $mysqli->query($sentencia))) { 
-				echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
-				echo '</p>'; 
-				exit; 
-			}
-
-			if(mysqli_num_rows($resultado)){
-				$fila = $usuario->fetch_object();
-			}
-
-			$totalFotosAlbum = $fila->numFotos;
-
-			if($totalFotosAlbum%$_POST["fotoXpagina"]==0){
-				$numPag = $totalFotosAlbum/$_POST["fotoXpagina"];
-			}else{
-				$numPag = ceil($totalFotosAlbum/$_POST["fotoXpagina"]);
-			}
-
-			$precio = calcularPrecioAlbum($numPag, $totalFotosAlbum, $_POST["num_copias"], $_POST["resolucion"], $_POST["colorobn"]);
-
-
 		echo<<<arribaTabla
 
 		<section>
 
 
 			<h3>Solicitud de álbum realizada</h3>
-			<p>Has realizado el pedido del álbum correctamente. Recibirás tu álbum en la fecha indicada. El precio total del álbum es de: <br><span>$precio €</span></p>
+			<p>Has realizado el pedido del álbum correctamente. Recibirás tu álbum en la fecha indicada. El precio total del álbum es de: <br><span>$coste €</span></p>
 			
 			<div class="contTabla">
 
@@ -155,8 +121,4 @@ function cambiarClave(&$clave){
 	}
 }
 
-?>
-
-<?php
-	require_once("footer.php");
 ?>

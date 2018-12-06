@@ -24,6 +24,23 @@ if(!isset($_SESSION["usuarioLog"])){
 }
 else{
 	require_once("barraNavSesionIniciada.php");
+	if(!empty($_GET["er"]) && $_GET["er"] == 310){
+			echo<<<modalControlSolicitarAlbum
+
+			<button type="button" onclick="cerrarMensajeModal(0);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-control-registro">
+					<h2>Error</h2>
+				</span>
+					<p>Para poder realizar cualquier cambio en los datos almacenados en Pictures & Images debes enviar los datos desde la dirección del propio sitio web</p>
+					<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
+				</div>
+			</div>
+
+modalControlSolicitarAlbum;
+	}
 ?>
 
 
@@ -91,7 +108,7 @@ else{
 			</div>
 		</section>
 
-		<form action="respuesta_sol_album.php" method="post" class="formulario">
+		<form action="controlSolicitarAlbum.php" method="post" class="formulario">
 				
 			<fieldset>
 
@@ -135,11 +152,6 @@ else{
 					<label for="prov">Provincia*:</label>
 					<input type="text" required name="prov" id="prov">
 				</p>
-				<p>
-					<label for="telefono">Teléfono:</label>
-					<input type="tel" placeholder="000000000" name="telefono" id="telefono" pattern="[0-9]{9}" minlength="9" maxlength="9" />
-				</p>
-
 				<p>
 					<label for="color_portada">Color de la portada:</label>
 					<input type="color" name="color_portada" value="#000000" id="color_portada"/>
