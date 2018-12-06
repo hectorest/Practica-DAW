@@ -172,8 +172,8 @@ $continuo = true;
 
 		foreach ($sanearPost as $key => $value) {
 			if($key == "album"){
+					echo "valido 1";
 				if(!empty($value)){
-
 					$sentencia = 'SELECT IdAlbum FROM albumes WHERE IdAlbum = ' . $value;
 					if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
 						echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
@@ -185,30 +185,37 @@ $continuo = true;
 						$datosCorrectos = true;
 					}else{
 						$datosCorrectos = false;
+						echo "no valido 1";
+						break;
 					}
 					
 				}
 				else{
 					$datosCorrectos = false;
+					echo "no valido 1";
 					break;
 				}
-			}
+			}					
 			if($key == "email"){
+				echo "valido 2";
 				if(!empty($value)){
 					if(preg_match_all($expReg[2], $value)){
 						$datosCorrectos = true;
 					}
 					else{
 						$datosCorrectos = false;
+						echo "no valido 2";
 						break;
 					}
 				}
 				else{
 					$datosCorrectos = false;
+					echo "no valido 2";
 					break;
 				}
 			}
 			if($key == "pais"){
+				echo "valido 3";
 				if(!empty($value)){
 
 					$sentencia = 'SELECT IdPais FROM paises WHERE IdPais = ' . $value;
@@ -222,115 +229,130 @@ $continuo = true;
 						$datosCorrectos = true;
 					}else{
 						$datosCorrectos = false;
+						echo "no valido 3";
 					}
 				}
 				else{
 					$datosCorrectos = false;
+					echo "no valido 3";
 					break;
 				}
 			}
 			if($key == "frecep"){
+				echo "valido 4";
 				if(!empty($value)){
 					$fec = strtotime($value);
 					$fecha = date('Y-m-d', $fec);
-					if($fecha == $value){
-						$fechaActual = date('Y-m-d');
-						if($value > $fechaActual){
+					$fechaActual = date('Y-m-d');
+						if($fecha > $fechaActual){
 							$datosCorrectos = true;
 						}
 						else{
 							$datosCorrectos = false;
+							echo "no valido 4";
 							break;
 						}
-					}
-					else{
-						$datosCorrectos = false;
-						break;
-					}
 				}
 				else{
 					$datosCorrectos = true;
-					break;
 				}
 			}
 			if($key == "nombre"){
+				echo "valido 5";
 				if(!empty($value)){
 					$datosCorrectos = true;
 				}
 				else{
 					$datosCorrectos = false;
+					echo "no valido 5";
 					break;
 				}
 			}
 			if($key == "titulo"){
+				echo "valido 6";
 				if(!empty($value)){
 					$datosCorrectos = true;
 				}
 				else{
 					$datosCorrectos = false;
+					echo "no valido 6";
 					break;
 				}
 			}
 			if($key == "calle"){
+				echo "valido 7";
 				if(!empty($value)){
 					$datosCorrectos = true;
 				}
 				else{
 					$datosCorrectos = false;
+					echo "no valido 7";
 					break;
 				}
 			}
 			if($key == "local"){
+				echo "valido 8";
 				if(!empty($value)){
 					$datosCorrectos = true;
 				}
 				else{
 					$datosCorrectos = false;
+					echo "no valido 8";
 					break;
 				}
 			}
 			if($key == "prov"){
+				echo "valido 9";
 				if(!empty($value)){
 					$datosCorrectos = true;
 				}
 				else{
 					$datosCorrectos = false;
+					echo "no valido 9";
 					break;
 				}
 			}
 			if($key == "numero"){
+				echo "valido 10";
 				if(!empty($value) && filter_var($value, FILTER_VALIDATE_INT)){
 					$datosCorrectos = true;
 				}
 				else{
 					$datosCorrectos = false;
+					echo "no valido 10";
 					break;
 				}
 			}
 			if($key == "cp"){
+				echo "valido 11 con valor $value ";
 				if(!empty($value) && filter_var($value, FILTER_VALIDATE_INT)){
 					$datosCorrectos = true;
 				}
 				else{
 					$datosCorrectos = false;
+					echo "no valido 11";
 					break;
 				}
 			}
 			if($key == "copias"){
+				echo "valido 12";
 				if(!empty($value) && filter_var($value, FILTER_VALIDATE_INT)){
 					$datosCorrectos = true;
 				}
 				else{
 					$datosCorrectos = false;
+					echo "no valido 12";
 					break;
 				}
 			}
 			if($key == "resolucion"){
+				echo "valido 13";
 				if(!empty($value) && filter_var($value, FILTER_VALIDATE_INT)){
 					$datosCorrectos = true;
 				}
 				else{
 					$datosCorrectos = false;
+					echo "no valido 13";
 					break;
 				}
 			}
