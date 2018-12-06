@@ -64,7 +64,7 @@ if($serverCorrecto == true && $hayPost == true){
 		}
 	}
 	if(!empty($sanearPost["titulo"]) && filter_has_var(INPUT_POST, 'titulo')){
-		$sentencia = 'SELECT * FROM albumes WHERE Titulo =' . "'" . $sanearPost["titulo"] . "'";
+		$sentencia = 'SELECT * FROM albumes WHERE Titulo =' . "'" . $sanearPost["titulo"] . "'" . ' AND Usuario = ' . $_SESSION["usuarioLog"];
 		if(!($resultado = $mysqli->query($sentencia))) { 
 			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
 			echo '</p>'; 
