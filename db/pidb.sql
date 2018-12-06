@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2018 a las 02:50:48
--- Versión del servidor: 10.1.35-MariaDB
--- Versión de PHP: 7.2.9
+-- Tiempo de generación: 06-12-2018 a las 03:18:51
+-- Versión del servidor: 10.1.36-MariaDB
+-- Versión de PHP: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -192,26 +192,34 @@ DELIMITER ;
 --
 
 CREATE TABLE `solicitudes` (
-  `IdAlbum` int(11) NOT NULL,
+  `IdSolicitud` int(11) NOT NULL,
   `Album` int(11) NOT NULL,
   `Nombre` varchar(200) NOT NULL,
   `Titulo` varchar(200) NOT NULL,
   `Descripcion` mediumtext NOT NULL,
   `Email` varchar(200) NOT NULL,
   `d_Calle` varchar(200) NOT NULL,
-  `d_Numero` int(11) NOT NULL,
   `d_CP` int(11) NOT NULL,
+  `d_Numero` int(11) NOT NULL,
   `d_Pais` int(11) NOT NULL,
-  `d_Localidad` varchar(200) NOT NULL,
+  `d_Localidad` int(11) NOT NULL,
   `d_Provincia` varchar(200) NOT NULL,
   `Color` varchar(200) NOT NULL,
   `Copias` int(11) NOT NULL,
   `Resolucion` int(11) NOT NULL,
   `Fecha` date NOT NULL,
   `IColor` tinyint(1) NOT NULL,
-  `FRegistro` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `FRegistro` datetime NOT NULL,
   `Coste` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `solicitudes`
+--
+
+INSERT INTO `solicitudes` (`IdSolicitud`, `Album`, `Nombre`, `Titulo`, `Descripcion`, `Email`, `d_Calle`, `d_CP`, `d_Numero`, `d_Pais`, `d_Localidad`, `d_Provincia`, `Color`, `Copias`, `Resolucion`, `Fecha`, `IColor`, `FRegistro`, `Coste`) VALUES
+(1, 3, 'Pepico Wallace', 'El tigre de prueba', 'asdfasdfasdfasdf', 'pepicoeallace@gmail.com', 'eres', 1, 1, 14, 0, 'Madrid', '#000000', 1, 600, '2019-02-03', 1, '2018-12-06 02:31:15', 0.7),
+(2, 3, 'Pepico Wallace', 'El tigre de prueba', 'asdfasdfasdfasdf', 'pepicoeallace@gmail.com', 'eres', 1, 1, 14, 0, 'Madrid', '#000000', 1, 600, '2019-02-03', 1, '2018-12-06 02:34:18', 0.7);
 
 -- --------------------------------------------------------
 
@@ -282,8 +290,9 @@ ALTER TABLE `paises`
 -- Indices de la tabla `solicitudes`
 --
 ALTER TABLE `solicitudes`
-  ADD PRIMARY KEY (`IdAlbum`),
-  ADD KEY `ajena-Solicitudes-Pais` (`d_Pais`);
+  ADD PRIMARY KEY (`IdSolicitud`),
+  ADD KEY `ajena-Solicitudes-Paises` (`d_Pais`),
+  ADD KEY `ajena-Solicitudes-Albumes` (`Album`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -314,7 +323,7 @@ ALTER TABLE `estilos`
 -- AUTO_INCREMENT de la tabla `fotos`
 --
 ALTER TABLE `fotos`
-  MODIFY `IdFoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `IdFoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `paises`
@@ -326,7 +335,7 @@ ALTER TABLE `paises`
 -- AUTO_INCREMENT de la tabla `solicitudes`
 --
 ALTER TABLE `solicitudes`
-  MODIFY `IdAlbum` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdSolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -355,8 +364,8 @@ ALTER TABLE `fotos`
 -- Filtros para la tabla `solicitudes`
 --
 ALTER TABLE `solicitudes`
-  ADD CONSTRAINT `ajena-Solicitudes-Album` FOREIGN KEY (`IdAlbum`) REFERENCES `albumes` (`IdAlbum`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `ajena-Solicitudes-Pais` FOREIGN KEY (`d_Pais`) REFERENCES `paises` (`IdPais`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `ajena-Solicitudes-Albumes` FOREIGN KEY (`Album`) REFERENCES `albumes` (`IdAlbum`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ajena-Solicitudes-Paises` FOREIGN KEY (`d_Pais`) REFERENCES `paises` (`IdPais`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios`

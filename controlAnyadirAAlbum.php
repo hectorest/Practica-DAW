@@ -38,7 +38,7 @@ foreach($sanearPost as $key => $value){
 
 					require_once("head.php");
 					require_once("header.php");
-					require_once("barraNavSesionNoIniciada.php");
+					require_once("barraNavSesionIniciada.php");
 
 					require_once("escribirTablaNuevaFoto.php");
 

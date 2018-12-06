@@ -17,8 +17,7 @@ foreach($sanearPost as $key => $value){
 	comprobarServer($urlPag);
 	
 	//insertar datos base de datos
-	//require_once("validarSolAlbum.php");
-	//$serverCorrecto=true;
+	require_once("validarSolicitud.php");
 	$datosCorrectos=true;
 
 if($serverCorrecto){
