@@ -50,13 +50,14 @@ if(!empty($sanearPost["FNacimiento"])){
 				exit; 
 			}
 			if(mysqli_num_rows($resultado)){
+				$resultado->free();
 				$host = $_SERVER['HTTP_HOST']; 
 				$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
 				$extra = 'formulario_registro.php';
 				header("Location: http://$host$uri/$extra?er=301");
 			}
 			else{
-
+				$resultado->free();
 				require_once("rellenarInsertarDatosRegistro.php");
 				if(!empty($sanearPost["Foto"])){
 					$insertarDatos = $insertarDatos . ',' . "'" . $sanearPost["Foto"] . "'" . ',';
@@ -73,7 +74,7 @@ if(!empty($sanearPost["FNacimiento"])){
 					exit; 
 				}
 				if($mysqli->affected_rows >= 1){
-					
+
 					//pasamos a mostrar la tabla con los datos del usuario registrado
 
 					require_once("head.php");
@@ -84,6 +85,7 @@ if(!empty($sanearPost["FNacimiento"])){
 
 				}
 			}
+			$mysqli->close();
 		}
 		else{
 			require_once("head.php");
@@ -104,7 +106,7 @@ if(!empty($sanearPost["FNacimiento"])){
 				</div>
 
 modalControlRegistro;
-
+			$mysqli->close();
 		}
 }
 else{
@@ -126,6 +128,7 @@ else{
 		</div>
 
 modalControlRegistro;
+	$mysqli->close();
 }
 
 ?>

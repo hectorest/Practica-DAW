@@ -145,6 +145,9 @@ modalControlRegistro;
 				}
 			}
 
+			$resultado->free();
+			$resultado1->free();
+			
 			//actualizar datos base de datos
 			require_once("validarRegistro.php");
 
@@ -218,10 +221,16 @@ modalControlRegistro;
 			}
 		}
 		else{
+			require_once("head.php");
+			require_once("header.php");
+			require_once("barraNavSesionIniciada.php");
 			mostrarErrorSinEnvioModificarDatos();
 		}
 	}
 	else{
+		require_once("head.php");
+		require_once("header.php");
+		require_once("barraNavSesionIniciada.php");
 		mostrarErrorSinEnvioModificarDatos();
 	}
 	

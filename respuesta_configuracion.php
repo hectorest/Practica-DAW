@@ -207,7 +207,6 @@ modalControlRegistro;
 
 					$nomEstilo = $estilo->fetch_object();
 					$nomEstilo = $nomEstilo->Nombre;
-
 					if(mysqli_num_rows($estilo) >= 1){
 						$sentencia = 'UPDATE usuarios SET Estilo = '. "'" . $postSaneado["estiloWeb"] . "'" . ' WHERE IdUsuario = ' . $_SESSION["usuarioLog"];
 						if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
@@ -223,11 +222,12 @@ modalControlRegistro;
 							require_once("head.php");
 							mostrarMensEstiloSinModificar($nomEstilo);
 						}
+						$estilo->free();
 					}
 					else{
+						require_once("head.php");
 						mostrarErrorEstiloNoExistente();
 					}
-
 				}
 				else{
 					require_once("head.php");
@@ -250,7 +250,7 @@ modalControlRegistro;
 	}
 
 
-
+	$mysqli->close();
 
 
 ?>

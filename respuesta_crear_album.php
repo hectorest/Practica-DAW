@@ -64,19 +64,21 @@ if($serverCorrecto == true && $hayPost == true){
 		}
 	}
 	if(!empty($sanearPost["titulo"]) && filter_has_var(INPUT_POST, 'titulo')){
-		$sentencia = 'SELECT * FROM albumes WHERE Titulo =' . "'" . $sanearPost["titulo"] . "'" . ' AND Usuario = ' . $_SESSION["usuarioLog"];
+		$sentencia = 'SELECT * FROM albumes WHERE Titulo = ' . "'" . $sanearPost["titulo"] . "'" . ' AND Usuario = ' . $_SESSION["usuarioLog"];
 		if(!($resultado = $mysqli->query($sentencia))) { 
 			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
 			echo '</p>'; 
 			exit; 
 		}
 		if(mysqli_num_rows($resultado)){
+			$resultado->free();
 			$host = $_SERVER['HTTP_HOST']; 
 			$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
 			$extra = 'crear_album.php';
 			header("Location: http://$host$uri/$extra?er=301");
 		}
 		else{
+			$resultado->free();
 			$insertarDatos = "''";
 			foreach ($sanearPost as $key => $value) {
 				if(!empty($value)){
@@ -99,12 +101,12 @@ if($serverCorrecto == true && $hayPost == true){
 				exit;
 			}
 			if($mysqli->affected_rows >= 1){
-				$idNuevoAlbum = $mysqli->insert_id;
 				require_once("head.php");
 				require_once("header.php");
 				require_once("barraNavSesionIniciada.php");
 				require_once("rellenarTablaNuevoAlbum.php");
 			}
+			$resultado->free();
 		}
 	}
 	else{
@@ -118,6 +120,7 @@ else{
 	$GLOBALS["mysqli"]->close();
 	require_once("head.php");
 	require_once("header.php");
+	require_once("barraNavSesionIniciada.php");
 	echo<<<modalcrear_album
 
 			<button type="button" onclick="cerrarMensajeModal(0);">X</button>
