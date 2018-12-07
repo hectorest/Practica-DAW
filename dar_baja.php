@@ -11,11 +11,30 @@ if(!isset($_SESSION["usuarioLog"])){
 else{
 	require_once("barraNavSesionIniciada.php");
 	if(!empty($_GET["er"]) && $_GET["er"] == 310){
-
+		mostrarErrorServer();
+	}
+	else if(!empty($_GET["er"]) && $_GET["er"] == 300){
+		mostrarErrorContErronea();
 	}
 	else{
 		mostrarDarBaja();
 	}
+}
+
+function mostrarErrorContErronea(){
+	echo<<<modalDarBaja
+		<button type="button" onclick="cerrarMensajeModal(3);">X</button>
+			<div class="modal">
+				<div class="contenido">
+					<span>
+						<img src="./img/error.png" alt="error-detalle-foto">
+						<h2>Error</h2>
+					</span>
+					<p>La contraseña especificada no se corresponde con tu contraseña actual</p>
+					<button type="button" onclick="cerrarMensajeModal(3);">Aceptar</button>
+				</div>
+			</div>
+modalDarBaja;
 }
 
 function mostrarErrorDarBaja(){

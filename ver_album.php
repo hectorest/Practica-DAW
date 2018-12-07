@@ -43,11 +43,11 @@ function mostrarAlbum(&$IdAlbum){
 		   exit; 
 		 }
 	
-	$tamPag = 1; //establezco el tamanyo de pagina, es decir, el numero tope de registros a mostrar
+	$tamPag = 4; //establezco el tamanyo de pagina, es decir, el numero tope de registros a mostrar
 	require_once("paginacion.php");
 	require_once("controlUrlPag.php");
 
-	$sentencia1 = 'SELECT f.Titulo, a.Titulo AS AlbumTit, Fichero, f.Descripcion, f.Fecha, Alternativo, NomPais, NomUsuario FROM fotos f JOIN albumes a ON (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (f.Pais = paises.IdPais) where Album='.$idAlbum.' LIMIT ' . $inicio . ',' . $tamPag;
+	$sentencia1 = 'SELECT f.Titulo, a.Titulo AS AlbumTit, Fichero, f.Descripcion, f.Fecha, Alternativo, NomPais, NomUsuario, IdFoto FROM fotos f JOIN albumes a ON (f.Album = a.IdAlbum) JOIN usuarios ON (a.Usuario = usuarios.IdUsuario) JOIN paises ON (f.Pais = paises.IdPais) where Album='.$idAlbum.' LIMIT ' . $inicio . ',' . $tamPag;
 		 if(!($resultado1 = $GLOBALS["mysqli"]->query($sentencia1))) { 
 		   echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
 		   echo '</p>'; 
@@ -118,13 +118,15 @@ parte1;
 					<div>
 parte2;
 				if(mysqli_num_rows($resultado1)){
-						while($fila1 = $resultado1->fetch_object()) {
-
-							echo<<<foto
+					$host = $_SERVER['HTTP_HOST']; 
+					$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\'); 
+					while($fila1 = $resultado1->fetch_object()) {
+						$extra = "detalle_foto.php?id=$fila1->IdFoto";
+						echo<<<foto
 							<article class="detFoto">
-								<h3>$fila1->Titulo</h3>
+								<h3 id="tituloFotoVerAlbum"><a href="http://$host$uri/$extra" title="Ver detalles de la foto">$fila1->Titulo</a></h3>
 								<figure>
-									<img src="$fila1->Fichero" alt="$fila1->Alternativo"/>
+									<a href="http://$host$uri/$extra" title="Ver detalles de la foto"><img src="$fila1->Fichero" alt="$fila1->Alternativo"/></a>
 								</figure>
 								<div>
 									<h4>Descripción:</h4>

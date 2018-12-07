@@ -72,6 +72,12 @@ function borrarCuenta(&$usu, &$pass){
 		 }
 
 	}
+	else{
+		$host = $_SERVER['HTTP_HOST']; 
+		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\'); 
+		$extra = 'dar_baja.php?er=300';
+		header("Location: http://$host$uri/$extra");
+	}
 
 }
 ?>

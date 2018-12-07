@@ -988,7 +988,7 @@ body>.formulario{
 
 /*PAGINA DETALLE IMAGEN*/
 
-	body>#detFoto{
+	.detFoto{
 
 		margin: 1em;
 		border: 0.3em solid #000000;
@@ -1005,7 +1005,14 @@ body>.formulario{
 
 		.detFoto>h3{
 
-			
+			background-color: #394648;
+			padding: 0.2em;
+			border: 0.3em solid #000000;
+			border-width: 5px;
+			border-radius: 15px;
+			display: flex;
+			justify-content: center;
+			color: #ffffff;
 
 		}
 
@@ -1018,7 +1025,6 @@ body>.formulario{
 			.detFoto>figure>img{
 				width: 100%;
 				border: 0.3em solid #000000;
-
 			}
 
 		.detFoto>div>.p-left{
@@ -1070,6 +1076,48 @@ body>.formulario{
 
 		}
 
+		#tituloFotoVerAlbum>a{
+			text-decoration: none;
+			color: #ffffff;
+		}
+
+		#tituloFotoVerAlbum>a:hover{
+			color: #000000;
+			background-color: #ffffff;
+			border-radius: 0.5em;
+			cursor: pointer;
+		}
+
+		#tituloFotoVerAlbum>a:focus{
+			color: #000000;
+			background-color: #ffffff;
+			border-radius: 0.5em;
+		}
+
+		#tituloFotoVerAlbum + figure{
+			margin: 0;
+			align-self: center;
+			width: 50%;
+		}
+
+			#tituloFotoVerAlbum + figure>a{
+				text-decoration: none;
+				transition: all .35s ease-in-out;
+			}
+
+			#tituloFotoVerAlbum + figure>a:hover{
+				filter: brightness(115%);
+				cursor: pointer;
+			}
+
+			#tituloFotoVerAlbum + figure>a:focus{
+				filter: brightness(115%);
+			}
+
+				#tituloFotoVerAlbum + figure>a>img{
+					width: 100%;
+					border: 0.3em solid #000000;
+				}
 
 /*FOOTER*/
 	
