@@ -23,7 +23,7 @@ else{
 
 function mostrarErrorContErronea(){
 	echo<<<modalDarBaja
-		<button type="button" onclick="cerrarMensajeModal(3);">X</button>
+		<button type="button" onclick="cerrarMensajeModal(1);">X</button>
 			<div class="modal">
 				<div class="contenido">
 					<span>
@@ -31,7 +31,7 @@ function mostrarErrorContErronea(){
 						<h2>Error</h2>
 					</span>
 					<p>La contraseña especificada no se corresponde con tu contraseña actual</p>
-					<button type="button" onclick="cerrarMensajeModal(3);">Aceptar</button>
+					<button type="button" onclick="cerrarMensajeModal(1);">Aceptar</button>
 				</div>
 			</div>
 modalDarBaja;
