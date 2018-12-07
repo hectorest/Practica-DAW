@@ -234,14 +234,7 @@ $continuo = true;
 					$fec = strtotime($value);
 					$fecha = date('Y-m-d', $fec);
 					if($fecha == $value){
-						$fechaActual = date('Y-m-d');
-						if($value < $fechaActual){
-							$datosCorrectos = true;
-						}
-						else{
-							$datosCorrectos = false;
-							break;
-						}
+						$datosCorrectos = false;
 					}
 					else{
 						$datosCorrectos = false;
