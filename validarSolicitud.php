@@ -127,7 +127,7 @@ $continuo = true;
 		}
 		if($key == "frecep"){
 			if(!empty($value)){
-				$sentenciaPost = $sentenciaPost." and Fecha = $value ";
+				$sentenciaPost = $sentenciaPost." and Fecha = '$value' ";
 			}
 			else{
 				$sentenciaPost = $sentenciaPost." and Fecha = '' ";
@@ -158,6 +158,7 @@ $continuo = true;
 	}
 
 		$sentencia = 'SELECT*FROM solicitudes WHERE '.$sentenciaPost;
+		echo "$sentencia";
 		if(!($resultado = $mysqli->query($sentencia))) { 
 			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
 			echo '</p>'; 
@@ -173,7 +174,6 @@ $continuo = true;
 		foreach ($sanearPost as $key => $value) {
 			if($key == "album"){
 				if(!empty($value)){
-
 					$sentencia = 'SELECT IdAlbum FROM albumes WHERE IdAlbum = ' . $value;
 					if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
 						echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
@@ -185,6 +185,7 @@ $continuo = true;
 						$datosCorrectos = true;
 					}else{
 						$datosCorrectos = false;
+						break;
 					}
 					
 				}
@@ -192,7 +193,7 @@ $continuo = true;
 					$datosCorrectos = false;
 					break;
 				}
-			}
+			}					
 			if($key == "email"){
 				if(!empty($value)){
 					if(preg_match_all($expReg[2], $value)){
@@ -213,8 +214,7 @@ $continuo = true;
 
 					$sentencia = 'SELECT IdPais FROM paises WHERE IdPais = ' . $value;
 					if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
-						echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
-						echo '</p>'; 
+						echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error;  
 						exit; 
 					}
 
@@ -234,15 +234,98 @@ $continuo = true;
 					$fec = strtotime($value);
 					$fecha = date('Y-m-d', $fec);
 					if($fecha == $value){
-						$datosCorrectos = false;
+						$fechaActual = date('Y-m-d');
+						if($fecha > $fechaActual){
+							$datosCorrectos = true;
+						}
+						else{
+							$datosCorrectos = false;
+							break;
+						}
 					}
 					else{
 						$datosCorrectos = false;
 						break;
 					}
+			}
+			if($key == "nombre"){
+				if(!empty($value)){
+					$datosCorrectos = true;
 				}
 				else{
+					$datosCorrectos = false;
+					break;
+				}
+			}
+			if($key == "titulo"){
+				if(!empty($value)){
 					$datosCorrectos = true;
+				}
+				else{
+					$datosCorrectos = false;
+					break;
+				}
+			}
+			if($key == "calle"){
+				if(!empty($value)){
+					$datosCorrectos = true;
+				}
+				else{
+					$datosCorrectos = false;
+					break;
+				}
+			}
+			if($key == "local"){
+				if(!empty($value)){
+					$datosCorrectos = true;
+				}
+				else{
+					$datosCorrectos = false;
+					break;
+				}
+			}
+			if($key == "prov"){
+				if(!empty($value)){
+					$datosCorrectos = true;
+				}
+				else{
+					$datosCorrectos = false;
+					break;
+				}
+			}
+			if($key == "numero"){
+				if(!empty($value) && filter_var($value, FILTER_VALIDATE_INT)){
+					$datosCorrectos = true;
+				}
+				else{
+					$datosCorrectos = false;
+					break;
+				}
+			}
+			if($key == "cp"){
+				if(!empty($value) && filter_var($value, FILTER_VALIDATE_INT)){
+					$datosCorrectos = true;
+				}
+				else{
+					$datosCorrectos = false;
+					break;
+				}
+			}
+			if($key == "copias"){
+				if(!empty($value) && filter_var($value, FILTER_VALIDATE_INT)){
+					$datosCorrectos = true;
+				}
+				else{
+					$datosCorrectos = false;
+					break;
+				}
+			}
+			if($key == "resolucion"){
+				if(!empty($value) && filter_var($value, FILTER_VALIDATE_INT)){
+					$datosCorrectos = true;
+				}
+				else{
+					$datosCorrectos = false;
 					break;
 				}
 			}
