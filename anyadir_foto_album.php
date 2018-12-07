@@ -47,6 +47,7 @@ modalControlAnyadirFoto;
 			
 			<h3>Añadir foto a álbum</h3>
 			<p>En esta página podrás añadir una foto a uno de tus álbumes. Los campos con * son obligatorios. Los campos con ** tienen una aclaración asociada a su funcionamiento.</p>
+			<p>Recuerda que el titulo de la foto no se puede repetir con ninguno de los de las fotos que hayas subido hasta ahora y debes tener al menos un álbum para poder añadir fotos en la web.</p>
 			
 		</section>
 
@@ -81,8 +82,8 @@ modalControlAnyadirFoto;
 					</select>
 				</p>
 				<p>
-					<label for="fper" id="labfper">Foto*:</label>
-					<input type="file" accept="image/*" name="fPer" id="fper"/>
+					<label for="Foto" id="labfper">Foto*:</label>
+					<input type="file" accept="image/*" name="Foto" id="Foto"/>
 				</p>
 				<p>
 					<label for="texto_alternativo">Texto Alternativo*:</label>

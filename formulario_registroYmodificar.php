@@ -81,7 +81,6 @@ echo<<<formularioModificarParte1
 		<input type="date" value="$fila->FNacimiento" name="FNacimiento" id="fnac"/>
 	</p>
 	<p>
-	<p>
 		<label for="cres">Ciudad de residencia:</label>
 		<input type="text" value="$fila->Ciudad" maxlength="200" name="Ciudad" id="cres" title="Introduce la ciudad de residencia" />
 	</p>

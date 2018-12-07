@@ -15,6 +15,9 @@ require_once("conexion_db.php");
 			$GLOBALS["mysqli"]->real_escape_string($value);
 		}
 	}
+
+		require_once("extraerDatos.php");
+
 		if($hayPost==true){	
 
 		echo<<<arribaTabla
@@ -36,6 +39,12 @@ arribaTabla;
 			foreach ($postSaneado as $key => $value) {
 				$clave = $key;
 				cambiarClave($clave);
+				if($key == "pais"){
+					$value = extraerPais($value);
+				}
+				if($key == "album"){
+					$value = extraerAlbum($value);
+				}
 				if($value == ""){
 					echo"<tr><td>$clave:</td><td><i>No hay datos</i></td></tr>";
 				}

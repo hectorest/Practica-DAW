@@ -63,50 +63,8 @@ modalDetalle;
 				</div>
 modalDetalle;
 	}
-
-	function extraerPais(&$IdP){
-
-		$sentencia = 'SELECT NomPais FROM paises WHERE IdPais =' . $IdP;
-		
-		if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))){
-			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
-			echo '</p>'; 
-			exit; 
-		}
-
-		$fila = $resultado->fetch_object();
-
-		$resultado->free();
-
-		return $fila->NomPais;
-
-	}
 	
-	function extraerUsuario(&$IdUsu){
-
-		if(is_numeric($IdUsu)){
-
-			$sentencia = 'SELECT NomUsuario FROM usuarios WHERE IdUsuario =' . $IdUsu;
-			
-			if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))){
-				echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error; 
-				echo '</p>'; 
-				exit; 
-			}
-
-			$fila = $resultado->fetch_object();
-
-			$resultado->free();
-
-			return $fila->NomUsuario;
-
-		}
-		else{
-			return $IdUsu;
-		}
-
-	}
-
+	require_once("extraerDatos.php");
 		$hayGet = false;
 		$hayFiltros = false;
 

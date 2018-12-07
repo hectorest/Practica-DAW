@@ -74,6 +74,10 @@ else{
 							</tr>
 arribaTablaMisAlbumes;
 				while($fila = $resultado->fetch_object()) {
+					
+					if($fila->Descripcion == ''){
+						$fila->Descripcion = 'No hay datos';
+					}
 
 				   	echo "<tr>"; 
    					echo "<td>$fila->Titulo</td>"; 

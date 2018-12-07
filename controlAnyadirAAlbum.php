@@ -25,8 +25,14 @@ foreach($sanearPost as $key => $value){
 		if($datosCorrectos){
 
 			require_once("rellenarInsertarDatosRegistro.php");
-				$insertarDatos = $insertarDatos . ",SYSDATE()";
-				$sentencia = 'INSERT INTO fotos (IdFoto, Titulo, Descripcion, Fecha, Pais, Fichero, Alternativo, Album, FRegistro) VALUES (' . $insertarDatos . ')';
+				if(!empty($sanearPost["Foto"])){
+					$insertarDatos = $insertarDatos . ',' . "'" . $sanearPost["Foto"] . "'" . ',';
+				}
+				else{
+					$insertarDatos = $insertarDatos . ",'',";
+				}
+				$insertarDatos = $insertarDatos . " SYSDATE()";
+				$sentencia = 'INSERT INTO fotos (IdFoto, Titulo, Descripcion, Fecha, Pais, Alternativo, Album, Fichero, FRegistro) VALUES (' . $insertarDatos . ')';
 				if(!($resultado = $mysqli->query($sentencia))) { 
 					echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
 					echo '</p>'; 
@@ -59,7 +65,7 @@ foreach($sanearPost as $key => $value){
 						<img src="./img/error.png" alt="error-control-registro">
 						<h2>Error</h2>
 					</span>
-						<p>Ya existe una foto con el título "$tituloExistente". Inserte otro título</p>
+						<p>Los datos introducidos no son válidos. Recuerda que el título no sea el mismo de una foto tuya y que el album debe existir</p>
 						<button type="button" onclick="cerrarMensajeModal(11);">Cerrar</button>
 					</div>
 				</div>

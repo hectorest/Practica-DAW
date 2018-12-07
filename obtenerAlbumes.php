@@ -22,10 +22,10 @@
 			while($fila = $resultado->fetch_assoc()){
 				$IdAlbum = $fila["IdAlbum"];
 				if(!empty($GLOBALS["sanearGet"]) && $IdAlbum == $GLOBALS["sanearGet"]){
-					echo "<option value=$IdAlbum selected>$IdAlbum - {$fila['Titulo']}</option>";
+					echo "<option value=$IdAlbum selected>{$fila['Titulo']}</option>";
 				}
 				else{
-					echo "<option value=$IdAlbum>$IdAlbum - {$fila['Titulo']}</option>";
+					echo "<option value=$IdAlbum>{$fila['Titulo']}</option>";
 				}
 			}
 		}

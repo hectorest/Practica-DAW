@@ -2,8 +2,6 @@
 require_once("conexion_db.php");
 
 	$expReg = [];
-	$expReg[] = "/^[A-Za-z0-9]{3,15}$/";
-	$expReg[] = "/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])[A-Za-z0-9_]{6,15}$/";
 	$expReg[] = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})$/";
 
 
@@ -158,7 +156,6 @@ $continuo = true;
 	}
 
 		$sentencia = 'SELECT*FROM solicitudes WHERE '.$sentenciaPost;
-		echo "$sentencia";
 		if(!($resultado = $mysqli->query($sentencia))) { 
 			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
 			echo '</p>'; 
@@ -170,7 +167,6 @@ $continuo = true;
 		}
 
 		if($continuo==true){
-
 		foreach ($sanearPost as $key => $value) {
 			if($key == "album"){
 				if(!empty($value)){
@@ -196,7 +192,7 @@ $continuo = true;
 			}					
 			if($key == "email"){
 				if(!empty($value)){
-					if(preg_match_all($expReg[2], $value)){
+					if(preg_match_all($expReg[0], $value)){
 						$datosCorrectos = true;
 					}
 					else{
@@ -209,9 +205,8 @@ $continuo = true;
 					break;
 				}
 			}
-			if($key == "pais"){
+			if($key == "pais"){				
 				if(!empty($value)){
-
 					$sentencia = 'SELECT IdPais FROM paises WHERE IdPais = ' . $value;
 					if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
 						echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $GLOBALS["mysqli"]->error;  
@@ -222,6 +217,7 @@ $continuo = true;
 						$datosCorrectos = true;
 					}else{
 						$datosCorrectos = false;
+						break;
 					}
 				}
 				else{
@@ -247,6 +243,7 @@ $continuo = true;
 						$datosCorrectos = false;
 						break;
 					}
+				}
 			}
 			if($key == "nombre"){
 				if(!empty($value)){
@@ -294,7 +291,7 @@ $continuo = true;
 				}
 			}
 			if($key == "numero"){
-				if(!empty($value) && filter_var($value, FILTER_VALIDATE_INT)){
+				if(!empty($value) && is_numeric($value)){
 					$datosCorrectos = true;
 				}
 				else{
@@ -303,7 +300,7 @@ $continuo = true;
 				}
 			}
 			if($key == "cp"){
-				if(!empty($value) && filter_var($value, FILTER_VALIDATE_INT)){
+				if(!empty($value) && is_numeric($value)){
 					$datosCorrectos = true;
 				}
 				else{
@@ -312,7 +309,7 @@ $continuo = true;
 				}
 			}
 			if($key == "copias"){
-				if(!empty($value) && filter_var($value, FILTER_VALIDATE_INT)){
+				if(!empty($value) && is_numeric($value)){
 					$datosCorrectos = true;
 				}
 				else{
@@ -321,7 +318,7 @@ $continuo = true;
 				}
 			}
 			if($key == "resolucion"){
-				if(!empty($value) && filter_var($value, FILTER_VALIDATE_INT)){
+				if(!empty($value) && is_numeric($value)){
 					$datosCorrectos = true;
 				}
 				else{

@@ -47,40 +47,6 @@ require_once("conexion_db.php");
 		}
 	}
 
-	if(isset($_SESSION["usuarioLog"])){
-		$sesionSaneada = $mysqli->real_escape_string($_SESSION["usuarioLog"]);
-	}
-	$sentencia = 'SELECT * FROM fotos JOIN paises ON (fotos.Pais = paises.IdPais) WHERE fotos.Titulo =' . "'" . $sanearPost["titulo"] . "'";
-		if(!($resultado = $mysqli->query($sentencia))) { 
-			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
-			echo '</p>'; 
-			exit; 
-		}
-
-		if(mysqli_num_rows($resultado) >= 1){
-
-			$sentencia1 = 'SELECT * FROM fotos JOIN albumes ON (fotos.Album = albumes.IdAlbum) WHERE fotos.Titulo =' . "'" . $sanearPost["titulo"] . "'";
-				if(!($resultado1 = $mysqli->query($sentencia1))) { 
-					echo "<p>Error al ejecutar la sentencia <b>$sentencia1</b>: " . $mysqli->error; 
-					echo '</p>'; 
-					exit; 
-				}
-
-				if(mysqli_num_rows($resultado1) >= 1){
-
-					$respuesta = $resultado->fetch_object();
-					$pais = $respuesta->NomPais;
-					if($pais == 'Ninguno'){
-						$pais = 'No hay datos';
-					}
-
-					$respuesta1 = $resultado1->fetch_object();
-					$album = $respuesta1->Titulo;
-					if($album == 'Ninguno'){
-						$album = 'No hay datos';
-					}
-
-
 				echo<<<arribaTabla
 
 					<section>
@@ -93,20 +59,22 @@ require_once("conexion_db.php");
 
 arribaTabla;
 
+			require_once("extraerDatos.php");
+
 			foreach ($sanearPost as $key => $value) {
 				if($key!="passw2" && $key!="fPer" && $key!="passw0"){
+					if($key == "Pais"){
+						$value = extraerPais($value);
+					}
+					if($key == "album"){
+						$value = extraerAlbum($value);
+					}
 					$clave = $key;
 					cambiarClave($clave);
 					if($value == ""){
 						echo"<tr><td>$clave:</td><td><i>No hay datos</i></td></tr>";
 					}
 					else{
-						if($key == "pais"){
-							$value = $pais;
-						}
-						if($key == "album"){
-							$value = $album;
-						}
 						echo"<tr><td>$clave:</td><td>$value</td></tr>";
 					}
 				}
@@ -125,10 +93,5 @@ arribaTabla;
 			</section>
 
 bajotabla;
-			}
-
-		}
-
-		$resultado->free();
 
 ?>

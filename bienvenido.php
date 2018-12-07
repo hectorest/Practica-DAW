@@ -53,6 +53,7 @@ function darBienvenida(&$idUsu, &$date, &$succes){
 				$_COOKIE["ultimaVisita"] = date("c");
 				$GLOBALS["nomUsu"] = $nomUsu;
 				$GLOBALS["date"] = $date;
+				$_SESSION["usuarioLog"] = $idUsu;
 				$usuario->free();
 		 	}
 		 	else{
