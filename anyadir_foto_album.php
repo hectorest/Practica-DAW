@@ -83,7 +83,7 @@ modalControlAnyadirFoto;
 				</p>
 				<p>
 					<label for="Foto" id="labfper">Foto*:</label>
-					<input type="file" accept="image/*" name="Foto" id="Foto"/>
+					<input type="file" accept="image/*" name="Foto" id="Foto" enctype="multipart/form-data"/>
 				</p>
 				<p>
 					<label for="texto_alternativo">Texto Alternativo*:</label>

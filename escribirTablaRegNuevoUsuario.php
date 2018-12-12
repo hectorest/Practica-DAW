@@ -94,7 +94,7 @@ arribaTabla;
 			}
 
 			foreach ($sanearPost as $key => $value) {
-				if($key!="passw2" && $key!="fPer" && $key!="passw0"){
+				if($key!="passw2" && $key!="passw0"){
 					$clave = $key;
 					cambiarClave($clave);
 					if($value == ""){
@@ -118,6 +118,10 @@ arribaTabla;
 						echo"<tr><td>$clave:</td><td>$value</td></tr>";
 					}
 				}
+			}
+
+			if(!empty($_FILES["Foto"])){
+				echo"<tr><td>Foto Perfil:</td><td>{$_FILES['Foto']['name']}</td></tr>";
 			}
 
 			echo<<<bajotabla
