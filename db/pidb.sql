@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-12-2018 a las 03:18:51
+-- Tiempo de generación: 13-12-2018 a las 01:59:53
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -44,7 +44,9 @@ INSERT INTO `albumes` (`IdAlbum`, `Titulo`, `Descripcion`, `Usuario`) VALUES
 (2, 'Fotos Montaña Asia', 'Este álbum es una recopilación de las diferentes montañas de Asia', 2),
 (3, 'Fotos Paisajes Montaña', 'Imágenes de diferentes paisajes de montaña de todo el mundo.', 1),
 (4, 'Fotos Playas', 'Álbum que contiene todas las fotos de todas las playas del mundo que he visitado.', 2),
-(18, 'Fotos Piscina', '', 29);
+(18, 'Fotos Piscina', '', 29),
+(19, 'Mi corazon palpita como una patata frita', 'Al igual que mi pepita', 29),
+(21, 'Fotos Pantanos España', 'Imágenes de mis visitas a los pantanos de España.', 1);
 
 -- --------------------------------------------------------
 
@@ -98,11 +100,15 @@ INSERT INTO `fotos` (`IdFoto`, `Titulo`, `Descripcion`, `Fecha`, `Pais`, `Album`
 (6, 'Foto Playa Australia', 'Imagen de una playa de Australia.', '2018-11-03', 15, 4, 'imagen-muestra/paisaje1.jpg', 'Foto de una playa de Australia', '2018-11-23 12:07:02'),
 (7, 'Foto Playa Argentina', 'Una imagen de una playa de Argentina.', '2018-11-02', 16, 4, 'imagen-muestra/paisaje3.jpg', 'Foto de una playa de Argentina', '2018-11-23 12:05:42'),
 (8, 'Foto Montaña Japón', 'Una imagen de una montaña de Japón.', '2018-11-05', 10, 3, 'imagen-muestra/images.jpg', 'Foto de una montaña de Japón', '2018-11-23 12:09:00'),
-(18, 'Oso con oseznos', 'Esta foto representa una familia de osos', '2018-11-23', 5, 3, './imagen-muestra/osos1.jpeg', 'Oso y sus oseznos', '2018-11-23 12:45:30'),
-(19, 'Mapache adulto', 'Esta imagen es de una mapache en su etapa adulta', '2018-11-23', 17, 3, './imagen-muestra/mapache1.jpg', 'Mapache etapa adulta', '2018-11-23 12:40:37'),
-(20, 'Cabra con grandes cuernos', 'La cabra montesa tiene unos grandes cuernos, como se puede observar en esta imagen', '2017-04-04', 6, 3, './imagen-muestra/cabra1.jpg', 'Cabra montesa macho', '2018-11-23 12:42:12'),
-(21, 'La astucia del zorro', 'Este astuto zorro campa a sus anchos por la estepa Madrileña', '2017-07-03', 1, 3, './imagen-muestra/zorro1.jpg', 'Zorro en estepa madrileña', '2018-11-23 12:43:17'),
-(22, 'El fiero puma', 'En la selva africana hay pumas', '2016-09-05', 14, 3, './imagen-muestra/puma1.jpg', 'Puma de Sudáfrica', '2018-11-23 12:44:34');
+(18, 'Oso con oseznos', 'Esta foto representa una familia de osos', '2018-11-23', 5, 3, 'imagen-muestra/osos1.jpeg', 'Oso y sus oseznos', '2018-12-12 23:46:34'),
+(19, 'Mapache adulto', 'Esta imagen es de una mapache en su etapa adulta', '2018-11-23', 17, 3, 'imagen-muestra/mapache1.jpg', 'Mapache etapa adulta', '2018-12-12 23:46:41'),
+(20, 'Cabra con grandes cuernos', 'La cabra montesa tiene unos grandes cuernos, como se puede observar en esta imagen', '2017-04-04', 6, 3, 'imagen-muestra/cabra1.jpg', 'Cabra montesa macho', '2018-12-12 23:46:46'),
+(21, 'La astucia del zorro', 'Este astuto zorro campa a sus anchos por la estepa Madrileña', '2017-07-03', 1, 3, 'imagen-muestra/zorro1.jpg', 'Zorro en estepa madrileña', '2018-12-12 23:46:49'),
+(22, 'El fiero puma', 'En la selva africana hay pumas', '2016-09-05', 14, 3, 'imagen-muestra/puma1.jpg', 'Puma de Sudáfrica', '2018-12-12 23:46:57'),
+(26, 'Sabina', 'Quien me ha robado el mes de abril', '2018-12-12', 1, 1, 'ficheros/fotosSubidas/Joaquin_Sabina-13-12-2018-1-40-11-1.jpg', 'Sabina en concierto', '2018-12-13 01:40:11'),
+(28, 'Otra vez sabina', 'Que pesao el Sabina este, de verdad', '2018-12-08', 14, 1, 'ficheros/fotosSubidas/sabina2-13-12-2018-1-47-16-1.jpg', 'Sabina el pesao', '2018-12-13 01:47:16'),
+(29, 'Puto Sabina de los cojones', 'Por qué falla aquí?', '2018-12-01', 4, 1, 'ficheros/fotosSubidas/Joaquin_Sabina-13-12-2018-1-50-5-1.jpg', 'Sabina ya esta bien tio', '2018-12-13 01:50:05'),
+(30, 'Sabina tio para ya', 'El Sabina este esta to loco tio', '2018-12-11', 12, 1, 'ficheros/fotosSubidas/Joaquin_Sabina-13-12-2018-1-54-56-1.jpg', 'Sabina en concierto que pesao eh', '2018-12-13 01:54:56');
 
 --
 -- Disparadores `fotos`
@@ -113,19 +119,14 @@ CREATE TRIGGER `comprobarAlternativoYFecha` BEFORE INSERT ON `fotos` FOR EACH RO
     DECLARE alt INTEGER;
     DECLARE anyoFecha INTEGER;
     DECLARE fReg DATE;
-    DECLARE fTopeIni INTEGER;
 	SET alt = LENGTH(NEW.Alternativo);
     SET anyoFecha = YEAR(NEW.Fecha);
     SET fReg =  DATE(NEW.FRegistro);
-    SET FTopeIni = 1826;
 	IF alt < 10 THEN
 		SET mensajeError = concat('Error al insertar Alternativo: Su longitud debe de ser minimo de 10 caracteres. Longitud del texto introducido: ', alt);
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = mensajeError;
     ELSEIF NEW.Fecha = '' OR NEW.Fecha = NULL THEN
 		SET NEW.Fecha = fReg;
-    ELSEIF anyoFecha < fTopeIni THEN
-		SET mensajeError = concat('Error al insertar Fecha: La fecha de creacion de la foto no puede ser menor que la fecha de la primera fotografia tomada (Anyo 1826), introduce una fecha valida (cualquiera a partir del anyo 1826 es valida siempre y cuando no excedas la fecha actual). Fecha introducida: ', NEW.Fecha);
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = mensajeError;
     ELSEIF NEW.Fecha > fReg THEN
 		SET mensajeError = concat('Error al insertar Fecha: La fecha de creacion de la foto no puede ser mayor que la fecha actual, introduce una fecha valida. Fecha introducida: ', NEW.Fecha);
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = mensajeError;
@@ -219,7 +220,11 @@ CREATE TABLE `solicitudes` (
 
 INSERT INTO `solicitudes` (`IdSolicitud`, `Album`, `Nombre`, `Titulo`, `Descripcion`, `Email`, `d_Calle`, `d_CP`, `d_Numero`, `d_Pais`, `d_Localidad`, `d_Provincia`, `Color`, `Copias`, `Resolucion`, `Fecha`, `IColor`, `FRegistro`, `Coste`) VALUES
 (1, 3, 'Pepico Wallace', 'El tigre de prueba', 'asdfasdfasdfasdf', 'pepicoeallace@gmail.com', 'eres', 1, 1, 14, 0, 'Madrid', '#000000', 1, 600, '2019-02-03', 1, '2018-12-06 02:31:15', 0.7),
-(2, 3, 'Pepico Wallace', 'El tigre de prueba', 'asdfasdfasdfasdf', 'pepicoeallace@gmail.com', 'eres', 1, 1, 14, 0, 'Madrid', '#000000', 1, 600, '2019-02-03', 1, '2018-12-06 02:34:18', 0.7);
+(2, 3, 'Pepico Wallace', 'El tigre de prueba', 'asdfasdfasdfasdf', 'pepicoeallace@gmail.com', 'eres', 1, 1, 14, 0, 'Madrid', '#000000', 1, 600, '2019-02-03', 1, '2018-12-06 02:34:18', 0.7),
+(3, 1, 'Pepico Wallace', 'Hola', 'hgvhvhv', 'pepicoeallace@gmail.com', 'eres', 1, 1, 14, 0, 'Madrid', '#000000', 1, 150, '0000-00-00', 0, '2018-12-07 11:08:12', 0.2),
+(4, 1, 'Pepico Wallace', 'INICIO', '', 'pepicoeallace@gmail.com', 'eres', 2, 1, 14, 0, 'Madrid', '#000000', 1, 150, '0000-00-00', 0, '2018-12-07 11:12:27', 0.2),
+(5, 1, 'Manolo cabeza bolo', 'Mis aventuras por el Mundo', 'El Mundo es enorme', 'manolochimpum@miweb.com', 'laquetuquiera guapi', 4, 4, 13, 0, 'la tuya o la mia', '#000000', 1, 900, '2018-12-30', 1, '2018-12-07 11:33:03', 0.24),
+(6, 3, 'Pepico Wallace', 'El tigre de prueba', 'El tigre de prueba es fruto de la imaginacion', 'pepicoeallace@gmail.com', 'eres', 1, 1, 14, 0, 'Madrid', '#000000', 1, 150, '2019-03-02', 1, '2018-12-07 11:36:19', 0.56);
 
 -- --------------------------------------------------------
 
@@ -246,13 +251,15 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`IdUsuario`, `NomUsuario`, `Clave`, `Email`, `Sexo`, `FNacimiento`, `Ciudad`, `Pais`, `Foto`, `FRegistro`, `Estilo`) VALUES
-(1, 'pepee1', 'Pepe11', 'pepee1@pi.es', 1, '1998-11-08', 'Valencia', 8, '', '2018-12-03 02:50:08', 1),
+(1, 'pepee1', 'Pepe11', 'pepee1@pi.es', 1, '1998-11-08', 'Valencia', 8, 'ficheros/fotosPerfil/pepee1.png', '2018-12-12 22:49:14', 1),
 (2, 'manolo2', 'Manolo22', 'manolo2@pi.es', 2, '1998-11-09', 'San Vicente del Raspeig', 1, './img/manolo2.png', '2018-12-03 02:50:13', 2),
 (3, 'sergio3', 'Sergio33', 'sergio3@gmail.com', 1, '2010-02-10', 'Whashington DC', 11, './img/pepee1.png', '2018-12-03 02:50:19', 1),
 (4, 'juaan4', 'Juan44', 'juan4@gmail.com', 1, '2008-02-10', 'Sudáfrica', 14, './img/manolo2.png', '2018-12-03 02:50:24', 2),
 (5, 'luiis5', 'Luis55', 'luis5@gmail.com', 1, '2005-02-10', 'Pekín', 7, './img/pepee1.png', '2018-12-03 02:50:32', 1),
 (28, 'Hola12', 'Hola12', 'holahola12@gmail.es', 1, '2018-12-04', '', 8, '', '2018-12-02 23:23:27', 1),
-(29, 'Guan60', 'Guan60', 'guan60@gmail.com', 1, '2018-12-12', '', 0, '', '2018-12-03 02:42:56', 1);
+(29, 'Guan60', 'Guan60', 'guan60@gmail.com', 1, '2018-12-12', '', 0, '', '2018-12-07 13:24:13', 1),
+(31, 'PepicoWallace', 'Pepico11', 'pepicoeallace@gmail.com', 1, '2015-02-02', 'Elche/Elx', 14, '', '2018-12-07 12:45:22', 1),
+(36, 'Wola45', 'Wola45', 'pepicoeallace@gmail.com', 1, '2018-12-08', 'Elche/Elx', 14, 'ficheros/fotosPerfil/Wola45.jpg', '2018-12-12 12:40:31', 1);
 
 --
 -- Índices para tablas volcadas
@@ -311,7 +318,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `albumes`
 --
 ALTER TABLE `albumes`
-  MODIFY `IdAlbum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `IdAlbum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `estilos`
@@ -323,25 +330,25 @@ ALTER TABLE `estilos`
 -- AUTO_INCREMENT de la tabla `fotos`
 --
 ALTER TABLE `fotos`
-  MODIFY `IdFoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `IdFoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `paises`
 --
 ALTER TABLE `paises`
-  MODIFY `IdPais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `IdPais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitudes`
 --
 ALTER TABLE `solicitudes`
-  MODIFY `IdSolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IdSolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Restricciones para tablas volcadas

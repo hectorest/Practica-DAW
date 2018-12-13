@@ -96,10 +96,86 @@ modalDetalle;
 		$resultado->free();
 
 }
+
+function mostrarMensModalErrorPagDetalleFotoNoExistente(){
+		echo<<<modalDetalle
+				<button type="button" onclick="cerrarMensajeModal(0);">X</button>
+				<div class="modal">
+					<div class="contenido">
+						<span>
+							<img src="./img/error.png" alt="error-detalle-foto">
+							<h2>Error</h2>
+						</span>
+						<p>Esta página de foto no existe</p>
+						<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
+					</div>
+				</div>
+modalDetalle;
+	}
+
 	function crearIndex(){
 
+		echo<<<indexParte0
+		<section id="contFotosIndex">
+		<h3>Imágenes destacadas</h3>
+		<article class="detFoto">
+indexParte0;
+                $numimagen=rand(0,3);
+
+                 if(($fichero = @file("ficheros/seleccionadas.txt")) == false) { 
+                   echo "No se ha podido abrir el fichero imagen$numimagen"; 
+                 } 
+                 else{
+                  /*
+                  $auxi=fopen("$fichero", "r");
+                  $auxi[$numimagen];*/
+                   foreach($fichero as $numLinea => $linea) 
+                   {
+                   	$foto=explode("###", $linea);
+                    $detalles= $foto[$numimagen]; 
+                   	$muestra=explode("*", $detalles);
+                    $enlace= $muestra[0]; 
+                   }
+                     // Ejecuta una sentencia SQL 
+                     $sentencia = "SELECT * FROM fotos WHERE Fichero='".$enlace."'";
+                     if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
+                       echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . mysqli_error($link); 
+                       echo '</p>'; 
+                       exit; 
+                     }
+	                   if(mysqli_num_rows($resultado)){
+						$fila = $resultado->fetch_assoc();
+
+	                    $idFoto = $fila["IdFoto"];
+	                    $descripcion = $fila["Descripcion"];
+						$titulo = $fila["Titulo"];
+						$fichero = $fila["Fichero"];
+						$alt = $fila["Alternativo"];
+						$fecha = $fila["Fecha"];
+
+						echo <<<detalleFoto
+							<h3>$titulo</h3>
+							<figure id="destacada">
+								<img src="$fichero" alt="$alt"/>
+							</figure>
+							<div>
+								<h4>Descripción:</h4>
+								<p class="p-left">$descripcion</p>
+								<p><time datetime="$fecha">$fecha</time></p>
+								<p>Destacada por : $muestra[1]</p>
+								<p>Comentario: $muestra[2]</p>
+								<p></p>				
+							</div>
+detalleFoto;
+						}
+						else{
+							mostrarMensModalErrorPagDetalleFotoNoExistente();
+						}
+                      mysqli_free_result($resultado); 
+
+                 }
 		echo<<<indexParte1
-		<section id="contFotosIndex"> 
+			</article>
 			<h3>Últimas 5 imágenes subidas</h3>
 			<div class="imagenes">
 indexParte1;

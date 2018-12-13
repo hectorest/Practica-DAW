@@ -1,6 +1,6 @@
 <?php
-session_start();
 $cookieFalsa = false;
+session_start();
 require_once("controlCookie.php");
 require_once("conexion_db.php");
 if(isset($_SESSION["usuarioLog"]) && $cookieFalsa == false){
@@ -150,7 +150,7 @@ modalControlRegistro;
 			
 			//actualizar datos base de datos
 			require_once("validarRegistro.php");
-
+			$topeTamImg = 2097152;
 			if($datosCorrectos){
 
 				$actualizarDatosUsuario = '';
@@ -172,6 +172,41 @@ modalControlRegistro;
 					}
 				}
 
+				if(!empty($_FILES["Foto"]) && is_uploaded_file($_FILES["Foto"]["tmp_name"])){
+					if($_FILES["Foto"]["error"] > 0) { 
+                        $host = $_SERVER['HTTP_HOST']; 
+						$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
+						$extra = 'formulario_modificar.php';
+						header("Location: http://$host$uri/$extra?erFile={$_FILES['Foto']['error']}");
+						exit;
+                  	} 
+                    else{ 
+
+                       	$arrayNomArchivo = explode(".", $_FILES['Foto']['name']);
+
+						$extensionArchivo = $arrayNomArchivo[sizeof($arrayNomArchivo) - 1];
+
+						$nomFile = $_POST["NomUsuario"] . "." . $extensionArchivo;
+
+                        $directorio="ficheros/fotosPerfil/" . $nomFile; 
+
+                        if($_FILES["Foto"]["size"] > $topeTamImg){
+                       		$host = $_SERVER['HTTP_HOST']; 
+							$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
+							$extra = 'formulario_modificar.php';
+							header("Location: http://$host$uri/$extra?erFile=2");
+							exit;
+                        }
+                        else{
+                       		 move_uploaded_file($_FILES["Foto"]["tmp_name"], "ficheros/fotosPerfil/" . $nomFile);
+                        }
+                        
+                        $foto="ficheros/fotosPerfil/".$nomFile;
+						$actualizarDatosUsuario = $actualizarDatosUsuario . ',Foto'  . "=" . "'" . $foto . "'";
+                       
+                    }
+				}
+
 				if(empty($sanearPost["Pais"])){
 					$actualizarDatosUsuario = $actualizarDatosUsuario  . ",Pais" . "=" . "'0'";
 				}
@@ -179,6 +214,7 @@ modalControlRegistro;
 				if(empty($sanearPost["Ciudad"])){
 					$actualizarDatosUsuario = $actualizarDatosUsuario  . ",Ciudad" . "=" . "''";
 				}
+
 
 				$sentencia = 'UPDATE usuarios SET ' . $actualizarDatosUsuario . ' WHERE IdUsuario = ' . $_SESSION["usuarioLog"];
 				if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 

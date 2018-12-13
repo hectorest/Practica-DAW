@@ -965,6 +965,12 @@ body>.formulario{
 			width: 90%;
 		}
 
+		.detFoto>#destacada{
+			margin: 0;
+			align-self: center;
+			width: 30%;
+		}
+
 			.detFoto>figure>img{
 				width: 100%;
 				border: 0.3em solid #D67731;

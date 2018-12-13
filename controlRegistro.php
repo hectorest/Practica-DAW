@@ -37,7 +37,7 @@ if(!empty($sanearPost["FNacimiento"])){
 
 	//insertar datos base de datos
 	require_once("validarRegistro.php");
-
+	$topeTamImg = 2097152;
 	//if($serverCorrecto){
 
 		if($datosCorrectos){
@@ -55,12 +55,45 @@ if(!empty($sanearPost["FNacimiento"])){
 				$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
 				$extra = 'formulario_registro.php';
 				header("Location: http://$host$uri/$extra?er=301");
+				exit;
 			}
 			else{
 				$resultado->free();
 				require_once("rellenarInsertarDatosRegistro.php");
-				if(!empty($sanearPost["Foto"])){
-					$insertarDatos = $insertarDatos . ',' . "'" . $sanearPost["Foto"] . "'" . ',';
+				
+				if(!empty($_FILES["Foto"]) && is_uploaded_file($_FILES["Foto"]["tmp_name"])){
+					if($_FILES["Foto"]["error"] > 0) {
+						$host = $_SERVER['HTTP_HOST']; 
+						$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
+						$extra = 'formulario_registro.php';
+						header("Location: http://$host$uri/$extra?erFile={$_FILES['Foto']['error']}");
+						exit;
+					}
+					else{ 
+
+                       	$arrayNomArchivo = explode(".", $_FILES['Foto']['name']);
+
+						$extensionArchivo = $arrayNomArchivo[sizeof($arrayNomArchivo) - 1];
+
+						$nomFile = $_POST["NomUsuario"] . "." . $extensionArchivo;
+
+                        $directorio="ficheros/fotosPerfil/" . $nomFile; 
+
+                        if($_FILES["Foto"]["size"] > $topeTamImg){
+                       		$host = $_SERVER['HTTP_HOST']; 
+							$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
+							$extra = 'formulario_registro.php';
+							header("Location: http://$host$uri/$extra?erFile=2");
+							exit;
+                        }
+                        else{
+                       		 move_uploaded_file($_FILES["Foto"]["tmp_name"], "ficheros/fotosPerfil/" . $nomFile);
+                        }
+                        
+                        $foto="ficheros/fotosPerfil/".$nomFile;
+						$insertarDatos = $insertarDatos . ',' . "'" . $foto . "'" . ',';
+                       
+                    }
 				}
 				else{
 					$insertarDatos = $insertarDatos . ",'',";
