@@ -95,7 +95,7 @@ modalControlModificar;
 		}
 	}
 		echo<<<arribaFormulario
-		<form action="actualizarDatosUsuario.php" method="post" class="formulario" id="formReg">
+		<form action="actualizarDatosUsuario.php" method="post" class="formulario" id="formReg" enctype="multipart/form-data">
 			
 			<fieldset>
 					<legend>

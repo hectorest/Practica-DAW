@@ -125,7 +125,7 @@ modalControlRegistro;
 modalControlRegistro;
 		}
 		echo<<<arribaFormulario
-		<form action="controlRegistro.php" method="post" class="formulario" id="formReg">
+		<form action="controlRegistro.php" method="post" class="formulario" id="formReg" enctype="multipart/form-data">
 			
 			<fieldset>
 					<legend>

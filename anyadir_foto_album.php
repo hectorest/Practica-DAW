@@ -51,7 +51,7 @@ modalControlAnyadirFoto;
 			
 		</section>
 
-		<form action="controlAnyadirAAlbum.php" method="post" class="formulario">
+		<form action="controlAnyadirAAlbum.php" method="post" class="formulario" enctype="multipart/form-data">
 				
 			<fieldset>
 
