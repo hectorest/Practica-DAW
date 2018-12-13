@@ -25,6 +25,17 @@ if(!isset($_SESSION["usuarioLog"])){
 }
 else{
 	require_once("barraNavSesionIniciada.php");
+
+			$msgError = array(0 => "No hay error, el fichero se subió con éxito", 
+                                       1 => "El tamaño del fichero supera la directiva 
+                                           upload_max_filesize el php.ini", 
+                                       2 => "El tamaño del fichero supera el límite permitido (2MB)", 
+                                       3 => "El fichero fue parcialmente subido", 
+                                       4 => "No se ha subido un fichero", 
+                                       6 => "No existe un directorio temporal", 
+                                       7 => "Fallo al escribir el fichero al disco", 
+                                       8 => "La subida del fichero fue detenida por la extensión"); 
+			
 	if(!empty($_GET["er"]) && $_GET["er"] == 310){
 			echo<<<modalControlAnyadirFoto
 
@@ -42,6 +53,24 @@ else{
 
 modalControlAnyadirFoto;
 	}
+	else if(!empty($_GET["erFile"])){
+			$errorFile = $msgError[$_GET["erFile"]];
+			echo<<<modalControlRegistro
+
+			<button type="button" onclick="cerrarMensajeModal(1);">X</button>
+			<div class="modal">
+				<div class="contenido">
+				<span>
+					<img src="./img/error.png" alt="error-control-registro">
+					<h2>Error</h2>
+				</span>
+					<p>$errorFile</p>
+					<button type="button" onclick="cerrarMensajeModal(1);">Cerrar</button>
+				</div>
+			</div>
+
+modalControlRegistro;
+		}
 ?>
 		<section>
 			
@@ -51,7 +80,7 @@ modalControlAnyadirFoto;
 			
 		</section>
 
-		<form action="controlAnyadirAAlbum.php" method="post" class="formulario">
+		<form action="controlAnyadirAAlbum.php" method="post" class="formulario" enctype="multipart/form-data">
 				
 			<fieldset>
 

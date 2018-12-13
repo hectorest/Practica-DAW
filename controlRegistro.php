@@ -62,14 +62,14 @@ if(!empty($sanearPost["FNacimiento"])){
 				require_once("rellenarInsertarDatosRegistro.php");
 				
 				if(!empty($_FILES["Foto"]) && is_uploaded_file($_FILES["Foto"]["tmp_name"])){
-					if($_FILES["Foto"]["error"] > 0) { 
-                        $host = $_SERVER['HTTP_HOST']; 
+					if($_FILES["Foto"]["error"] > 0) {
+						$host = $_SERVER['HTTP_HOST']; 
 						$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
 						$extra = 'formulario_registro.php';
 						header("Location: http://$host$uri/$extra?erFile={$_FILES['Foto']['error']}");
 						exit;
-                  	} 
-                    else{ 
+					}
+					else{ 
 
                        	$arrayNomArchivo = explode(".", $_FILES['Foto']['name']);
 

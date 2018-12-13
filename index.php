@@ -96,6 +96,23 @@ modalDetalle;
 		$resultado->free();
 
 }
+
+function mostrarMensModalErrorPagDetalleFotoNoExistente(){
+		echo<<<modalDetalle
+				<button type="button" onclick="cerrarMensajeModal(0);">X</button>
+				<div class="modal">
+					<div class="contenido">
+						<span>
+							<img src="./img/error.png" alt="error-detalle-foto">
+							<h2>Error</h2>
+						</span>
+						<p>Esta página de foto no existe</p>
+						<button type="button" onclick="cerrarMensajeModal(0);">Cerrar</button>
+					</div>
+				</div>
+modalDetalle;
+	}
+
 	function crearIndex(){
 
 		echo<<<indexParte0
@@ -114,7 +131,7 @@ indexParte0;
                   $auxi[$numimagen];*/
                    foreach($fichero as $numLinea => $linea) 
                    {
-                   	$foto=explode("#", $linea);
+                   	$foto=explode("###", $linea);
                     $detalles= $foto[$numimagen]; 
                    	$muestra=explode("*", $detalles);
                     $enlace= $muestra[0]; 
