@@ -35,7 +35,7 @@ else{
                                        6 => "No existe un directorio temporal", 
                                        7 => "Fallo al escribir el fichero al disco", 
                                        8 => "La subida del fichero fue detenida por la extensión"); 
-			
+
 	if(!empty($_GET["er"]) && $_GET["er"] == 310){
 			echo<<<modalControlAnyadirFoto
 
@@ -112,7 +112,7 @@ modalControlRegistro;
 				</p>
 				<p>
 					<label for="Foto" id="labfper">Foto*:</label>
-					<input type="file" accept="image/*" name="Foto" id="Foto" enctype="multipart/form-data"/>
+					<input required type="file" accept="image/*" name="Foto" id="Foto" enctype="multipart/form-data"/>
 				</p>
 				<p>
 					<label for="texto_alternativo">Texto Alternativo*:</label>

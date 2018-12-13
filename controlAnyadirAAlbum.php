@@ -37,13 +37,18 @@ foreach($sanearPost as $key => $value){
 
                        	$arrayNomArchivo = explode(".", $_FILES['Foto']['name']);
 
+                       	$nomArchivo = "";
+						for ($i = 0; $i < sizeof($arrayNomArchivo) - 1; $i++) { 
+						 	$nomArchivo = $nomArchivo . $arrayNomArchivo[$i];
+						}
+
 						$extensionArchivo = $arrayNomArchivo[sizeof($arrayNomArchivo) - 1];
 
 						$fecha = getdate();
 
 						$fechaSaneada = $fecha["mday"]. "-" .$fecha["mon"]. "-" .$fecha["year"]. "-" .$fecha["hours"]. "-" .$fecha["minutes"]. "-" .$fecha["seconds"]; 
 
-						$nomFile = $_FILES["Foto"]["name"] . "-" . $fechaSaneada . "-" . $_SESSION["usuarioLog"] . "." . $extensionArchivo;
+						$nomFile = $nomArchivo . "-" . $fechaSaneada . "-" . $_SESSION["usuarioLog"] . "." . $extensionArchivo;
 
                         $directorio="ficheros/fotosSubidas/" . $nomFile; 
 
