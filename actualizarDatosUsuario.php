@@ -106,6 +106,7 @@ modalControlRegistro;
 
 			if(mysqli_num_rows($resultado1)){
 				$fila1 = $resultado1->fetch_object();
+				$idUsuarioFoto = $fila1->IdUsuario;
 				$claveAct = $fila1->Clave;
 			}
 
@@ -186,7 +187,7 @@ modalControlRegistro;
 
 						$extensionArchivo = $arrayNomArchivo[sizeof($arrayNomArchivo) - 1];
 
-						$nomFile = $_POST["NomUsuario"] . "." . $extensionArchivo;
+						$nomFile = $idUsuarioFoto. "." . $extensionArchivo;
 
                         $directorio="ficheros/fotosPerfil/" . $nomFile; 
 
@@ -198,11 +199,11 @@ modalControlRegistro;
 							exit;
                         }
                         else{
-                       		 move_uploaded_file($_FILES["Foto"]["tmp_name"], "ficheros/fotosPerfil/" . $nomFile);
+                       		 move_uploaded_file($_FILES["Foto"]["tmp_name"], $directorio);
                         }
                         
-                        $foto="ficheros/fotosPerfil/".$nomFile;
-						$actualizarDatosUsuario = $actualizarDatosUsuario . ',Foto'  . "=" . "'" . $foto . "'";
+                        $fotoAct="ficheros/fotosPerfil/".$nomFile;
+						$actualizarDatosUsuario = $actualizarDatosUsuario . ',Foto'  . "=" . "'" . $fotoAct . "'";
                        
                     }
 				}

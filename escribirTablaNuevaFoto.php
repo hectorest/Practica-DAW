@@ -80,6 +80,12 @@ arribaTabla;
 				}
 			}
 
+			if(!empty($_FILES["Foto"])){
+				if(!empty($foto)){
+					echo"<tr><td>Foto:</td><td><img src=" . $foto . " alt=" . $sanearPost['texto_alternativo'] . '"' . "/></td></tr>";
+				}
+			}
+
 			echo<<<bajotabla
 
 					</table>

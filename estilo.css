@@ -419,6 +419,10 @@ body{
 				margin-bottom: 1em;
 			}
 
+			body>section>.imagenes>article>footer>#fechaSeleccionada{
+				margin-bottom: 0em;
+			}
+
 /*MENSAJES MODALES*/
 
 		body>section>.mostrarDatos>p{
@@ -860,6 +864,12 @@ body>.formulario{
 					color: #000000;
 				}
 
+				body>section>div>.tabla>tbody>tr>td>img{
+					width: 180px;
+    				height: 180px;
+				}
+
+
 			body>section>div>.tabla>tbody>tr>th{
 				border: 0.3em solid #D67731;
 			}
@@ -963,12 +973,6 @@ body>.formulario{
 			margin: 0;
 			align-self: center;
 			width: 90%;
-		}
-
-		.detFoto>#destacada{
-			margin: 0;
-			align-self: center;
-			width: 30%;
 		}
 
 			.detFoto>figure>img{

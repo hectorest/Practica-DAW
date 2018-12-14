@@ -1,6 +1,6 @@
 <?php
-session_start();
 require_once("conexion_db.php");
+session_start();
 $hayPost = false;
 foreach ($_POST as $value){
 	if(isset($value)){
@@ -46,16 +46,16 @@ foreach($sanearPost as $key => $value){
 
 						$fecha = getdate();
 
-						$fechaSaneada = $fecha["mday"]. "-" .$fecha["mon"]. "-" .$fecha["year"]. "-" .$fecha["hours"]. "-" .$fecha["minutes"]. "-" .$fecha["seconds"]; 
+						$fechaSaneada = $fecha["mday"]. "-" .$fecha["mon"]. "-" .$fecha["year"]. "_" .$fecha["hours"]. "-" .$fecha["minutes"]. "-" .$fecha["seconds"]; 
 
-						$nomFile = $nomArchivo . "-" . $fechaSaneada . "-" . $_SESSION["usuarioLog"] . "." . $extensionArchivo;
+						$nomFile = $nomArchivo . "_" . $fechaSaneada . "_" . $_SESSION["usuarioLog"] . "." . $extensionArchivo;
 
                         $directorio="ficheros/fotosSubidas/" . $nomFile; 
 
                         if($_FILES["Foto"]["size"] > $topeTamImg){
                        		$host = $_SERVER['HTTP_HOST']; 
 							$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');  
-							$extra = 'formulario_registro.php';
+							$extra = 'anyadir_foto_album.php';
 							header("Location: http://$host$uri/$extra?erFile=2");
 							exit;
                         }
@@ -122,6 +122,9 @@ modalControlAnyadirAAlbum;
 	}
 }
 else{
+	require_once("head.php");
+	require_once("header.php");
+	require_once("barraNavSesionIniciada.php");
 	echo<<<modalAnyadirFotoAAlbum
 
 		<button type="button" onclick="cerrarMensajeModal(11);">X</button>

@@ -117,27 +117,39 @@ modalDetalle;
 
 		echo<<<indexParte0
 		<section id="contFotosIndex">
-		<h3>Imágenes destacadas</h3>
-		<article class="detFoto">
+		<h3>Imagen destacada</h3>
 indexParte0;
-                $numimagen=rand(0,3);
+                $cont = 0;
 
-                 if(($fichero = @file("ficheros/seleccionadas.txt")) == false) { 
-                   echo "No se ha podido abrir el fichero imagen$numimagen"; 
-                 } 
-                 else{
-                  /*
-                  $auxi=fopen("$fichero", "r");
-                  $auxi[$numimagen];*/
-                   foreach($fichero as $numLinea => $linea) 
-                   {
-                   	$foto=explode("###", $linea);
-                    $detalles= $foto[$numimagen]; 
-                   	$muestra=explode("*", $detalles);
-                    $enlace= $muestra[0]; 
-                   }
+                $gestor = @fopen("ficheros/seleccionadas.txt", "r");
+                if ($gestor) {
+				    while (($bufer = fgets($gestor)) !== false) {
+				        $cont++;
+				    }
+				    if (!feof($gestor)) {
+				        echo "Error: fallo inesperado de fgets()\n";
+				    }
+				    fclose($gestor);
+				}
+
+				$numimagen=rand(0,$cont-1);
+				//echo "$numimagen de $cont";
+				$cont=0;
+
+				$gestor = @fopen("ficheros/seleccionadas.txt", "r");
+                if ($gestor) {
+				    while (($bufer = fgets($gestor)) !== false) {
+				        if($numimagen == $cont){
+				        	$muestra=explode("*", $bufer);
+                    		$idfoto= $muestra[0]; 
+                    		break;
+				        }
+				        $cont++;
+				    }
+				    fclose($gestor);
+				}
                      // Ejecuta una sentencia SQL 
-                     $sentencia = "SELECT * FROM fotos WHERE Fichero='".$enlace."'";
+                     $sentencia = "SELECT * FROM fotos JOIN paises on (Pais=IdPais) WHERE IdFoto='".$idfoto."'";
                      if(!($resultado = $GLOBALS["mysqli"]->query($sentencia))) { 
                        echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . mysqli_error($link); 
                        echo '</p>'; 
@@ -152,28 +164,29 @@ indexParte0;
 						$fichero = $fila["Fichero"];
 						$alt = $fila["Alternativo"];
 						$fecha = $fila["Fecha"];
+						$pais = $fila["NomPais"];
 
-						echo <<<detalleFoto
-							<h3>$titulo</h3>
-							<figure id="destacada">
-								<img src="$fichero" alt="$alt"/>
-							</figure>
-							<div>
-								<h4>Descripción:</h4>
-								<p class="p-left">$descripcion</p>
-								<p><time datetime="$fecha">$fecha</time></p>
-								<p>Destacada por : $muestra[1]</p>
-								<p>Comentario: $muestra[2]</p>
-								<p></p>				
-							</div>
-detalleFoto;
+						echo <<<FotoSeleccionada
+						<div class="imagenes">	
+							<article>
+								<h4><a href="detalle_foto.php?id=$idFoto" title="Ver detalles de la foto">$titulo</a></h4>
+								<figure>
+									<a href="detalle_foto.php?id=$idFoto" title="Ver detalles de la foto"><img src="./$fichero" alt="$alt"/></a>
+								</figure>
+								<footer>
+									<p id="fechaSeleccionada"><time datetime="$fecha">$fecha</time></p>
+									<p>$pais</p>
+									<p><b>Destacada por:</b> $muestra[1]</p>
+									<p><b> Comentario:</b>  $muestra[2]</p>
+								</footer>
+							</article>
+						</div>
+FotoSeleccionada;
 						}
 						else{
 							mostrarMensModalErrorPagDetalleFotoNoExistente();
 						}
                       mysqli_free_result($resultado); 
-
-                 }
 		echo<<<indexParte1
 			</article>
 			<h3>Últimas 5 imágenes subidas</h3>

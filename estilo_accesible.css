@@ -861,8 +861,8 @@ body>.formulario{
 
 	body>section>img{
 		border: 0.3em solid #000000;
-		width: 200px;
-		height: 200px;
+		width: 250px;
+    	height: 250px;
 	}
 
 /*TABLAS*/
@@ -911,6 +911,11 @@ body>.formulario{
 					cursor: pointer;
 					color: #ffffff;
 					border-radius: 0.5em;
+				}
+
+				body>section>div>.tabla>tbody>tr>td>img{
+					width: 230px;
+    				height: 230px;
 				}
 
 			body>section>div>.tabla>tbody>tr>th{
@@ -1020,12 +1025,6 @@ body>.formulario{
 			margin: 0;
 			align-self: center;
 			width: 90%;
-		}
-
-		.detFoto>#destacada{
-			margin: 0;
-			align-self: center;
-			width: 30%;
 		}
 
 			.detFoto>figure>img{

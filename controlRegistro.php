@@ -108,6 +108,23 @@ if(!empty($sanearPost["FNacimiento"])){
 				}
 				if($mysqli->affected_rows >= 1){
 
+					$idUsuarioFichero = $mysqli->insert_id;
+					$dir = "ficheros/fotosPerfil/";
+					$newName = $idUsuarioFichero . "." . $extensionArchivo;
+					
+					if (is_dir($dir)) {
+					   $fotoAct = $dir . $newName;
+					   rename($foto, $fotoAct);   
+					}
+
+					$fotoAct = "'" . $fotoAct . "'";
+					$sentencia = 'UPDATE usuarios SET Foto = ' . $fotoAct . ' WHERE IdUsuario = ' . $idUsuarioFichero;
+					if(!($resultado = $mysqli->query($sentencia))) { 
+						echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error; 
+						echo '</p>'; 
+						exit; 
+					}
+
 					//pasamos a mostrar la tabla con los datos del usuario registrado
 
 					require_once("head.php");
