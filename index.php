@@ -165,6 +165,8 @@ indexParte0;
 						$alt = $fila["Alternativo"];
 						$fecha = $fila["Fecha"];
 						$pais = $fila["NomPais"];
+						$usuarioDestacadaPor = utf8_encode($muestra[1]);
+						$destacadaPor = utf8_encode($muestra[2]);
 
 						echo <<<FotoSeleccionada
 						<div class="imagenes">	
@@ -176,8 +178,8 @@ indexParte0;
 								<footer>
 									<p id="fechaSeleccionada"><time datetime="$fecha">$fecha</time></p>
 									<p>$pais</p>
-									<p><b>Destacada por:</b> $muestra[1]</p>
-									<p><b> Comentario:</b>  $muestra[2]</p>
+									<p><b>Destacada por:</b> $usuarioDestacadaPor</p>
+									<p><b> Comentario:</b>  $destacadaPor</p>
 								</footer>
 							</article>
 						</div>
