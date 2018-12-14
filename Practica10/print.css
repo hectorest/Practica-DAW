@@ -1,0 +1,680 @@
+@page { 
+
+	size: 210mm 297mm;
+	margin: 10mm;
+
+}
+
+body{
+	box-sizing: border-box;
+	min-width: 320px;
+    max-width: 1980px;
+	margin: 0 auto;
+	background-color: white;
+	font-family: serif;
+	font-size: 12pt;
+	position: relative;
+}
+
+/*HEADER*/
+
+	body>header{
+		padding: 0;
+		background-color: white;
+		padding: 1cm;
+		padding-bottom: 0cm;
+		border-top: 0;
+		display: flex;
+		flex-direction: row;
+
+	}
+
+		body>header>a{
+			display: none;
+		}
+
+	body>header>a>img{
+
+		height: 2.5cm;
+		margin-right: 0.5cm; 
+
+	}
+
+	body>header>div>h1,h2{
+
+		margin-top: 0cm;
+		color: black;
+		font-weight: bold;
+
+	}
+
+
+/*BARRA DE NAVEGACION*/
+
+	body>nav{
+		display: none;
+	}
+
+/***PAGINA PRINCIPAL***/
+
+/*BUSCADORES INDEX*/
+
+	body>#formBusc{
+		display: none;
+	}
+
+/*BARRA BUSQUEDA TEXTO*/
+
+	body>div>form{
+		display: none;
+	}
+
+/*PARTE CENTRAL*/
+	
+	body>#resultados>div>article:first-of-type{
+		margin-top: 0.2cm;
+	}
+
+	body>section{
+		margin-right: 1cm;
+		margin-left: 1cm;
+		margin-top: 0cm;
+		margin-bottom: 0cm;
+		border: 0;
+    	padding: 0.5cm;
+    	text-align: center;
+    	padding: 0;
+	}
+
+		body>#contFotosIndex>h3{
+			margin: 0.1cm;
+		}
+
+		body>section>h3{
+			background-color: white;
+			border: none;
+			padding: 0cm;
+			margin-top: 0.4cm;
+			margin-bottom: 0.4cm;
+			border-radius: 15px;
+			display: flex;
+			justify-content: center;
+			color: black;
+			font-size: 24pt;
+
+		}
+
+		body>section>a{
+			border: 0;
+			background-color: #ffffff;
+			color: #0032ff;
+			text-decoration: underline;
+			margin: 0.3cm;
+		}
+
+		body>section>p{
+			margin: 0;
+		}
+
+		body>section>.imagenes{
+			display: block;
+			margin-top: 0cm;
+			align-content: center;
+		}
+
+		body>section>.imagenes>article{
+			display: flex;
+			flex-direction: column;
+			background-color: white;
+			border: 0.1cm solid black;
+			justify-content: space-between;
+			color: black;
+			overflow: hidden;
+			height: 10cm;
+			width: 8cm;
+			margin: auto;
+			margin-top: 1cm;
+		}
+
+		body>section>.imagenes>article:last-of-type{
+			margin-bottom: 1cm;
+		}
+
+		body>section>.imagenes>article:nth-of-type(2n){
+
+			page-break-after: always;
+
+		}
+
+		body>section>.imagenes>article>figure{
+			margin: 0;
+			border: 0.2cm solid blue;
+			width: 7cm;
+			height: 4.5cm;
+			align-self: center;
+		}
+			body>section>.imagenes>article>figure>a{
+				margin: 0;
+				display: flex;
+				flex-direction: column;
+				width: 100%;
+				height: 100%;
+				color: #0032ff;
+				content: attr(href);
+			}
+
+				body>section>.imagenes>article>figure>a>img{
+					width: 100%;
+					height: 100%;
+					align-self: center;
+					content: attr(href);
+				}
+
+		body>section>.imagenes>article>h4{
+			
+			border: none;
+			margin-top: 0.5cm;
+			padding: 0.2cm;
+			width: 100%;
+			align-self: center;
+		}
+
+		body>section>.imagenes>article>h4>a{
+
+			text-decoration: underline;
+			color: blue;
+
+		}
+
+
+		body>section>.imagenes>article>footer{
+
+			display: flex;
+			flex-direction: column;
+			padding: 0.2cm;
+			border-radius: 15px;
+			margin-bottom: 1cm;
+
+		}
+
+			body>section>.imagenes>article>footer>p{
+				color: black;
+				margin: 0;
+			}
+
+			body>section>.imagenes>article>footer>p:first-of-type{
+				margin-bottom: 1cm;
+			}
+
+/*MENSAJES MODALES*/
+
+.modal{
+	display: none;
+	background: transparent;
+}
+
+.contenido{
+	display: none;
+}
+
+body>nav + button{
+	display: none;
+}
+
+body>nav + button + div{
+	display: none;
+}
+
+body>button{
+	display: none;
+}
+
+body>button + div{
+	display: none;
+}
+
+/*PAGINACION*/
+
+	body>.paginacion{
+		display: none;
+	}
+
+/***FORMULARIOS***/
+
+body>#formAcc{
+	page-break-before: avoid;
+}
+
+body>#formReg{
+	page-break-before: avoid;
+}
+
+body>#formBuscAvanz{
+	page-break-before: avoid;
+}
+
+body>.formulario{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	page-break-before: always;
+}
+
+	body>.formulario>fieldset{
+		width: 50%;
+		align-self: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
+		overflow: hidden;
+		border: 0;
+	}
+
+	body>#formReg>fieldset{
+		margin: 0;
+	}
+
+		body>#formReg>fieldset>p{
+			page-break-after: avoid;
+			margin-top: 0.5cm;
+		}
+
+		body>#formReg>fieldset>p:nth-of-type(7){
+			margin-top: 0.5cm;
+		}
+
+		body>#formReg>fieldset>p:last-of-type{
+			margin-bottom: 0;
+		}
+
+			body>#formReg>fieldset>p:nth-of-type(9){
+				margin-top: 3cm;
+				page-break-before: always;
+			}
+
+				body>#formReg>fieldset>p:nth-of-type(9)>input{
+					height: 10cm;
+					width: 10cm;
+				}
+
+	body>#formBuscAvanz>fieldset{
+		margin: 0;
+	}
+
+		body>#formBuscAvanz>fieldset>p{
+			page-break-after: avoid;
+			margin-top: 0.5cm;
+		}
+
+		body>#formBuscAvanz>fieldset>p:last-of-type{
+			margin-bottom: 0;
+		}
+
+		body>.formulario>fieldset>p{
+			width: 50%;
+			margin: auto;
+			margin-top: 1cm;
+			display: flex;
+			align-self: center;
+			flex-direction: column;
+			justify-content: center;
+		}
+
+		body>.formulario>fieldset>p:nth-of-type(4){
+			page-break-after: always;
+		}
+
+		body>.formulario>fieldset>p:nth-of-type(7){
+			margin-top: 0;
+			page-break-after: always;
+		}
+
+		body>.formulario>fieldset>p:nth-of-type(12){
+			margin-top: 2cm;
+		}
+
+			body>.formulario>fieldset>#solAlbumDirec>input{
+				margin-bottom: 1cm;
+				margin-top: 1cm;
+			}
+
+			body>.formulario>fieldset>#solAlbumDirec>select{
+				margin-bottom: 2cm;
+			}
+
+			body>.formulario>fieldset>#solAlbumDirec>label:nth-of-type(2){
+				margin-top: 1cm;
+			}
+
+			body>.formulario>fieldset>p>label{
+				align-self: center;
+				width: 5cm;
+			}
+
+			body>.formulario>fieldset>p>input{
+				border-radius: 0.5cm;
+				border: 0.1cm solid black;
+				align-self: center;
+				width: 18cm;
+				height: 0.7cm;
+				color: transparent;
+			}
+
+			body>.formulario>fieldset>p>select{
+				color: transparent;
+			}
+
+	/**************Ocultar placeholder*********************/
+
+			::option{
+				color: transparent;
+			}
+
+			::placeholder{
+				color: transparent;
+			}
+
+			:-ms-input-placeholder { /* IE 10+ */
+				color: transparent; 
+			}
+
+			::-webkit-input-placeholder { /* WebKit */
+				color: transparent;
+			}
+
+			:-moz-placeholder{ /* Firefox 18- */
+				color: transparent;
+			}
+
+			::-moz-placeholder { /* Firefox 19+ */
+				color: transparent;
+			}
+
+	/*******************************************************/
+
+			body>.formulario>fieldset>p>input:focus{
+				background-color: white;
+			}			
+
+			body>.formulario>fieldset>p>input:invalid{
+
+				border: 0.1cm solid black;
+
+			}
+
+			body>.formulario>fieldset>p>textarea{
+				border-radius: 0.5cm;
+				border: 0.1cm solid black;
+				width: 18cm;
+				height: 11cm;
+				align-self: center;
+			}
+
+			body>.formulario>fieldset>p>textarea:hover{
+				background-color: #ffffff;
+			}
+
+			body>.formulario>fieldset>p:last-of-type{
+				display: flex;
+				justify-content: center;
+				margin-bottom: 1cm;
+			}
+				body>.formulario>fieldset>p>button{
+					display: none;
+				}
+
+		body>.formulario>fieldset>a{
+			text-decoration: underline;
+			color: blue;
+		}
+
+			body>.formulario>fieldset>p>select{
+				
+				background-color: white;
+				border-radius: 1cm;
+				border: 0.1cm solid black;
+				width: 18cm;
+				height: 1cm;
+				align-self: center;
+			}
+
+			body>.formulario>fieldset>p>select:invalid{
+				border: 0.1cm solid black;
+			}
+
+			body>.formulario>fieldset>p>#fper{
+				align-self: center;
+				border-radius: 0;
+			}
+
+			body>.formulario>fieldset>p>span{
+				
+				margin: 0;
+				align-self: center;
+			}
+
+			body>.formulario>fieldset>p>span{
+
+				align-self: center;
+
+			}
+
+			body>.formulario>fieldset>#pCasillaRecordarme>input{
+				width: 0.5cm;
+			}
+
+			body>.formulario>fieldset>#pCasillaRecordarme>label{
+				width: 5cm;
+			}
+
+
+
+#bienvenidaUsuarioPerfil{
+
+	display: none;
+	
+}
+
+
+/*FOTO PERFIL*/
+
+	body>section>img{
+		border: 0.1cm solid black;
+		width: 250px;
+		height: 250px;
+	}
+
+/*TABLAS*/
+	
+	#respSolAlbum>header{ /*#respSolAlbum es el body de la pagina respuesta_sol_album.html*/
+		padding: 0.1cm;
+	}
+
+		#respSolAlbum>section>h3{
+			margin: 0.1cm;
+		}
+
+			body>section>div>.tabla{
+				margin: auto;
+				border: 0.1cm solid black;
+				margin-bottom: 0.5cm;
+				margin-top: 0.5cm;
+				border-collapse: collapse;
+			}
+					
+				body>section>div>.tabla>caption{
+					background-color: white;
+					border-top: 0.1cm solid black;
+					border-left: 0.1cm solid black;
+					border-right: 0.1cm solid black;
+				}
+
+				body>section>div>.tabla>tbody>tr:nth-child(even){
+					background-color: #ffffff;
+				}
+
+					body>section>div>.tabla>tbody>tr>td{
+
+						padding: 0.3cm;
+						border: 0.1cm solid black;
+
+					}
+
+						body>section>div>.tabla>tbody>tr>td>a{
+							content: attr(href);
+							color: #0032ff;
+							text-decoration: underline;
+						}
+
+					body>section>div>.tabla>tbody>tr>th{
+						border: 0.1cm solid black;
+					}
+
+		body>section>.contTabla{
+			overflow-x:auto;
+		}
+
+			body>section>.contTabla + div>h3{
+				background-color: transparent;
+				border: 0;
+				color: #000000;
+			}
+
+		body>section>#inicioResSolAlbum{
+			display: none;
+		}
+
+	#respSolAlbum>footer{
+		margin: 0;
+	}
+
+/*ENLACES*/
+	
+	body>section>.enlPerf{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		margin-top: 0.5cm;
+		margin-bottom: 1cm;
+	}
+		body>section>.enlPerf>a{
+
+			border: 0;
+			border-radius: 0px;
+			background-color: white;
+			padding: 0.1cm;
+			color: #0032ff;
+			text-decoration: underline;
+			margin: 0.1cm;
+
+		}
+
+/*PAGINA DETALLE IMAGEN*/
+
+	body>#detFoto{
+
+		margin: 1cm;
+		border: 0;
+	    border-radius: 15px;
+	    padding: 0.5cm;
+	    display: flex;
+	    flex-direction: column;
+	    text-align: center;
+		justify-content: center;
+		align-self: center;
+
+	}
+
+		body>#detFoto>h3{
+
+			background-color: white;
+			padding: 0.2cm;
+			border: 0;
+			border-radius: 15px;
+			display: flex;
+			justify-content: center;
+			color: black;
+
+		}
+
+		body>#detFoto>figure{
+			margin: 0;
+			align-self: center;
+			width: 90%;
+		}
+
+			body>#detFoto>figure>img{
+				width: 100%;
+				border: 0;
+
+			}
+
+		body>#detFoto>div>.p-left{
+
+			display: block;
+			align-self: center;
+
+		}
+
+		body>#detFoto>div>p{
+
+			display: block;
+			align-self: center;
+
+		}
+
+		body>#detFoto>div>p:nth-of-type(2),body>#detFoto>div>p:last-of-type{
+			font-weight: bold;
+		}
+
+		body>#detFoto>div>a{
+
+			display: block;
+			align-self: center;
+			color: #0032ff;
+			text-decoration: underline;
+			font-weight: bold;
+
+		}
+
+		body>section>p>span{
+
+			font-weight: bold;
+			font-size: 35px;
+			color: black;
+
+		}
+
+
+/*FOOTER*/
+
+	body>footer{
+		padding: 0;
+		margin-top: 0.1cm;
+		clear: both;
+		text-align: center;
+		background-color: white;
+		border-top: 0;
+		border-bottom: 0;
+	}
+
+		body>footer>p{
+
+			color: black;
+			margin: 0;
+
+		}
+
+			body>footer>p>a>span{
+				display: none;
+			}
+	
+
+			body>footer>p>strong>a{
+
+				color: blue;
+				text-decoration: underline;
+				margin-right: 0.6cm;
+			}
